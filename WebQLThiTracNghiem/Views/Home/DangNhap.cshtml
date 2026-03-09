@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="login-wrapper">
+    <div class="login-card shadow-lg">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">HỆ THỐNG THI TRẮC NGHIỆM</h2>
+            <p class="text-muted mb-0">Đăng nhập để truy cập hệ thống</p>
+        </div>
+
+        <form>
+            <div class="mb-3">
+                <label class="form-label">Tên đăng nhập</label>
+                <input type="text" class="form-control" placeholder="Nhập tên đăng nhập" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" placeholder="Nhập mật khẩu" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Vai trò</label>
+                <select class="form-select" id="vaiTroSelect">
+                    <option value="Admin">Admin</option>
+                    <option value="GiaoVien">Giáo viên</option>
+                    <option value="HocSinh">Học sinh</option>
+                </select>
+            </div>
+
+            <div class="d-grid gap-2">
+                <a asp-controller="Admin" asp-action="BangDieuKhien" class="btn btn-primary btn-lg">
+                    Đăng nhập
+                </a>
+            </div>
+        </form>
+
+        <div id="quenMatKhauBox" class="mt-3">
+            <div class="text-center">
+                <a href="javascript:void(0)" class="text-decoration-none text-primary fw-semibold">
+                    Quên mật khẩu?
+                </a>
+            </div>
+
+            <div id="thongBaoHoTro" class="alert alert-warning mt-3 text-center mb-2">
+                Nếu bạn quên mật khẩu, vui lòng liên hệ quản trị hệ thống để được hỗ trợ.
+            </div>
+
+            <div id="thongTinLienHe" class="text-center text-muted small">
+                Email hỗ trợ: <strong>admin@qlthitracnghiem.edu.vn</strong><br />
+                Hotline: <strong>0900 000 000</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const vaiTroSelect = document.getElementById("vaiTroSelect");
+    const thongBaoHoTro = document.getElementById("thongBaoHoTro");
+    const thongTinLienHe = document.getElementById("thongTinLienHe");
+
+    function capNhatHoTroTheoVaiTro() {
+        const vaiTro = vaiTroSelect.value;
+
+        if (vaiTro === "HocSinh") {
+            thongBaoHoTro.innerHTML =
+                'Nếu bạn quên mật khẩu, vui lòng liên hệ <strong>giáo viên phụ trách</strong> để được cấp lại tài khoản.';
+            thongTinLienHe.innerHTML =
+                'Liên hệ giáo viên phụ trách hoặc giáo viên chủ nhiệm để được hỗ trợ.';
+        }
+        else if (vaiTro === "GiaoVien") {
+            thongBaoHoTro.innerHTML =
+                'Nếu bạn quên mật khẩu, vui lòng liên hệ <strong>quản trị hệ thống</strong> để được cấp lại tài khoản.';
+            thongTinLienHe.innerHTML =
+                'Email hỗ trợ: <strong>admin@qlthitracnghiem.edu.vn</strong><br />Hotline: <strong>0900 000 000</strong>';
+        }
+        else {
+            thongBaoHoTro.innerHTML =
+                'Tài khoản quản trị cần được xử lý trực tiếp bởi quản trị viên cấp cao hoặc bộ phận kỹ thuật.';
+            thongTinLienHe.innerHTML =
+                'Vui lòng liên hệ bộ phận kỹ thuật hệ thống để được hỗ trợ.';
+        }
+    }
+
+    vaiTroSelect.addEventListener("change", capNhatHoTroTheoVaiTro);
+
+    capNhatHoTroTheoVaiTro();
+</script>

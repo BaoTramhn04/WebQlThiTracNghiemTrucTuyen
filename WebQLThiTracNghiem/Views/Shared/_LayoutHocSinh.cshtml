@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Học sinh</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-brand">QL Thi Trắc Nghiệm</div>
+            <div class="sidebar-role">Học sinh</div>
+
+            <nav class="menu">
+                <a asp-controller="HocSinh" asp-action="DotThi">Danh sách đợt thi</a>
+                <a asp-controller="HocSinh" asp-action="LamBai">Làm bài thi</a>
+                <a asp-controller="HocSinh" asp-action="KetQua">Kết quả</a>
+                <a asp-controller="Home" asp-action="DangNhap">Đăng xuất</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <div>
+                    <h4 class="mb-0">@ViewData["Title"]</h4>
+                    <small class="text-muted">Khu vực dự thi học sinh</small>
+                </div>
+                <div class="user-box">HS Trần Thị B</div>
+            </header>
+
+            <section class="content-area">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

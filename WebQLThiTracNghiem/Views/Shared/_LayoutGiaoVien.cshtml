@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Giáo viên</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="sidebar-brand">QL Thi Trắc Nghiệm</div>
+            <div class="sidebar-role">Giáo viên</div>
+
+            <nav class="menu">
+                <a asp-controller="GiaoVien" asp-action="Dashboard">Dashboard</a>
+                <a asp-controller="GiaoVien" asp-action="HocSinh">Quản lý học sinh</a>
+                <a asp-controller="GiaoVien" asp-action="CauHoi">Quản lý câu hỏi</a>
+                <a asp-controller="GiaoVien" asp-action="DeThi">Quản lý đề thi</a>
+                <a asp-controller="GiaoVien" asp-action="DotThi">Quản lý đợt thi</a>
+                <a asp-controller="GiaoVien" asp-action="Login">Đăng xuất</a>
+            </nav>
+        </aside>
+
+        <div class="main-area">
+            <header class="topbar">
+                <div>
+                    <h4 class="mb-0">@ViewData["Title"]</h4>
+                    <small class="text-muted">Khu vực quản lý giáo viên</small>
+                </div>
+                <div class="user-box">GV Nguyễn Văn A</div>
+            </header>
+
+            <section class="content-area">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

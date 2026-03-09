@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Quản lý đợt thi";
+}
+
+<div class="card custom-card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">Danh sách đợt thi</span>
+        <button class="btn btn-primary">+ Tạo đợt thi</button>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã đợt</th>
+                    <th>Tên đợt thi</th>
+                    <th>Đề thi</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th width="180">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Thi thử Toán lần 1</td>
+                    <td>Đề thi Toán 12 lần 1</td>
+                    <td>01/03/2026 07:00</td>
+                    <td>30/03/2026 23:59</td>
+                    <td><span class="badge bg-success">Đang mở</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-info">Chi tiết</button>
+                        <button class="btn btn-sm btn-warning">Sửa</button>
+                        <button class="btn btn-sm btn-danger">Đóng</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

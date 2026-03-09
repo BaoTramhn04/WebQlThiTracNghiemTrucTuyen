@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Quản lý câu hỏi";
+}
+
+<div class="card custom-card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">Ngân hàng câu hỏi</span>
+        <button class="btn btn-primary">+ Thêm câu hỏi</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã</th>
+                        <th>Nội dung câu hỏi</th>
+                        <th>Môn học</th>
+                        <th>Mức độ</th>
+                        <th>Trạng thái</th>
+                        <th width="180">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Giá trị của 2 + 3 là bao nhiêu?</td>
+                        <td>Toán</td>
+                        <td>Dễ</td>
+                        <td><span class="badge bg-success">Hiển thị</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info">Xem</button>
+                            <button class="btn btn-sm btn-warning">Sửa</button>
+                            <button class="btn btn-sm btn-danger">Xóa</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Đạo hàm của x² là gì?</td>
+                        <td>Toán</td>
+                        <td>Dễ</td>
+                        <td><span class="badge bg-success">Hiển thị</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-info">Xem</button>
+                            <button class="btn btn-sm btn-warning">Sửa</button>
+                            <button class="btn btn-sm btn-danger">Xóa</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

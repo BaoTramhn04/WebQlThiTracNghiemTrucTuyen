@@ -1,0 +1,234 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+}
+
+.auth-page {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb, #60a5fa);
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 36px;
+}
+
+.login-demo {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 14px;
+}
+
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #0f172a;
+    color: white;
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-brand {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.sidebar-role {
+    font-size: 14px;
+    color: #cbd5e1;
+    margin-bottom: 24px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+    .menu a {
+        color: #e2e8f0;
+        text-decoration: none;
+        padding: 12px 14px;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+        .menu a:hover {
+            background: #1e293b;
+            color: #fff;
+        }
+
+.main-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar {
+    background: white;
+    padding: 18px 28px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-box {
+    background: #eff6ff;
+    color: #1d4ed8;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.content-area {
+    padding: 28px;
+}
+
+.custom-card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    text-align: center;
+}
+
+    .stat-card h3 {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #1d4ed8;
+    }
+
+    .stat-card p {
+        margin: 0;
+        color: #6b7280;
+        font-weight: 500;
+    }
+
+.exam-header {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.exam-timer {
+    font-size: 24px;
+    font-weight: 700;
+    color: #dc2626;
+}
+
+.question-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.question-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.answer-list {
+    display: grid;
+    gap: 12px;
+}
+
+.answer-item {
+    display: block;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 14px;
+    background: #f9fafb;
+    cursor: pointer;
+}
+
+    .answer-item input {
+        margin-right: 10px;
+    }
+
+.sticky-panel {
+    position: sticky;
+    top: 20px;
+}
+
+.question-nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.q-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    background: #e5e7eb;
+    font-weight: 600;
+}
+
+    .q-btn.active {
+        background: #2563eb;
+        color: white;
+    }
+
+.result-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    text-align: center;
+}
+
+.result-score {
+    font-size: 48px;
+    font-weight: 800;
+    color: #16a34a;
+    margin-top: 20px;
+}
+
+.mini-result {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+    .mini-result h5 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1d4ed8;
+    }

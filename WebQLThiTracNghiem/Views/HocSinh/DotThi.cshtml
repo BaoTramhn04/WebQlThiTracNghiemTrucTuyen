@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutHocSinh.cshtml";
+    ViewData["Title"] = "Danh sách đợt thi";
+}
+
+<div class="card custom-card">
+    <div class="card-header fw-semibold">Các đợt thi được phép tham gia</div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Tên đợt thi</th>
+                    <th>Môn học</th>
+                    <th>Thời gian làm bài</th>
+                    <th>Thời gian mở</th>
+                    <th>Trạng thái</th>
+                    <th width="140">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Thi thử Toán lần 1</td>
+                    <td>Toán</td>
+                    <td>15 phút</td>
+                    <td>01/03/2026 - 30/03/2026</td>
+                    <td><span class="badge bg-success">Có thể thi</span></td>
+                    <td>
+                        <a asp-controller="HocSinh" asp-action="LamBai" class="btn btn-primary btn-sm">Vào thi</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
