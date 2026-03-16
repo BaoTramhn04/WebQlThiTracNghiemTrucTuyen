@@ -1,67 +1,244 @@
-﻿@{
+﻿@model List<WebQLThiTracNghiem.Models.HocSinh>
+
+@{
     Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
-    ViewData["Title"] = "Quản lý học sinh";
+    var danhSachLop = ViewBag.DanhSachLop as List<WebQLThiTracNghiem.Models.Lop>;
 }
 
-<div class="card custom-card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="fw-semibold">Danh sách học sinh</span>
-        <button class="btn btn-primary">+ Thêm học sinh</button>
+<div class="gv-card">
+
+    <!-- LỌC THEO LỚP -->
+
+    <div style="margin-bottom:15px;">
+
+        <a href="/GiaoVien/HocSinh"
+           class="btn btn-outline-secondary btn-sm">
+            Tất cả (@Model.Count)
+        </a>
+
+        @{
+            int stt = 1;
+        }
+
+        @if (danhSachLop != null)
+        {
+            foreach (var lop in danhSachLop)
+            {
+                var soLuong = Model.Count(x => x.MaLop == lop.MaLop);
+
+                <a href="/GiaoVien/HocSinh?lopId=@lop.MaLop"
+                   class="btn btn-outline-primary btn-sm"
+                   style="margin-left:5px;">
+
+                    @stt. @lop.KyHieuLop (@soLuong)
+
+                </a>
+
+                stt++;
+            }
+        }
+
     </div>
-    <div class="card-body">
-        <div class="mb-3 row">
-            <div class="col-md-4">
-                <input class="form-control" placeholder="Tìm theo họ tên hoặc số báo danh" />
-            </div>
-            <div class="col-md-3">
-                <select class="form-select">
-                    <option>Tất cả lớp</option>
-                    <option>12A1</option>
-                    <option>12A2</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-outline-primary w-100">Tìm kiếm</button>
-            </div>
+
+
+    <!-- TOOLBAR -->
+
+    <form method="get" class="gv-toolbar">
+
+        <div class="gv-toolbar-left">
+
+            <input type="text"
+                   name="keyword"
+                   class="form-control"
+                   value="@Context.Request.Query["keyword"]"
+                   placeholder="Tìm học sinh..."
+                   style="min-width:240px;" />
+
+            <select name="lopId"
+                    class="form-select"
+                    style="min-width:180px;">
+
+                <option value="">Tất cả lớp</option>
+
+                @if (danhSachLop != null)
+                {
+                    foreach (var lop in danhSachLop)
+                    {
+                        var selected = Context.Request.Query["lopId"] == lop.MaLop.ToString();
+
+                        <option value="@lop.MaLop" selected="@selected">
+                            @lop.KyHieuLop
+                        </option>
+                    }
+                }
+
+            </select>
+
+            <button class="btn btn-secondary">
+                Tìm
+            </button>
+
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover align-middle">
-                <thead class="table-light">
+    </form>
+
+
+    <!-- TABLE -->
+
+    <div class="gv-table-wrap">
+
+        <table class="gv-table">
+
+            <thead>
+                <tr>
+                    <th>Mã học sinh</th>
+                    <th>Họ tên</th>
+                    <th>Lớp</th>
+                    <th>Số báo danh</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (Model == null || Model.Count == 0)
+                {
                     <tr>
-                        <th>Mã HS</th>
-                        <th>Họ tên</th>
-                        <th>Số báo danh</th>
-                        <th>Lớp</th>
-                        <th>Trạng thái</th>
-                        <th width="180">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Trần Thị Học Sinh</td>
-                        <td>HS001</td>
-                        <td>12A1</td>
-                        <td><span class="badge bg-success">Đang học</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Sửa</button>
-                            <button class="btn btn-sm btn-danger">Xóa</button>
+                        <td colspan="5" style="text-align:center;">
+                            Không có dữ liệu
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Nguyễn Văn C</td>
-                        <td>HS002</td>
-                        <td>12A1</td>
-                        <td><span class="badge bg-success">Đang học</span></td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Sửa</button>
-                            <button class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                }
+                else
+                {
+                    foreach (var hs in Model)
+                    {
+                        <tr>
+
+                            <td>@hs.MaHocSinh</td>
+
+                            <td>@hs.NguoiDung?.HoSoCaNhan?.HoTen</td>
+
+                            <td>@hs.Lop?.KyHieuLop</td>
+
+                            <td>@hs.SoBaoDanh</td>
+
+                            <td>
+
+                                <button class="btn btn-sm btn-outline-primary"
+                                        onclick="openEditModal('@hs.MaHocSinh','@hs.MaLop')">
+                                    Chuyển lớp
+                                </button>
+
+                                <a asp-action="XoaHocSinh"
+                                   asp-route-id="@hs.MaHocSinh"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Xóa học sinh khỏi lớp?')">
+                                    Xóa khỏi lớp
+                                </a>
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL CHUYỂN LỚP -->
+
+<div class="modal fade" id="modalSuaHocSinh">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <form method="post" asp-action="SuaHocSinh">
+
+                <input type="hidden"
+                       name="id"
+                       id="editId">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        Chuyển lớp học sinh
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+
+                        <label>Chọn lớp</label>
+
+                        <select name="MaLop"
+                                id="editLop"
+                                class="form-control">
+
+                            @if (danhSachLop != null)
+                            {
+                                foreach (var lop in danhSachLop)
+                                {
+                                    <option value="@lop.MaLop">
+                                        @lop.KyHieuLop
+                                    </option>
+                                }
+                            }
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-primary">
+                        Lưu
+                    </button>
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Hủy
+                    </button>
+
+                </div>
+
+            </form>
+
         </div>
     </div>
+
 </div>
+
+
+<script>
+
+function openEditModal(id, lop)
+{
+    document.getElementById("editId").value = id;
+
+    if(lop != null)
+        document.getElementById("editLop").value = lop;
+
+    var modal = new bootstrap.Modal(
+        document.getElementById('modalSuaHocSinh'));
+
+    modal.show();
+}
+
+</script>

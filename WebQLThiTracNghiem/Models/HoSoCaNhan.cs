@@ -1,32 +1,29 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebQLThiTracNghiem.Models
 {
     public class HoSoCaNhan
     {
         [Key]
+        [ForeignKey("NguoiDung")]
         public int MaNguoiDung { get; set; }
 
         [Required]
         [StringLength(100)]
-        public string HoTen { get; set; } = string.Empty;
+        public string HoTen { get; set; }
 
         public DateTime? NgaySinh { get; set; }
 
-        [StringLength(20)]
+        [StringLength(10)]
         public string? GioiTinh { get; set; }
 
-        [StringLength(20)]
+        [StringLength(15)]
         public string? SoDienThoai { get; set; }
-
-        [StringLength(100)]
-        public string? Email { get; set; }
-
-        [StringLength(255)]
         public string? DiaChi { get; set; }
 
-        [StringLength(255)]
         public string? AnhDaiDien { get; set; }
+
+        public NguoiDung NguoiDung { get; set; }
     }
 }
-

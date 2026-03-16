@@ -20,5 +20,6 @@ namespace WebQLThiTracNghiem.Models
         public DateTime NgayTao { get; set; }
 
         public int MaVaiTro { get; set; }
+        public HoSoCaNhan HoSoCaNhan { get; set; }
     }
 }

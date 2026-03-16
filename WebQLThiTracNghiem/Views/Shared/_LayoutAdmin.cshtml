@@ -2,41 +2,69 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Admin</title>
+    <title>@ViewData["Title"]</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" />
+
 </head>
+
 <body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <div class="sidebar-brand">QL Thi Trắc Nghiệm</div>
-            <div class="sidebar-role">Quản trị viên</div>
 
-            <nav class="menu">
-                <a asp-controller="Admin" asp-action="Dashboard">Dashboard</a>
-                <a asp-controller="Admin" asp-action="NguoiDung">Quản lý người dùng</a>
-                <a asp-controller="Admin" asp-action="VaiTro">Quản lý vai trò</a>
-                <a asp-controller="Admin" asp-action="NhatKy">Nhật ký hệ thống</a>
-                <a asp-controller="Home" asp-action="Login">Đăng xuất</a>
-            </nav>
-        </aside>
+    <div class="admin-wrapper">
 
-        <div class="main-area">
-            <header class="topbar">
-                <div>
-                    <h4 class="mb-0">@ViewData["Title"]</h4>
-                    <small class="text-muted">Hệ thống quản trị thi trắc nghiệm trực tuyến</small>
-                </div>
-                <div class="user-box">Admin</div>
-            </header>
+        <!-- SIDEBAR -->
+        <div class="sidebar">
 
-            <section class="content-area">
-                @RenderBody()
-            </section>
+            <div class="sidebar-title">
+                Quản trị hệ thống
+            </div>
+
+            <a asp-controller="Admin" asp-action="BangDieuKhien">
+                Dashboard
+            </a>
+
+            <a asp-controller="Admin" asp-action="DanhSachGiaoVien">
+               Quản lý Giáo viên
+            </a>
+
+            <a asp-controller="Admin" asp-action="DanhSachHocSinh">
+               Quản lý Học sinh
+            </a>
+
+            <a asp-controller="Admin" asp-action="PhanCongGiangDay">
+                Phân công giảng dạy
+            </a>
+
+            <a asp-controller="Home" asp-action="DangNhap">
+                Đăng xuất
+            </a>
+
         </div>
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+            <div class="topbar">
+
+                <h5>@ViewData["Title"]</h5>
+
+                <div>
+                    Admin
+                </div>
+
+            </div>
+
+            <div class="main">
+
+                @RenderBody()
+
+            </div>
+
+        </div>
+
     </div>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

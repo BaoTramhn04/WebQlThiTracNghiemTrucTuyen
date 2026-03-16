@@ -1,0 +1,313 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "Trang chủ";
+}
+
+<div class="exam-home-page">
+
+    <!-- HEADER -->
+    <header class="exam-header">
+        <div class="container">
+            <div class="exam-header-inner">
+                <div class="exam-brand">
+                    <div class="exam-logo-box">
+                        <img src="~/images/logo-school.png" alt="Logo trường" />
+                    </div>
+                    <div class="exam-brand-text">
+                        <div class="exam-brand-sub">TRƯỜNG THPT NTN</div>
+                        <div class="exam-brand-title">WEBSITE THI TRẮC NGHIỆM</div>
+                    </div>
+                </div>
+
+                <div class="exam-header-right">
+                    <nav class="exam-nav">
+                        <a href="#gioi-thieu">Giới thiệu</a>
+                        <a href="#tinh-nang">Tính năng</a>
+                        <a href="#truy-cap">Truy cập</a>
+                        <a href="#huong-dan">Hướng dẫn</a>
+                    </nav>
+
+                    <div class="exam-login-group">
+                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-student">
+                            Đăng nhập học sinh
+                        </a>
+                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-teacher">
+                            Đăng nhập giáo viên
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER -->
+    <section class="exam-banner" id="gioi-thieu">
+        <div class="exam-banner-overlay"></div>
+        <div class="container">
+            <div class="exam-banner-content">
+                <div class="exam-banner-left">
+                    <span class="banner-tag">WEBSITE THI TRẮC NGHIỆM </span>
+                    <h1>Website hỗ trợ thi trực tuyến nhanh chóng, rõ ràng và thuận tiện</h1>
+                    <p>
+                        Website được xây dựng nhằm hỗ trợ nhà trường tổ chức thi trắc nghiệm trực tuyến
+                        cho học sinh một cách hiện đại, dễ sử dụng và khoa học. Người dùng có thể đăng nhập,
+                        tham gia thi, quản lý đề thi, đợt thi và theo dõi kết quả trên cùng một nền tảng thống nhất.
+                    </p>
+
+                    <div class="exam-banner-actions">
+                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-main">
+                            Đăng nhập học sinh
+                        </a>
+                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-outline">
+                            Đăng nhập giáo viên
+                        </a>
+                    </div>
+                </div>
+
+                <div class="exam-banner-right">
+                    <div class="banner-info-card">
+                        <h3>Điểm nổi bật</h3>
+
+                        <div class="banner-info-list">
+                            <div class="banner-info-item">
+                                <div class="banner-info-icon">01</div>
+                                <div>
+                                    <h5>Tổ chức thi trực tuyến</h5>
+                                    <p>Cho phép tạo đợt thi theo môn học, lớp học và thời gian cụ thể.</p>
+                                </div>
+                            </div>
+
+                            <div class="banner-info-item">
+                                <div class="banner-info-icon">02</div>
+                                <div>
+                                    <h5>Quản lý tập trung</h5>
+                                    <p>Hỗ trợ quản lý học sinh, câu hỏi, đề thi và kết quả trên website.</p>
+                                </div>
+                            </div>
+
+                            <div class="banner-info-item">
+                                <div class="banner-info-icon">03</div>
+                                <div>
+                                    <h5>Kết quả nhanh chóng</h5>
+                                    <p>Cho phép chấm điểm tự động và hiển thị kết quả sau khi nộp bài.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exam-banner-stats">
+                <div class="banner-stat-box">
+                    <strong>20+</strong>
+                    <span>Lớp học</span>
+                </div>
+                <div class="banner-stat-box">
+                    <strong>50+</strong>
+                    <span>Đề thi</span>
+                </div>
+                <div class="banner-stat-box">
+                    <strong>1000+</strong>
+                    <span>Câu hỏi</span>
+                </div>
+                <div class="banner-stat-box">
+                    <strong>500+</strong>
+                    <span>Lượt tham gia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GIỚI THIỆU -->
+    <section class="home-section intro-section">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-subtitle">GIỚI THIỆU WEBSITE</span>
+                <h2>Website hỗ trợ thi trắc nghiệm trực tuyến trong nhà trường</h2>
+                <p>
+                    Website được xây dựng nhằm hỗ trợ quá trình tổ chức thi trắc nghiệm
+                    một cách khoa học, giảm thao tác thủ công, tăng hiệu quả quản lý
+                    và tạo môi trường làm bài thuận tiện cho học sinh.
+                </p>
+            </div>
+
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <div class="intro-icon">🏫</div>
+                    <h4>Dành cho nhà trường</h4>
+                    <p>
+                        Hỗ trợ quản lý tập trung hoạt động thi trực tuyến, lưu trữ dữ liệu nhất quán
+                        và theo dõi toàn bộ quá trình tổ chức thi.
+                    </p>
+                </div>
+
+                <div class="intro-card">
+                    <div class="intro-icon">👨‍🏫</div>
+                    <h4>Dành cho giáo viên</h4>
+                    <p>
+                        Tạo ngân hàng câu hỏi, xây dựng đề thi, mở đợt thi
+                        và theo dõi kết quả của học sinh theo từng lớp học.
+                    </p>
+                </div>
+
+                <div class="intro-card">
+                    <div class="intro-icon">🎓</div>
+                    <h4>Dành cho học sinh</h4>
+                    <p>
+                        Đăng nhập đơn giản, xem danh sách đợt thi, làm bài trực tuyến
+                        và tra cứu kết quả sau khi hoàn thành bài thi.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TÍNH NĂNG -->
+    <section class="home-section feature-section" id="tinh-nang">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-subtitle">TÍNH NĂNG NỔI BẬT</span>
+                <h2>Các chức năng chính của website</h2>
+                <p>
+                    Website được thiết kế với các chức năng cần thiết nhằm phục vụ đầy đủ
+                    cho việc quản lý và tổ chức thi trắc nghiệm trực tuyến trong trường học.
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Quản lý tài khoản</h4>
+                    <p>Phân quyền rõ ràng giữa quản trị viên, giáo viên và học sinh.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Ngân hàng câu hỏi</h4>
+                    <p>Lưu trữ và tái sử dụng câu hỏi cho nhiều đề thi khác nhau.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Quản lý đề thi</h4>
+                    <p>Tạo đề thi, cấu hình số lượng câu hỏi và thời gian làm bài phù hợp.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Tổ chức đợt thi</h4>
+                    <p>Thiết lập đợt thi theo lớp, môn học và thời điểm cụ thể.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Làm bài trực tuyến</h4>
+                    <p>Học sinh tham gia làm bài trên giao diện rõ ràng, dễ thao tác và dễ theo dõi.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-top-line"></div>
+                    <h4>Kết quả và thống kê</h4>
+                    <p>Hỗ trợ tổng hợp điểm số, số lượng tham gia và đánh giá chất lượng bài thi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CỔNG TRUY CẬP -->
+    <section class="home-section portal-section" id="truy-cap">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-subtitle">CỔNG TRUY CẬP</span>
+                <h2>Lựa chọn khu vực đăng nhập phù hợp</h2>
+                <p>
+                    Website cung cấp khu vực đăng nhập phù hợp với từng nhóm người dùng,
+                    giúp quá trình sử dụng trở nên trực quan và thuận tiện hơn.
+                </p>
+            </div>
+
+            <div class="portal-grid">
+                <div class="portal-card">
+                    <div class="portal-badge">🎓</div>
+                    <h3>Học sinh</h3>
+                    <p>
+                        Dành cho học sinh tham gia kỳ thi trực tuyến, xem đợt thi,
+                        làm bài, nộp bài và xem kết quả.
+                    </p>
+                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-primary btn-lg">
+                        Đăng nhập học sinh
+                    </a>
+                </div>
+
+                <div class="portal-card">
+                    <div class="portal-badge">👨‍🏫</div>
+                    <h3>Giáo viên</h3>
+                    <p>
+                        Dành cho giáo viên quản lý học sinh, câu hỏi, đề thi,
+                        đợt thi và theo dõi kết quả.
+                    </p>
+                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-outline-primary btn-lg">
+                        Đăng nhập giáo viên
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HƯỚNG DẪN -->
+    <section class="home-section guide-section" id="huong-dan">
+        <div class="container">
+            <div class="guide-box">
+                <div class="guide-left">
+                    <span class="section-subtitle">HƯỚNG DẪN SỬ DỤNG</span>
+                    <h3>Đăng nhập và sử dụng website</h3>
+                    <p>
+                        Học sinh sử dụng <strong>Số báo danh</strong> và mật khẩu để đăng nhập.
+                        Giáo viên sử dụng <strong>Tên đăng nhập hoặc Email</strong>
+                        để truy cập vào khu vực quản lý của website.
+                    </p>
+                </div>
+                <div class="guide-right">
+                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-primary btn-lg">
+                        Đi tới trang đăng nhập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="exam-footer">
+        <div class="container">
+            <div class="exam-footer-grid">
+                <div>
+                    <h5>Website thi trắc nghiệm trực tuyến</h5>
+                    <p>
+                        Website hỗ trợ quản lý và tổ chức thi trắc nghiệm trực tuyến
+                        dành cho học sinh trung học phổ thông.
+                    </p>
+                </div>
+
+                <div>
+                    <h5>Liên kết nhanh</h5>
+                    <ul class="footer-links">
+                        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+                        <li><a href="#tinh-nang">Tính năng</a></li>
+                        <li><a href="#truy-cap">Cổng truy cập</a></li>
+                        <li><a href="#huong-dan">Hướng dẫn</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5>Thông tin liên hệ</h5>
+                    <ul class="footer-links">
+                        <li>Trường THPT ABC</li>
+                        <li>Email: support@thptabc.edu.vn</li>
+                        <li>Hotline: 0900 000 000</li>
+                        <li>Địa chỉ: Hà Nội</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

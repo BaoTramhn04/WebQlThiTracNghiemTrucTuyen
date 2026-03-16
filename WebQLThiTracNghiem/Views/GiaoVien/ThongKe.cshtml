@@ -1,0 +1,103 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Thống kê";
+}
+
+<div class="gv-stats mb-4">
+    <div class="gv-stat-box">
+        <h3>@ViewBag.TongLuotThi</h3>
+        <p>Tổng lượt thi</p>
+    </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.TongHocSinhDaThi</h3>
+        <p>Học sinh đã tham gia</p>
+    </div>
+</div>
+
+<div class="gv-card shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="mb-1">Thống kê kết quả thi</h3>
+            <p class="text-muted mb-0">Theo dõi học sinh đã nộp bài theo môn học và đợt thi.</p>
+        </div>
+    </div>
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-4">
+            <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control"
+                   placeholder="Tìm theo tên học sinh, SBD, đợt thi..." />
+        </div>
+
+        <div class="col-md-3">
+            <select name="monId" class="form-select">
+                <option value="">-- Môn học --</option>
+                @foreach (var mon in ViewBag.MonHoc)
+                {
+                    <option value="@mon.MaMonHoc" selected="@(ViewBag.MonId != null && ViewBag.MonId == mon.MaMonHoc)">
+                        @mon.TenMonHoc
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <select name="dotThiId" class="form-select">
+                <option value="">-- Đợt thi --</option>
+                @foreach (var dt in ViewBag.DotThi)
+                {
+                    <option value="@dt.MaDotThi" selected="@(ViewBag.DotThiId != null && ViewBag.DotThiId == dt.MaDotThi)">
+                        @dt.TenDotThi
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Lọc</button>
+            <a asp-action="ThongKe" class="btn btn-outline-secondary">Đặt lại</a>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Mã lượt thi</th>
+                    <th>Họ tên</th>
+                    <th>SBD</th>
+                    <th>Lớp</th>
+                    <th>Môn học</th>
+                    <th>Đợt thi</th>
+                    <th>Thời điểm nộp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaLuotThi</td>
+                            <td>@item.HoTen</td>
+                            <td>@item.SoBaoDanh</td>
+                            <td>@item.TenLop</td>
+                            <td>@item.TenMonHoc</td>
+                            <td>@item.TenDotThi</td>
+                            <td>@(((DateTime)item.ThoiDiemNopBai).ToString("dd/MM/yyyy HH:mm"))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            Chưa có dữ liệu thống kê.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

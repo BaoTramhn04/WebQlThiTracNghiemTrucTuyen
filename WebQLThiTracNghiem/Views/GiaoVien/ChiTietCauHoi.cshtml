@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Chi tiết câu hỏi";
+
+    var cauHoi = ViewBag.CauHoi;
+    var dapAns = ViewBag.DapAn as List<WebQLThiTracNghiem.Models.DapAn>;
+}
+
+<div class="gv-card shadow-sm">
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h3 class="mb-1">Chi tiết câu hỏi</h3>
+            <p class="text-muted mb-0">Xem đầy đủ nội dung và đáp án của câu hỏi.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="SuaCauHoi" asp-route-id="@cauHoi.MaCauHoi" class="btn btn-primary">Sửa câu hỏi</a>
+            <a asp-action="CauHoi" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="fw-semibold">Mã câu hỏi</label>
+                <div>@cauHoi.MaCauHoi</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold">Môn học</label>
+                <div>@cauHoi.TenMonHoc</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold">Chuyên đề</label>
+                <div>@cauHoi.TenChuyenDe</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold">Ngày tạo</label>
+                <div>@(((DateTime)cauHoi.NgayTao).ToString("dd/MM/yyyy HH:mm"))</div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold">Mức độ</label>
+                <div>
+                    @if (cauHoi.MucDo == 1)
+                    {
+                        <span class="badge bg-success">Nhận biết</span>
+                    }
+                    else if (cauHoi.MucDo == 2)
+                    {
+                        <span class="badge bg-warning text-dark">Thông hiểu</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Vận dụng</span>
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label class="fw-semibold">Trạng thái</label>
+                <div>
+                    @if (cauHoi.TrangThai)
+                    {
+                        <span class="badge bg-primary">Đang dùng</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Tạm ẩn</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label class="fw-semibold mb-2 d-block">Nội dung câu hỏi</label>
+        <div class="border rounded p-3 bg-light">
+            @cauHoi.NoiDung
+        </div>
+    </div>
+
+    <div>
+        <label class="fw-semibold mb-3 d-block">Danh sách đáp án</label>
+
+        @if (dapAns != null && dapAns.Any())
+        {
+            var kyTu = new[] { "A", "B", "C", "D", "E", "F" };
+            int i = 0;
+
+            @foreach (var da in dapAns)
+            {
+                <div class="border rounded p-3 mb-2 @(da.LaDapAnDung ? "border-success bg-success-subtle" : "bg-white")">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>@kyTu[i].</strong> @da.NoiDung
+                        </div>
+                        @if (da.LaDapAnDung)
+                        {
+                            <span class="badge bg-success">Đáp án đúng</span>
+                        }
+                    </div>
+                </div>
+                i++;
+            }
+        }
+        else
+        {
+            <div class="text-muted">Chưa có đáp án.</div>
+        }
+    </div>
+</div>

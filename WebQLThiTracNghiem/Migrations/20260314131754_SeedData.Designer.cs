@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLThiTracNghiem.Data;
 
@@ -11,9 +12,11 @@ using WebQLThiTracNghiem.Data;
 namespace WebQLThiTracNghiem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260314131754_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +53,6 @@ namespace WebQLThiTracNghiem.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("MaCauHoi");
-
-                    b.HasIndex("MaChuyenDe");
 
                     b.ToTable("CauHoi");
 
@@ -4602,8 +4603,6 @@ namespace WebQLThiTracNghiem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MaDapAn");
-
-                    b.HasIndex("MaCauHoi");
 
                     b.ToTable("DapAn");
 
@@ -10571,6 +10570,10 @@ namespace WebQLThiTracNghiem.Migrations
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("GioiTinh")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
@@ -10595,3431 +10598,1907 @@ namespace WebQLThiTracNghiem.Migrations
                         new
                         {
                             MaNguoiDung = 1,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Quản trị hệ thống",
-                            NgaySinh = new DateTime(1985, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000000"
+                            HoTen = "Quản trị hệ thống"
                         },
                         new
                         {
                             MaNguoiDung = 100,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Văn Minh",
-                            NgaySinh = new DateTime(1985, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000100"
+                            HoTen = "Nguyễn Văn Minh"
                         },
                         new
                         {
                             MaNguoiDung = 101,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Thị Lan",
-                            NgaySinh = new DateTime(1986, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000101"
+                            HoTen = "Trần Thị Lan"
                         },
                         new
                         {
                             MaNguoiDung = 102,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Văn Hùng",
-                            NgaySinh = new DateTime(1987, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000102"
+                            HoTen = "Phạm Văn Hùng"
                         },
                         new
                         {
                             MaNguoiDung = 103,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Thị Hoa",
-                            NgaySinh = new DateTime(1988, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000103"
+                            HoTen = "Lê Thị Hoa"
                         },
                         new
                         {
                             MaNguoiDung = 104,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Văn Nam",
-                            NgaySinh = new DateTime(1989, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000104"
+                            HoTen = "Đỗ Văn Nam"
                         },
                         new
                         {
                             MaNguoiDung = 105,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Ngô Thị Hạnh",
-                            NgaySinh = new DateTime(1990, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000105"
+                            HoTen = "Ngô Thị Hạnh"
                         },
                         new
                         {
                             MaNguoiDung = 106,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Văn Tuấn",
-                            NgaySinh = new DateTime(1991, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000106"
+                            HoTen = "Hoàng Văn Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 107,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Thị Trang",
-                            NgaySinh = new DateTime(1992, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000107"
+                            HoTen = "Bùi Thị Trang"
                         },
                         new
                         {
                             MaNguoiDung = 108,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Văn Long",
-                            NgaySinh = new DateTime(1993, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000108"
+                            HoTen = "Phan Văn Long"
                         },
                         new
                         {
                             MaNguoiDung = 109,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thị Mai",
-                            NgaySinh = new DateTime(1994, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000109"
+                            HoTen = "Vũ Thị Mai"
                         },
                         new
                         {
                             MaNguoiDung = 110,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Văn Sơn",
-                            NgaySinh = new DateTime(1985, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000110"
+                            HoTen = "Đặng Văn Sơn"
                         },
                         new
                         {
                             MaNguoiDung = 111,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trịnh Thị Hà",
-                            NgaySinh = new DateTime(1986, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000111"
+                            HoTen = "Trịnh Thị Hà"
                         },
                         new
                         {
                             MaNguoiDung = 112,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đoàn Văn Phúc",
-                            NgaySinh = new DateTime(1987, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000112"
+                            HoTen = "Đoàn Văn Phúc"
                         },
                         new
                         {
                             MaNguoiDung = 113,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Tạ Thị Thu",
-                            NgaySinh = new DateTime(1988, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000113"
+                            HoTen = "Tạ Thị Thu"
                         },
                         new
                         {
                             MaNguoiDung = 114,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lương Văn Hải",
-                            NgaySinh = new DateTime(1989, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000114"
+                            HoTen = "Lương Văn Hải"
                         },
                         new
                         {
                             MaNguoiDung = 115,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hà Thị Linh",
-                            NgaySinh = new DateTime(1990, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000115"
+                            HoTen = "Hà Thị Linh"
                         },
                         new
                         {
                             MaNguoiDung = 116,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Văn Quân",
-                            NgaySinh = new DateTime(1991, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000116"
+                            HoTen = "Nguyễn Văn Quân"
                         },
                         new
                         {
                             MaNguoiDung = 117,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Văn Phong",
-                            NgaySinh = new DateTime(1992, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000117"
+                            HoTen = "Trần Văn Phong"
                         },
                         new
                         {
                             MaNguoiDung = 118,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Văn Dũng",
-                            NgaySinh = new DateTime(1993, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000118"
+                            HoTen = "Lê Văn Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 119,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Thị Hương",
-                            NgaySinh = new DateTime(1994, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0900000119"
+                            HoTen = "Phạm Thị Hương"
                         },
                         new
                         {
                             MaNguoiDung = 500,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Vy",
-                            NgaySinh = new DateTime(2007, 9, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911434835"
+                            HoTen = "Lê Hà Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 501,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 3, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915456722"
+                            HoTen = "Phan Quốc Yến"
                         },
                         new
                         {
                             MaNguoiDung = 502,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Linh",
-                            NgaySinh = new DateTime(2007, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913297378"
+                            HoTen = "Phan Quốc Phong"
                         },
                         new
                         {
                             MaNguoiDung = 503,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Vy",
-                            NgaySinh = new DateTime(2007, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911019515"
+                            HoTen = "Phạm Nhật Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 504,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912263056"
+                            HoTen = "Vũ Thái Bình"
                         },
                         new
                         {
                             MaNguoiDung = 505,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Tuấn",
-                            NgaySinh = new DateTime(2007, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911841856"
+                            HoTen = "Đỗ Xuân Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 506,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Giang",
-                            NgaySinh = new DateTime(2007, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918994739"
+                            HoTen = "Phan Quốc Nam"
                         },
                         new
                         {
                             MaNguoiDung = 507,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Dũng",
-                            NgaySinh = new DateTime(2007, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914457024"
+                            HoTen = "Phan Quốc Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 508,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Linh",
-                            NgaySinh = new DateTime(2007, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915917403"
+                            HoTen = "Trần Minh Vy"
                         },
                         new
                         {
                             MaNguoiDung = 509,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Yến",
-                            NgaySinh = new DateTime(2007, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911908862"
+                            HoTen = "Đặng Như Phong"
                         },
                         new
                         {
                             MaNguoiDung = 510,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Chi",
-                            NgaySinh = new DateTime(2007, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911516554"
+                            HoTen = "Đặng Như Giang"
                         },
                         new
                         {
                             MaNguoiDung = 511,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Chi",
-                            NgaySinh = new DateTime(2007, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914250589"
+                            HoTen = "Vũ Thái Hà"
                         },
                         new
                         {
                             MaNguoiDung = 512,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Giang",
-                            NgaySinh = new DateTime(2007, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916282053"
+                            HoTen = "Vũ Thái Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 513,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Ngọc",
-                            NgaySinh = new DateTime(2007, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911385799"
+                            HoTen = "Hoàng Hải Trang"
                         },
                         new
                         {
                             MaNguoiDung = 514,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Lan",
-                            NgaySinh = new DateTime(2007, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916684190"
+                            HoTen = "Vũ Thái Anh"
                         },
                         new
                         {
                             MaNguoiDung = 515,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Dũng",
-                            NgaySinh = new DateTime(2007, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918327159"
+                            HoTen = "Nguyễn Hoàng Mai"
                         },
                         new
                         {
                             MaNguoiDung = 516,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Lan",
-                            NgaySinh = new DateTime(2007, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911607280"
+                            HoTen = "Vũ Thái Bình"
                         },
                         new
                         {
                             MaNguoiDung = 517,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Dũng",
-                            NgaySinh = new DateTime(2007, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918212612"
+                            HoTen = "Lê Hà Nam"
                         },
                         new
                         {
                             MaNguoiDung = 518,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Nam",
-                            NgaySinh = new DateTime(2007, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914742468"
+                            HoTen = "Đỗ Xuân Nam"
                         },
                         new
                         {
                             MaNguoiDung = 519,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Bình",
-                            NgaySinh = new DateTime(2007, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916336986"
+                            HoTen = "Đặng Như Chi"
                         },
                         new
                         {
                             MaNguoiDung = 520,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Mai",
-                            NgaySinh = new DateTime(2007, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917777867"
+                            HoTen = "Phạm Nhật Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 521,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Mai",
-                            NgaySinh = new DateTime(2007, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911835438"
+                            HoTen = "Phan Quốc Hải"
                         },
                         new
                         {
                             MaNguoiDung = 522,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Mai",
-                            NgaySinh = new DateTime(2007, 4, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916024230"
+                            HoTen = "Lê Hà Hải"
                         },
                         new
                         {
                             MaNguoiDung = 523,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Chi",
-                            NgaySinh = new DateTime(2007, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917278273"
+                            HoTen = "Lê Hà Phong"
                         },
                         new
                         {
                             MaNguoiDung = 524,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Lan",
-                            NgaySinh = new DateTime(2007, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914346357"
+                            HoTen = "Trần Minh Nam"
                         },
                         new
                         {
                             MaNguoiDung = 525,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Phong",
-                            NgaySinh = new DateTime(2007, 10, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918667781"
+                            HoTen = "Nguyễn Hoàng Linh"
                         },
                         new
                         {
                             MaNguoiDung = 526,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Hải",
-                            NgaySinh = new DateTime(2007, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917882742"
+                            HoTen = "Nguyễn Hoàng Phong"
                         },
                         new
                         {
                             MaNguoiDung = 527,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Hà",
-                            NgaySinh = new DateTime(2007, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919559135"
+                            HoTen = "Hoàng Hải Chi"
                         },
                         new
                         {
                             MaNguoiDung = 528,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Hải",
-                            NgaySinh = new DateTime(2007, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915616230"
+                            HoTen = "Trần Minh Giang"
                         },
                         new
                         {
                             MaNguoiDung = 529,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Dũng",
-                            NgaySinh = new DateTime(2007, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916364607"
+                            HoTen = "Trần Minh Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 530,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Linh",
-                            NgaySinh = new DateTime(2007, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914035162"
+                            HoTen = "Trần Minh Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 531,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Tuấn",
-                            NgaySinh = new DateTime(2007, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915580246"
+                            HoTen = "Đặng Như Vy"
                         },
                         new
                         {
                             MaNguoiDung = 532,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Phong",
-                            NgaySinh = new DateTime(2007, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913991073"
+                            HoTen = "Trần Minh Chi"
                         },
                         new
                         {
                             MaNguoiDung = 533,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Tuấn",
-                            NgaySinh = new DateTime(2007, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914572340"
+                            HoTen = "Vũ Thái Trang"
                         },
                         new
                         {
                             MaNguoiDung = 534,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Ngọc",
-                            NgaySinh = new DateTime(2007, 7, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913768552"
+                            HoTen = "Trần Minh Hải"
                         },
                         new
                         {
                             MaNguoiDung = 535,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Anh",
-                            NgaySinh = new DateTime(2007, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916812757"
+                            HoTen = "Hoàng Hải Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 536,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Ngọc",
-                            NgaySinh = new DateTime(2007, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913251587"
+                            HoTen = "Vũ Thái Anh"
                         },
                         new
                         {
                             MaNguoiDung = 537,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Quang",
-                            NgaySinh = new DateTime(2007, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914544708"
+                            HoTen = "Bùi Tiến Lan"
                         },
                         new
                         {
                             MaNguoiDung = 538,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Bình",
-                            NgaySinh = new DateTime(2007, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912508102"
+                            HoTen = "Phạm Nhật Nam"
                         },
                         new
                         {
                             MaNguoiDung = 539,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Hà",
-                            NgaySinh = new DateTime(2007, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912372387"
+                            HoTen = "Bùi Tiến Nam"
                         },
                         new
                         {
                             MaNguoiDung = 540,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Yến",
-                            NgaySinh = new DateTime(2007, 10, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912412262"
+                            HoTen = "Vũ Thái Chi"
                         },
                         new
                         {
                             MaNguoiDung = 541,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Thảo",
-                            NgaySinh = new DateTime(2007, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914528616"
+                            HoTen = "Vũ Thái Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 542,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Yến",
-                            NgaySinh = new DateTime(2007, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918580514"
+                            HoTen = "Nguyễn Hoàng Nam"
                         },
                         new
                         {
                             MaNguoiDung = 543,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Hà",
-                            NgaySinh = new DateTime(2007, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911160677"
+                            HoTen = "Phạm Nhật Chi"
                         },
                         new
                         {
                             MaNguoiDung = 544,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Linh",
-                            NgaySinh = new DateTime(2007, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914399424"
+                            HoTen = "Lê Hà Yến"
                         },
                         new
                         {
                             MaNguoiDung = 545,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Hưng",
-                            NgaySinh = new DateTime(2007, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911995985"
+                            HoTen = "Bùi Tiến Phong"
                         },
                         new
                         {
                             MaNguoiDung = 546,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Chi",
-                            NgaySinh = new DateTime(2007, 4, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916263359"
+                            HoTen = "Đặng Như Bình"
                         },
                         new
                         {
                             MaNguoiDung = 547,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Giang",
-                            NgaySinh = new DateTime(2007, 8, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911514147"
+                            HoTen = "Đặng Như Linh"
                         },
                         new
                         {
                             MaNguoiDung = 548,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Giang",
-                            NgaySinh = new DateTime(2007, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919815222"
+                            HoTen = "Vũ Thái Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 549,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Nam",
-                            NgaySinh = new DateTime(2007, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919335865"
+                            HoTen = "Đặng Như Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 550,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Dũng",
-                            NgaySinh = new DateTime(2007, 7, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911841230"
+                            HoTen = "Phạm Nhật Mai"
                         },
                         new
                         {
                             MaNguoiDung = 551,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Hà",
-                            NgaySinh = new DateTime(2007, 7, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917334721"
+                            HoTen = "Nguyễn Hoàng Lan"
                         },
                         new
                         {
                             MaNguoiDung = 552,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Lan",
-                            NgaySinh = new DateTime(2007, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916086578"
+                            HoTen = "Đỗ Xuân Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 553,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Hưng",
-                            NgaySinh = new DateTime(2007, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911469358"
+                            HoTen = "Đỗ Xuân Linh"
                         },
                         new
                         {
                             MaNguoiDung = 554,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Phong",
-                            NgaySinh = new DateTime(2007, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918943221"
+                            HoTen = "Phan Quốc Anh"
                         },
                         new
                         {
                             MaNguoiDung = 555,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Trang",
-                            NgaySinh = new DateTime(2007, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913783211"
+                            HoTen = "Bùi Tiến Linh"
                         },
                         new
                         {
                             MaNguoiDung = 556,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Thảo",
-                            NgaySinh = new DateTime(2007, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914970545"
+                            HoTen = "Phạm Nhật Phong"
                         },
                         new
                         {
                             MaNguoiDung = 557,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Phong",
-                            NgaySinh = new DateTime(2007, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917855788"
+                            HoTen = "Phan Quốc Trang"
                         },
                         new
                         {
                             MaNguoiDung = 558,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Hưng",
-                            NgaySinh = new DateTime(2007, 10, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913092783"
+                            HoTen = "Đặng Như Giang"
                         },
                         new
                         {
                             MaNguoiDung = 559,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Dũng",
-                            NgaySinh = new DateTime(2007, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919033329"
+                            HoTen = "Vũ Thái Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 560,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Quang",
-                            NgaySinh = new DateTime(2007, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918293031"
+                            HoTen = "Vũ Thái Chi"
                         },
                         new
                         {
                             MaNguoiDung = 561,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Chi",
-                            NgaySinh = new DateTime(2007, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919544706"
+                            HoTen = "Phạm Nhật Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 562,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Vy",
-                            NgaySinh = new DateTime(2007, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911253947"
+                            HoTen = "Nguyễn Hoàng Anh"
                         },
                         new
                         {
                             MaNguoiDung = 563,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Bình",
-                            NgaySinh = new DateTime(2007, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911882961"
+                            HoTen = "Đỗ Xuân Quang"
                         },
                         new
                         {
                             MaNguoiDung = 564,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Hà",
-                            NgaySinh = new DateTime(2007, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916384808"
+                            HoTen = "Đặng Như Mai"
                         },
                         new
                         {
                             MaNguoiDung = 565,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Mai",
-                            NgaySinh = new DateTime(2007, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919535395"
+                            HoTen = "Trần Minh Lan"
                         },
                         new
                         {
                             MaNguoiDung = 566,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914880631"
+                            HoTen = "Trần Minh Trang"
                         },
                         new
                         {
                             MaNguoiDung = 567,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Ngọc",
-                            NgaySinh = new DateTime(2007, 10, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914700453"
+                            HoTen = "Bùi Tiến Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 568,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916895056"
+                            HoTen = "Trần Minh Chi"
                         },
                         new
                         {
                             MaNguoiDung = 569,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Hưng",
-                            NgaySinh = new DateTime(2007, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915064736"
+                            HoTen = "Đỗ Xuân Vy"
                         },
                         new
                         {
                             MaNguoiDung = 570,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Tuấn",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911577829"
+                            HoTen = "Trần Minh Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 571,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Giang",
-                            NgaySinh = new DateTime(2007, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915361905"
+                            HoTen = "Lê Hà Anh"
                         },
                         new
                         {
                             MaNguoiDung = 572,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Mai",
-                            NgaySinh = new DateTime(2007, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915948411"
+                            HoTen = "Nguyễn Hoàng Nam"
                         },
                         new
                         {
                             MaNguoiDung = 573,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Giang",
-                            NgaySinh = new DateTime(2007, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913383665"
+                            HoTen = "Hoàng Hải Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 574,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Hưng",
-                            NgaySinh = new DateTime(2007, 5, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913234551"
+                            HoTen = "Nguyễn Hoàng Phong"
                         },
                         new
                         {
                             MaNguoiDung = 575,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Thảo",
-                            NgaySinh = new DateTime(2007, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917683603"
+                            HoTen = "Lê Hà Chi"
                         },
                         new
                         {
                             MaNguoiDung = 576,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Chi",
-                            NgaySinh = new DateTime(2007, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915258374"
+                            HoTen = "Bùi Tiến Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 577,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Thảo",
-                            NgaySinh = new DateTime(2007, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916122275"
+                            HoTen = "Đỗ Xuân Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 578,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Anh",
-                            NgaySinh = new DateTime(2007, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913658736"
+                            HoTen = "Phạm Nhật Trang"
                         },
                         new
                         {
                             MaNguoiDung = 579,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Hưng",
-                            NgaySinh = new DateTime(2007, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913926775"
+                            HoTen = "Bùi Tiến Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 580,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Lan",
-                            NgaySinh = new DateTime(2007, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918959162"
+                            HoTen = "Phạm Nhật Nam"
                         },
                         new
                         {
                             MaNguoiDung = 581,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Ngọc",
-                            NgaySinh = new DateTime(2007, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912984009"
+                            HoTen = "Hoàng Hải Giang"
                         },
                         new
                         {
                             MaNguoiDung = 582,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919396609"
+                            HoTen = "Đỗ Xuân Giang"
                         },
                         new
                         {
                             MaNguoiDung = 583,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Mai",
-                            NgaySinh = new DateTime(2007, 1, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919622388"
+                            HoTen = "Phan Quốc Vy"
                         },
                         new
                         {
                             MaNguoiDung = 584,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Hưng",
-                            NgaySinh = new DateTime(2007, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912091545"
+                            HoTen = "Lê Hà Lan"
                         },
                         new
                         {
                             MaNguoiDung = 585,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Tuấn",
-                            NgaySinh = new DateTime(2007, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916206227"
+                            HoTen = "Nguyễn Hoàng Hà"
                         },
                         new
                         {
                             MaNguoiDung = 586,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Chi",
-                            NgaySinh = new DateTime(2007, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917304157"
+                            HoTen = "Hoàng Hải Yến"
                         },
                         new
                         {
                             MaNguoiDung = 587,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Mai",
-                            NgaySinh = new DateTime(2007, 10, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918741203"
+                            HoTen = "Bùi Tiến Yến"
                         },
                         new
                         {
                             MaNguoiDung = 588,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916902105"
+                            HoTen = "Trần Minh Vy"
                         },
                         new
                         {
                             MaNguoiDung = 589,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Thảo",
-                            NgaySinh = new DateTime(2007, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919735958"
+                            HoTen = "Nguyễn Hoàng Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 590,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Anh",
-                            NgaySinh = new DateTime(2007, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914057143"
+                            HoTen = "Đỗ Xuân Chi"
                         },
                         new
                         {
                             MaNguoiDung = 591,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Yến",
-                            NgaySinh = new DateTime(2007, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917765630"
+                            HoTen = "Phan Quốc Yến"
                         },
                         new
                         {
                             MaNguoiDung = 592,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Phong",
-                            NgaySinh = new DateTime(2007, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917520265"
+                            HoTen = "Phan Quốc Chi"
                         },
                         new
                         {
                             MaNguoiDung = 593,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Hà",
-                            NgaySinh = new DateTime(2007, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919841377"
+                            HoTen = "Lê Hà Anh"
                         },
                         new
                         {
                             MaNguoiDung = 594,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Lan",
-                            NgaySinh = new DateTime(2007, 3, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912985819"
+                            HoTen = "Đặng Như Bình"
                         },
                         new
                         {
                             MaNguoiDung = 595,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Yến",
-                            NgaySinh = new DateTime(2007, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912665867"
+                            HoTen = "Phan Quốc Vy"
                         },
                         new
                         {
                             MaNguoiDung = 596,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Mai",
-                            NgaySinh = new DateTime(2007, 5, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914634612"
+                            HoTen = "Nguyễn Hoàng Bình"
                         },
                         new
                         {
                             MaNguoiDung = 597,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Hưng",
-                            NgaySinh = new DateTime(2007, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919381274"
+                            HoTen = "Đỗ Xuân Linh"
                         },
                         new
                         {
                             MaNguoiDung = 598,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Yến",
-                            NgaySinh = new DateTime(2007, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915444213"
+                            HoTen = "Hoàng Hải Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 599,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Anh",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917243362"
+                            HoTen = "Lê Hà Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 600,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Bình",
-                            NgaySinh = new DateTime(2007, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919160580"
+                            HoTen = "Đặng Như Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 601,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Yến",
-                            NgaySinh = new DateTime(2007, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918117178"
+                            HoTen = "Vũ Thái Lan"
                         },
                         new
                         {
                             MaNguoiDung = 602,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Ngọc",
-                            NgaySinh = new DateTime(2007, 10, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917058666"
+                            HoTen = "Đặng Như Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 603,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Vy",
-                            NgaySinh = new DateTime(2007, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913993717"
+                            HoTen = "Vũ Thái Vy"
                         },
                         new
                         {
                             MaNguoiDung = 604,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Vy",
-                            NgaySinh = new DateTime(2007, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918257894"
+                            HoTen = "Phan Quốc Trang"
                         },
                         new
                         {
                             MaNguoiDung = 605,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Phong",
-                            NgaySinh = new DateTime(2007, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915358114"
+                            HoTen = "Lê Hà Quang"
                         },
                         new
                         {
                             MaNguoiDung = 606,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Anh",
-                            NgaySinh = new DateTime(2007, 2, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917862568"
+                            HoTen = "Lê Hà Giang"
                         },
                         new
                         {
                             MaNguoiDung = 607,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915396191"
+                            HoTen = "Hoàng Hải Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 608,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Lan",
-                            NgaySinh = new DateTime(2007, 11, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914376531"
+                            HoTen = "Hoàng Hải Trang"
                         },
                         new
                         {
                             MaNguoiDung = 609,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Trang",
-                            NgaySinh = new DateTime(2007, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914032762"
+                            HoTen = "Đặng Như Chi"
                         },
                         new
                         {
                             MaNguoiDung = 610,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919449497"
+                            HoTen = "Hoàng Hải Phong"
                         },
                         new
                         {
                             MaNguoiDung = 611,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Nam",
-                            NgaySinh = new DateTime(2007, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912514011"
+                            HoTen = "Lê Hà Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 612,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Hưng",
-                            NgaySinh = new DateTime(2007, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918383973"
+                            HoTen = "Phạm Nhật Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 613,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Anh",
-                            NgaySinh = new DateTime(2007, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911720070"
+                            HoTen = "Hoàng Hải Nam"
                         },
                         new
                         {
                             MaNguoiDung = 614,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Vy",
-                            NgaySinh = new DateTime(2007, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916477855"
+                            HoTen = "Phan Quốc Yến"
                         },
                         new
                         {
                             MaNguoiDung = 615,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Hưng",
-                            NgaySinh = new DateTime(2007, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916429100"
+                            HoTen = "Trần Minh Anh"
                         },
                         new
                         {
                             MaNguoiDung = 616,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Anh",
-                            NgaySinh = new DateTime(2007, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915905413"
+                            HoTen = "Bùi Tiến Anh"
                         },
                         new
                         {
                             MaNguoiDung = 617,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Hưng",
-                            NgaySinh = new DateTime(2007, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914843034"
+                            HoTen = "Lê Hà Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 618,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Chi",
-                            NgaySinh = new DateTime(2007, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916275480"
+                            HoTen = "Lê Hà Bình"
                         },
                         new
                         {
                             MaNguoiDung = 619,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Phong",
-                            NgaySinh = new DateTime(2007, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919956531"
+                            HoTen = "Đặng Như Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 620,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915371221"
+                            HoTen = "Phạm Nhật Nam"
                         },
                         new
                         {
                             MaNguoiDung = 621,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Thảo",
-                            NgaySinh = new DateTime(2007, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913062477"
+                            HoTen = "Vũ Thái Giang"
                         },
                         new
                         {
                             MaNguoiDung = 622,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917665204"
+                            HoTen = "Vũ Thái Vy"
                         },
                         new
                         {
                             MaNguoiDung = 623,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Hải",
-                            NgaySinh = new DateTime(2007, 3, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916112794"
+                            HoTen = "Nguyễn Hoàng Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 624,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912343768"
+                            HoTen = "Bùi Tiến Mai"
                         },
                         new
                         {
                             MaNguoiDung = 625,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Tuấn",
-                            NgaySinh = new DateTime(2007, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915263869"
+                            HoTen = "Lê Hà Trang"
                         },
                         new
                         {
                             MaNguoiDung = 626,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919066580"
+                            HoTen = "Nguyễn Hoàng Lan"
                         },
                         new
                         {
                             MaNguoiDung = 627,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Ngọc",
-                            NgaySinh = new DateTime(2007, 7, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918377875"
+                            HoTen = "Đặng Như Phong"
                         },
                         new
                         {
                             MaNguoiDung = 628,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Hải",
-                            NgaySinh = new DateTime(2007, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918168573"
+                            HoTen = "Nguyễn Hoàng Linh"
                         },
                         new
                         {
                             MaNguoiDung = 629,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Nam",
-                            NgaySinh = new DateTime(2007, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918406333"
+                            HoTen = "Vũ Thái Nam"
                         },
                         new
                         {
                             MaNguoiDung = 630,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Vy",
-                            NgaySinh = new DateTime(2007, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917451483"
+                            HoTen = "Vũ Thái Trang"
                         },
                         new
                         {
                             MaNguoiDung = 631,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Lan",
-                            NgaySinh = new DateTime(2007, 3, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915848494"
+                            HoTen = "Nguyễn Hoàng Bình"
                         },
                         new
                         {
                             MaNguoiDung = 632,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Lan",
-                            NgaySinh = new DateTime(2007, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915582927"
+                            HoTen = "Hoàng Hải Vy"
                         },
                         new
                         {
                             MaNguoiDung = 633,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Trang",
-                            NgaySinh = new DateTime(2007, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919350079"
+                            HoTen = "Đỗ Xuân Linh"
                         },
                         new
                         {
                             MaNguoiDung = 634,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Giang",
-                            NgaySinh = new DateTime(2007, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917994798"
+                            HoTen = "Lê Hà Mai"
                         },
                         new
                         {
                             MaNguoiDung = 635,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Hải",
-                            NgaySinh = new DateTime(2007, 1, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919940800"
+                            HoTen = "Đỗ Xuân Phong"
                         },
                         new
                         {
                             MaNguoiDung = 636,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Linh",
-                            NgaySinh = new DateTime(2007, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912999715"
+                            HoTen = "Vũ Thái Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 637,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Hưng",
-                            NgaySinh = new DateTime(2007, 9, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915035987"
+                            HoTen = "Lê Hà Phong"
                         },
                         new
                         {
                             MaNguoiDung = 638,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Lan",
-                            NgaySinh = new DateTime(2007, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918344798"
+                            HoTen = "Nguyễn Hoàng Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 639,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Hà",
-                            NgaySinh = new DateTime(2007, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917864163"
+                            HoTen = "Hoàng Hải Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 640,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Dũng",
-                            NgaySinh = new DateTime(2007, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913854873"
+                            HoTen = "Đặng Như Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 641,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Phong",
-                            NgaySinh = new DateTime(2007, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912119828"
+                            HoTen = "Đỗ Xuân Vy"
                         },
                         new
                         {
                             MaNguoiDung = 642,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Hải",
-                            NgaySinh = new DateTime(2007, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917578124"
+                            HoTen = "Vũ Thái Giang"
                         },
                         new
                         {
                             MaNguoiDung = 643,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911175386"
+                            HoTen = "Hoàng Hải Hà"
                         },
                         new
                         {
                             MaNguoiDung = 644,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Vy",
-                            NgaySinh = new DateTime(2007, 1, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913380694"
+                            HoTen = "Lê Hà Chi"
                         },
                         new
                         {
                             MaNguoiDung = 645,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918460976"
+                            HoTen = "Lê Hà Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 646,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Giang",
-                            NgaySinh = new DateTime(2007, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918319454"
+                            HoTen = "Phan Quốc Chi"
                         },
                         new
                         {
                             MaNguoiDung = 647,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Anh",
-                            NgaySinh = new DateTime(2007, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911078072"
+                            HoTen = "Trần Minh Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 648,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912310752"
+                            HoTen = "Hoàng Hải Lan"
                         },
                         new
                         {
                             MaNguoiDung = 649,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 6, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915585699"
+                            HoTen = "Phạm Nhật Anh"
                         },
                         new
                         {
                             MaNguoiDung = 650,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Hà",
-                            NgaySinh = new DateTime(2007, 6, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914583090"
+                            HoTen = "Hoàng Hải Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 651,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Yến",
-                            NgaySinh = new DateTime(2007, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913902059"
+                            HoTen = "Đặng Như Giang"
                         },
                         new
                         {
                             MaNguoiDung = 652,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Tuấn",
-                            NgaySinh = new DateTime(2007, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916981092"
+                            HoTen = "Lê Hà Bình"
                         },
                         new
                         {
                             MaNguoiDung = 653,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Tuấn",
-                            NgaySinh = new DateTime(2007, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912127818"
+                            HoTen = "Lê Hà Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 654,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Bình",
-                            NgaySinh = new DateTime(2007, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919663760"
+                            HoTen = "Phạm Nhật Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 655,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Hải",
-                            NgaySinh = new DateTime(2007, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912562528"
+                            HoTen = "Vũ Thái Vy"
                         },
                         new
                         {
                             MaNguoiDung = 656,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Anh",
-                            NgaySinh = new DateTime(2007, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912383785"
+                            HoTen = "Phan Quốc Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 657,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Chi",
-                            NgaySinh = new DateTime(2007, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915753593"
+                            HoTen = "Đặng Như Anh"
                         },
                         new
                         {
                             MaNguoiDung = 658,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Bình",
-                            NgaySinh = new DateTime(2007, 2, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917622105"
+                            HoTen = "Bùi Tiến Yến"
                         },
                         new
                         {
                             MaNguoiDung = 659,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Hải",
-                            NgaySinh = new DateTime(2007, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912477373"
+                            HoTen = "Trần Minh Hải"
                         },
                         new
                         {
                             MaNguoiDung = 660,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Vy",
-                            NgaySinh = new DateTime(2007, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917660138"
+                            HoTen = "Bùi Tiến Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 661,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Hưng",
-                            NgaySinh = new DateTime(2007, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919460828"
+                            HoTen = "Bùi Tiến Phong"
                         },
                         new
                         {
                             MaNguoiDung = 662,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Phong",
-                            NgaySinh = new DateTime(2007, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919990727"
+                            HoTen = "Vũ Thái Bình"
                         },
                         new
                         {
                             MaNguoiDung = 663,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Anh",
-                            NgaySinh = new DateTime(2007, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917854612"
+                            HoTen = "Hoàng Hải Linh"
                         },
                         new
                         {
                             MaNguoiDung = 664,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Mai",
-                            NgaySinh = new DateTime(2007, 12, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917918031"
+                            HoTen = "Nguyễn Hoàng Linh"
                         },
                         new
                         {
                             MaNguoiDung = 665,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Bình",
-                            NgaySinh = new DateTime(2007, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915762731"
+                            HoTen = "Hoàng Hải Hải"
                         },
                         new
                         {
                             MaNguoiDung = 666,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Ngọc",
-                            NgaySinh = new DateTime(2007, 7, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919256097"
+                            HoTen = "Phan Quốc Quang"
                         },
                         new
                         {
                             MaNguoiDung = 667,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Yến",
-                            NgaySinh = new DateTime(2007, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917145541"
+                            HoTen = "Đặng Như Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 668,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Chi",
-                            NgaySinh = new DateTime(2007, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911656945"
+                            HoTen = "Phan Quốc Trang"
                         },
                         new
                         {
                             MaNguoiDung = 669,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Linh",
-                            NgaySinh = new DateTime(2007, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911127294"
+                            HoTen = "Phạm Nhật Anh"
                         },
                         new
                         {
                             MaNguoiDung = 670,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Tuấn",
-                            NgaySinh = new DateTime(2007, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915480401"
+                            HoTen = "Phan Quốc Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 671,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Dũng",
-                            NgaySinh = new DateTime(2007, 11, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916089534"
+                            HoTen = "Hoàng Hải Bình"
                         },
                         new
                         {
                             MaNguoiDung = 672,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Ngọc",
-                            NgaySinh = new DateTime(2007, 4, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916022840"
+                            HoTen = "Hoàng Hải Anh"
                         },
                         new
                         {
                             MaNguoiDung = 673,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Nam",
-                            NgaySinh = new DateTime(2007, 8, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916086715"
+                            HoTen = "Nguyễn Hoàng Mai"
                         },
                         new
                         {
                             MaNguoiDung = 674,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Tuấn",
-                            NgaySinh = new DateTime(2007, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913946421"
+                            HoTen = "Đặng Như Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 675,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Ngọc",
-                            NgaySinh = new DateTime(2007, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918445585"
+                            HoTen = "Đỗ Xuân Quang"
                         },
                         new
                         {
                             MaNguoiDung = 676,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Ngọc",
-                            NgaySinh = new DateTime(2007, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917959727"
+                            HoTen = "Nguyễn Hoàng Lan"
                         },
                         new
                         {
                             MaNguoiDung = 677,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Hà",
-                            NgaySinh = new DateTime(2007, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917182772"
+                            HoTen = "Bùi Tiến Hà"
                         },
                         new
                         {
                             MaNguoiDung = 678,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Nam",
-                            NgaySinh = new DateTime(2007, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918581384"
+                            HoTen = "Nguyễn Hoàng Nam"
                         },
                         new
                         {
                             MaNguoiDung = 679,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Nam",
-                            NgaySinh = new DateTime(2007, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912015078"
+                            HoTen = "Vũ Thái Lan"
                         },
                         new
                         {
                             MaNguoiDung = 680,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Dũng",
-                            NgaySinh = new DateTime(2007, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919776181"
+                            HoTen = "Nguyễn Hoàng Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 681,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Thảo",
-                            NgaySinh = new DateTime(2007, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914145258"
+                            HoTen = "Bùi Tiến Linh"
                         },
                         new
                         {
                             MaNguoiDung = 682,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Dũng",
-                            NgaySinh = new DateTime(2007, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913184109"
+                            HoTen = "Bùi Tiến Phong"
                         },
                         new
                         {
                             MaNguoiDung = 683,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917118408"
+                            HoTen = "Trần Minh Yến"
                         },
                         new
                         {
                             MaNguoiDung = 684,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Hưng",
-                            NgaySinh = new DateTime(2007, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911098334"
+                            HoTen = "Đặng Như Quang"
                         },
                         new
                         {
                             MaNguoiDung = 685,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Bình",
-                            NgaySinh = new DateTime(2007, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911504680"
+                            HoTen = "Đỗ Xuân Phong"
                         },
                         new
                         {
                             MaNguoiDung = 686,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Hà",
-                            NgaySinh = new DateTime(2007, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919016974"
+                            HoTen = "Đặng Như Trang"
                         },
                         new
                         {
                             MaNguoiDung = 687,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Hải",
-                            NgaySinh = new DateTime(2007, 12, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919732497"
+                            HoTen = "Bùi Tiến Bình"
                         },
                         new
                         {
                             MaNguoiDung = 688,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Ngọc",
-                            NgaySinh = new DateTime(2007, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913668651"
+                            HoTen = "Phan Quốc Anh"
                         },
                         new
                         {
                             MaNguoiDung = 689,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Phong",
-                            NgaySinh = new DateTime(2007, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914382969"
+                            HoTen = "Phạm Nhật Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 690,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Anh",
-                            NgaySinh = new DateTime(2007, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915869717"
+                            HoTen = "Bùi Tiến Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 691,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Ngọc",
-                            NgaySinh = new DateTime(2007, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911703142"
+                            HoTen = "Phạm Nhật Hải"
                         },
                         new
                         {
                             MaNguoiDung = 692,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Mai",
-                            NgaySinh = new DateTime(2007, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918145130"
+                            HoTen = "Lê Hà Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 693,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Phong",
-                            NgaySinh = new DateTime(2007, 2, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915744548"
+                            HoTen = "Vũ Thái Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 694,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Lan",
-                            NgaySinh = new DateTime(2007, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916381158"
+                            HoTen = "Lê Hà Linh"
                         },
                         new
                         {
                             MaNguoiDung = 695,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Nam",
-                            NgaySinh = new DateTime(2007, 8, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912451128"
+                            HoTen = "Đỗ Xuân Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 696,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Nam",
-                            NgaySinh = new DateTime(2007, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916717225"
+                            HoTen = "Đặng Như Yến"
                         },
                         new
                         {
                             MaNguoiDung = 697,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Dũng",
-                            NgaySinh = new DateTime(2007, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916045109"
+                            HoTen = "Hoàng Hải Phong"
                         },
                         new
                         {
                             MaNguoiDung = 698,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Trang",
-                            NgaySinh = new DateTime(2007, 4, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919799816"
+                            HoTen = "Lê Hà Yến"
                         },
                         new
                         {
                             MaNguoiDung = 699,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Yến",
-                            NgaySinh = new DateTime(2007, 2, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915736364"
+                            HoTen = "Đặng Như Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 700,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Dũng",
-                            NgaySinh = new DateTime(2007, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914698530"
+                            HoTen = "Đặng Như Quang"
                         },
                         new
                         {
                             MaNguoiDung = 701,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Linh",
-                            NgaySinh = new DateTime(2007, 6, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918477566"
+                            HoTen = "Vũ Thái Phong"
                         },
                         new
                         {
                             MaNguoiDung = 702,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Hà",
-                            NgaySinh = new DateTime(2007, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917314660"
+                            HoTen = "Phan Quốc Hà"
                         },
                         new
                         {
                             MaNguoiDung = 703,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Trang",
-                            NgaySinh = new DateTime(2007, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912343635"
+                            HoTen = "Đỗ Xuân Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 704,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Quang",
-                            NgaySinh = new DateTime(2007, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911395688"
+                            HoTen = "Phan Quốc Trang"
                         },
                         new
                         {
                             MaNguoiDung = 705,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Yến",
-                            NgaySinh = new DateTime(2007, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918778011"
+                            HoTen = "Trần Minh Hà"
                         },
                         new
                         {
                             MaNguoiDung = 706,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Trang",
-                            NgaySinh = new DateTime(2007, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919430494"
+                            HoTen = "Vũ Thái Vy"
                         },
                         new
                         {
                             MaNguoiDung = 707,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912780663"
+                            HoTen = "Lê Hà Chi"
                         },
                         new
                         {
                             MaNguoiDung = 708,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Trang",
-                            NgaySinh = new DateTime(2007, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914641312"
+                            HoTen = "Vũ Thái Quang"
                         },
                         new
                         {
                             MaNguoiDung = 709,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Bình",
-                            NgaySinh = new DateTime(2007, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916488179"
+                            HoTen = "Nguyễn Hoàng Giang"
                         },
                         new
                         {
                             MaNguoiDung = 710,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Trang",
-                            NgaySinh = new DateTime(2007, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911421549"
+                            HoTen = "Lê Hà Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 711,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Phong",
-                            NgaySinh = new DateTime(2007, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916921065"
+                            HoTen = "Lê Hà Hải"
                         },
                         new
                         {
                             MaNguoiDung = 712,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Phong",
-                            NgaySinh = new DateTime(2007, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919772546"
+                            HoTen = "Đỗ Xuân Giang"
                         },
                         new
                         {
                             MaNguoiDung = 713,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Tuấn",
-                            NgaySinh = new DateTime(2007, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912655084"
+                            HoTen = "Vũ Thái Hải"
                         },
                         new
                         {
                             MaNguoiDung = 714,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Nam",
-                            NgaySinh = new DateTime(2007, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917884514"
+                            HoTen = "Phạm Nhật Anh"
                         },
                         new
                         {
                             MaNguoiDung = 715,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Hưng",
-                            NgaySinh = new DateTime(2007, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919099027"
+                            HoTen = "Bùi Tiến Chi"
                         },
                         new
                         {
                             MaNguoiDung = 716,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Ngọc",
-                            NgaySinh = new DateTime(2007, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912299125"
+                            HoTen = "Phan Quốc Lan"
                         },
                         new
                         {
                             MaNguoiDung = 717,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Mai",
-                            NgaySinh = new DateTime(2007, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916505265"
+                            HoTen = "Phan Quốc Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 718,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Hưng",
-                            NgaySinh = new DateTime(2007, 9, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911621306"
+                            HoTen = "Nguyễn Hoàng Yến"
                         },
                         new
                         {
                             MaNguoiDung = 719,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Mai",
-                            NgaySinh = new DateTime(2007, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912552810"
+                            HoTen = "Trần Minh Chi"
                         },
                         new
                         {
                             MaNguoiDung = 720,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Lan",
-                            NgaySinh = new DateTime(2007, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912731839"
+                            HoTen = "Vũ Thái Chi"
                         },
                         new
                         {
                             MaNguoiDung = 721,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Ngọc",
-                            NgaySinh = new DateTime(2007, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917529958"
+                            HoTen = "Bùi Tiến Mai"
                         },
                         new
                         {
                             MaNguoiDung = 722,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Trang",
-                            NgaySinh = new DateTime(2007, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918718473"
+                            HoTen = "Trần Minh Hà"
                         },
                         new
                         {
                             MaNguoiDung = 723,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Nam",
-                            NgaySinh = new DateTime(2007, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919210364"
+                            HoTen = "Phan Quốc Vy"
                         },
                         new
                         {
                             MaNguoiDung = 724,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913981106"
+                            HoTen = "Đặng Như Trang"
                         },
                         new
                         {
                             MaNguoiDung = 725,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Bình",
-                            NgaySinh = new DateTime(2007, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916375911"
+                            HoTen = "Lê Hà Mai"
                         },
                         new
                         {
                             MaNguoiDung = 726,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Anh",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919849962"
+                            HoTen = "Đỗ Xuân Anh"
                         },
                         new
                         {
                             MaNguoiDung = 727,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Anh",
-                            NgaySinh = new DateTime(2007, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914379068"
+                            HoTen = "Phan Quốc Mai"
                         },
                         new
                         {
                             MaNguoiDung = 728,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Yến",
-                            NgaySinh = new DateTime(2007, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914358240"
+                            HoTen = "Hoàng Hải Mai"
                         },
                         new
                         {
                             MaNguoiDung = 729,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Giang",
-                            NgaySinh = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918852301"
+                            HoTen = "Phan Quốc Bình"
                         },
                         new
                         {
                             MaNguoiDung = 730,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Chi",
-                            NgaySinh = new DateTime(2007, 1, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916431795"
+                            HoTen = "Phạm Nhật Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 731,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Lan",
-                            NgaySinh = new DateTime(2007, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911715533"
+                            HoTen = "Bùi Tiến Nam"
                         },
                         new
                         {
                             MaNguoiDung = 732,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Yến",
-                            NgaySinh = new DateTime(2007, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917151443"
+                            HoTen = "Phan Quốc Yến"
                         },
                         new
                         {
                             MaNguoiDung = 733,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Anh",
-                            NgaySinh = new DateTime(2007, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916239041"
+                            HoTen = "Lê Hà Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 734,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Yến",
-                            NgaySinh = new DateTime(2007, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911959442"
+                            HoTen = "Phan Quốc Hà"
                         },
                         new
                         {
                             MaNguoiDung = 735,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Hà",
-                            NgaySinh = new DateTime(2007, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919475581"
+                            HoTen = "Đỗ Xuân Vy"
                         },
                         new
                         {
                             MaNguoiDung = 736,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Hải",
-                            NgaySinh = new DateTime(2007, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911437118"
+                            HoTen = "Đặng Như Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 737,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Tuấn",
-                            NgaySinh = new DateTime(2007, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914449055"
+                            HoTen = "Nguyễn Hoàng Chi"
                         },
                         new
                         {
                             MaNguoiDung = 738,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Dũng",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916881883"
+                            HoTen = "Trần Minh Phong"
                         },
                         new
                         {
                             MaNguoiDung = 739,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Bình",
-                            NgaySinh = new DateTime(2007, 7, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917579224"
+                            HoTen = "Hoàng Hải Giang"
                         },
                         new
                         {
                             MaNguoiDung = 740,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Quang",
-                            NgaySinh = new DateTime(2007, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916632398"
+                            HoTen = "Nguyễn Hoàng Hải"
                         },
                         new
                         {
                             MaNguoiDung = 741,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Trang",
-                            NgaySinh = new DateTime(2007, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911104444"
+                            HoTen = "Trần Minh Hải"
                         },
                         new
                         {
                             MaNguoiDung = 742,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Bình",
-                            NgaySinh = new DateTime(2007, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916900746"
+                            HoTen = "Nguyễn Hoàng Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 743,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913754280"
+                            HoTen = "Nguyễn Hoàng Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 744,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Vy",
-                            NgaySinh = new DateTime(2007, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919691471"
+                            HoTen = "Đặng Như Vy"
                         },
                         new
                         {
                             MaNguoiDung = 745,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Lan",
-                            NgaySinh = new DateTime(2007, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913104149"
+                            HoTen = "Bùi Tiến Giang"
                         },
                         new
                         {
                             MaNguoiDung = 746,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918849730"
+                            HoTen = "Trần Minh Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 747,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Hải",
-                            NgaySinh = new DateTime(2007, 2, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912446650"
+                            HoTen = "Đỗ Xuân Quang"
                         },
                         new
                         {
                             MaNguoiDung = 748,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 3, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919788724"
+                            HoTen = "Nguyễn Hoàng Bình"
                         },
                         new
                         {
                             MaNguoiDung = 749,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Mai",
-                            NgaySinh = new DateTime(2007, 4, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915215005"
+                            HoTen = "Hoàng Hải Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 750,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Anh",
-                            NgaySinh = new DateTime(2007, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917094690"
+                            HoTen = "Đỗ Xuân Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 751,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Trang",
-                            NgaySinh = new DateTime(2007, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913252402"
+                            HoTen = "Bùi Tiến Phong"
                         },
                         new
                         {
                             MaNguoiDung = 752,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Giang",
-                            NgaySinh = new DateTime(2007, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912899322"
+                            HoTen = "Phan Quốc Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 753,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Hải",
-                            NgaySinh = new DateTime(2007, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918242563"
+                            HoTen = "Hoàng Hải Hà"
                         },
                         new
                         {
                             MaNguoiDung = 754,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Linh",
-                            NgaySinh = new DateTime(2007, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917189402"
+                            HoTen = "Lê Hà Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 755,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Lan",
-                            NgaySinh = new DateTime(2007, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916423158"
+                            HoTen = "Đặng Như Anh"
                         },
                         new
                         {
                             MaNguoiDung = 756,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Mai",
-                            NgaySinh = new DateTime(2007, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919065124"
+                            HoTen = "Vũ Thái Yến"
                         },
                         new
                         {
                             MaNguoiDung = 757,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Trang",
-                            NgaySinh = new DateTime(2007, 7, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916838084"
+                            HoTen = "Lê Hà Quang"
                         },
                         new
                         {
                             MaNguoiDung = 758,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Vy",
-                            NgaySinh = new DateTime(2007, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918648134"
+                            HoTen = "Hoàng Hải Quang"
                         },
                         new
                         {
                             MaNguoiDung = 759,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Nam",
-                            NgaySinh = new DateTime(2007, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917465507"
+                            HoTen = "Hoàng Hải Vy"
                         },
                         new
                         {
                             MaNguoiDung = 760,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Mai",
-                            NgaySinh = new DateTime(2007, 7, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916137562"
+                            HoTen = "Nguyễn Hoàng Lan"
                         },
                         new
                         {
                             MaNguoiDung = 761,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Bình",
-                            NgaySinh = new DateTime(2007, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914204407"
+                            HoTen = "Trần Minh Hà"
                         },
                         new
                         {
                             MaNguoiDung = 762,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Trang",
-                            NgaySinh = new DateTime(2007, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913859148"
+                            HoTen = "Vũ Thái Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 763,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Thảo",
-                            NgaySinh = new DateTime(2007, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913472534"
+                            HoTen = "Lê Hà Trang"
                         },
                         new
                         {
                             MaNguoiDung = 764,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Vy",
-                            NgaySinh = new DateTime(2007, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913102407"
+                            HoTen = "Lê Hà Giang"
                         },
                         new
                         {
                             MaNguoiDung = 765,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Vy",
-                            NgaySinh = new DateTime(2007, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911929419"
+                            HoTen = "Trần Minh Yến"
                         },
                         new
                         {
                             MaNguoiDung = 766,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Chi",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917198941"
+                            HoTen = "Phan Quốc Chi"
                         },
                         new
                         {
                             MaNguoiDung = 767,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Ngọc",
-                            NgaySinh = new DateTime(2007, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916709898"
+                            HoTen = "Phạm Nhật Vy"
                         },
                         new
                         {
                             MaNguoiDung = 768,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Thảo",
-                            NgaySinh = new DateTime(2007, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913983686"
+                            HoTen = "Bùi Tiến Nam"
                         },
                         new
                         {
                             MaNguoiDung = 769,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Hải",
-                            NgaySinh = new DateTime(2007, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919470232"
+                            HoTen = "Lê Hà Chi"
                         },
                         new
                         {
                             MaNguoiDung = 770,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Anh",
-                            NgaySinh = new DateTime(2007, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911479877"
+                            HoTen = "Trần Minh Lan"
                         },
                         new
                         {
                             MaNguoiDung = 771,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Thảo",
-                            NgaySinh = new DateTime(2007, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915455649"
+                            HoTen = "Vũ Thái Giang"
                         },
                         new
                         {
                             MaNguoiDung = 772,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Giang",
-                            NgaySinh = new DateTime(2007, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912247994"
+                            HoTen = "Vũ Thái Hải"
                         },
                         new
                         {
                             MaNguoiDung = 773,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Quang",
-                            NgaySinh = new DateTime(2007, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919948390"
+                            HoTen = "Đặng Như Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 774,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Chi",
-                            NgaySinh = new DateTime(2007, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919843324"
+                            HoTen = "Trần Minh Yến"
                         },
                         new
                         {
                             MaNguoiDung = 775,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Bình",
-                            NgaySinh = new DateTime(2007, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912557827"
+                            HoTen = "Đỗ Xuân Quang"
                         },
                         new
                         {
                             MaNguoiDung = 776,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Anh",
-                            NgaySinh = new DateTime(2007, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911654281"
+                            HoTen = "Phan Quốc Hà"
                         },
                         new
                         {
                             MaNguoiDung = 777,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Phong",
-                            NgaySinh = new DateTime(2007, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911988132"
+                            HoTen = "Đỗ Xuân Giang"
                         },
                         new
                         {
                             MaNguoiDung = 778,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Yến",
-                            NgaySinh = new DateTime(2007, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915025435"
+                            HoTen = "Vũ Thái Bình"
                         },
                         new
                         {
                             MaNguoiDung = 779,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Dũng",
-                            NgaySinh = new DateTime(2007, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916118756"
+                            HoTen = "Phan Quốc Anh"
                         },
                         new
                         {
                             MaNguoiDung = 780,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Anh",
-                            NgaySinh = new DateTime(2007, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919473698"
+                            HoTen = "Bùi Tiến Linh"
                         },
                         new
                         {
                             MaNguoiDung = 781,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Hưng",
-                            NgaySinh = new DateTime(2007, 10, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916350056"
+                            HoTen = "Bùi Tiến Trang"
                         },
                         new
                         {
                             MaNguoiDung = 782,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Lan",
-                            NgaySinh = new DateTime(2007, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918277697"
+                            HoTen = "Hoàng Hải Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 783,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Thảo",
-                            NgaySinh = new DateTime(2007, 11, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914227796"
+                            HoTen = "Bùi Tiến Chi"
                         },
                         new
                         {
                             MaNguoiDung = 784,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Quang",
-                            NgaySinh = new DateTime(2007, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913463924"
+                            HoTen = "Bùi Tiến Giang"
                         },
                         new
                         {
                             MaNguoiDung = 785,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Giang",
-                            NgaySinh = new DateTime(2007, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913712824"
+                            HoTen = "Đỗ Xuân Hải"
                         },
                         new
                         {
                             MaNguoiDung = 786,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Mai",
-                            NgaySinh = new DateTime(2007, 6, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918387648"
+                            HoTen = "Vũ Thái Anh"
                         },
                         new
                         {
                             MaNguoiDung = 787,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Hải",
-                            NgaySinh = new DateTime(2007, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915925437"
+                            HoTen = "Đặng Như Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 788,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Yến",
-                            NgaySinh = new DateTime(2007, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911966648"
+                            HoTen = "Trần Minh Yến"
                         },
                         new
                         {
                             MaNguoiDung = 789,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Anh",
-                            NgaySinh = new DateTime(2007, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915516617"
+                            HoTen = "Hoàng Hải Phong"
                         },
                         new
                         {
                             MaNguoiDung = 790,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Yến",
-                            NgaySinh = new DateTime(2007, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914262793"
+                            HoTen = "Nguyễn Hoàng Hải"
                         },
                         new
                         {
                             MaNguoiDung = 791,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Thảo",
-                            NgaySinh = new DateTime(2007, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917674218"
+                            HoTen = "Bùi Tiến Vy"
                         },
                         new
                         {
                             MaNguoiDung = 792,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Hải",
-                            NgaySinh = new DateTime(2007, 11, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911465936"
+                            HoTen = "Hoàng Hải Nam"
                         },
                         new
                         {
                             MaNguoiDung = 793,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Hà",
-                            NgaySinh = new DateTime(2007, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911671932"
+                            HoTen = "Vũ Thái Phong"
                         },
                         new
                         {
                             MaNguoiDung = 794,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Thảo",
-                            NgaySinh = new DateTime(2007, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914764628"
+                            HoTen = "Đặng Như Phong"
                         },
                         new
                         {
                             MaNguoiDung = 795,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Lan",
-                            NgaySinh = new DateTime(2007, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919871474"
+                            HoTen = "Hoàng Hải Bình"
                         },
                         new
                         {
                             MaNguoiDung = 796,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Thảo",
-                            NgaySinh = new DateTime(2007, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916423111"
+                            HoTen = "Trần Minh Phong"
                         },
                         new
                         {
                             MaNguoiDung = 797,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 8, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918340822"
+                            HoTen = "Đặng Như Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 798,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Nam",
-                            NgaySinh = new DateTime(2007, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919121987"
+                            HoTen = "Bùi Tiến Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 799,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Hải",
-                            NgaySinh = new DateTime(2007, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911046888"
+                            HoTen = "Phạm Nhật Lan"
                         },
                         new
                         {
                             MaNguoiDung = 800,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Lan",
-                            NgaySinh = new DateTime(2007, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919222476"
+                            HoTen = "Hoàng Hải Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 801,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Hưng",
-                            NgaySinh = new DateTime(2007, 3, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913968181"
+                            HoTen = "Đặng Như Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 802,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Vy",
-                            NgaySinh = new DateTime(2007, 9, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915929707"
+                            HoTen = "Nguyễn Hoàng Hà"
                         },
                         new
                         {
                             MaNguoiDung = 803,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Giang",
-                            NgaySinh = new DateTime(2007, 6, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912138620"
+                            HoTen = "Hoàng Hải Linh"
                         },
                         new
                         {
                             MaNguoiDung = 804,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Yến",
-                            NgaySinh = new DateTime(2007, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918264279"
+                            HoTen = "Bùi Tiến Nam"
                         },
                         new
                         {
                             MaNguoiDung = 805,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Hải",
-                            NgaySinh = new DateTime(2007, 9, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912398365"
+                            HoTen = "Đỗ Xuân Hải"
                         },
                         new
                         {
                             MaNguoiDung = 806,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Anh",
-                            NgaySinh = new DateTime(2007, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911148836"
+                            HoTen = "Trần Minh Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 807,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Hưng",
-                            NgaySinh = new DateTime(2007, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913258867"
+                            HoTen = "Phạm Nhật Bình"
                         },
                         new
                         {
                             MaNguoiDung = 808,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Nam",
-                            NgaySinh = new DateTime(2007, 4, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918984260"
+                            HoTen = "Lê Hà Hải"
                         },
                         new
                         {
                             MaNguoiDung = 809,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915760590"
+                            HoTen = "Đỗ Xuân Hải"
                         },
                         new
                         {
                             MaNguoiDung = 810,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Yến",
-                            NgaySinh = new DateTime(2007, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913932366"
+                            HoTen = "Lê Hà Chi"
                         },
                         new
                         {
                             MaNguoiDung = 811,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Giang",
-                            NgaySinh = new DateTime(2007, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911017139"
+                            HoTen = "Nguyễn Hoàng Giang"
                         },
                         new
                         {
                             MaNguoiDung = 812,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Quang",
-                            NgaySinh = new DateTime(2007, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914329531"
+                            HoTen = "Bùi Tiến Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 813,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Trần Minh Anh",
-                            NgaySinh = new DateTime(2007, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912539171"
+                            HoTen = "Hoàng Hải Trang"
                         },
                         new
                         {
                             MaNguoiDung = 814,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Nam",
-                            NgaySinh = new DateTime(2007, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918981746"
+                            HoTen = "Phạm Nhật Bình"
                         },
                         new
                         {
                             MaNguoiDung = 815,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Linh",
-                            NgaySinh = new DateTime(2007, 12, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917898494"
+                            HoTen = "Lê Hà Lan"
                         },
                         new
                         {
                             MaNguoiDung = 816,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Giang",
-                            NgaySinh = new DateTime(2007, 1, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917759734"
+                            HoTen = "Nguyễn Hoàng Mai"
                         },
                         new
                         {
                             MaNguoiDung = 817,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Trần Minh Ngọc",
-                            NgaySinh = new DateTime(2007, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911706949"
+                            HoTen = "Bùi Tiến Trang"
                         },
                         new
                         {
                             MaNguoiDung = 818,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Dũng",
-                            NgaySinh = new DateTime(2007, 3, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911009237"
+                            HoTen = "Nguyễn Hoàng Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 819,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phan Quốc Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918010667"
+                            HoTen = "Đỗ Xuân Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 820,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Thảo",
-                            NgaySinh = new DateTime(2007, 6, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917338141"
+                            HoTen = "Bùi Tiến Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 821,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Dũng",
-                            NgaySinh = new DateTime(2007, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915275924"
+                            HoTen = "Phan Quốc Vy"
                         },
                         new
                         {
                             MaNguoiDung = 822,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Phạm Nhật Linh",
-                            NgaySinh = new DateTime(2007, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916734781"
+                            HoTen = "Phan Quốc Anh"
                         },
                         new
                         {
                             MaNguoiDung = 823,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Bùi Tiến Hải",
-                            NgaySinh = new DateTime(2007, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917047675"
+                            HoTen = "Phạm Nhật Mai"
                         },
                         new
                         {
                             MaNguoiDung = 824,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Giang",
-                            NgaySinh = new DateTime(2007, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915075380"
+                            HoTen = "Đặng Như Yến"
                         },
                         new
                         {
                             MaNguoiDung = 825,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Tuấn",
-                            NgaySinh = new DateTime(2007, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911455419"
+                            HoTen = "Hoàng Hải Nam"
                         },
                         new
                         {
                             MaNguoiDung = 826,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Tuấn",
-                            NgaySinh = new DateTime(2007, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916952443"
+                            HoTen = "Hoàng Hải Chi"
                         },
                         new
                         {
                             MaNguoiDung = 827,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Phong",
-                            NgaySinh = new DateTime(2007, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914686279"
+                            HoTen = "Lê Hà Lan"
                         },
                         new
                         {
                             MaNguoiDung = 828,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Hà",
-                            NgaySinh = new DateTime(2007, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915919013"
+                            HoTen = "Phan Quốc Lan"
                         },
                         new
                         {
                             MaNguoiDung = 829,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Linh",
-                            NgaySinh = new DateTime(2007, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918772368"
+                            HoTen = "Vũ Thái Mai"
                         },
                         new
                         {
                             MaNguoiDung = 830,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Anh",
-                            NgaySinh = new DateTime(2007, 10, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912880114"
+                            HoTen = "Vũ Thái Dũng"
                         },
                         new
                         {
                             MaNguoiDung = 831,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Bình",
-                            NgaySinh = new DateTime(2007, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919901745"
+                            HoTen = "Đặng Như Trang"
                         },
                         new
                         {
                             MaNguoiDung = 832,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Nguyễn Hoàng Chi",
-                            NgaySinh = new DateTime(2007, 1, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917794467"
+                            HoTen = "Phạm Nhật Vy"
                         },
                         new
                         {
                             MaNguoiDung = 833,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911154865"
+                            HoTen = "Đặng Như Vy"
                         },
                         new
                         {
                             MaNguoiDung = 834,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Yến",
-                            NgaySinh = new DateTime(2007, 2, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913741030"
+                            HoTen = "Vũ Thái Mai"
                         },
                         new
                         {
                             MaNguoiDung = 835,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Nam",
-                            NgaySinh = new DateTime(2007, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912901779"
+                            HoTen = "Vũ Thái Quang"
                         },
                         new
                         {
                             MaNguoiDung = 836,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Giang",
-                            NgaySinh = new DateTime(2007, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919136298"
+                            HoTen = "Vũ Thái Mai"
                         },
                         new
                         {
                             MaNguoiDung = 837,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Thảo",
-                            NgaySinh = new DateTime(2007, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915947245"
+                            HoTen = "Lê Hà Lan"
                         },
                         new
                         {
                             MaNguoiDung = 838,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Yến",
-                            NgaySinh = new DateTime(2007, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916755274"
+                            HoTen = "Phạm Nhật Nam"
                         },
                         new
                         {
                             MaNguoiDung = 839,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Tuấn",
-                            NgaySinh = new DateTime(2007, 12, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917548334"
+                            HoTen = "Nguyễn Hoàng Tuấn"
                         },
                         new
                         {
                             MaNguoiDung = 840,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Hải",
-                            NgaySinh = new DateTime(2007, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913653079"
+                            HoTen = "Vũ Thái Yến"
                         },
                         new
                         {
                             MaNguoiDung = 841,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Lan",
-                            NgaySinh = new DateTime(2007, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917387957"
+                            HoTen = "Vũ Thái Hải"
                         },
                         new
                         {
                             MaNguoiDung = 842,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Phong",
-                            NgaySinh = new DateTime(2007, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913585573"
+                            HoTen = "Phan Quốc Giang"
                         },
                         new
                         {
                             MaNguoiDung = 843,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Yến",
-                            NgaySinh = new DateTime(2007, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0913411857"
+                            HoTen = "Hoàng Hải Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 844,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đặng Như Vy",
-                            NgaySinh = new DateTime(2007, 6, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917329363"
+                            HoTen = "Bùi Tiến Phong"
                         },
                         new
                         {
                             MaNguoiDung = 845,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Bình",
-                            NgaySinh = new DateTime(2007, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914522448"
+                            HoTen = "Bùi Tiến Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 846,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Nguyễn Hoàng Lan",
-                            NgaySinh = new DateTime(2007, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0916220386"
+                            HoTen = "Phạm Nhật Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 847,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Ngọc",
-                            NgaySinh = new DateTime(2007, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915186325"
+                            HoTen = "Vũ Thái Phong"
                         },
                         new
                         {
                             MaNguoiDung = 848,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phạm Nhật Hải",
-                            NgaySinh = new DateTime(2007, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915543574"
+                            HoTen = "Nguyễn Hoàng Anh"
                         },
                         new
                         {
                             MaNguoiDung = 849,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đặng Như Lan",
-                            NgaySinh = new DateTime(2007, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0915592915"
+                            HoTen = "Lê Hà Nam"
                         },
                         new
                         {
                             MaNguoiDung = 850,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Bùi Tiến Yến",
-                            NgaySinh = new DateTime(2007, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912579993"
+                            HoTen = "Đặng Như Thảo"
                         },
                         new
                         {
                             MaNguoiDung = 851,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Đỗ Xuân Mai",
-                            NgaySinh = new DateTime(2007, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0911497655"
+                            HoTen = "Phạm Nhật Mai"
                         },
                         new
                         {
                             MaNguoiDung = 852,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Đỗ Xuân Hưng",
-                            NgaySinh = new DateTime(2007, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917272519"
+                            HoTen = "Trần Minh Chi"
                         },
                         new
                         {
                             MaNguoiDung = 853,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Phan Quốc Vy",
-                            NgaySinh = new DateTime(2007, 1, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917998008"
+                            HoTen = "Phan Quốc Ngọc"
                         },
                         new
                         {
                             MaNguoiDung = 854,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Lê Hà Ngọc",
-                            NgaySinh = new DateTime(2007, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914704572"
+                            HoTen = "Vũ Thái Vy"
                         },
                         new
                         {
                             MaNguoiDung = 855,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Hoàng Hải Mai",
-                            NgaySinh = new DateTime(2007, 10, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0912194160"
+                            HoTen = "Phan Quốc Phong"
                         },
                         new
                         {
                             MaNguoiDung = 856,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Lê Hà Chi",
-                            NgaySinh = new DateTime(2007, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0914112624"
+                            HoTen = "Vũ Thái Trang"
                         },
                         new
                         {
                             MaNguoiDung = 857,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Vũ Thái Linh",
-                            NgaySinh = new DateTime(2007, 1, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0918644110"
+                            HoTen = "Đặng Như Phong"
                         },
                         new
                         {
                             MaNguoiDung = 858,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nam",
-                            HoTen = "Vũ Thái Hưng",
-                            NgaySinh = new DateTime(2007, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0917164884"
+                            HoTen = "Đỗ Xuân Hưng"
                         },
                         new
                         {
                             MaNguoiDung = 859,
-                            DiaChi = "Hà Nội",
-                            GioiTinh = "Nữ",
-                            HoTen = "Hoàng Hải Vy",
-                            NgaySinh = new DateTime(2007, 8, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SoDienThoai = "0919203324"
+                            HoTen = "Phan Quốc Ngọc"
                         });
                 });
 
@@ -20955,28 +19434,6 @@ namespace WebQLThiTracNghiem.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.CauHoi", b =>
-                {
-                    b.HasOne("WebQLThiTracNghiem.Models.ChuyenDe", "ChuyenDe")
-                        .WithMany()
-                        .HasForeignKey("MaChuyenDe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ChuyenDe");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.DapAn", b =>
-                {
-                    b.HasOne("WebQLThiTracNghiem.Models.CauHoi", "CauHoi")
-                        .WithMany("DapAns")
-                        .HasForeignKey("MaCauHoi")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CauHoi");
-                });
-
             modelBuilder.Entity("WebQLThiTracNghiem.Models.DeThi", b =>
                 {
                     b.HasOne("WebQLThiTracNghiem.Models.MonHoc", "MonHoc")
@@ -21063,11 +19520,6 @@ namespace WebQLThiTracNghiem.Migrations
                     b.Navigation("Lop");
 
                     b.Navigation("MonHoc");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.CauHoi", b =>
-                {
-                    b.Navigation("DapAns");
                 });
 
             modelBuilder.Entity("WebQLThiTracNghiem.Models.NguoiDung", b =>

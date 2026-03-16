@@ -1,0 +1,81 @@
+﻿@model WebQLThiTracNghiem.Models.GiaoVien
+
+@{
+Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+}
+
+<div class="gv-card">
+
+<h3>Thông tin cá nhân</h3>
+
+<table class="table table-bordered">
+
+<tr>
+<td width="200">Họ tên</td>
+<td>@Model.NguoiDung.HoSoCaNhan.HoTen</td>
+</tr>
+
+<tr>
+<td>Ngày sinh</td>
+<td>@Model.NguoiDung.HoSoCaNhan.NgaySinh</td>
+</tr>
+
+<tr>
+<td>Giới tính</td>
+<td>@Model.NguoiDung.HoSoCaNhan.GioiTinh</td>
+</tr>
+
+<tr>
+<td>Số điện thoại</td>
+<td>@Model.NguoiDung.HoSoCaNhan.SoDienThoai</td>
+</tr>
+
+<tr>
+<td>Địa chỉ</td>
+<td>@Model.NguoiDung.HoSoCaNhan.DiaChi</td>
+</tr>
+
+<tr>
+<td>Tên đăng nhập</td>
+<td>@Model.NguoiDung.TenDangNhap</td>
+</tr>
+
+</table>
+
+<hr/>
+
+<h4>Đổi mật khẩu</h4>
+
+@if(ViewBag.Loi != null)
+{
+<div class="alert alert-danger">
+@ViewBag.Loi
+</div>
+}
+
+@if(ViewBag.ThongBao != null)
+{
+<div class="alert alert-success">
+@ViewBag.ThongBao
+</div>
+}
+
+<form method="post">
+
+<div class="mb-3">
+<label>Mật khẩu cũ</label>
+<input type="password" name="matKhauCu" class="form-control"/>
+</div>
+
+<div class="mb-3">
+<label>Mật khẩu mới</label>
+<input type="password" name="matKhauMoi" class="form-control"/>
+</div>
+
+<button class="btn btn-primary">
+Cập nhật mật khẩu
+</button>
+
+</form>
+
+</div>

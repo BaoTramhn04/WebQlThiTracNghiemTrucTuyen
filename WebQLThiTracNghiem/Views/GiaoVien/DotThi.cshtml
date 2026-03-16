@@ -1,40 +1,80 @@
-﻿@{
+﻿@model IEnumerable<dynamic>
+
+@{
     Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
     ViewData["Title"] = "Quản lý đợt thi";
 }
 
-<div class="card custom-card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="fw-semibold">Danh sách đợt thi</span>
-        <button class="btn btn-primary">+ Tạo đợt thi</button>
+<div class="gv-card shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="mb-1">Quản lý đợt thi</h3>
+            <p class="text-muted mb-0">Theo dõi các đợt thi đã tạo và quản lý danh sách dự thi.</p>
+        </div>
+        <a asp-action="TaoDotThi" class="btn btn-primary">+ Tạo đợt thi</a>
     </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover align-middle">
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-5">
+            <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="Tìm theo tên đợt thi..." />
+        </div>
+
+        <div class="col-md-7 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
+            <a asp-action="DotThi" class="btn btn-outline-secondary">Đặt lại</a>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>Mã đợt</th>
+                    <th style="width:70px;">Mã</th>
                     <th>Tên đợt thi</th>
-                    <th>Đề thi</th>
-                    <th>Bắt đầu</th>
-                    <th>Kết thúc</th>
-                    <th>Trạng thái</th>
-                    <th width="180">Thao tác</th>
+                    <th style="width:140px;">Môn học</th>
+                    <th style="width:170px;">Bắt đầu</th>
+                    <th style="width:170px;">Kết thúc</th>
+                    <th style="width:220px;">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Thi thử Toán lần 1</td>
-                    <td>Đề thi Toán 12 lần 1</td>
-                    <td>01/03/2026 07:00</td>
-                    <td>30/03/2026 23:59</td>
-                    <td><span class="badge bg-success">Đang mở</span></td>
-                    <td>
-                        <button class="btn btn-sm btn-info">Chi tiết</button>
-                        <button class="btn btn-sm btn-warning">Sửa</button>
-                        <button class="btn btn-sm btn-danger">Đóng</button>
-                    </td>
-                </tr>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaDotThi</td>
+                            <td>@item.TenDotThi</td>
+                            <td>@item.TenMonHoc</td>
+                            <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM/yyyy HH:mm"))</td>
+                            <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM/yyyy HH:mm"))</td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <a asp-action="ChiTietDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                                    <a asp-action="GanLopVaoDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-primary">Gán lớp</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-4">
+                            Chưa có đợt thi nào.
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

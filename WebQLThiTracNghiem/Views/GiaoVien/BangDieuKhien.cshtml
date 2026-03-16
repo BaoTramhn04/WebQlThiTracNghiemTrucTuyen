@@ -1,42 +1,117 @@
-﻿@{
+﻿@model IEnumerable<dynamic>
+
+@{
     Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
-    ViewData["Title"] = "Dashboard Giáo viên";
+    ViewData["Title"] = "Bảng điều khiển";
 }
 
-<div class="row g-4 mb-4">
-    <div class="col-md-3">
-        <div class="stat-card">
-            <h3>120</h3>
-            <p>Học sinh</p>
-        </div>
+<div class="gv-stats">
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoLop</h3>
+        <p>Lớp đang quản lý</p>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <h3>350</h3>
-            <p>Câu hỏi</p>
-        </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoHocSinh</h3>
+        <p>Học sinh thuộc lớp phụ trách</p>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <h3>18</h3>
-            <p>Đề thi</p>
-        </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoCauHoi</h3>
+        <p>Câu hỏi trong ngân hàng</p>
     </div>
-    <div class="col-md-3">
-        <div class="stat-card">
-            <h3>6</h3>
-            <p>Đợt thi</p>
-        </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoDeThi</h3>
+        <p>Đề thi đã tạo</p>
+    </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoDotThi</h3>
+        <p>Đợt thi đã tạo</p>
     </div>
 </div>
 
-<div class="card custom-card">
-    <div class="card-header fw-semibold">Hoạt động gần đây</div>
-    <div class="card-body">
-        <ul class="mb-0">
-            <li>Tạo đề thi Toán 12 - lần 1</li>
-            <li>Cập nhật câu hỏi chương Hàm số</li>
-            <li>Mở đợt thi thử tháng 3</li>
-        </ul>
+<div class="gv-card">
+    <div class="gv-card-title">Chức năng nhanh</div>
+
+    <div class="gv-actions">
+        <a asp-controller="GiaoVien" asp-action="HocSinh" class="gv-action-card">
+            <h4>Quản lý học sinh</h4>
+            <p>Quản lý danh sách học sinh theo lớp, tìm kiếm và theo dõi thông tin học sinh.</p>
+        </a>
+
+        <a asp-controller="GiaoVien" asp-action="CauHoi" class="gv-action-card">
+            <h4>Ngân hàng câu hỏi</h4>
+            <p>Thêm, sửa, ẩn câu hỏi và tổ chức câu hỏi theo môn học, chuyên đề.</p>
+        </a>
+
+        <a asp-controller="GiaoVien" asp-action="DeThi" class="gv-action-card">
+            <h4>Quản lý đề thi</h4>
+            <p>Tạo đề thi từ ngân hàng câu hỏi, cấu hình thời gian và nội dung đề thi.</p>
+        </a>
+
+        <a asp-controller="GiaoVien" asp-action="DotThi" class="gv-action-card">
+            <h4>Quản lý đợt thi</h4>
+            <p>Tạo đợt thi, gán lớp tham gia và quản lý thời gian bắt đầu, kết thúc.</p>
+        </a>
+
+        <a asp-controller="GiaoVien" asp-action="ThongKe" class="gv-action-card">
+            <h4>Thống kê kết quả</h4>
+            <p>Xem điểm trung bình, số lượng tham gia và theo dõi kết quả thi của học sinh.</p>
+        </a>
+
+        <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan" class="gv-action-card">
+            <h4>Thông tin cá nhân</h4>
+            <p>Xem thông tin giáo viên và cập nhật mật khẩu tài khoản.</p>
+        </a>
+    </div>
+</div>
+
+<div class="gv-card">
+    <div class="gv-card-title">Hoạt động gần đây</div>
+
+    <div class="gv-table-wrap">
+        <table class="gv-table">
+            <thead>
+                <tr>
+                    <th>Đợt thi</th>
+                    <th>Môn học</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TenDotThi</td>
+                            <td>@item.TenMonHoc</td>
+                            <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM/yyyy HH:mm"))</td>
+                            <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM/yyyy HH:mm"))</td>
+                            <td>
+                                @if (item.TrangThaiText == "Đang mở")
+                                {
+                                    <span class="gv-badge gv-badge-success">Đang mở</span>
+                                }
+                                else if (item.TrangThaiText == "Sắp diễn ra")
+                                {
+                                    <span class="gv-badge gv-badge-warning">Sắp diễn ra</span>
+                                }
+                                else
+                                {
+                                    <span class="gv-badge gv-badge-info">Đã kết thúc</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">Chưa có hoạt động nào.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

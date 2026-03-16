@@ -1,0 +1,110 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Chi tiết đề thi";
+
+    var deThi = ViewBag.DeThi;
+    var dsCauHoi = ViewBag.DanhSachCauHoi as IEnumerable<dynamic>;
+}
+
+<div class="gv-card shadow-sm">
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h3 class="mb-1">Chi tiết đề thi</h3>
+            <p class="text-muted mb-0">Xem thông tin đề thi và danh sách câu hỏi đã thêm.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-action="ThemCauHoiVaoDe" asp-route-id="@deThi.MaDeThi" class="btn btn-primary">+ Thêm câu hỏi</a>
+            <a asp-action="DeThi" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </div>
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <label class="fw-semibold">Mã đề</label>
+            <div>@deThi.MaDeThi</div>
+        </div>
+        <div class="col-md-5">
+            <label class="fw-semibold">Tên đề thi</label>
+            <div>@deThi.TenDeThi</div>
+        </div>
+        <div class="col-md-2">
+            <label class="fw-semibold">Môn học</label>
+            <div>@deThi.TenMonHoc</div>
+        </div>
+        <div class="col-md-2">
+            <label class="fw-semibold">Thời gian</label>
+            <div>@deThi.ThoiGianLamBai phút</div>
+        </div>
+    </div>
+
+    <h5 class="mb-3">Danh sách câu hỏi trong đề</h5>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th style="width:70px;">Mã</th>
+                    <th>Nội dung câu hỏi</th>
+                    <th style="width:160px;">Chuyên đề</th>
+                    <th style="width:120px;">Mức độ</th>
+                    <th style="width:100px;">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (dsCauHoi != null && dsCauHoi.Any())
+                {
+                    @foreach (var item in dsCauHoi)
+                    {
+                        <tr>
+                            <td>@item.MaCauHoi</td>
+                            <td>
+                                @(item.NoiDung != null && item.NoiDung.Length > 120
+                                    ? item.NoiDung.Substring(0, 120) + "..."
+                                    : item.NoiDung)
+                            </td>
+                            <td>@item.TenChuyenDe</td>
+                            <td>
+                                @if (item.MucDo == 1)
+                                {
+                                    <span class="badge bg-success">Nhận biết</span>
+                                }
+                                else if (item.MucDo == 2)
+                                {
+                                    <span class="badge bg-warning text-dark">Thông hiểu</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Vận dụng</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="XoaCauHoiKhoiDe" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="maDeThi" value="@deThi.MaDeThi" />
+                                    <input type="hidden" name="maCauHoi" value="@item.MaCauHoi" />
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Xóa câu hỏi này khỏi đề thi?')">
+                                        Xóa
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">
+                            Đề thi chưa có câu hỏi nào.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

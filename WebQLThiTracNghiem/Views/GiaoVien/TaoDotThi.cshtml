@@ -1,0 +1,52 @@
+﻿@model WebQLThiTracNghiem.Models.DotThi
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Tạo đợt thi";
+}
+
+<div class="gv-card shadow-sm">
+    <div class="mb-3">
+        <h3 class="mb-1">Tạo đợt thi mới</h3>
+        <p class="text-muted mb-0">Chọn đề thi, đặt thời gian và tạo đợt thi cho học sinh tham gia.</p>
+    </div>
+
+    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+    <form asp-action="TaoDotThi" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label class="form-label">Tên đợt thi</label>
+                <input asp-for="TenDotThi" class="form-control" placeholder="Ví dụ: Thi thử cuối kỳ lớp 12A" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Đề thi</label>
+                <select asp-for="MaDeThi" class="form-select">
+                    <option value="">-- Chọn đề thi --</option>
+                    @foreach (var de in ViewBag.DeThi)
+                    {
+                        <option value="@de.MaDeThi">@de.TenDeThi</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Thời gian bắt đầu</label>
+                <input asp-for="ThoiGianBatDau" type="datetime-local" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Thời gian kết thúc</label>
+                <input asp-for="ThoiGianKetThuc" type="datetime-local" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Tạo đợt thi</button>
+            <a asp-action="DotThi" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </form>
+</div>

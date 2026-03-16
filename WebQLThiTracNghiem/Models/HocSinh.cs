@@ -10,7 +10,7 @@ namespace WebQLThiTracNghiem.Models
 
         public int MaNguoiDung { get; set; }
 
-        public int MaLop { get; set; }
+        public int? MaLop { get; set; }
 
         [StringLength(20)]
         public string SoBaoDanh { get; set; }

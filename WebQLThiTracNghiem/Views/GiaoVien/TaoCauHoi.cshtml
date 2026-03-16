@@ -1,0 +1,110 @@
+﻿@model WebQLThiTracNghiem.Models.CauHoi
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Thêm câu hỏi";
+}
+
+<div class="gv-card shadow-sm">
+    <div class="mb-3">
+        <h3 class="mb-1">Thêm câu hỏi mới</h3>
+        <p class="text-muted mb-0">Nhập đầy đủ nội dung câu hỏi và 4 đáp án.</p>
+    </div>
+
+    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+    <form asp-action="TaoCauHoi" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Chuyên đề</label>
+                <select asp-for="MaChuyenDe" class="form-select">
+                    <option value="">-- Chọn chuyên đề --</option>
+                    @foreach (var cd in ViewBag.ChuyenDe)
+                    {
+                        <option value="@cd.MaChuyenDe">@cd.TenChuyenDe</option>
+                    }
+                </select>
+                <span asp-validation-for="MaChuyenDe" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Mức độ</label>
+                <select asp-for="MucDo" class="form-select">
+                    <option value="1">Nhận biết</option>
+                    <option value="2">Thông hiểu</option>
+                    <option value="3">Vận dụng</option>
+                </select>
+            </div>
+
+            <div class="col-md-3 d-flex align-items-end">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" checked disabled />
+                    <label class="form-check-label">Mặc định đang dùng</label>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Nội dung câu hỏi</label>
+                <textarea asp-for="NoiDung" class="form-control" rows="4" placeholder="Nhập nội dung câu hỏi..."></textarea>
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <h5 class="mb-3">Đáp án</h5>
+
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Đáp án A</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <input type="radio" name="dapAnDung" value="0" checked />
+                    </span>
+                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án A" />
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Đáp án B</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <input type="radio" name="dapAnDung" value="1" />
+                    </span>
+                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án B" />
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Đáp án C</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <input type="radio" name="dapAnDung" value="2" />
+                    </span>
+                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án C" />
+                </div>
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Đáp án D</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <input type="radio" name="dapAnDung" value="3" />
+                    </span>
+                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án D" />
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Lưu câu hỏi</button>
+            <a asp-action="CauHoi" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

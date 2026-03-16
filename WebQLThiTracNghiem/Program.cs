@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using WebQLThiTracNghiem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSession();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -24,9 +25,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=DangNhap}/{id?}");
+    pattern: "{controller=Home}/{action=TrangChu}/{id?}");
 
 app.Run();

@@ -3,41 +3,113 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Giáo viên</title>
+    <title>@ViewData["Title"] - Website thi trắc nghiệm</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/giaovien.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <div class="sidebar-brand">QL Thi Trắc Nghiệm</div>
-            <div class="sidebar-role">Giáo viên</div>
 
-            <nav class="menu">
-                <a asp-controller="GiaoVien" asp-action="Dashboard">Dashboard</a>
-                <a asp-controller="GiaoVien" asp-action="HocSinh">Quản lý học sinh</a>
-                <a asp-controller="GiaoVien" asp-action="CauHoi">Quản lý câu hỏi</a>
-                <a asp-controller="GiaoVien" asp-action="DeThi">Quản lý đề thi</a>
-                <a asp-controller="GiaoVien" asp-action="DotThi">Quản lý đợt thi</a>
-                <a asp-controller="GiaoVien" asp-action="Login">Đăng xuất</a>
-            </nav>
-        </aside>
+<div class="gv-layout">
 
-        <div class="main-area">
-            <header class="topbar">
-                <div>
-                    <h4 class="mb-0">@ViewData["Title"]</h4>
-                    <small class="text-muted">Khu vực quản lý giáo viên</small>
-                </div>
-                <div class="user-box">GV Nguyễn Văn A</div>
-            </header>
+    <!-- Sidebar -->
+    <aside class="gv-sidebar">
 
-            <section class="content-area">
-                @RenderBody()
-            </section>
+        <div class="gv-sidebar-top">
+            <div class="gv-logo-box">
+                <img src="~/images/logo-school.png" alt="Logo" />
+            </div>
+
+            <div class="gv-brand">
+                <div class="gv-brand-sub">TRƯỜNG THPT ABC</div>
+                <div class="gv-brand-title">KHU VỰC GIÁO VIÊN</div>
+            </div>
         </div>
+
+        <nav class="gv-menu">
+
+            <a asp-controller="GiaoVien" asp-action="BangDieuKhien"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "BangDieuKhien" ? "active" : "")">
+                Bảng điều khiển
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongTinCaNhan" ? "active" : "")">
+                Thông tin cá nhân
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="HocSinh"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "HocSinh" ? "active" : "")">
+                Quản lý học sinh
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="CauHoi"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "CauHoi" ? "active" : "")">
+                Quản lý câu hỏi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="DeThi"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DeThi" ? "active" : "")">
+                Quản lý đề thi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="DotThi"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DotThi" ? "active" : "")">
+                Quản lý đợt thi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="ThongKe"
+               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")">
+                Thống kê
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- Main -->
+    <div class="gv-main">
+
+        <header class="gv-header">
+
+            <div>
+                <h1>@ViewData["Title"]</h1>
+                <p>Khu vực quản lý dành cho giáo viên</p>
+            </div>
+
+            <div class="gv-header-right">
+
+                <span class="gv-user-badge">
+                    @Context.Session.GetString("TenNguoiDung")
+                </span>
+
+                <a asp-controller="Home" asp-action="TrangChu"
+                   class="btn btn-outline-primary">
+                    Trang chủ
+                </a>
+
+                <a asp-controller="Auth" asp-action="DangXuat"
+                   class="btn btn-danger">
+                    Đăng xuất
+                </a>
+
+            </div>
+
+        </header>
+
+        <main class="gv-content">
+            @RenderBody()
+        </main>
+
     </div>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

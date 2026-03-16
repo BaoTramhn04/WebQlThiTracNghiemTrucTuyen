@@ -1,0 +1,47 @@
+﻿@model WebQLThiTracNghiem.Models.DeThi
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Tạo đề thi";
+}
+
+<div class="gv-card shadow-sm">
+    <div class="mb-3">
+        <h3 class="mb-1">Tạo đề thi mới</h3>
+        <p class="text-muted mb-0">Nhập thông tin cơ bản trước, sau đó thêm câu hỏi vào đề.</p>
+    </div>
+
+    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+    <form asp-action="TaoDeThi" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label class="form-label">Tên đề thi</label>
+                <input asp-for="TenDeThi" class="form-control" placeholder="Ví dụ: Đề ôn tập chương Hàm số" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Môn học</label>
+               <select asp-for="MaMonHoc" class="form-select">
+    <option value="">-- Chọn môn học --</option>
+    @foreach (var mon in ViewBag.MonHoc)
+    {
+        <option value="@mon.MaMonHoc">@mon.TenMonHoc</option>
+    }
+</select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Thời gian làm bài (phút)</label>
+                <input asp-for="ThoiGianLamBai" type="number" class="form-control" min="1" />
+            </div>
+        </div>
+
+        <div class="mt-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Tạo đề thi</button>
+            <a asp-action="DeThi" class="btn btn-outline-secondary">Quay lại</a>
+        </div>
+    </form>
+</div>

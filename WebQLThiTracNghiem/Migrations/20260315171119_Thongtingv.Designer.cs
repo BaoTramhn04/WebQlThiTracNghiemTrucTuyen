@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLThiTracNghiem.Data;
 
@@ -11,9 +12,11 @@ using WebQLThiTracNghiem.Data;
 namespace WebQLThiTracNghiem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260315171119_Thongtingv")]
+    partial class Thongtingv
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +53,6 @@ namespace WebQLThiTracNghiem.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("MaCauHoi");
-
-                    b.HasIndex("MaChuyenDe");
 
                     b.ToTable("CauHoi");
 
@@ -4602,8 +4603,6 @@ namespace WebQLThiTracNghiem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("MaDapAn");
-
-                    b.HasIndex("MaCauHoi");
 
                     b.ToTable("DapAn");
 
@@ -20955,28 +20954,6 @@ namespace WebQLThiTracNghiem.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.CauHoi", b =>
-                {
-                    b.HasOne("WebQLThiTracNghiem.Models.ChuyenDe", "ChuyenDe")
-                        .WithMany()
-                        .HasForeignKey("MaChuyenDe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ChuyenDe");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.DapAn", b =>
-                {
-                    b.HasOne("WebQLThiTracNghiem.Models.CauHoi", "CauHoi")
-                        .WithMany("DapAns")
-                        .HasForeignKey("MaCauHoi")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CauHoi");
-                });
-
             modelBuilder.Entity("WebQLThiTracNghiem.Models.DeThi", b =>
                 {
                     b.HasOne("WebQLThiTracNghiem.Models.MonHoc", "MonHoc")
@@ -21063,11 +21040,6 @@ namespace WebQLThiTracNghiem.Migrations
                     b.Navigation("Lop");
 
                     b.Navigation("MonHoc");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.CauHoi", b =>
-                {
-                    b.Navigation("DapAns");
                 });
 
             modelBuilder.Entity("WebQLThiTracNghiem.Models.NguoiDung", b =>

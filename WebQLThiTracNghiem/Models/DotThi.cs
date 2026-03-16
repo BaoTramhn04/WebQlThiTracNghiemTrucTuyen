@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebQLThiTracNghiem.Models
 {
@@ -20,5 +21,8 @@ namespace WebQLThiTracNghiem.Models
         public int SoLanThiToiDa { get; set; }
 
         public bool TrangThai { get; set; }
+
+        [ForeignKey("MaDeThi")]
+        public DeThi DeThi { get; set; }
     }
 }

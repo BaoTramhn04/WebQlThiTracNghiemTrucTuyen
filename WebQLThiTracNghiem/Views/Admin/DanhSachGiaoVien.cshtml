@@ -1,0 +1,193 @@
+﻿@model IEnumerable<WebQLThiTracNghiem.Models.GiaoVien>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Quản lý giáo viên";
+}
+
+<div class="card shadow-sm">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">Quản lý giáo viên</h5>
+
+        <a asp-action="ExportGiaoVien"
+           class="btn btn-success">
+            Xuất Excel
+        </a>
+
+    </div>
+
+    <div class="card-body">
+
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Thành công!</strong>
+                @TempData["success"]
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <!-- FORM THÊM / SỬA -->
+
+        <form method="post" asp-action="LuuGiaoVien" id="formGV">
+
+            <input type="hidden" name="id" id="editId" />
+
+            <div class="row g-2 mb-4">
+
+                <div class="col-md-4">
+                    <input id="editTen"
+                           name="hoten"
+                           class="form-control"
+                           placeholder="Họ tên giáo viên"
+                           required />
+                </div>
+
+                <div class="col-md-4">
+                    <input id="editUser"
+                           name="username"
+                           class="form-control"
+                           placeholder="Tên đăng nhập"
+                           required />
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit"
+                            class="btn btn-primary w-100"
+                            id="btnSave">
+                        Thêm
+                    </button>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button"
+                            class="btn btn-secondary w-100"
+                            onclick="resetForm()">
+                        Mới
+                    </button>
+                </div>
+
+            </div>
+
+        </form>
+
+        <!-- SEARCH -->
+
+        <form method="get" class="row g-2 mb-3">
+
+            <div class="col-md-4">
+
+                <input type="text"
+                       name="keyword"
+                       value="@Context.Request.Query["keyword"]"
+                       class="form-control"
+                       placeholder="Tìm theo tên giáo viên" />
+
+            </div>
+
+            <div class="col-md-2">
+
+                <button class="btn btn-secondary w-100">
+                    Lọc
+                </button>
+
+            </div>
+
+        </form>
+
+        <!-- TABLE -->
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-light">
+                <tr>
+                    <th width="80">ID</th>
+                    <th>Họ tên</th>
+                    <th>Tên đăng nhập</th>
+                    <th width="120">Trạng thái</th>
+                    <th width="180">Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var gv in Model)
+                {
+                    <tr>
+
+                        <td>@gv.MaGiaoVien</td>
+
+                        <td>@gv.NguoiDung.HoSoCaNhan.HoTen</td>
+
+                        <td>@gv.NguoiDung.TenDangNhap</td>
+
+                        <td>
+                            @if (gv.TrangThai)
+                            {
+                                <span class="badge bg-success">Hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Khóa</span>
+                            }
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-sm btn-warning"
+                                    onclick="editGV(
+                                    '@gv.MaGiaoVien',
+                                    '@gv.NguoiDung.HoSoCaNhan.HoTen',
+                                    '@gv.NguoiDung.TenDangNhap')">
+                                Sửa
+                            </button>
+
+                            <a asp-action="XoaGiaoVien"
+                               asp-route-id="@gv.MaGiaoVien"
+                               class="btn btn-sm btn-danger"
+                               onclick="return confirm('Bạn chắc chắn muốn xóa giáo viên?')">
+                                Xóa
+                            </a>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function editGV(id,ten,user)
+{
+    document.getElementById("editId").value=id
+    document.getElementById("editTen").value=ten
+    document.getElementById("editUser").value=user
+
+    document.getElementById("btnSave").innerText="Cập nhật"
+}
+
+function resetForm()
+{
+    document.getElementById("editId").value=""
+    document.getElementById("editTen").value=""
+    document.getElementById("editUser").value=""
+
+    document.getElementById("btnSave").innerText="Thêm"
+}
+
+setTimeout(function(){
+    var alert=document.querySelector(".alert")
+    if(alert){alert.style.display="none"}
+},3000)
+
+</script>

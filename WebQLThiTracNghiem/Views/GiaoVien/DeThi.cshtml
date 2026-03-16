@@ -1,38 +1,102 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@model IEnumerable<dynamic>
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
     ViewData["Title"] = "Quản lý đề thi";
 }
 
-<div class="card custom-card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <span class="fw-semibold">Danh sách đề thi</span>
-        <button class="btn btn-primary">+ Tạo đề thi</button>
+<div class="gv-card shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="mb-1">Quản lý đề thi</h3>
+            <p class="text-muted mb-0">Xem danh sách đề thi và quản lý nội dung từng đề.</p>
+        </div>
+        <a asp-action="TaoDeThi" class="btn btn-primary">+ Tạo đề thi</a>
     </div>
-    <div class="card-body">
-        <table class="table table-bordered table-hover align-middle">
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+
+    <form method="get" class="row g-2 mb-4">
+        <div class="col-md-4">
+            <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="Tìm theo tên đề thi..." />
+        </div>
+
+        <div class="col-md-3">
+            <select name="monId" class="form-select">
+                <option value="">-- Môn học --</option>
+                @foreach (var mon in ViewBag.MonHoc)
+                {
+                    <option value="@mon.MaMonHoc" selected="@(ViewBag.MonId != null && ViewBag.MonId == mon.MaMonHoc)">
+                        @mon.TenMonHoc
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-5 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
+            <a asp-action="DeThi" class="btn btn-outline-secondary">Đặt lại</a>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>Mã đề</th>
+                    <th style="width:70px;">Mã</th>
                     <th>Tên đề thi</th>
-                    <th>Môn học</th>
-                    <th>Thời gian</th>
-                    <th>Trạng thái</th>
-                    <th width="180">Thao tác</th>
+                    <th style="width:140px;">Môn học</th>
+                    <th style="width:120px;">Thời gian</th>
+                    <th style="width:100px;">Số câu</th>
+                    <th style="width:120px;">Trạng thái</th>
+                    <th style="width:220px;">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Đề thi Toán 12 lần 1</td>
-                    <td>Toán</td>
-                    <td>15 phút</td>
-                    <td><span class="badge bg-success">Đang dùng</span></td>
-                    <td>
-                        <button class="btn btn-sm btn-info">Chi tiết</button>
-                        <button class="btn btn-sm btn-warning">Sửa</button>
-                        <button class="btn btn-sm btn-danger">Xóa</button>
-                    </td>
-                </tr>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaDeThi</td>
+                            <td>@item.TenDeThi</td>
+                            <td>@item.TenMonHoc</td>
+                            <td>@item.ThoiGianLamBai phút</td>
+                            <td>@item.SoCau</td>
+                            <td>
+                                @if (item.TrangThai)
+                                {
+                                    <span class="badge bg-primary">Đang dùng</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Tạm ẩn</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="d-flex flex-wrap gap-1">
+                                    <a asp-action="ChiTietDeThi" asp-route-id="@item.MaDeThi" class="btn btn-sm btn-outline-info">Chi tiết</a>
+                                    <a asp-action="ThemCauHoiVaoDe" asp-route-id="@item.MaDeThi" class="btn btn-sm btn-outline-primary">Thêm câu hỏi</a>
+                                    <a asp-action="TaoDotThi" class="btn btn-sm btn-outline-success">Tạo đợt thi</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">Chưa có đề thi nào.</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
