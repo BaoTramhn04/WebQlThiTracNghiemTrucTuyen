@@ -7,109 +7,178 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/giaovien.css" asp-append-version="true" />
+
+    <style>
+        .gv-user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 2px;
+            margin-right: 10px;
+        }
+
+        .gv-user-badge {
+            display: inline-block;
+        }
+
+        .gv-subject-text {
+            font-size: 13px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .gv-toast-success {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border: 1px solid #86efac;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(22, 101, 52, 0.08);
+            animation: gvFadeInDown 0.4s ease;
+        }
+
+        @@keyframes gvFadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="gv-layout">
+    <div class="gv-layout">
 
-    <!-- Sidebar -->
-    <aside class="gv-sidebar">
+        <!-- Sidebar -->
+        <aside class="gv-sidebar">
 
-        <div class="gv-sidebar-top">
-            <div class="gv-logo-box">
-                <img src="~/images/logo-school.png" alt="Logo" />
+            <div class="gv-sidebar-top">
+                <div class="gv-logo-box">
+                    <img src="~/images/logo-school.png" alt="Logo" />
+                </div>
+
+                <div class="gv-brand">
+                    <div class="gv-brand-sub">TRƯỜNG THPT ABC</div>
+                    <div class="gv-brand-title">KHU VỰC GIÁO VIÊN</div>
+                </div>
             </div>
 
-            <div class="gv-brand">
-                <div class="gv-brand-sub">TRƯỜNG THPT ABC</div>
-                <div class="gv-brand-title">KHU VỰC GIÁO VIÊN</div>
-            </div>
+            <nav class="gv-menu">
+
+                <a asp-controller="GiaoVien" asp-action="BangDieuKhien"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "BangDieuKhien" ? "active" : "")">
+                    Bảng điều khiển
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongTinCaNhan" ? "active" : "")">
+                    Thông tin cá nhân
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="HocSinh"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "HocSinh" ? "active" : "")">
+                    Quản lý học sinh
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="CauHoi"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "CauHoi" ? "active" : "")">
+                    Quản lý câu hỏi
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="DeThi"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DeThi" ? "active" : "")">
+                    Quản lý đề thi
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="DotThi"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DotThi" ? "active" : "")">
+                    Quản lý đợt thi
+                </a>
+
+                <a asp-controller="GiaoVien" asp-action="ThongKe"
+                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")">
+                    Thống kê
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- Main -->
+        <div class="gv-main">
+
+            <header class="gv-header">
+
+                <div>
+                    <h1>@ViewData["Title"]</h1>
+                    <p>Khu vực quản lý dành cho giáo viên</p>
+                </div>
+
+                <div class="gv-header-right">
+
+                    <div class="gv-user-info">
+                        <span class="gv-user-badge">
+                            Xin chào, @(Context.Session.GetString("TenNguoiDung") ?? "Giáo viên")
+                        </span>
+
+                        <span class="gv-subject-text">
+                            Bộ môn giảng dạy: @(Context.Session.GetString("BoMonDay") ?? "Chưa cập nhật")
+                        </span>
+                    </div>
+
+                    <a asp-controller="Home" asp-action="TrangChu"
+                       class="btn btn-outline-primary">
+                        Trang chủ
+                    </a>
+
+                    <a asp-controller="Auth" asp-action="DangXuat"
+                       class="btn btn-danger">
+                        Đăng xuất
+                    </a>
+
+                </div>
+
+            </header>
+
+            <main class="gv-content">
+
+                @if (TempData["LoginSuccess"] != null)
+                {
+                    <div class="gv-toast-success" id="gvLoginToast">
+                        @TempData["LoginSuccess"]
+                    </div>
+                }
+
+                @RenderBody()
+            </main>
+
         </div>
-
-        <nav class="gv-menu">
-
-            <a asp-controller="GiaoVien" asp-action="BangDieuKhien"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "BangDieuKhien" ? "active" : "")">
-                Bảng điều khiển
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongTinCaNhan" ? "active" : "")">
-                Thông tin cá nhân
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="HocSinh"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "HocSinh" ? "active" : "")">
-                Quản lý học sinh
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="CauHoi"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "CauHoi" ? "active" : "")">
-                Quản lý câu hỏi
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="DeThi"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DeThi" ? "active" : "")">
-                Quản lý đề thi
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="DotThi"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DotThi" ? "active" : "")">
-                Quản lý đợt thi
-            </a>
-
-            <a asp-controller="GiaoVien" asp-action="ThongKe"
-               class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")">
-                Thống kê
-            </a>
-
-        </nav>
-
-    </aside>
-
-
-    <!-- Main -->
-    <div class="gv-main">
-
-        <header class="gv-header">
-
-            <div>
-                <h1>@ViewData["Title"]</h1>
-                <p>Khu vực quản lý dành cho giáo viên</p>
-            </div>
-
-            <div class="gv-header-right">
-
-                <span class="gv-user-badge">
-                    @Context.Session.GetString("TenNguoiDung")
-                </span>
-
-                <a asp-controller="Home" asp-action="TrangChu"
-                   class="btn btn-outline-primary">
-                    Trang chủ
-                </a>
-
-                <a asp-controller="Auth" asp-action="DangXuat"
-                   class="btn btn-danger">
-                    Đăng xuất
-                </a>
-
-            </div>
-
-        </header>
-
-        <main class="gv-content">
-            @RenderBody()
-        </main>
 
     </div>
 
-</div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        setTimeout(function () {
+            var toast = document.getElementById("gvLoginToast");
+            if (toast) {
+                toast.style.transition = "opacity 0.5s ease";
+                toast.style.opacity = "0";
+                setTimeout(function () {
+                    toast.remove();
+                }, 500);
+            }
+        }, 2500);
+    </script>
 
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-@await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>

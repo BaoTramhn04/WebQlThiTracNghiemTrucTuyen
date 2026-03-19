@@ -6,26 +6,53 @@
 <div class="row g-4 mb-4">
     <div class="col-md-3">
         <div class="stat-card">
-            <h3>25</h3>
+            <h3>@ViewBag.SoNguoiDung</h3>
             <p>Người dùng</p>
         </div>
     </div>
     <div class="col-md-3">
         <div class="stat-card">
-            <h3>3</h3>
+            <h3>@ViewBag.SoVaiTro</h3>
             <p>Vai trò</p>
         </div>
     </div>
     <div class="col-md-3">
         <div class="stat-card">
-            <h3>12</h3>
-            <p>Thông báo</p>
+            <h3>@ViewBag.SoNhatKy</h3>
+            <p>Nhật ký hệ thống</p>
         </div>
     </div>
     <div class="col-md-3">
         <div class="stat-card">
-            <h3>128</h3>
-            <p>Nhật ký hệ thống</p>
+            <h3>@ViewBag.SoLop</h3>
+            <p>Lớp học</p>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h3>@ViewBag.SoGiaoVien</h3>
+            <p>Giáo viên</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h3>@ViewBag.SoHocSinh</h3>
+            <p>Học sinh</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h3>@ViewBag.SoMon</h3>
+            <p>Môn học</p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <h3>@(ViewBag.SoGiaoVien + ViewBag.SoHocSinh)</h3>
+            <p>Tổng tài khoản giảng dạy & học tập</p>
         </div>
     </div>
 </div>
@@ -33,6 +60,8 @@
 <div class="card custom-card">
     <div class="card-header fw-semibold">Tổng quan hệ thống</div>
     <div class="card-body">
-        <p>Đây là khu vực quản trị hệ thống, dùng để quản lý tài khoản, vai trò, nhật ký hoạt động và các thiết lập chung.</p>
+        <p>Hệ thống hiện có <strong>@ViewBag.SoGiaoVien</strong> giáo viên, <strong>@ViewBag.SoHocSinh</strong> học sinh, <strong>@ViewBag.SoLop</strong> lớp học và <strong>@ViewBag.SoMon</strong> môn học.</p>
+        <p>Tổng số tài khoản đang được quản lý là <strong>@ViewBag.SoNguoiDung</strong>, với <strong>@ViewBag.SoVaiTro</strong> vai trò trong hệ thống.</p>
+        <p>Nhật ký hệ thống hiện ghi nhận <strong>@ViewBag.SoNhatKy</strong> hoạt động.</p>
     </div>
 </div>

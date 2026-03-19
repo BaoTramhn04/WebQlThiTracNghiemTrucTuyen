@@ -1,36 +1,287 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutHocSinh.cshtml";
+﻿@model WebQLThiTracNghiem.Models.ViewModels.KetQuaThiViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutThi.cshtml";
     ViewData["Title"] = "Kết quả bài thi";
 }
 
-<div class="result-card">
-    <h2>Kết quả bài thi</h2>
-    <p class="text-muted">Đề thi Toán 12 lần 1</p>
+<div class="container py-4">
 
-    <div class="result-score">8.0 / 10</div>
+    <!-- Tổng kết -->
+    <div class="result-summary-card mb-4">
 
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="mini-result">
-                <h5>10</h5>
-                <p>Tổng số câu</p>
+        <h2 class="result-title">Kết quả bài thi</h2>
+
+        <div class="result-info">
+
+            <div class="result-item">
+                <span class="result-label">Đợt thi:</span>
+                <span>@Model.TenDotThi</span>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="mini-result">
-                <h5>8</h5>
-                <p>Câu đúng</p>
+
+            <div class="result-item">
+                <span class="result-label">Đề thi:</span>
+                <span>@Model.TenDeThi</span>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="mini-result">
-                <h5>2</h5>
-                <p>Câu sai</p>
+
+            <div class="result-item">
+                <span class="result-label">Môn thi:</span>
+                <span>@Model.MonThi</span>
             </div>
+
         </div>
+
+        <div class="result-score-box">
+
+            <div class="result-score-main">
+                @Model.SoCauDung / @Model.TongSoCau
+            </div>
+
+            <div class="result-score-text">
+                Số câu trả lời đúng
+            </div>
+
+            <div class="result-point">
+                Điểm: <strong>@Model.TongDiem</strong>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="mt-4">
-        <a asp-controller="HocSinh" asp-action="DotThi" class="btn btn-primary">Quay lại danh sách đợt thi</a>
+    <!-- Chi tiết bài làm -->
+    <div class="student-page-card">
+
+        <div class="student-page-card-header">
+            <h2 class="student-page-title">Chi tiết bài làm</h2>
+        </div>
+
+        <div class="student-page-card-body">
+
+            @for (int i = 0; i < Model.ChiTietCauHoi.Count; i++)
+            {
+                var item = Model.ChiTietCauHoi[i];
+
+                var cardClass = item.DungSai ? "question-correct" : "question-wrong";
+
+                <div class="question-result-card @cardClass">
+
+                    <div class="question-header">
+
+                        <div class="question-number">
+                            Câu @(i + 1)
+                        </div>
+
+                        @if (item.DungSai)
+                        {
+                            <span class="result-chip correct-chip">Đúng</span>
+                        }
+                        else
+                        {
+                            <span class="result-chip wrong-chip">Sai</span>
+                        }
+
+                    </div>
+
+                    <div class="question-content">
+                        @item.NoiDungCauHoi
+                    </div>
+
+                    <div class="answer-row">
+
+                        <div class="answer-box">
+                            <div class="answer-label">
+                                Đáp án bạn chọn
+                            </div>
+
+                            <div class="answer-value">
+                                @(item.NoiDungDapAnChon ?? "Chưa chọn")
+                            </div>
+                        </div>
+
+                        <div class="answer-box correct-answer">
+
+                            <div class="answer-label">
+                                Đáp án đúng
+                            </div>
+
+                            <div class="answer-value">
+                                @item.NoiDungDapAnDung
+                            </div>
+
+                        </div>
+
+                        <div class="answer-score">
+
+                            +@item.DiemCau điểm
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+            <div class="mt-4">
+
+                <a asp-controller="HocSinh"
+                   asp-action="DanhSachDotThi"
+                   class="btn btn-outline-primary">
+
+                    Quay lại danh sách đợt thi
+
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
+
 </div>
+
+
+<style>
+
+.result-summary-card{
+    background:#ffffff;
+    border:1px solid #e2e8f0;
+    border-radius:20px;
+    padding:30px;
+}
+
+.result-title{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.result-info{
+    display:flex;
+    gap:30px;
+    margin-bottom:20px;
+}
+
+.result-item{
+    font-size:16px;
+}
+
+.result-label{
+    font-weight:600;
+    margin-right:6px;
+}
+
+.result-score-box{
+    background:#f1f5f9;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+}
+
+.result-score-main{
+    font-size:36px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.result-score-text{
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.result-point{
+    font-size:18px;
+}
+
+.question-result-card{
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+    border:1px solid #e2e8f0;
+}
+
+.question-correct{
+    background:#ecfdf5;
+}
+
+.question-wrong{
+    background:#fff7ed;
+}
+
+.question-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.question-number{
+    font-weight:700;
+    font-size:18px;
+}
+
+.result-chip{
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.correct-chip{
+    background:#16a34a;
+    color:white;
+}
+
+.wrong-chip{
+    background:#ea580c;
+    color:white;
+}
+
+.question-content{
+    font-size:17px;
+    margin-bottom:16px;
+}
+
+.answer-row{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.answer-box{
+    flex:1;
+    background:white;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #e2e8f0;
+}
+
+.correct-answer{
+    border-color:#22c55e;
+}
+
+.answer-label{
+    font-size:13px;
+    color:#64748b;
+}
+
+.answer-value{
+    font-size:16px;
+    font-weight:600;
+}
+
+.answer-score{
+    font-size:18px;
+    font-weight:700;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+}
+
+</style>
+@section Scripts {
+    <script>
+        localStorage.removeItem("exam_answers_@Model.MaLuotThi");
+        localStorage.removeItem("exam_review_@Model.MaLuotThi");
+    </script>
+}

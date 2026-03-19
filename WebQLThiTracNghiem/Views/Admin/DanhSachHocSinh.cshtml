@@ -6,257 +6,180 @@
 }
 
 <div class="card shadow-sm">
-
     <div class="card-header d-flex justify-content-between">
-
         <h5 class="mb-0">Quản lý học sinh</h5>
 
-        <a asp-action="ExportHocSinh"
-           class="btn btn-success">
-
+        <a asp-action="ExportHocSinh" class="btn btn-success">
             Xuất Excel
-
         </a>
-
     </div>
 
     <div class="card-body">
 
-        <!-- THÔNG BÁO -->
-
         @if (TempData["success"] != null)
         {
             <div class="alert alert-success alert-dismissible fade show">
-
                 <strong>Thành công!</strong>
                 @TempData["success"]
-
-                <button class="btn-close"
-                        data-bs-dismiss="alert"></button>
-
+                <button class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         }
 
-
-        <!-- FORM THÊM / SỬA -->
-
-        <form method="post"
-              asp-action="LuuHocSinh"
-              id="formHS">
-
-            <input type="hidden"
-                   name="id"
-                   id="editId" />
+        <form method="post" asp-action="LuuHocSinh" id="formHS">
+            <input type="hidden" name="id" id="editId" />
 
             <div class="row g-2 mb-4">
-
                 <div class="col-md-3">
-
                     <input id="editTen"
                            name="hoten"
                            class="form-control"
                            placeholder="Họ tên học sinh"
                            required />
-
                 </div>
 
                 <div class="col-md-3">
-
                     <input id="editUser"
                            name="username"
                            class="form-control"
                            placeholder="Tên đăng nhập"
                            required />
-
                 </div>
 
                 <div class="col-md-3">
-
                     <select id="editLop"
                             name="malop"
                             class="form-select">
-
                         @foreach (var l in ViewBag.Lop)
                         {
-                            <option value="@l.MaLop">
-                                @l.TenLop
-                            </option>
+                            <option value="@l.MaLop">@l.TenLop</option>
                         }
-
                     </select>
-
                 </div>
 
                 <div class="col-md-2">
-
-                    <button class="btn btn-primary w-100"
-                            id="btnSave">
-
+                    <button class="btn btn-primary w-100" id="btnSave">
                         Thêm
-
                     </button>
-
                 </div>
 
                 <div class="col-md-1">
-
                     <button type="button"
                             class="btn btn-secondary w-100"
                             onclick="resetForm()">
-
                         Mới
-
                     </button>
-
                 </div>
-
             </div>
-
         </form>
 
-
-
-        <!-- SEARCH + FILTER -->
-
         <form method="get" class="row g-2 mb-3">
-
             <div class="col-md-4">
-
                 <input type="text"
                        name="keyword"
                        value="@Context.Request.Query["keyword"]"
                        class="form-control"
                        placeholder="Tìm theo tên học sinh" />
-
             </div>
 
             <div class="col-md-3">
-
-                <select name="lop"
-                        class="form-select">
-
+                <select name="lop" class="form-select">
                     <option value="">Lọc theo lớp</option>
 
                     @foreach (var l in ViewBag.Lop)
                     {
                         <option value="@l.MaLop"
-                                selected="@(Context.Request.Query["lop"]==l.MaLop.ToString())">
-
+                                selected="@(Context.Request.Query["lop"] == l.MaLop.ToString())">
                             @l.TenLop
-
                         </option>
                     }
-
                 </select>
-
             </div>
 
             <div class="col-md-2">
-
                 <button class="btn btn-secondary w-100">
                     Lọc
                 </button>
-
             </div>
-
         </form>
 
-
-
-        <!-- TABLE -->
-
         <table class="table table-bordered table-hover align-middle">
-
             <thead class="table-light">
-
                 <tr>
-
                     <th width="80">ID</th>
                     <th>Họ tên</th>
                     <th>Tên đăng nhập</th>
                     <th>Lớp</th>
                     <th>SBD</th>
+                    <th>Trạng thái tài khoản</th>
                     <th width="180">Thao tác</th>
-
                 </tr>
-
             </thead>
 
             <tbody>
-
                 @foreach (var hs in Model)
                 {
                     <tr>
-
                         <td>@hs.MaHocSinh</td>
-
                         <td>@hs.NguoiDung.HoSoCaNhan.HoTen</td>
-
                         <td>@hs.NguoiDung.TenDangNhap</td>
-
                         <td>@hs.Lop.TenLop</td>
-
                         <td>@hs.SoBaoDanh</td>
-
                         <td>
-
+                            @if (hs.NguoiDung.TrangThai)
+                            {
+                                <span class="badge bg-success">Đang hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Đã khóa</span>
+                            }
+                        </td>
+                        <td>
                             <button class="btn btn-sm btn-warning"
                                     onclick="editHS(
-'@hs.MaHocSinh',
-'@hs.NguoiDung.HoSoCaNhan.HoTen',
-'@hs.NguoiDung.TenDangNhap',
-'@hs.MaLop')">
-
+    '@hs.MaHocSinh',
+    '@hs.NguoiDung.HoSoCaNhan.HoTen',
+    '@hs.NguoiDung.TenDangNhap',
+    '@hs.MaLop')">
                                 Sửa
-
                             </button>
 
                             <a asp-action="XoaHocSinh"
                                asp-route-id="@hs.MaHocSinh"
                                class="btn btn-sm btn-danger"
                                onclick="return confirm('Bạn chắc chắn muốn xóa học sinh?')">
-
                                 Xóa
-
                             </a>
-
                         </td>
-
                     </tr>
                 }
-
             </tbody>
-
         </table>
 
     </div>
-
 </div>
 
-
 <script>
+    function editHS(id, ten, user, lop) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editTen").value = ten;
+        document.getElementById("editUser").value = user;
+        document.getElementById("editLop").value = lop;
+        document.getElementById("btnSave").innerText = "Cập nhật";
+    }
 
-function editHS(id,ten,user,lop)
-{
-document.getElementById("editId").value=id
-document.getElementById("editTen").value=ten
-document.getElementById("editUser").value=user
-document.getElementById("editLop").value=lop
+    function resetForm() {
+        document.getElementById("editId").value = "";
+        document.getElementById("editTen").value = "";
+        document.getElementById("editUser").value = "";
+        document.getElementById("editLop").selectedIndex = 0;
+        document.getElementById("btnSave").innerText = "Thêm";
+    }
 
-document.getElementById("btnSave").innerText="Cập nhật"
-}
-
-function resetForm()
-{
-document.getElementById("editId").value=""
-document.getElementById("editTen").value=""
-document.getElementById("editUser").value=""
-document.getElementById("btnSave").innerText="Thêm"
-}
-
-setTimeout(function(){
-var alert=document.querySelector(".alert")
-if(alert){alert.style.display="none"}
-},3000)
-
+    setTimeout(function () {
+        var alert = document.querySelector(".alert");
+        if (alert) {
+            alert.style.display = "none";
+        }
+    }, 3000);
 </script>

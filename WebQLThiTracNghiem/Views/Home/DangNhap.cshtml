@@ -1,83 +1,410 @@
-﻿@{
+﻿@model WebQLThiTracNghiem.Models.ViewModels.DangNhapHocSinhViewModel
+
+@{
     Layout = "~/Views/Shared/_LayoutAuth.cshtml";
     ViewData["Title"] = "Đăng nhập";
 }
 
-<div class="login-wrapper">
+<div class="login-bg" id="loginBg">
 
-    <div class="login-card shadow-lg">
+    <!-- Bong bóng nền -->
+    <div class="bubble x1"></div>
+    <div class="bubble x2"></div>
+    <div class="bubble x3"></div>
+    <div class="bubble x4"></div>
 
-        <div class="text-center mb-4">
-            <h2 class="fw-bold">HỆ THỐNG THI TRẮC NGHIỆM</h2>
-            <p class="text-muted mb-0">Đăng nhập để truy cập hệ thống</p>
+    <!-- Nút chuyển chế độ -->
+    <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+        🌙
+    </button>
+
+    <!-- Toast thông báo -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="toast-custom success" id="toastMessage">
+            @TempData["Success"]
         </div>
+    }
 
-        <form method="post" asp-controller="Auth" asp-action="DangNhap">
+    @if (TempData["Error"] != null || ViewBag.LoiDangNhap != null || ViewBag.Error != null)
+    {
+        <div class="toast-custom error" id="toastMessage">
+            @(TempData["Error"] ?? ViewBag.LoiDangNhap ?? ViewBag.Error)
+        </div>
+    }
 
-            <div class="mb-3">
-                <label class="form-label">Tên đăng nhập</label>
-
-                <input type="text"
-                       name="username"
-                       class="form-control"
-                       placeholder="Nhập tên đăng nhập"
-                       required />
+    <div class="login-wrapper">
+        <div class="login-card shadow-lg" id="loginCard">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-gradient" id="loginTitle">HỆ THỐNG THI TRẮC NGHIỆM</h2>
+                <p class="login-subtitle mb-0" id="loginSubtitle">Đăng nhập để truy cập hệ thống</p>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Mật khẩu</label>
-
-                <input type="password"
-                       name="password"
-                       class="form-control"
-                       placeholder="Nhập mật khẩu"
-                       required />
-            </div>
-
-            @if (ViewBag.Error != null)
-            {
-                <div class="alert alert-danger">
-                    @ViewBag.Error
+            <form asp-controller="Auth" asp-action="DangNhap" method="post" id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Tên đăng nhập</label>
+                    <input asp-for="SoBaoDanh"
+                           class="form-control input-custom"
+                           placeholder="Nhập tên đăng nhập" />
+                    <span asp-validation-for="SoBaoDanh" class="text-danger small"></span>
                 </div>
-            }
 
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                    Đăng nhập
-                </button>
-            </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Mật khẩu</label>
+                    <div class="password-wrapper">
+                        <input asp-for="MatKhau"
+                               type="password"
+                               class="form-control input-custom pe-5"
+                               placeholder="Nhập mật khẩu"
+                               id="passwordInput" />
+                        <button type="button" class="toggle-password" onclick="togglePassword()" tabindex="-1">
+                            👁
+                        </button>
+                    </div>
+                    <span asp-validation-for="MatKhau" class="text-danger small"></span>
+                </div>
 
-        </form>
-
-        <div class="mt-3 text-center">
-
-            <a href="javascript:void(0)"
-               class="text-decoration-none text-primary fw-semibold">
-
-                Quên mật khẩu?
-
-            </a>
-
-            <div class="alert alert-warning mt-3 text-center mb-2">
-
-                Nếu bạn quên mật khẩu, vui lòng liên hệ quản trị hệ thống để được hỗ trợ.
-
-            </div>
-
-            <div class="text-center text-muted small">
-
-                Email hỗ trợ:
-                <strong>admin@qlthitracnghiem.edu.vn</strong>
-
-                <br>
-
-                Hotline:
-                <strong>0900 000 000</strong>
-
-            </div>
-
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-login" id="btnLogin">
+                        <span id="btnText">Đăng nhập</span>
+                    </button>
+                </div>
+            </form>
         </div>
-
     </div>
-
 </div>
+
+<style>
+    .login-bg {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #1d4ed8, #2563eb, #60a5fa);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.35s ease;
+    }
+
+        .login-bg.dark-mode {
+            background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+        }
+
+    .bubble {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        animation: float 12s infinite ease-in-out;
+        transition: all 0.35s ease;
+    }
+
+    .dark-mode .bubble {
+        background: rgba(255,255,255,0.08);
+    }
+
+    .bubble.x1 {
+        width: 120px;
+        height: 120px;
+        left: 10%;
+        bottom: -100px;
+    }
+
+    .bubble.x2 {
+        width: 160px;
+        height: 160px;
+        left: 70%;
+        bottom: -120px;
+        animation-duration: 15s;
+    }
+
+    .bubble.x3 {
+        width: 90px;
+        height: 90px;
+        left: 40%;
+        bottom: -90px;
+        animation-duration: 13s;
+    }
+
+    .bubble.x4 {
+        width: 140px;
+        height: 140px;
+        left: 85%;
+        bottom: -110px;
+        animation-duration: 17s;
+    }
+
+    @@keyframes float {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-400px);
+        }
+
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    .theme-toggle-btn {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        z-index: 10;
+        border: none;
+        border-radius: 999px;
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+        background: rgba(255,255,255,0.22);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+        transition: all 0.3s ease;
+    }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            background: rgba(255,255,255,0.3);
+        }
+
+    .login-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 460px;
+        background: rgba(255,255,255,0.96);
+        border-radius: 24px;
+        padding: 36px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+        border: 1px solid rgba(255,255,255,0.4);
+        transition: all 0.35s ease;
+    }
+
+    .dark-mode .login-card {
+        background: rgba(15, 23, 42, 0.88);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .text-gradient {
+        background: linear-gradient(135deg, #2563eb, #60a5fa);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .dark-mode .text-gradient {
+        background: linear-gradient(135deg, #93c5fd, #e0f2fe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .login-subtitle {
+        color: #6b7280;
+        transition: color 0.35s ease;
+    }
+
+    .dark-mode .login-subtitle {
+        color: #cbd5e1;
+    }
+
+    .dark-mode .form-label {
+        color: #e5e7eb;
+    }
+
+    .input-custom {
+        border-radius: 14px;
+        padding: 12px 14px;
+        border: 1px solid #dbe3ef;
+        transition: all 0.3s ease;
+        font-size: 15px;
+        background: #fff;
+        color: #111827;
+    }
+
+        .input-custom:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+        }
+
+    .dark-mode .input-custom {
+        background: rgba(30, 41, 59, 0.95);
+        border-color: #334155;
+        color: #f8fafc;
+    }
+
+        .dark-mode .input-custom::placeholder {
+            color: #94a3b8;
+        }
+
+        .dark-mode .input-custom:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 0.2rem rgba(96, 165, 250, 0.18);
+        }
+
+    .btn-login {
+        background: linear-gradient(135deg, #2563eb, #60a5fa);
+        border: none;
+        border-radius: 14px;
+        padding: 12px;
+        font-weight: 700;
+        color: white;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+
+        .btn-login:disabled {
+            opacity: 0.85;
+            cursor: not-allowed;
+        }
+
+    .toast-custom {
+        position: fixed;
+        top: 22px;
+        right: 22px;
+        padding: 14px 20px;
+        border-radius: 14px;
+        color: white;
+        font-weight: 600;
+        z-index: 9999;
+        animation: slideIn 0.4s ease;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+        min-width: 280px;
+    }
+
+        .toast-custom.success {
+            background: linear-gradient(135deg, #16a34a, #22c55e);
+        }
+
+        .toast-custom.error {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+        }
+
+    @@keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .password-wrapper {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        border: none;
+        background: transparent;
+        font-size: 18px;
+        cursor: pointer;
+        color: #6b7280;
+        padding: 0;
+        transition: color 0.25s ease;
+    }
+
+        .toggle-password:hover {
+            color: #2563eb;
+        }
+
+    .dark-mode .toggle-password {
+        color: #94a3b8;
+    }
+
+        .dark-mode .toggle-password:hover {
+            color: #60a5fa;
+        }
+
+    @@media (max-width: 576px) {
+        .login-card {
+            padding: 26px 20px;
+            border-radius: 20px;
+        }
+
+        .theme-toggle-btn {
+            top: 16px;
+            right: 16px;
+            width: 44px;
+            height: 44px;
+        }
+    }
+</style>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById("passwordInput");
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+
+    function toggleTheme() {
+        const loginBg = document.getElementById("loginBg");
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+
+        loginBg.classList.toggle("dark-mode");
+
+        if (loginBg.classList.contains("dark-mode")) {
+            localStorage.setItem("loginTheme", "dark");
+            themeToggleBtn.innerText = "☀️";
+        } else {
+            localStorage.setItem("loginTheme", "light");
+            themeToggleBtn.innerText = "🌙";
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginBg = document.getElementById("loginBg");
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+
+        const savedTheme = localStorage.getItem("loginTheme");
+        if (savedTheme === "dark") {
+            loginBg.classList.add("dark-mode");
+            themeToggleBtn.innerText = "☀️";
+        } else {
+            themeToggleBtn.innerText = "🌙";
+        }
+
+        const loginForm = document.getElementById("loginForm");
+        if (loginForm) {
+            loginForm.addEventListener("submit", function () {
+                const btn = document.getElementById("btnLogin");
+                const text = document.getElementById("btnText");
+
+                btn.disabled = true;
+                text.innerText = "Đang đăng nhập...";
+            });
+        }
+
+        setTimeout(function () {
+            const toast = document.getElementById("toastMessage");
+            if (toast) {
+                toast.style.transition = "opacity 0.5s ease";
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }
+        }, 3000);
+    });
+</script>

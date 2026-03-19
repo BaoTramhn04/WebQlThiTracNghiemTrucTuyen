@@ -1,0 +1,250 @@
+﻿@model WebQLThiTracNghiem.Models.ViewModels.BatDauThiViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutThi.cshtml";
+    ViewData["Title"] = "Xác nhận bắt đầu thi";
+}
+
+<div class="container py-5">
+    <div class="mx-auto" style="max-width: 960px;">
+        <div class="text-center mb-4">
+            <h1 class="fw-bold mb-2" style="color:#0f172a;">Xác nhận bắt đầu thi</h1>
+            <p class="text-muted mb-0" style="font-size: 17px;">
+                Vui lòng kiểm tra thông tin bài thi trước khi bắt đầu làm bài
+            </p>
+        </div>
+
+        <div class="exam-confirm-card">
+            <div class="exam-confirm-top">
+                <div class="exam-badge">Khu vực làm bài thi</div>
+                <h2 class="exam-title">@Model.TenDotThi</h2>
+                <p class="exam-subtitle mb-0">
+                    Bạn sắp tham gia bài thi <strong>@Model.TenDeThi</strong> - môn <strong>@Model.MonThi</strong>.
+                </p>
+            </div>
+
+            <div class="exam-alert-box">
+                <span class="exam-alert-icon">ℹ</span>
+                <span>
+                    Sau khi nhấn <strong>“Bắt đầu làm bài”</strong>, hệ thống sẽ ghi nhận thời gian và chuyển sang giao diện làm bài.
+                </span>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="exam-info-card">
+                        <div class="exam-info-label">Thời gian bắt đầu</div>
+                        <div class="exam-info-value">@Model.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="exam-info-card">
+                        <div class="exam-info-label">Thời gian kết thúc</div>
+                        <div class="exam-info-value">@Model.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="exam-info-card">
+                        <div class="exam-info-label">Thời gian làm bài</div>
+                        <div class="exam-info-value">@Model.ThoiGianLamBai phút</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="exam-info-card">
+                        <div class="exam-info-label">Số lượng câu hỏi</div>
+                        <div class="exam-info-value">@Model.SoLuongCauHoi câu</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exam-note-box mb-4">
+                <h5 class="fw-bold mb-3" style="color:#0f172a;">Lưu ý trước khi vào thi</h5>
+
+                <div class="exam-note-item">
+                    <span class="exam-note-dot"></span>
+                    <span>Không tắt trình duyệt trong quá trình làm bài.</span>
+                </div>
+
+                <div class="exam-note-item">
+                    <span class="exam-note-dot"></span>
+                    <span>Hệ thống có thể tự động nộp bài khi hết thời gian làm bài.</span>
+                </div>
+
+                <div class="exam-note-item">
+                    <span class="exam-note-dot"></span>
+                    <span>Hãy kiểm tra kỹ đáp án trước khi nhấn nộp bài.</span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <form asp-action="TaoLuotThi" method="post" class="m-0">
+                    <input type="hidden" name="maDotThi" value="@Model.MaDotThi" />
+                    <button type="submit" class="btn exam-start-btn">
+                        Bắt đầu làm bài
+                    </button>
+                </form>
+
+                <a asp-controller="HocSinh"
+                   asp-action="DanhSachDotThi"
+                   class="btn exam-back-btn">
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .exam-confirm-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 28px;
+        padding: 32px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    .exam-confirm-top {
+        margin-bottom: 24px;
+    }
+
+    .exam-badge {
+        display: inline-block;
+        background: #eff6ff;
+        color: #2563eb;
+        border: 1px solid #bfdbfe;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+    .exam-title {
+        font-size: 34px;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 10px;
+        line-height: 1.25;
+    }
+
+    .exam-subtitle {
+        font-size: 17px;
+        color: #475569;
+        line-height: 1.7;
+    }
+
+    .exam-alert-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #ecfeff;
+        border: 1px solid #bae6fd;
+        color: #0f172a;
+        border-radius: 18px;
+        padding: 16px 18px;
+        margin-bottom: 24px;
+        font-size: 16px;
+    }
+
+    .exam-alert-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #0ea5e9;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        flex-shrink: 0;
+    }
+
+    .exam-info-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 22px;
+        height: 100%;
+    }
+
+    .exam-info-label {
+        font-size: 14px;
+        color: #64748b;
+        margin-bottom: 8px;
+    }
+
+    .exam-info-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: #0f172a;
+        line-height: 1.3;
+    }
+
+    .exam-note-box {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        padding: 22px;
+    }
+
+    .exam-note-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: #334155;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+        .exam-note-item:last-child {
+            margin-bottom: 0;
+        }
+
+    .exam-note-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #2563eb;
+        margin-top: 8px;
+        flex-shrink: 0;
+    }
+
+    .exam-start-btn {
+        background: #2563eb;
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        font-size: 17px;
+        padding: 14px 28px;
+        border-radius: 14px;
+        min-width: 220px;
+        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
+    }
+
+        .exam-start-btn:hover {
+            background: #1d4ed8;
+            color: #fff;
+        }
+
+    .exam-back-btn {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: #475569;
+        font-weight: 700;
+        font-size: 17px;
+        padding: 14px 28px;
+        border-radius: 14px;
+        min-width: 180px;
+    }
+
+        .exam-back-btn:hover {
+            background: #f8fafc;
+            color: #334155;
+        }
+</style>

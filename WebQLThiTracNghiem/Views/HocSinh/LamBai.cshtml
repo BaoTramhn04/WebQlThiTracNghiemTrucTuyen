@@ -1,70 +1,483 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutHocSinh.cshtml";
+﻿@model WebQLThiTracNghiem.Models.ViewModels.LamBaiThiViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutThi.cshtml";
     ViewData["Title"] = "Làm bài thi";
 }
 
-<div class="exam-header mb-4">
-    <div>
-        <h5 class="mb-1">Đề thi Toán 12 lần 1</h5>
-        <div class="text-muted">Môn: Toán | Thời gian: 15 phút</div>
-    </div>
-    <div class="exam-timer">00:14:35</div>
-</div>
+<div class="container-fluid py-4 px-4">
+    <form asp-controller="HocSinh" asp-action="NopBai" method="post" id="lamBaiForm">
+        @Html.AntiForgeryToken()
 
-<div class="row g-4">
-    <div class="col-lg-9">
-        <div class="question-card">
-            <div class="question-title">Câu 1. Giá trị của 2 + 3 là bao nhiêu?</div>
-            <div class="answer-list">
-                <label class="answer-item"><input type="radio" name="c1" /> A. 4</label>
-                <label class="answer-item"><input type="radio" name="c1" /> B. 5</label>
-                <label class="answer-item"><input type="radio" name="c1" /> C. 6</label>
-                <label class="answer-item"><input type="radio" name="c1" /> D. 7</label>
+        <input type="hidden" asp-for="MaLuotThi" />
+        <input type="hidden" asp-for="MaDotThi" />
+        <input type="hidden" asp-for="TenDotThi" />
+        <input type="hidden" asp-for="TenDeThi" />
+        <input type="hidden" asp-for="MonThi" />
+        <input type="hidden" asp-for="ThoiGianLamBai" />
+        <input type="hidden" asp-for="ThoiDiemBatDau" />
+        <input type="hidden" asp-for="ThoiDiemHetGio" />
+
+        <div class="row g-4">
+            <div class="col-lg-9">
+                <div class="student-page-card mb-4">
+                    <div class="student-page-card-header">
+                        <h2 class="student-page-title">Bài thi đang thực hiện</h2>
+                    </div>
+
+                    <div class="student-page-card-body">
+                        <p><strong>Đợt thi:</strong> @Model.TenDotThi</p>
+                        <p><strong>Đề thi:</strong> @Model.TenDeThi</p>
+                        <p><strong>Môn thi:</strong> @Model.MonThi</p>
+                        <p><strong>Thời gian làm bài:</strong> @Model.ThoiGianLamBai phút</p>
+                        <p><strong>Mã lượt thi:</strong> @Model.MaLuotThi</p>
+                    </div>
+                </div>
+
+                @if (Model.DanhSachCauHoi == null || !Model.DanhSachCauHoi.Any())
+                {
+                    <div class="alert alert-warning">
+                        Đề thi hiện chưa có câu hỏi.
+                    </div>
+                }
+                else
+                {
+                    @for (int i = 0; i < Model.DanhSachCauHoi.Count; i++)
+                    {
+                        var cauHoi = Model.DanhSachCauHoi[i];
+
+                        <input type="hidden" asp-for="DanhSachCauHoi[i].MaCauHoi" />
+                        <input type="hidden" asp-for="DanhSachCauHoi[i].NoiDung" />
+                        <input type="hidden" asp-for="DanhSachCauHoi[i].DiemCauHoi" />
+
+                        <div class="student-page-card mb-4 question-card" id="cau-@(i + 1)">
+                            <div class="student-page-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                                <h3 class="student-page-title m-0" style="font-size: 22px;">
+                                    Câu @(i + 1)
+                                </h3>
+
+                                <div class="form-check m-0">
+                                    <input class="form-check-input review-checkbox"
+                                           type="checkbox"
+                                           id="review_@i"
+                                           data-question-index="@i" />
+                                    <label class="form-check-label fw-semibold" for="review_@i">
+                                        Đánh dấu xem lại
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="student-page-card-body">
+                                <p class="mb-4" style="font-size: 20px;">
+                                    <strong>Nội dung:</strong> @cauHoi.NoiDung
+                                </p>
+
+                                @if (cauHoi.DanhSachDapAn != null && cauHoi.DanhSachDapAn.Any())
+                                {
+                                    @for (int j = 0; j < cauHoi.DanhSachDapAn.Count; j++)
+                                    {
+                                        <input type="hidden" asp-for="DanhSachCauHoi[i].DanhSachDapAn[j].MaDapAn" />
+                                        <input type="hidden" asp-for="DanhSachCauHoi[i].DanhSachDapAn[j].NoiDung" />
+
+                                        <label class="answer-option d-flex align-items-center mb-3 p-3 rounded-3 border"
+                                               for="dapAn_@cauHoi.DanhSachDapAn[j].MaDapAn">
+                                            <input class="form-check-input me-3 question-radio"
+                                                   type="radio"
+                                                   asp-for="DanhSachCauHoi[i].MaDapAnChon"
+                                                   value="@cauHoi.DanhSachDapAn[j].MaDapAn"
+                                                   id="dapAn_@cauHoi.DanhSachDapAn[j].MaDapAn"
+                                                   data-question-index="@i" />
+
+                                            <span style="font-size: 18px;">
+                                                @cauHoi.DanhSachDapAn[j].NoiDung
+                                            </span>
+                                        </label>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning mb-0">
+                                        Câu hỏi này hiện chưa có đáp án.
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <div class="d-flex gap-2 flex-wrap mt-4">
+                        <button type="submit" id="btnNopBai" class="btn btn-danger px-4 py-2">
+                            Nộp bài
+                        </button>
+
+                        <a asp-controller="HocSinh"
+                           asp-action="DanhSachDotThi"
+                           class="btn btn-outline-secondary px-4 py-2">
+                            Quay lại
+                        </a>
+                    </div>
+                }
             </div>
-        </div>
 
-        <div class="question-card">
-            <div class="question-title">Câu 2. Đạo hàm của x² là gì?</div>
-            <div class="answer-list">
-                <label class="answer-item"><input type="radio" name="c2" /> A. x</label>
-                <label class="answer-item"><input type="radio" name="c2" /> B. 2x</label>
-                <label class="answer-item"><input type="radio" name="c2" /> C. x²</label>
-                <label class="answer-item"><input type="radio" name="c2" /> D. 2</label>
-            </div>
-        </div>
+            <div class="col-lg-3">
+                <div class="student-page-card sticky-top" style="top: 20px;">
+                    <div class="student-page-card-header">
+                        <h3 class="student-page-title" style="font-size: 20px;">Theo dõi bài làm</h3>
+                    </div>
 
-        <div class="question-card">
-            <div class="question-title">Câu 3. Logarit cơ số 10 của 100 bằng bao nhiêu?</div>
-            <div class="answer-list">
-                <label class="answer-item"><input type="radio" name="c3" /> A. 1</label>
-                <label class="answer-item"><input type="radio" name="c3" /> B. 2</label>
-                <label class="answer-item"><input type="radio" name="c3" /> C. 10</label>
-                <label class="answer-item"><input type="radio" name="c3" /> D. 100</label>
-            </div>
-        </div>
+                    <div class="student-page-card-body">
+                        <div class="countdown-panel mb-4">
+                            <div class="countdown-label">Thời gian còn lại</div>
+                            <div id="countdownTimer" class="countdown-time">00:00:00</div>
+                        </div>
 
-        <div class="d-flex justify-content-end">
-            <a asp-controller="HocSinh" asp-action="KetQua" class="btn btn-danger btn-lg">Nộp bài</a>
-        </div>
-    </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="status-box status-empty me-2"></span>
+                                <span>Chưa chọn</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="status-box status-done me-2"></span>
+                                <span>Đã chọn</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="flag-demo me-2">🚩</span>
+                                <span>Đánh dấu xem lại</span>
+                            </div>
+                        </div>
 
-    <div class="col-lg-3">
-        <div class="card custom-card sticky-panel">
-            <div class="card-header fw-semibold">Điều hướng câu hỏi</div>
-            <div class="card-body">
-                <div class="question-nav">
-                    <button class="q-btn active">1</button>
-                    <button class="q-btn">2</button>
-                    <button class="q-btn">3</button>
-                    <button class="q-btn">4</button>
-                    <button class="q-btn">5</button>
-                    <button class="q-btn">6</button>
-                    <button class="q-btn">7</button>
-                    <button class="q-btn">8</button>
-                    <button class="q-btn">9</button>
-                    <button class="q-btn">10</button>
+                        <hr />
+
+                        <div class="question-palette">
+                            @for (int i = 0; i < Model.DanhSachCauHoi.Count; i++)
+                            {
+                                <a href="#cau-@(i + 1)"
+                                   class="question-nav-btn status-empty"
+                                   id="nav-question-@i">
+                                    <span class="question-number">@(i + 1)</span>
+                                    <span class="flag-icon" id="flag-@i"></span>
+                                </a>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+
+<style>
+    .answer-option {
+        cursor: pointer;
+        background: #fff;
+        transition: all 0.2s ease;
+    }
+
+        .answer-option:hover {
+            background: #f8fbff;
+            border-color: #93c5fd !important;
+        }
+
+    .question-palette {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .question-nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        height: 44px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid #dbe2ea;
+        color: #0f172a;
+        transition: all 0.2s ease;
+    }
+
+        .question-nav-btn:hover {
+            transform: translateY(-1px);
+        }
+
+    .question-number {
+        line-height: 1;
+    }
+
+    .flag-icon {
+        font-size: 13px;
+        line-height: 1;
+    }
+
+    .flag-demo {
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .status-empty {
+        background: #f8fafc;
+        color: #334155;
+        border-color: #dbe2ea;
+    }
+
+    .status-done {
+        background: #2563eb;
+        color: #ffffff;
+        border-color: #2563eb;
+    }
+
+    .status-box {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        border: 1px solid #dbe2ea;
+    }
+
+    .countdown-panel {
+        border: 1px solid #bfdbfe;
+        background: #eff6ff;
+        border-radius: 16px;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .countdown-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1e3a8a;
+        margin-bottom: 8px;
+    }
+
+    .countdown-time {
+        font-size: 30px;
+        font-weight: 800;
+        color: #1d4ed8;
+        letter-spacing: 1px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        let daTuDongNop = false;
+
+        const maLuotThi = "@Model.MaLuotThi";
+        const storageKeyAnswers = `exam_answers_${maLuotThi}`;
+        const storageKeyReview = `exam_review_${maLuotThi}`;
+
+        function getSavedAnswers() {
+            const raw = localStorage.getItem(storageKeyAnswers);
+            return raw ? JSON.parse(raw) : {};
+        }
+
+        function saveAnswer(questionIndex, answerValue) {
+            const answers = getSavedAnswers();
+            answers[questionIndex] = answerValue;
+            localStorage.setItem(storageKeyAnswers, JSON.stringify(answers));
+        }
+
+        function restoreAnswers() {
+            const answers = getSavedAnswers();
+
+            Object.keys(answers).forEach(index => {
+                const value = answers[index];
+                const radio = document.querySelector(
+                    `input.question-radio[data-question-index="${index}"][value="${value}"]`
+                );
+                if (radio) {
+                    radio.checked = true;
+                }
+            });
+        }
+
+        function getSavedReview() {
+            const raw = localStorage.getItem(storageKeyReview);
+            return raw ? JSON.parse(raw) : {};
+        }
+
+        function saveReview(questionIndex, isChecked) {
+            const reviewState = getSavedReview();
+            reviewState[questionIndex] = isChecked;
+            localStorage.setItem(storageKeyReview, JSON.stringify(reviewState));
+        }
+
+        function restoreReview() {
+            const reviewState = getSavedReview();
+
+            Object.keys(reviewState).forEach(index => {
+                const checkbox = document.querySelector(
+                    `input.review-checkbox[data-question-index="${index}"]`
+                );
+                if (checkbox) {
+                    checkbox.checked = reviewState[index];
+                }
+            });
+        }
+
+        function clearExamStorage() {
+            localStorage.removeItem(storageKeyAnswers);
+            localStorage.removeItem(storageKeyReview);
+        }
+
+        function updateQuestionStatus(index) {
+            const radios = document.querySelectorAll(`input.question-radio[data-question-index="${index}"]`);
+            const review = document.querySelector(`input.review-checkbox[data-question-index="${index}"]`);
+            const navBtn = document.getElementById(`nav-question-${index}`);
+            const flag = document.getElementById(`flag-${index}`);
+
+            if (!navBtn) return;
+
+            let hasSelected = false;
+            radios.forEach(r => {
+                if (r.checked) {
+                    hasSelected = true;
+                }
+            });
+
+            navBtn.classList.remove("status-empty", "status-done");
+
+            if (hasSelected) {
+                navBtn.classList.add("status-done");
+            } else {
+                navBtn.classList.add("status-empty");
+            }
+
+            if (flag) {
+                flag.innerHTML = (review && review.checked) ? "🚩" : "";
+            }
+        }
+
+        function demSoCauChuaLam() {
+            const totalQuestions = document.querySelectorAll(".question-nav-btn").length;
+            let chuaLam = 0;
+
+            for (let i = 0; i < totalQuestions; i++) {
+                const radios = document.querySelectorAll(`input.question-radio[data-question-index="${i}"]`);
+                let hasSelected = false;
+
+                radios.forEach(r => {
+                    if (r.checked) hasSelected = true;
+                });
+
+                if (!hasSelected) chuaLam++;
+            }
+
+            return chuaLam;
+        }
+
+        function submitFormSafe() {
+            if (daTuDongNop) return;
+
+            daTuDongNop = true;
+
+            const btn = document.getElementById("btnNopBai");
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "Đang nộp bài...";
+            }
+
+            const form = document.getElementById("lamBaiForm");
+            if (form) {
+                form.submit();
+            }
+        }
+
+        function startCountdown() {
+            const timerElement = document.getElementById("countdownTimer");
+            if (!timerElement) return;
+
+            const endTimeString = "@Model.ThoiDiemHetGio.ToString("yyyy-MM-ddTHH:mm:ss")";
+            const endTime = new Date(endTimeString).getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance <= 0) {
+                    timerElement.innerHTML = "00:00:00";
+                    alert("Đã hết thời gian làm bài. Hệ thống sẽ tự động nộp bài.");
+                    submitFormSafe();
+                    return;
+                }
+
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerElement.innerHTML =
+                    `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const totalQuestions = document.querySelectorAll(".question-nav-btn").length;
+
+            restoreAnswers();
+            restoreReview();
+
+            for (let i = 0; i < totalQuestions; i++) {
+                updateQuestionStatus(i);
+            }
+
+            document.querySelectorAll(".question-radio").forEach(radio => {
+                radio.addEventListener("change", function () {
+                    const index = this.getAttribute("data-question-index");
+                    saveAnswer(index, this.value);
+                    updateQuestionStatus(index);
+                });
+            });
+
+            document.querySelectorAll(".review-checkbox").forEach(checkbox => {
+                checkbox.addEventListener("change", function () {
+                    const index = this.getAttribute("data-question-index");
+                    saveReview(index, this.checked);
+                    updateQuestionStatus(index);
+                });
+            });
+
+            const form = document.getElementById("lamBaiForm");
+            form.addEventListener("submit", function (e) {
+                if (daTuDongNop) return;
+
+                const chuaLam = demSoCauChuaLam();
+
+                if (chuaLam > 0) {
+                    const xacNhan = confirm(`Bạn còn ${chuaLam} câu chưa trả lời. Bạn có muốn nộp bài không?`);
+                    if (!xacNhan) {
+                        e.preventDefault();
+                        return;
+                    }
+                }
+
+                const btn = document.getElementById("btnNopBai");
+                if (btn) {
+                    btn.disabled = true;
+                    btn.innerText = "Đang nộp bài...";
+                }
+            });
+
+            const btn = document.getElementById("btnNopBai");
+            if (btn) {
+                btn.addEventListener("dblclick", function (e) {
+                    e.preventDefault();
+                });
+            }
+
+            startCountdown();
+        });
+
+        window.addEventListener("beforeunload", function (e) {
+            if (!daTuDongNop) {
+                e.preventDefault();
+                e.returnValue = "";
+            }
+        });
+
+        window.clearExamStorage = clearExamStorage;
+    </script>
+}
+}

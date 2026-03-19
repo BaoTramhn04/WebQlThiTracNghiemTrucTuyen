@@ -20,10 +20,20 @@ namespace WebQLThiTracNghiem.Controllers
 
         public IActionResult BangDieuKhien()
         {
+            ViewBag.SoNguoiDung = _context.NguoiDung.Count();
+            ViewBag.SoVaiTro = _context.VaiTro.Count();
+            ViewBag.SoNhatKy = _context.NhatKyHeThong.Count();
+
             ViewBag.SoGiaoVien = _context.GiaoVien.Count();
             ViewBag.SoHocSinh = _context.HocSinh.Count();
             ViewBag.SoLop = _context.Lop.Count();
             ViewBag.SoMon = _context.MonHoc.Count();
+
+            ViewBag.SoHocSinhDangHoatDong = _context.HocSinh.Count(h => h.TrangThai);
+            ViewBag.SoHocSinhNgungHoatDong = _context.HocSinh.Count(h => !h.TrangThai);
+
+            ViewBag.SoGiaoVienDangHoatDong = _context.GiaoVien.Count(g => g.TrangThai);
+            ViewBag.SoGiaoVienNgungHoatDong = _context.GiaoVien.Count(g => !g.TrangThai);
 
             return View();
         }
