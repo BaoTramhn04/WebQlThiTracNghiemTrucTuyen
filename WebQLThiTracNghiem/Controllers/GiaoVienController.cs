@@ -21,16 +21,52 @@ namespace WebQLThiTracNghiem.Controllers
 
         private int? GetMaGiaoVien()
         {
-            return HttpContext.Session.GetInt32("MaGiaoVien");
-        }
+            var maGV = HttpContext.Session.GetInt32("MaGiaoVien");
 
+            // 👉 Nếu chưa có session thì tự lấy từ MaNguoiDung
+            if (maGV == null)
+            {
+                var maNguoiDung = HttpContext.Session.GetInt32("MaNguoiDung");
+
+                if (maNguoiDung != null)
+                {
+                    var gv = _context.GiaoVien
+                        .FirstOrDefault(x => x.MaNguoiDung == maNguoiDung);
+
+                    if (gv != null)
+                    {
+                        // 👉 set lại session cho lần sau
+                        HttpContext.Session.SetInt32("MaGiaoVien", gv.MaGiaoVien);
+                        return gv.MaGiaoVien;
+                    }
+                }
+            }
+
+            return maGV;
+        }
         private IActionResult? KiemTraDangNhap()
         {
+            var vaiTro = HttpContext.Session.GetInt32("VaiTro");
+
+            // ❌ chưa login
+            if (vaiTro == null)
+            {
+                return RedirectToAction("DangNhap", "Auth");
+            }
+
+            // ❌ không phải giáo viên
+            if (vaiTro != 2)
+            {
+                return Content("Bạn không có quyền truy cập trang giáo viên");
+            }
+
+            // ❌ thiếu MaGiaoVien
             var maGV = GetMaGiaoVien();
             if (maGV == null)
             {
                 return RedirectToAction("DangNhap", "Auth");
             }
+
             return null;
         }
 
@@ -42,7 +78,15 @@ namespace WebQLThiTracNghiem.Controllers
                 .Distinct()
                 .ToList();
         }
-
+        private List<string> GetTenMonCuaGiaoVien(int maGV)
+        {
+            return (from pc in _context.PhanCongGiangDays
+                    join mh in _context.MonHoc on pc.MaMon equals mh.MaMonHoc
+                    where pc.MaGiaoVien == maGV
+                    select mh.TenMonHoc)
+                    .Distinct()
+                    .ToList();
+        }
         private List<int> GetDanhSachLopCuaGiaoVien(int maGV)
         {
             return _context.PhanCongGiangDays

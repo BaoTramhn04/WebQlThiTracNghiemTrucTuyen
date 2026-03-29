@@ -43,9 +43,9 @@
             <form asp-controller="Auth" asp-action="DangNhap" method="post" id="loginForm">
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Tên đăng nhập</label>
-                    <input asp-for="MaHocSinh"
+                    <input name="ThongTinDangNhap"
                            class="form-control input-custom"
-                           placeholder="Nhập tên đăng nhập" />
+                           placeholder="Nhập mã học sinh hoặc tên đăng nhập" />
                     <span asp-validation-for="MaHocSinh" class="text-danger small"></span>
                 </div>
 
@@ -68,6 +68,11 @@
                     <button type="submit" class="btn btn-login" id="btnLogin">
                         <span id="btnText">Đăng nhập</span>
                     </button>
+                </div>
+                <div class="text-center mb-3">
+                    <a asp-controller="Home" asp-action="TrangChu" class="btn btn-home">
+                        ← Về trang chủ
+                    </a>
                 </div>
             </form>
         </div>
@@ -346,6 +351,10 @@
             right: 16px;
             width: 44px;
             height: 44px;
+        }
+
+        .login-title {
+            white-space: nowrap;
         }
     }
 </style>
