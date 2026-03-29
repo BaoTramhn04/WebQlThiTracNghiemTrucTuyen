@@ -14,9 +14,6 @@ namespace WebQLThiTracNghiem.Controllers
             _context = context;
         }
 
-        // ===============================
-        // DASHBOARD
-        // ===============================
 
         public IActionResult BangDieuKhien()
         {

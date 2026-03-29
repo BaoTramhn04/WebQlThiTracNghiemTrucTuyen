@@ -221,6 +221,30 @@ namespace WebQLThiTracNghiem.Data
                     TrangThai = true
                 }
             );
+            // ===== DANH SÁCH DỰ THI =====
+            var dsDuThi = new List<DanhSachDuThi>();
+
+            // Đợt thi 1 → lấy học sinh MaHocSinh từ 1 đến 30 (lớp 1)
+            for (int i = 1; i <= 30; i++)
+            {
+                dsDuThi.Add(new DanhSachDuThi
+                {
+                    MaDotThi = 1,
+                    MaHocSinh = i
+                });
+            }
+
+            // Đợt thi 2 → lấy học sinh MaHocSinh từ 31 đến 60 (lớp 2)
+            for (int i = 31; i <= 60; i++)
+            {
+                dsDuThi.Add(new DanhSachDuThi
+                {
+                    MaDotThi = 2,
+                    MaHocSinh = i
+                });
+            }
+
+            modelBuilder.Entity<DanhSachDuThi>().HasData(dsDuThi);
 
             // ===== GIÁO VIÊN =====
             string[] tenGV =

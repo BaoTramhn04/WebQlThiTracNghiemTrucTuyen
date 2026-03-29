@@ -4,8 +4,8 @@
             <div class="student-topbar-badge">KHU VỰC HỌC SINH</div>
             <h1 class="student-topbar-title">Hệ thống thi trắc nghiệm trực tuyến</h1>
             <div class="student-topbar-meta">
-                <span><strong>Tài khoản:</strong> @ViewBag.TenDangNhap</span>
-                <span><strong>Số báo danh:</strong> @ViewBag.SoBaoDanh</span>
+                <span><strong>Học sinh:</strong> @Context.Session.GetString("TenNguoiDung")</span>
+                <span><strong>Số báo danh:</strong> @Context.Session.GetString("SoBaoDanh")</span>
             </div>
         </div>
     </div>

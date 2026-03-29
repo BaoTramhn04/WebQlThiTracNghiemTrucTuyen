@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using WebQLThiTracNghiem.Data;
 using WebQLThiTracNghiem.Models.ViewModels;
 
@@ -13,11 +14,14 @@ namespace WebQLThiTracNghiem.Controllers
             _context = context;
         }
 
+        // ===========================
+        // GET: ĐĂNG NHẬP
+        // ===========================
         [HttpGet]
         public IActionResult DangNhap()
         {
             var maNguoiDung = HttpContext.Session.GetInt32("MaNguoiDung");
-            var vaiTro = HttpContext.Session.GetInt32("RoleId");
+            var vaiTro = HttpContext.Session.GetInt32("VaiTro");
 
             if (maNguoiDung != null && vaiTro != null)
             {
@@ -34,6 +38,9 @@ namespace WebQLThiTracNghiem.Controllers
             return View("~/Views/Home/DangNhap.cshtml");
         }
 
+        // ===========================
+        // POST: ĐĂNG NHẬP
+        // ===========================
         [HttpPost]
         public IActionResult DangNhap(DangNhapHocSinhViewModel model)
         {
@@ -42,124 +49,45 @@ namespace WebQLThiTracNghiem.Controllers
                 return View("~/Views/Home/DangNhap.cshtml", model);
             }
 
-            if (string.IsNullOrWhiteSpace(model.SoBaoDanh) || string.IsNullOrWhiteSpace(model.MatKhau))
+            if (model.MaHocSinh <= 0 || string.IsNullOrWhiteSpace(model.MatKhau))
             {
                 ViewBag.LoiDangNhap = "Vui lòng nhập đầy đủ thông tin";
                 return View("~/Views/Home/DangNhap.cshtml", model);
             }
 
-            HttpContext.Session.Clear();
+            // Tìm học sinh theo MaHocSinh (int)
+            var hs = _context.HocSinh
+                .FirstOrDefault(x => x.MaHocSinh == model.MaHocSinh && x.TrangThai);
 
-            var hocSinh = (from hs in _context.HocSinh
-                           join nd in _context.NguoiDung
-                           on hs.MaNguoiDung equals nd.MaNguoiDung
-                           where hs.SoBaoDanh == model.SoBaoDanh
-                                 && hs.TrangThai == true
-                                 && nd.MatKhau == model.MatKhau
-                                 && nd.TrangThai == true
-                                 && nd.MaVaiTro == 3
-                           select new
-                           {
-                               hs.MaHocSinh,
-                               hs.MaNguoiDung,
-                               hs.SoBaoDanh,
-                               nd.TenDangNhap,
-                               nd.MaVaiTro
-                           }).FirstOrDefault();
-
-            if (hocSinh != null)
+            if (hs == null)
             {
-                HttpContext.Session.SetInt32("UserId", hocSinh.MaNguoiDung);
-                HttpContext.Session.SetInt32("RoleId", hocSinh.MaVaiTro);
-
-                HttpContext.Session.SetInt32("MaHocSinh", hocSinh.MaHocSinh);
-                HttpContext.Session.SetInt32("MaNguoiDung", hocSinh.MaNguoiDung);
-                HttpContext.Session.SetString("SoBaoDanh", hocSinh.SoBaoDanh ?? "");
-                HttpContext.Session.SetString("TenDangNhap", hocSinh.TenDangNhap ?? "");
-
-                return RedirectToAction("DanhSachDotThi", "HocSinh");
+                ViewBag.LoiDangNhap = "Mã học sinh không tồn tại";
+                return View("~/Views/Home/DangNhap.cshtml", model);
             }
 
             var user = _context.NguoiDung
-                .FirstOrDefault(x => x.TenDangNhap == model.SoBaoDanh && x.TrangThai);
+                .FirstOrDefault(x => x.MaNguoiDung == hs.MaNguoiDung && x.TrangThai);
 
-            if (user == null)
+            if (user == null || user.MatKhau.Trim() != model.MatKhau.Trim())
             {
-                ViewBag.LoiDangNhap = "Tài khoản không tồn tại hoặc mật khẩu không đúng";
+                ViewBag.LoiDangNhap = "Sai mật khẩu";
                 return View("~/Views/Home/DangNhap.cshtml", model);
             }
 
-            if (user.MatKhau != model.MatKhau)
-            {
-                ViewBag.LoiDangNhap = "Tài khoản không tồn tại hoặc mật khẩu không đúng";
-                return View("~/Views/Home/DangNhap.cshtml", model);
-            }
-
-            HttpContext.Session.SetInt32("UserId", user.MaNguoiDung);
-            HttpContext.Session.SetInt32("RoleId", user.MaVaiTro);
+            // ✅ LƯU SESSION ĐÚNG KIỂU INT
+            HttpContext.Session.SetInt32("VaiTro", 3);
             HttpContext.Session.SetInt32("MaNguoiDung", user.MaNguoiDung);
+            HttpContext.Session.SetInt32("MaHocSinh", hs.MaHocSinh);
+
             HttpContext.Session.SetString("TenDangNhap", user.TenDangNhap ?? "");
+            HttpContext.Session.SetString("SoBaoDanh", hs.SoBaoDanh ?? "");
 
-            if (user.MaVaiTro == 1)
-            {
-                var hoSo = _context.HoSoCaNhan
-                    .FirstOrDefault(x => x.MaNguoiDung == user.MaNguoiDung);
+            var hoSo = _context.HoSoCaNhan
+                .FirstOrDefault(x => x.MaNguoiDung == user.MaNguoiDung);
 
-                HttpContext.Session.SetString("TenNguoiDung", hoSo?.HoTen ?? user.TenDangNhap ?? "Admin");
-                TempData["LoginSuccess"] = "Đăng nhập thành công!";
+            HttpContext.Session.SetString("TenNguoiDung", hoSo?.HoTen ?? "Học sinh");
 
-                return RedirectToAction("BangDieuKhien", "Admin");
-            }
-
-            if (user.MaVaiTro == 2)
-            {
-                var gv = _context.GiaoVien
-                    .FirstOrDefault(x => x.MaNguoiDung == user.MaNguoiDung && x.TrangThai);
-
-                if (gv == null)
-                {
-                    ViewBag.LoiDangNhap = "Không tìm thấy thông tin giáo viên";
-                    return View("~/Views/Home/DangNhap.cshtml", model);
-                }
-
-                var hoSo = _context.HoSoCaNhan
-                    .FirstOrDefault(x => x.MaNguoiDung == user.MaNguoiDung);
-
-                var monDay = (from pc in _context.PhanCongGiangDays
-                              join mh in _context.MonHoc on pc.MaMon equals mh.MaMonHoc
-                              where pc.MaGiaoVien == gv.MaGiaoVien
-                              select mh.TenMonHoc)
-                              .Distinct()
-                              .ToList();
-
-                HttpContext.Session.SetInt32("MaGiaoVien", gv.MaGiaoVien);
-                HttpContext.Session.SetString("TenNguoiDung", hoSo?.HoTen ?? user.TenDangNhap ?? "Giáo viên");
-                HttpContext.Session.SetString("BoMonDay", monDay.Any() ? string.Join(", ", monDay) : "Chưa phân công môn dạy");
-
-                TempData["LoginSuccess"] = "Đăng nhập thành công!";
-
-                return RedirectToAction("BangDieuKhien", "GiaoVien");
-            }
-
-            if (user.MaVaiTro == 3)
-            {
-                var hs = _context.HocSinh
-                    .FirstOrDefault(x => x.MaNguoiDung == user.MaNguoiDung && x.TrangThai);
-
-                if (hs == null)
-                {
-                    ViewBag.LoiDangNhap = "Không tìm thấy thông tin học sinh";
-                    return View("~/Views/Home/DangNhap.cshtml", model);
-                }
-
-                HttpContext.Session.SetInt32("MaHocSinh", hs.MaHocSinh);
-                HttpContext.Session.SetString("SoBaoDanh", hs.SoBaoDanh ?? "");
-
-                return RedirectToAction("DanhSachDotThi", "HocSinh");
-            }
-
-            ViewBag.LoiDangNhap = "Vai trò không hợp lệ";
-            return View("~/Views/Home/DangNhap.cshtml", model);
+            return RedirectToAction("DanhSachDotThi", "HocSinh");
         }
 
         public IActionResult DangXuat()

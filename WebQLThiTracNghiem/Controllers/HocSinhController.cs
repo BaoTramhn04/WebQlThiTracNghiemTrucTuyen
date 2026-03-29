@@ -16,7 +16,10 @@ namespace WebQLThiTracNghiem.Controllers
 
         private bool DaDangNhap()
         {
+            /*
             return HttpContext.Session.GetInt32("MaHocSinh") != null;
+            */
+            return HttpContext.Session.GetInt32("MaNguoiDung") != null;
         }
 
         public IActionResult DanhSachDotThi()
@@ -26,6 +29,12 @@ namespace WebQLThiTracNghiem.Controllers
                 return RedirectToAction("DangNhap", "Home");
             }
 
+            var vaiTro = HttpContext.Session.GetInt32("VaiTro");
+
+            if (vaiTro == null || vaiTro != 3)
+            {
+                return RedirectToAction("DangNhap", "Home");
+            }
             int? maHocSinh = HttpContext.Session.GetInt32("MaHocSinh");
 
             if (maHocSinh == null)
@@ -49,7 +58,9 @@ namespace WebQLThiTracNghiem.Controllers
                                       ThoiGianLamBai = d.ThoiGianLamBai,
                                       SoLanThiToiDa = dt.SoLanThiToiDa,
                                       TrangThai = dt.TrangThai,
-                                      DuocPhepThi = dsdt.DuocPhepThi,
+
+                                      DuocPhepThi = true,
+        //                            DuocPhepThi = dsdt.DuocPhepThi,
                                       GhiChu = dsdt.GhiChu
                                   }).ToList();
 
@@ -57,6 +68,9 @@ namespace WebQLThiTracNghiem.Controllers
 
             foreach (var item in danhSachDotThi)
             {
+                bool duocThi = _context.DanhSachDuThi
+     .Any(x => x.MaHocSinh == maHocSinh.Value && x.MaDotThi == item.MaDotThi);
+
                 bool adminDangMo = item.TrangThai;
                 bool trongThoiGianThi = hienTai >= item.ThoiGianBatDau && hienTai <= item.ThoiGianKetThuc;
 
@@ -65,7 +79,7 @@ namespace WebQLThiTracNghiem.Controllers
 
                 item.ConLuotThi = soLanDaThi < item.SoLanThiToiDa;
 
-                if (!item.DuocPhepThi)
+                if (!duocThi)
                 {
                     item.DangMoHienThi = false;
                     item.TrangThaiHienThi = "Không được phép";
