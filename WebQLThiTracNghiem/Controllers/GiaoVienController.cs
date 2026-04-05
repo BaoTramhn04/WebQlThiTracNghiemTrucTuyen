@@ -1182,21 +1182,128 @@ namespace WebQLThiTracNghiem.Controllers
 
             var maGV = GetMaGiaoVien()!.Value;
 
-            ViewData["Title"] = "Thông tin cá nhân";
+            var gv = _context.GiaoVien
+                .Include(x => x.NguoiDung)
+                .ThenInclude(x => x.HoSoCaNhan)
+                .FirstOrDefault(x => x.MaGiaoVien == maGV);
+
+            return View(gv);
+        }
+        // Câp nhật thông tin cá nhân
+        [HttpPost]
+     
+        public IActionResult CapNhatThongTin(HoSoCaNhan model)
+        {
+            var auth = KiemTraDangNhap();
+            if (auth != null) return auth;
+
+            var maGV = GetMaGiaoVien()!.Value;
 
             var gv = _context.GiaoVien
                 .Include(x => x.NguoiDung)
                 .ThenInclude(x => x.HoSoCaNhan)
                 .FirstOrDefault(x => x.MaGiaoVien == maGV);
 
-            if (gv == null)
+            var hs = gv?.NguoiDung?.HoSoCaNhan;
+
+            if (hs == null)
             {
-                return NotFound();
+                TempData["Error"] = "Không tìm thấy hồ sơ!";
+                return RedirectToAction("ThongTinCaNhan");
             }
 
-            return View(gv);
+            // update
+            hs.HoTen = model.HoTen;
+            hs.NgaySinh = model.NgaySinh;
+            hs.SoDienThoai = model.SoDienThoai;
+            hs.DiaChi = model.DiaChi;
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Cập nhật thành công!";
+            return RedirectToAction("ThongTinCaNhan");
         }
 
+        /// Đổi mật khẩu
+        [HttpPost]
+        public IActionResult DoiMatKhau(string matKhauCu, string matKhauMoi)
+        {
+            var auth = KiemTraDangNhap();
+            if (auth != null) return auth;
+
+            var maGV = GetMaGiaoVien()!.Value;
+
+            var gv = _context.GiaoVien
+                .Include(x => x.NguoiDung)
+                .FirstOrDefault(x => x.MaGiaoVien == maGV);
+
+            var user = gv?.NguoiDung;
+
+            if (user == null)
+            {
+                TempData["Error"] = "Không tìm thấy tài khoản!";
+                return RedirectToAction("ThongTinCaNhan");
+            }
+
+            // ✅ CHECK MẬT KHẨU CŨ (THIẾU TRONG CODE CỦA BẠN)
+            if (user.MatKhau != matKhauCu)
+            {
+                TempData["Error"] = "Mật khẩu cũ sai!";
+                return RedirectToAction("ThongTinCaNhan");
+            }
+
+            if (string.IsNullOrEmpty(matKhauMoi) || matKhauMoi.Length < 6)
+            {
+                TempData["Error"] = "Mật khẩu phải >= 6 ký tự";
+                return RedirectToAction("ThongTinCaNhan");
+            }
+
+            user.MatKhau = matKhauMoi;
+
+            _context.SaveChanges();
+
+            TempData["Success"] = "Đổi mật khẩu thành công!";
+            return RedirectToAction("ThongTinCaNhan");
+        }
+        /// Ânh đại diện
+        [HttpPost]
+        public async Task<IActionResult> UploadAvatar(IFormFile file)
+        {
+            var auth = KiemTraDangNhap();
+            if (auth != null) return auth;
+
+            var maGV = GetMaGiaoVien()!.Value;
+
+            if (file != null && file.Length > 0)
+            {
+                var fileName = "avatar_" + maGV + Path.GetExtension(file.FileName);
+
+                var path = Path.Combine(Directory.GetCurrentDirectory(),
+                                        "wwwroot/images",
+                                        fileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                var gv = _context.GiaoVien
+                    .Include(x => x.NguoiDung)
+                    .ThenInclude(x => x.HoSoCaNhan)
+                    .FirstOrDefault(x => x.MaGiaoVien == maGV);
+
+                var hs = gv?.NguoiDung?.HoSoCaNhan;
+
+                if (hs != null)
+                {
+                    hs.AnhDaiDien = fileName;
+                    _context.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("ThongTinCaNhan");
+        }
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ThongTinCaNhan(string matKhauCu, string matKhauMoi)
@@ -1242,7 +1349,7 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.ThongBao = "Đổi mật khẩu thành công.";
             return View(gv);
         }
-
+        */
         // ===============================
         // THỐNG KÊ
         // ===============================

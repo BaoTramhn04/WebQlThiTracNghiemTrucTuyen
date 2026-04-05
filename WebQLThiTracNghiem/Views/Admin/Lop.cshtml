@@ -1,0 +1,138 @@
+﻿@model List<WebQLThiTracNghiem.Models.Lop>
+
+@{
+    ViewData["Title"] = "Quản lý lớp";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container mt-4">
+
+   
+    <h2 class="mb-4">📚 Quản lý lớp</h2>
+
+    <!-- THÔNG BÁO -->
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+    <form method="get" class="mb-3">
+        <input type="text" name="keyword"
+               value="@Context.Request.Query["keyword"]"
+               placeholder="Tìm theo ký hiệu hoặc tên lớp"
+               class="form-control"
+               style="width:300px; display:inline-block;" />
+
+        <button class="btn btn-primary">Tìm</button>
+
+        <a asp-action="Lop" class="btn btn-secondary">Tất cả</a>
+    </form>
+    <!-- FORM -->
+    <div class="card mb-4">
+        <div class="card-header fw-bold">
+            ➕ Thêm lớp mới
+        </div>
+
+        <div class="card-body">
+            <form asp-action="ThemLop" method="post" class="row g-3">
+
+                <div class="col-md-3">
+                    <input name="kyHieu" class="form-control" placeholder="Ký hiệu lớp (12A1)" required />
+                </div>
+
+                <div class="col-md-4">
+                    <input name="tenLop" class="form-control" placeholder="Tên lớp" required />
+                </div>
+
+                <div class="col-md-3">
+                    <input name="namHoc" class="form-control" placeholder="Năm học (2025-2026)" required />
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100">
+                        Thêm
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+        <div class="card-header fw-bold">
+            📋 Danh sách lớp
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover text-center align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Ký hiệu</th>
+                        <th>Tên lớp</th>
+                        <th>Năm học</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int stt = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <form asp-action="SuaLop" method="post">
+                                <input type="hidden" name="MaLop" value="@item.MaLop" />
+
+                            <td>@stt</td>
+
+                            <td>
+                                <input name="KyHieuLop" value="@item.KyHieuLop"
+                                       class="form-control form-control-sm" />
+                            </td>
+
+                            <td>
+                                <input name="TenLop" value="@item.TenLop"
+                                       class="form-control form-control-sm" />
+                            </td>
+
+                            <td>
+                                <input name="NamHoc" value="@item.NamHoc"
+                                       class="form-control form-control-sm" />
+                            </td>
+
+                            <td>
+                                <!-- LƯU -->
+                                <button class="btn btn-success btn-sm">
+                                    💾 Lưu
+                                </button>
+
+                                <!-- XÓA -->
+                                <a asp-action="XoaLop"
+                                   asp-route-id="@item.MaLop"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Xóa lớp này?')">
+                                    🗑 Xóa
+                                </a>
+                            </td>
+                            </form>
+                        </tr>
+
+                        stt++;
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+   
+
+</div>

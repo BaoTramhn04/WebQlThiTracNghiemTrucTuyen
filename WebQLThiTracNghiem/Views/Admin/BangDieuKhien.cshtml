@@ -3,61 +3,96 @@
     ViewData["Title"] = "Dashboard Admin";
 }
 
+<!-- ===== CARD THỐNG KÊ ===== -->
 <div class="row g-4 mb-4">
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-blue">
+            <div class="card-icon">👤</div>
             <h3>@ViewBag.SoNguoiDung</h3>
             <p>Người dùng</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">🛡️</div>
             <h3>@ViewBag.SoVaiTro</h3>
             <p>Vai trò</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">📊</div>
             <h3>@ViewBag.SoNhatKy</h3>
-            <p>Nhật ký hệ thống</p>
+            <p>Nhật ký</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-green">
+            <div class="card-icon">🏫</div>
             <h3>@ViewBag.SoLop</h3>
             <p>Lớp học</p>
         </div>
     </div>
+
 </div>
 
 <div class="row g-4 mb-4">
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-blue">
+            <div class="card-icon">👨‍🏫</div>
             <h3>@ViewBag.SoGiaoVien</h3>
             <p>Giáo viên</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-green">
+            <div class="card-icon">🎓</div>
             <h3>@ViewBag.SoHocSinh</h3>
             <p>Học sinh</p>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">📘</div>
+            <h3>@ViewBag.SoChuyenDe</h3>
+            <p>Chuyên đề</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">❓</div>
+            <h3>@ViewBag.SoCauHoi</h3>
+            <p>Câu hỏi</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">📚</div>
             <h3>@ViewBag.SoMon</h3>
             <p>Môn học</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">👥</div>
             <h3>@(ViewBag.SoGiaoVien + ViewBag.SoHocSinh)</h3>
-            <p>Tổng tài khoản giảng dạy & học tập</p>
+            <p>Tổng tài khoản</p>
         </div>
     </div>
+
 </div>
 
-<div class="card custom-card">
+<!-- ===== TỔNG QUAN ===== -->
+<div class="card custom-card mb-4">
     <div class="card-header fw-semibold">Tổng quan hệ thống</div>
     <div class="card-body">
         <p>Hệ thống hiện có <strong>@ViewBag.SoGiaoVien</strong> giáo viên, <strong>@ViewBag.SoHocSinh</strong> học sinh, <strong>@ViewBag.SoLop</strong> lớp học và <strong>@ViewBag.SoMon</strong> môn học.</p>
@@ -65,3 +100,115 @@
         <p>Nhật ký hệ thống hiện ghi nhận <strong>@ViewBag.SoNhatKy</strong> hoạt động.</p>
     </div>
 </div>
+
+<! -- ===== CẢNH BÁO ===== -->
+<div class="card custom-card mb-4">
+    <div class="card-header text-danger fw-bold">⚠ Cảnh báo hệ thống</div>
+
+    <div class="card-body">
+
+        @if (ViewBag.LopChuaPhanCong > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.LopChuaPhanCong</b> lớp chưa phân công giáo viên</p>
+        }
+
+        @if (ViewBag.MonChuaCoChuyenDe > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.MonChuaCoChuyenDe</b> môn chưa có chuyên đề</p>
+        }
+
+        @if (ViewBag.GiaoVienChuaDuocPhanCong > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.GiaoVienChuaDuocPhanCong</b> giáo viên chưa được phân công</p>
+        }
+
+    </div>
+</div>
+
+<!-- ===== LOG ===== -->
+<hr />
+
+<h5 class="mt-4">Hoạt động gần đây</h5>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Hành động</th>
+            <th>Đối tượng</th>
+            <th>Thời gian</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (ViewBag.Logs != null)
+        {
+            foreach (var log in ViewBag.Logs)
+            {
+                <tr>
+                    <td>
+                        @if (log.HanhDong.Contains("Thêm"))
+                        {
+                            <span class="badge bg-success">@log.HanhDong</span>
+                        }
+                        else if (log.HanhDong.Contains("Xóa"))
+                        {
+                            <span class="badge bg-danger">@log.HanhDong</span>
+                        }
+                        else if (log.HanhDong.Contains("Khóa"))
+                        {
+                            <span class="badge bg-warning">@log.HanhDong</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@log.HanhDong</span>
+                        }
+                    </td>
+
+                    <td>@log.DoiTuongTacDong</td>
+
+                    <td>@log.ThoiGianThucHien.ToString("dd/MM/yyyy HH:mm")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<!-- ===== CSS ===== -->
+<style>
+    .stat-card {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #dbeafe;
+        transition: all 0.25s ease;
+    }
+
+    
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(59,130,246,0.15); 
+            border-color: #93c5fd;
+        }
+
+    
+    .card-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+        color: #3b82f6; 
+    }
+
+    
+    .stat-card h3 {
+        margin: 5px 0;
+        font-weight: 600;
+        color: #1d4ed8;
+    }
+
+    .stat-card p {
+        color: #60a5fa; 
+        font-size: 14px;
+    }
+</style>
+
+

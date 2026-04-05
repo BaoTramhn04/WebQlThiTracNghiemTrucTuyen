@@ -11,7 +11,7 @@
 
         <h5 class="mb-0">Quản lý giáo viên</h5>
 
-        <a asp-action="ExportGiaoVien"
+        <a asp-action="XuatGiaoVienExcel"
            class="btn btn-success">
             Xuất Excel
         </a>
@@ -163,7 +163,40 @@
     </div>
 
 </div>
+<div class="mt-4 d-flex justify-content-center">
 
+    <ul class="pagination">
+
+        <!-- << -->
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachGiaoVien", new { page = ViewBag.CurrentPage - 1, keyword = ViewBag.Keyword })">
+                «
+            </a>
+        </li>
+
+        <!-- số -->
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link"
+                   href="@Url.Action("DanhSachGiaoVien", new { page = i, keyword = ViewBag.Keyword })">
+                    @i
+                </a>
+            </li>
+        }
+
+        <!-- >> -->
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachGiaoVien", new { page = ViewBag.CurrentPage + 1, keyword = ViewBag.Keyword })">
+                »
+            </a>
+        </li>
+
+    </ul>
+
+</div>
 
 <script>
 

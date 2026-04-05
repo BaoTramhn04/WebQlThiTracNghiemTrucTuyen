@@ -45,6 +45,46 @@
                 transform: translateY(0);
             }
         }
+
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            overflow-y: auto;
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .sidebar a {
+                display: block;
+                color: white;
+                padding: 10px;
+                text-decoration: none;
+                border-radius: 6px;
+                margin-bottom: 5px;
+            }
+
+        .sidebar a:hover {
+               background: rgba(255,255,255,0.2);
+           }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+     
+    
     </style>
 </head>
 
@@ -63,14 +103,33 @@
                 Dashboard
             </a>
 
-            <a asp-controller="Admin" asp-action="DanhSachGiaoVien">
-                Quản lý Giáo viên
+            <!-- MENU CHA -->
+            <a href="javascript:void(0)" onclick="toggleUserMenu()">
+                Quản lý người dùng ▼
             </a>
 
-            <a asp-controller="Admin" asp-action="DanhSachHocSinh">
-                Quản lý Học sinh
-            </a>
+            <!-- MENU CON -->
+            <div id="user-submenu" style="display:none; padding-left:15px;">
+                <a asp-controller="Admin" asp-action="DanhSachGiaoVien">
+                    - Quản lý Giáo viên
+                </a>
 
+                <a asp-controller="Admin" asp-action="DanhSachHocSinh">
+                    - Quản lý Học sinh
+                </a>
+            </div>
+            <a asp-controller="Admin" asp-action="Lop">
+                Quản lý lớp
+            </a>
+            <a asp-controller="Admin" asp-action="MonHoc">
+                Quản lý môn học
+            </a>
+            <a asp-controller="Admin" asp-action="ChuyenDe">
+                Quản lý chuyên đề
+            </a>
+            <a asp-controller="Admin" asp-action="NguoiDung">
+                Quản lý tài khoản
+            </a>
             <a asp-controller="Admin" asp-action="PhanCongGiangDay">
                 Phân công giảng dạy
             </a>
@@ -126,6 +185,18 @@
             }
         }, 2500);
     </script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleUserMenu() {
+            var menu = document.getElementById("user-submenu");
 
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+        }
+    </script>
+    
 </body>
 </html>

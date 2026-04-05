@@ -9,7 +9,7 @@
     <div class="card-header d-flex justify-content-between">
         <h5 class="mb-0">Quản lý học sinh</h5>
 
-        <a asp-action="ExportHocSinh" class="btn btn-success">
+        <a asp-action="XuatHocSinhExcel" class="btn btn-success">
             Xuất Excel
         </a>
     </div>
@@ -137,10 +137,10 @@
                         <td>
                             <button class="btn btn-sm btn-warning"
                                     onclick="editHS(
-    '@hs.MaHocSinh',
-    '@hs.NguoiDung.HoSoCaNhan.HoTen',
-    '@hs.NguoiDung.TenDangNhap',
-    '@hs.MaLop')">
+                                '@hs.MaHocSinh',
+                                '@hs.NguoiDung.HoSoCaNhan.HoTen',
+                                '@hs.NguoiDung.TenDangNhap',
+                                '@hs.MaLop')">
                                 Sửa
                             </button>
 
@@ -158,7 +158,40 @@
 
     </div>
 </div>
+<div class="mt-4 d-flex justify-content-center">
 
+    <ul class="pagination">
+
+        <!-- << -->
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachHocSinh", new { page = ViewBag.CurrentPage - 1, keyword = ViewBag.Keyword })">
+                «
+            </a>
+        </li>
+
+        <!-- số -->
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link"
+                   href="@Url.Action("DanhSachHocSinh", new { page = i, keyword = ViewBag.Keyword, lop = ViewBag.SelectedLop })">
+                    @i
+                </a>
+            </li>
+        }
+
+        <!-- >> -->
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachHocSinh", new { page = ViewBag.CurrentPage + 1, keyword = ViewBag.Keyword })">
+                »
+            </a>
+        </li>
+
+    </ul>
+
+</div>
 <script>
     function editHS(id, ten, user, lop) {
         document.getElementById("editId").value = id;

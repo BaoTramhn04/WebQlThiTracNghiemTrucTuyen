@@ -17,7 +17,7 @@ namespace WebQLThiTracNghiem.Data
         public DbSet<Lop> Lop { get; set; }
         public DbSet<HocSinh> HocSinh { get; set; }
         public DbSet<GiaoVien> GiaoVien { get; set; }
-        public DbSet<NhatKyHeThong> NhatKyHeThong { get; set; }
+        public DbSet<NhatKyHeThong> NhatKyHeThongs { get; set; }
         public DbSet<PhanCongGiangDay> PhanCongGiangDays { get; set; }
 
         public DbSet<MonHoc> MonHoc { get; set; }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLThiTracNghiem.Data;
 
@@ -11,9 +12,11 @@ using WebQLThiTracNghiem.Data;
 namespace WebQLThiTracNghiem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260330143627_AddNhatKy")]
+    partial class AddNhatKy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21355,7 +21358,7 @@ namespace WebQLThiTracNghiem.Migrations
             modelBuilder.Entity("WebQLThiTracNghiem.Models.DeThi", b =>
                 {
                     b.HasOne("WebQLThiTracNghiem.Models.MonHoc", "MonHoc")
-                        .WithMany("DeThis")
+                        .WithMany()
                         .HasForeignKey("MaMonHoc")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -21416,19 +21419,19 @@ namespace WebQLThiTracNghiem.Migrations
             modelBuilder.Entity("WebQLThiTracNghiem.Models.PhanCongGiangDay", b =>
                 {
                     b.HasOne("WebQLThiTracNghiem.Models.GiaoVien", "GiaoVien")
-                        .WithMany("PhanCongs")
+                        .WithMany()
                         .HasForeignKey("MaGiaoVien")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebQLThiTracNghiem.Models.Lop", "Lop")
-                        .WithMany("PhanCongs")
+                        .WithMany()
                         .HasForeignKey("MaLop")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("WebQLThiTracNghiem.Models.MonHoc", "MonHoc")
-                        .WithMany("PhanCongGiangDays")
+                        .WithMany()
                         .HasForeignKey("MaMon")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -21443,23 +21446,6 @@ namespace WebQLThiTracNghiem.Migrations
             modelBuilder.Entity("WebQLThiTracNghiem.Models.CauHoi", b =>
                 {
                     b.Navigation("DapAns");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.GiaoVien", b =>
-                {
-                    b.Navigation("PhanCongs");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.Lop", b =>
-                {
-                    b.Navigation("PhanCongs");
-                });
-
-            modelBuilder.Entity("WebQLThiTracNghiem.Models.MonHoc", b =>
-                {
-                    b.Navigation("DeThis");
-
-                    b.Navigation("PhanCongGiangDays");
                 });
 
             modelBuilder.Entity("WebQLThiTracNghiem.Models.NguoiDung", b =>

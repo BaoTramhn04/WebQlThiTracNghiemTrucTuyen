@@ -7,263 +7,228 @@
 
 <div class="card shadow-sm">
 
-<div class="card-header">
-<h5 class="mb-0">Phân công giảng dạy</h5>
-</div>
-
-<div class="card-body">
-
-@if (TempData["success"] != null)
-{
-<div class="alert alert-success alert-dismissible fade show">
-
-✔ @TempData["success"]
-
-<button class="btn-close" data-bs-dismiss="alert"></button>
-
-</div>
-}
-
-<!-- ================= THÊM PHÂN CÔNG ================= -->
-
-<form method="post" asp-action="TaoPhanCongGiangDay">
-
-<div class="row g-2 mb-4">
-
-<div class="col-md-4">
-
-<select name="magv" class="form-select" required>
-
-<option value="">Chọn giáo viên</option>
-
-@if (ViewBag.GiaoVien != null)
-{
-foreach (var gv in ViewBag.GiaoVien)
-{
-<option value="@gv.MaGiaoVien">
-@gv.NguoiDung?.HoSoCaNhan?.HoTen
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-3">
-
-<select name="malop" class="form-select" required>
-
-<option value="">Chọn lớp</option>
-
-@if (ViewBag.Lop != null)
-{
-foreach (var l in ViewBag.Lop)
-{
-<option value="@l.MaLop">
-@l.TenLop
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-3">
-
-<select name="mamon" class="form-select" required>
-
-<option value="">Chọn môn</option>
-
-@if (ViewBag.MonHoc != null)
-{
-foreach (var m in ViewBag.MonHoc)
-{
-<option value="@m.MaMonHoc">
-@m.TenMonHoc
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-2">
-
-<button class="btn btn-primary w-100">
-Phân công
-</button>
-
-</div>
-
-</div>
-
-</form>
-
-
-<!-- ================= BỘ LỌC ================= -->
-
-<form method="get" class="row g-2 mb-3">
-
-<div class="col-md-4">
-
-<select name="gv" class="form-select">
-
-<option value="">Lọc theo giáo viên</option>
-
-@if (ViewBag.GiaoVien != null)
-{
-foreach (var gv in ViewBag.GiaoVien)
-{
-<option value="@gv.MaGiaoVien"
-selected="@(Context.Request.Query["gv"] == gv.MaGiaoVien.ToString())">
-
-@gv.NguoiDung?.HoSoCaNhan?.HoTen
-
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-3">
-
-<select name="lop" class="form-select">
-
-<option value="">Lọc theo lớp</option>
-
-@if (ViewBag.Lop != null)
-{
-foreach (var l in ViewBag.Lop)
-{
-<option value="@l.MaLop"
-selected="@(Context.Request.Query["lop"] == l.MaLop.ToString())">
-
-@l.TenLop
-
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-3">
-
-<select name="mon" class="form-select">
-
-<option value="">Lọc theo môn</option>
-
-@if (ViewBag.MonHoc != null)
-{
-foreach (var m in ViewBag.MonHoc)
-{
-<option value="@m.MaMonHoc"
-selected="@(Context.Request.Query["mon"] == m.MaMonHoc.ToString())">
-
-@m.TenMonHoc
-
-</option>
-}
-}
-
-</select>
-
-</div>
-
-<div class="col-md-2">
-
-<button class="btn btn-secondary w-100">
-Lọc
-</button>
-
-</div>
-
-</form>
-
-
-<!-- ================= BẢNG ================= -->
-
-<table class="table table-bordered table-hover align-middle">
-
-<thead class="table-light">
-
-<tr>
-
-<th>Giáo viên</th>
-<th>Lớp</th>
-<th>Môn học</th>
-<th width="120">Thao tác</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-@if (Model != null && Model.Any())
-{
-foreach (var pc in Model)
-{
-<tr>
-
-<td>@pc.GiaoVien?.NguoiDung?.HoSoCaNhan?.HoTen</td>
-
-<td>@pc.Lop?.TenLop</td>
-
-<td>@pc.MonHoc?.TenMonHoc</td>
-
-<td>
-
-<a asp-action="XoaPhanCong"
-asp-route-id="@pc.MaPhanCong"
-class="btn btn-sm btn-danger"
-onclick="return confirm('Bạn chắc chắn muốn xóa phân công này?')">
-
-Xóa
-
-</a>
-
-</td>
-
-</tr>
-}
-}
-else
-{
-<tr>
-
-<td colspan="4" class="text-center">
-Chưa có phân công giảng dạy
-</td>
-
-</tr>
-}
-
-</tbody>
-
-</table>
-
-</div>
+    <div class="card-header">
+        <h5 class="mb-0">Phân công giảng dạy</h5>
+    </div>
+
+    <div class="card-body">
+
+        <!-- 🔥 ALERT -->
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show">
+                ✔ @TempData["success"]
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show">
+                ❌ @TempData["error"]
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        }
+
+        <!-- ================= THÊM PHÂN CÔNG ================= -->
+
+        <form method="post" asp-action="TaoPhanCongGiangDay">
+
+            <div class="row g-2 mb-4">
+
+                <div class="col-md-4">
+                    <select name="magv" class="form-select" required>
+                        <option value="">Chọn giáo viên</option>
+                        @foreach (var gv in ViewBag.GiaoVien)
+                        {
+                            <option value="@gv.MaGiaoVien">
+                                @gv.NguoiDung?.HoSoCaNhan?.HoTen
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="malop" class="form-select" required>
+                        <option value="">Chọn lớp</option>
+                        @foreach (var l in ViewBag.Lop)
+                        {
+                            <option value="@l.MaLop">@l.TenLop</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="mamon" class="form-select" required>
+                        <option value="">Chọn môn</option>
+                        @foreach (var m in ViewBag.MonHoc)
+                        {
+                            <option value="@m.MaMonHoc">@m.TenMonHoc</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-primary w-100">Phân công</button>
+                </div>
+
+            </div>
+
+        </form>
+
+        <!-- ================= BỘ LỌC ================= -->
+
+        <form method="get" class="row g-2 mb-3">
+
+            <div class="col-md-4">
+                <select name="gv" class="form-select">
+                    <option value="">-- Giáo viên --</option>
+                    @foreach (var gv in ViewBag.GiaoVien)
+                    {
+                        if (ViewBag.SelectedGV == gv.MaGiaoVien)
+                        {
+                            <option value="@gv.MaGiaoVien" selected>
+                                @gv.NguoiDung?.HoSoCaNhan?.HoTen
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@gv.MaGiaoVien">
+                                @gv.NguoiDung?.HoSoCaNhan?.HoTen
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select name="lop" class="form-select">
+                    <option value="">-- Lớp --</option>
+                    @foreach (var l in ViewBag.Lop)
+                    {
+                        if (ViewBag.SelectedLop == l.MaLop)
+                        {
+                            <option value="@l.MaLop" selected>@l.TenLop</option>
+                        }
+                        else
+                        {
+                            <option value="@l.MaLop">@l.TenLop</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <select name="mon" class="form-select">
+                    <option value="">-- Môn --</option>
+                    @foreach (var m in ViewBag.MonHoc)
+                    {
+                        if (ViewBag.SelectedMon == m.MaMonHoc)
+                        {
+                            <option value="@m.MaMonHoc" selected>@m.TenMonHoc</option>
+                        }
+                        else
+                        {
+                            <option value="@m.MaMonHoc">@m.TenMonHoc</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-dark w-100">Lọc</button>
+            </div>
+
+        </form>
+
+        @if (ViewBag.SelectedGV != null || ViewBag.SelectedLop != null || ViewBag.SelectedMon != null)
+        {
+            <a href="@Url.Action("PhanCongGiangDay")" class="btn btn-secondary mb-3">
+                ❌ Bỏ lọc
+            </a>
+        }
+
+        <!-- ================= BẢNG ================= -->
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-light">
+                <tr>
+                    <th>#</th>
+                    <th>Giáo viên</th>
+                    <th>Lớp</th>
+                    <th>Môn học</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @{
+                    int stt = 1;
+                }
+
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var pc in Model)
+                    {
+                        <tr>
+                            <td>@stt</td>
+
+                            <!-- 🔥 CLICK LÀ LỌC -->
+                            <td>
+                                <a href="@Url.Action("PhanCongGiangDay", new { gv = pc.MaGiaoVien })"
+                                   class="text-dark text-decoration-none fw-bold">
+                                    @pc.GiaoVien?.NguoiDung?.HoSoCaNhan?.HoTen
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("PhanCongGiangDay", new { lop = pc.MaLop })"
+                                   class="badge bg-light border px-3 py-2 text-dark text-decoration-none">
+                                    @pc.Lop?.TenLop
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("PhanCongGiangDay", new { mon = pc.MaMon })"
+                                   class="badge bg-light border px-3 py-2 text-dark text-decoration-none">
+                                    @pc.MonHoc?.TenMonHoc
+                                </a>
+                            </td>
+
+                            <td>
+                                <a asp-action="XoaPhanCong"
+                                   asp-route-id="@pc.MaPhanCong"
+                                   class="btn btn-sm btn-danger"
+                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                    🗑
+                                </a>
+                            </td>
+                        </tr>
+
+                        stt++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">
+                            Không có dữ liệu
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
 
 </div>
 
 <script>
-
-setTimeout(function(){
-
-var alert=document.querySelector(".alert")
-
-if(alert)
-{
-alert.style.display="none"
-}
-
-},3000)
-
+    setTimeout(function(){
+        var alert=document.querySelector(".alert")
+        if(alert){ alert.style.display="none" }
+    },3000)
 </script>

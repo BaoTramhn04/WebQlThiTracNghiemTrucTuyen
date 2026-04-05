@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebQLThiTracNghiem.Data;
 
@@ -11,9 +12,11 @@ using WebQLThiTracNghiem.Data;
 namespace WebQLThiTracNghiem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260402133844_AddTrangThaiToMonHoc")]
+    partial class AddTrangThaiToMonHoc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -17463,6 +17466,9 @@ namespace WebQLThiTracNghiem.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
+
                     b.HasKey("MaMonHoc");
 
                     b.ToTable("MonHoc");
@@ -17472,43 +17478,50 @@ namespace WebQLThiTracNghiem.Migrations
                         {
                             MaMonHoc = 1,
                             KyHieuMon = "TOAN",
-                            TenMonHoc = "Toán"
+                            TenMonHoc = "Toán",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 2,
                             KyHieuMon = "LY",
-                            TenMonHoc = "Vật Lý"
+                            TenMonHoc = "Vật Lý",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 3,
                             KyHieuMon = "HOA",
-                            TenMonHoc = "Hóa Học"
+                            TenMonHoc = "Hóa Học",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 4,
                             KyHieuMon = "ANH",
-                            TenMonHoc = "Tiếng Anh"
+                            TenMonHoc = "Tiếng Anh",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 5,
                             KyHieuMon = "SINH",
-                            TenMonHoc = "Sinh Học"
+                            TenMonHoc = "Sinh Học",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 6,
                             KyHieuMon = "SU",
-                            TenMonHoc = "Lịch Sử"
+                            TenMonHoc = "Lịch Sử",
+                            TrangThai = true
                         },
                         new
                         {
                             MaMonHoc = 7,
                             KyHieuMon = "DIA",
-                            TenMonHoc = "Địa Lý"
+                            TenMonHoc = "Địa Lý",
+                            TrangThai = true
                         });
                 });
 

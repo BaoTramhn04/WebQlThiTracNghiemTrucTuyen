@@ -1,81 +1,182 @@
 ﻿@model WebQLThiTracNghiem.Models.GiaoVien
 
 @{
-Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
 }
 
-<div class="gv-card">
+<style>
+    .profile-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        padding: 25px;
+        margin-top: 20px;
+    }
 
-<h3>Thông tin cá nhân</h3>
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #0d6efd;
+    }
 
-<table class="table table-bordered">
+    .info-label {
+        font-weight: 600;
+        color: #555;
+    }
 
-<tr>
-<td width="200">Họ tên</td>
-<td>@Model.NguoiDung.HoSoCaNhan.HoTen</td>
-</tr>
+    .info-value {
+        font-weight: 500;
+    }
 
-<tr>
-<td>Ngày sinh</td>
-<td>@Model.NguoiDung.HoSoCaNhan.NgaySinh</td>
-</tr>
+    .hidden {
+        display: none;
+    }
+</style>
 
-<tr>
-<td>Giới tính</td>
-<td>@Model.NguoiDung.HoSoCaNhan.GioiTinh</td>
-</tr>
+<div class="container">
 
-<tr>
-<td>Số điện thoại</td>
-<td>@Model.NguoiDung.HoSoCaNhan.SoDienThoai</td>
-</tr>
+    <!-- TOAST -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
 
-<tr>
-<td>Địa chỉ</td>
-<td>@Model.NguoiDung.HoSoCaNhan.DiaChi</td>
-</tr>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
 
-<tr>
-<td>Tên đăng nhập</td>
-<td>@Model.NguoiDung.TenDangNhap</td>
-</tr>
+    <!-- PROFILE -->
+    <div class="profile-card">
+        <div class="row">
 
-</table>
+            <!-- AVATAR -->
+            <div class="col-md-3 text-center">
+                <img id="previewImg"
+                     src="~/images/@(Model.NguoiDung.HoSoCaNhan.AnhDaiDien ?? "default.png")"
+                     class="avatar mb-3" />
 
-<hr/>
+                <form asp-action="UploadAvatar" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" class="form-control mb-2"
+                           onchange="previewImage(event)" />
+                    <button class="btn btn-primary btn-sm w-100">Đổi ảnh</button>
+                </form>
+            </div>
 
-<h4>Đổi mật khẩu</h4>
+            <!-- INFO -->
+            <div class="col-md-9">
 
-@if(ViewBag.Loi != null)
-{
-<div class="alert alert-danger">
-@ViewBag.Loi
+                <h4>Thông tin cá nhân</h4>
+
+                <!-- VIEW MODE -->
+                <div id="viewMode">
+                    <p><span class="info-label">Họ tên:</span> @Model.NguoiDung.HoSoCaNhan.HoTen</p>
+                    <p><span class="info-label">Ngày sinh:</span> @Model.NguoiDung.HoSoCaNhan.NgaySinh</p>
+                    <p><span class="info-label">Giới tính:</span> @Model.NguoiDung.HoSoCaNhan.GioiTinh</p>
+                    <p><span class="info-label">SĐT:</span> @Model.NguoiDung.HoSoCaNhan.SoDienThoai</p>
+                    <p><span class="info-label">Địa chỉ:</span> @Model.NguoiDung.HoSoCaNhan.DiaChi</p>
+                    <p><span class="info-label">Tài khoản:</span> @Model.NguoiDung.TenDangNhap</p>
+
+                    <button class="btn btn-warning" onclick="enableEdit()">✏️ Chỉnh sửa</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                        🔒 Đổi mật khẩu
+                    </button>
+                </div>
+
+                <!-- EDIT MODE -->
+                <form id="editMode" class="hidden" method="post" asp-action="CapNhatThongTin">
+                    <div class="mb-2">
+                        <label>Họ tên</label>
+                        <input name="HoTen" class="form-control"
+                               value="@Model.NguoiDung.HoSoCaNhan.HoTen" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Ngày sinh</label>
+                        <input name="NgaySinh" type="date" class="form-control"
+                               value="@Model.NguoiDung.HoSoCaNhan.NgaySinh?.ToString("yyyy-MM-dd")" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label>SĐT</label>
+                        <input name="SoDienThoai" class="form-control"
+                               value="@Model.NguoiDung.HoSoCaNhan.SoDienThoai" />
+                    </div>
+
+                    <div class="mb-2">
+                        <label>Địa chỉ</label>
+                        <input name="DiaChi" class="form-control"
+                               value="@Model.NguoiDung.HoSoCaNhan.DiaChi" />
+                    </div>
+
+                    <button class="btn btn-success">💾 Lưu</button>
+                    <button type="button" class="btn btn-secondary" onclick="cancelEdit()">❌ Hủy</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
 </div>
-}
 
-@if(ViewBag.ThongBao != null)
-{
-<div class="alert alert-success">
-@ViewBag.ThongBao
+<!-- MODAL ĐỔI MẬT KHẨU -->
+<div class="modal fade" id="passwordModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="DoiMatKhau">
+
+                <div class="modal-header">
+                    <h5>Đổi mật khẩu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label>Mật khẩu cũ</label>
+                        <input type="password" name="matKhauCu" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Mật khẩu mới</label>
+                        <input type="password" id="newPass" name="matKhauMoi"
+                               class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Nhập lại mật khẩu</label>
+                        <input type="password" id="confirmPass"
+                               class="form-control" required />
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success">Cập nhật</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
-}
 
-<form method="post">
+<script>
+    function enableEdit() {
+        document.getElementById("viewMode").style.display = "none";
+        document.getElementById("editMode").style.display = "block";
+    }
 
-<div class="mb-3">
-<label>Mật khẩu cũ</label>
-<input type="password" name="matKhauCu" class="form-control"/>
-</div>
+    function cancelEdit() {
+        location.reload();
+    }
 
-<div class="mb-3">
-<label>Mật khẩu mới</label>
-<input type="password" name="matKhauMoi" class="form-control"/>
-</div>
-
-<button class="btn btn-primary">
-Cập nhật mật khẩu
-</button>
-
-</form>
-
-</div>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            document.getElementById('previewImg').src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

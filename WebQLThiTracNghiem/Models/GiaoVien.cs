@@ -13,5 +13,7 @@ namespace WebQLThiTracNghiem.Models
         public bool TrangThai { get; set; }
         [ForeignKey("MaNguoiDung")]
         public NguoiDung NguoiDung { get; set; }
+
+        public ICollection<PhanCongGiangDay> PhanCongs { get; set; }
     }
 }
