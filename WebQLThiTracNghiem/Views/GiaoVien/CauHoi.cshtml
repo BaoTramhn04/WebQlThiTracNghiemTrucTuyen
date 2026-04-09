@@ -20,8 +20,9 @@
     {
         <div class="alert alert-success">@TempData["success"]</div>
     }
-
-        <div class="alert alert-danger">@TempData["error"]</div>
+    @if (TempData["error"] is string errorMsg)
+    {
+        <div class="alert alert-danger">@errorMsg</div>
     }
 
     <form method="get" class="row g-2 mb-4">
@@ -75,6 +76,32 @@
             <a asp-action="CauHoi" class="btn btn-outline-secondary">Đặt lại</a>
         </div>
     </form>
+    <ul class="nav nav-tabs gv-tab mb-3">
+
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Loai == null ? "active" : "")"
+               href="@Url.Action("CauHoi", new { loai = "" })">
+                📋 Tất cả
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Loai == "mine" ? "active" : "")"
+               href="@Url.Action("CauHoi", new { loai = "mine" })">
+                👤 Câu của tôi
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Loai == "other" ? "active" : "")"
+               href="@Url.Action("CauHoi", new { loai = "other" })">
+                👥 GV khác
+            </a>
+        </li>
+
+    </ul>
+  
+   
 
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
@@ -87,6 +114,7 @@
                     <th style="width:120px;">Mức độ</th>
                     <th style="width:120px;">Trạng thái</th>
                     <th style="width:130px;">Ngày tạo</th>
+                    <th style="width:120px;">Phân loại</th>
                     <th style="width:220px;">Thao tác</th>
                 </tr>
             </thead>
@@ -130,32 +158,49 @@
                             </td>
                             <td>@(((DateTime)item.NgayTao).ToString("dd/MM/yyyy"))</td>
                             <td>
+                                @if (item.NguoiTao == ViewBag.MaGV)
+                                {
+                                    <span class="badge bg-success">Của tôi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">GV khác</span>
+                                }
+                            </td>
+                            <td>
                                 <div class="d-flex flex-wrap gap-1">
                                     <a asp-action="ChiTietCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-info">
                                         Chi tiết
                                     </a>
 
-                                    <a asp-action="SuaCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-primary">
-                                        Sửa
-                                    </a>
+                                    @if (item.NguoiTao == ViewBag.MaGV)
+                                    {
+                                        <a asp-action="SuaCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-primary">
+                                            Sửa
+                                        </a>
+                                    }
 
-                                    <form asp-action="DoiTrangThaiCauHoi" asp-route-id="@item.MaCauHoi" method="post" class="d-inline">
-                                        @Html.AntiForgeryToken()
-                                        @if (item.TrangThai)
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                    onclick="return confirm('Bạn có chắc muốn ẩn câu hỏi này không?')">
-                                                Ẩn
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-success"
-                                                    onclick="return confirm('Bật lại câu hỏi này?')">
-                                                Bật lại
-                                            </button>
-                                        }
-                                    </form>
+                                    @if (item.NguoiTao == ViewBag.MaGV)
+                                    {
+                                        <form asp-action="DoiTrangThaiCauHoi" asp-route-id="@item.MaCauHoi" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+
+                                            @if (item.TrangThai)
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Bạn có chắc muốn ẩn câu hỏi này không?')">
+                                                    Ẩn
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-success"
+                                                        onclick="return confirm('Bật lại câu hỏi này?')">
+                                                    Bật lại
+                                                </button>
+                                            }
+                                        </form>
+                                    }
                                 </div>
                             </td>
                         </tr>

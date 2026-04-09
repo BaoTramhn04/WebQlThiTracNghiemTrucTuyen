@@ -14,52 +14,86 @@
         <h3>@ViewBag.TongHocSinhDaThi</h3>
         <p>Học sinh đã tham gia</p>
     </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoDaNop</h3>
+        <p>Đã nộp bài</p>
+    </div>
+    <div class="gv-stat-box">
+        <h3>@ViewBag.SoChuaNop</h3>
+        <p>Chưa nộp</p>
+    </div>
 </div>
 
 <div class="gv-card shadow-sm">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div>
-            <h3 class="mb-1">Thống kê kết quả thi</h3>
-            <p class="text-muted mb-0">Theo dõi học sinh đã nộp bài theo môn học và đợt thi.</p>
+
+    <!-- 🔥 BIỂU ĐỒ -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="text-center">Tỷ lệ nộp bài</h5>
+                <canvas id="chartTrangThai"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-3">
+                <h5 class="text-center">Thống kê theo lớp</h5>
+                <canvas id="chartLop"></canvas>
+            </div>
         </div>
     </div>
 
+    <div class="card p-3 mb-4">
+        <h5 class="text-center">Thống kê theo thời gian</h5>
+        <canvas id="chartNgay"></canvas>
+    </div>
+
+    <!-- 🔍 FILTER -->
     <form method="get" class="row g-2 mb-4">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control"
-                   placeholder="Tìm theo tên học sinh, SBD, đợt thi..." />
+                   placeholder="Tìm theo tên học sinh..." />
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <select name="monId" class="form-select">
                 <option value="">-- Môn học --</option>
                 @foreach (var mon in ViewBag.MonHoc)
                 {
-                    <option value="@mon.MaMonHoc" selected="@(ViewBag.MonId != null && ViewBag.MonId == mon.MaMonHoc)">
+                    <option value="@mon.MaMonHoc" selected="@(ViewBag.MonId == mon.MaMonHoc)">
                         @mon.TenMonHoc
                     </option>
                 }
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <select name="dotThiId" class="form-select">
                 <option value="">-- Đợt thi --</option>
                 @foreach (var dt in ViewBag.DotThi)
                 {
-                    <option value="@dt.MaDotThi" selected="@(ViewBag.DotThiId != null && ViewBag.DotThiId == dt.MaDotThi)">
+                    <option value="@dt.MaDotThi" selected="@(ViewBag.DotThiId == dt.MaDotThi)">
                         @dt.TenDotThi
                     </option>
                 }
             </select>
         </div>
 
-        <div class="col-md-2 d-flex gap-2">
+        <div class="col-md-2">
+            <select name="trangThai" class="form-select">
+                <option value="">-- Trạng thái --</option>
+                <option value="danop" selected="@(ViewBag.TrangThai == "danop")">Đã nộp</option>
+                <option value="chuanop" selected="@(ViewBag.TrangThai == "chuanop")">Chưa nộp</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 d-flex gap-2">
             <button type="submit" class="btn btn-primary">Lọc</button>
-            <a asp-action="ThongKe" class="btn btn-outline-secondary">Đặt lại</a>
+            <a asp-action="ThongKe" class="btn btn-outline-secondary">Reset</a>
         </div>
     </form>
 
+    <!-- 📊 TABLE -->
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
             <thead class="table-light">
@@ -68,15 +102,16 @@
                     <th>Họ tên</th>
                     <th>SBD</th>
                     <th>Lớp</th>
-                    <th>Môn học</th>
+                    <th>Môn</th>
                     <th>Đợt thi</th>
                     <th>Thời điểm nộp</th>
+                    <th>Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
                 @if (Model != null && Model.Any())
                 {
-                    @foreach (var item in Model)
+                    foreach (var item in Model)
                     {
                         <tr>
                             <td>@item.MaLuotThi</td>
@@ -85,19 +120,171 @@
                             <td>@item.TenLop</td>
                             <td>@item.TenMonHoc</td>
                             <td>@item.TenDotThi</td>
-                            <td>@(((DateTime)item.ThoiDiemNopBai).ToString("dd/MM/yyyy HH:mm"))</td>
+
+                            <td>
+                                @if (item.ThoiDiemNopBai != null)
+                                {
+                                    @(item.ThoiDiemNopBai != null
+                                                            ? ((DateTime)item.ThoiDiemNopBai).ToString("dd/MM/yyyy HH:mm")
+                                                            : "")
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Chưa nộp</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (item.ThoiDiemNopBai != null)
+                                {
+                                    <span class="badge bg-success">Đã nộp</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Chưa nộp</span>
+                                }
+                            </td>
                         </tr>
                     }
                 }
                 else
                 {
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">
-                            Chưa có dữ liệu thống kê.
-                        </td>
+                        <td colspan="8" class="text-center text-muted">Không có dữ liệu</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+</div>
+
+<!-- 🔥 CHART -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // ===== PIE (ĐẸP HƠN - DOUGHNUT) =====
+    new Chart(document.getElementById('chartTrangThai'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Đã nộp', 'Chưa nộp'],
+            datasets: [{
+                data: [@(ViewBag.ChartDaNop ?? 0), @(ViewBag.ChartChuaNop ?? 0)],
+                backgroundColor: ['#28a745', '#dc3545'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // ===== BAR (THEO LỚP) =====
+    new Chart(document.getElementById('chartLop'), {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.LabelLop)),
+            datasets: [{
+                label: 'Số lượt thi',
+                data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.DataLop)),
+                backgroundColor: '#007bff',
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // ===== LINE (THEO THỜI GIAN - MƯỢT) =====
+    new Chart(document.getElementById('chartNgay'), {
+        type: 'line',
+        data: {
+            labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.LabelNgay)),
+            datasets: [{
+                label: 'Số bài nộp',
+                data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.DataNgay)),
+                borderColor: '#17a2b8',
+                backgroundColor: 'rgba(23,162,184,0.2)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 5,
+                pointBackgroundColor: '#17a2b8'
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+<!-- 🏆 TOP HỌC SINH -->
+<div class="card p-3 mb-4">
+    <h5 class="text-center text-danger">🏆 Top học sinh điểm cao</h5>
+
+    <table class="table table-bordered text-center">
+        <thead class="table-light">
+            <tr>
+                <th>Hạng</th>
+                <th>Họ tên</th>
+                <th>SBD</th>
+                <th>Điểm</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int rank = 1;
+            }
+            @foreach (var hs in ViewBag.TopHocSinh)
+            {
+                <tr>
+                    <td>
+                        @if (rank == 1)
+                        {
+                            <span>🥇</span>
+                        }
+                        else if (rank == 2)
+                        {
+                            <span>🥈</span>
+                        }
+                        else if (rank == 3)
+                        {
+                            <span>🥉</span>
+                        }
+                        else
+                        {
+                            @rank
+                        }
+                    </td>
+                    <td>@hs.HoTen</td>
+                    <td>@hs.SoBaoDanh</td>
+                    <td class="fw-bold text-success">@hs.Diem</td>
+                </tr>
+                rank++;
+            }
+        </tbody>
+    </table>
 </div>

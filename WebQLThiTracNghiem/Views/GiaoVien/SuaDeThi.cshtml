@@ -1,0 +1,49 @@
+﻿@model WebQLThiTracNghiem.Models.DeThi
+
+@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Sửa đề thi";
+}
+
+<div class="gv-card shadow-sm p-4">
+
+    <h3 class="mb-3">✏️ Sửa đề thi</h3>
+
+    <form asp-action="SuaDeThi" method="post">
+
+        <input type="hidden" asp-for="MaDeThi" />
+
+        <!-- 🔥 TÊN ĐỀ -->
+        <div class="mb-3">
+            <label class="form-label">Tên đề thi</label>
+            <input asp-for="TenDeThi" class="form-control" />
+        </div>
+
+        <!-- 🔥 THỜI GIAN -->
+        <div class="mb-3">
+            <label class="form-label">Thời gian làm bài (phút)</label>
+            <input asp-for="ThoiGianLamBai" type="number" class="form-control" />
+        </div>
+
+        <!-- 🔥 TRẠNG THÁI -->
+        <div class="mb-3">
+            <label class="form-label">Trạng thái</label>
+            <select asp-for="TrangThai" class="form-select">
+                <option value="false">Nháp</option>
+                <option value="true">Đang dùng</option>
+            </select>
+        </div>
+
+        <!-- 🔥 BUTTON -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                💾 Lưu thay đổi
+            </button>
+
+            <a asp-action="DeThi" class="btn btn-secondary">
+                ← Quay lại
+            </a>
+        </div>
+
+    </form>
+</div>

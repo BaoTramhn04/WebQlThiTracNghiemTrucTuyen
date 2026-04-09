@@ -119,8 +119,7 @@
                                     <td>@item.GhiChu</td>
 
                                     <td>
-
-                                        @if (item.TrangThaiHienThi == "Đang mở")
+                                        @if (item.DangMoHienThi)
                                         {
                                             <a asp-controller="HocSinh"
                                                asp-action="BatDauThi"
@@ -131,8 +130,8 @@
                                         }
                                         else
                                         {
-                                            <button class="btn btn-light btn-sm" disabled>
-                                                Vào thi
+                                            <button class="btn btn-secondary btn-sm" disabled>
+                                                @item.TrangThaiHienThi
                                             </button>
                                         }
 

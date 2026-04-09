@@ -59,20 +59,15 @@ namespace WebQLThiTracNghiem.Controllers
                                       SoLanThiToiDa = dt.SoLanThiToiDa,
                                       TrangThai = dt.TrangThai,
 
-                                      DuocPhepThi = true,
-        //                            DuocPhepThi = dsdt.DuocPhepThi,
+                                     
+                                     DuocPhepThi = dsdt.DuocPhepThi,
                                       GhiChu = dsdt.GhiChu
                                   }).ToList();
-
             DateTime hienTai = DateTime.Now;
 
             foreach (var item in danhSachDotThi)
             {
-                bool duocThi = _context.DanhSachDuThi
-     .Any(x => x.MaHocSinh == maHocSinh.Value && x.MaDotThi == item.MaDotThi);
-
-                bool adminDangMo = item.TrangThai;
-                bool trongThoiGianThi = hienTai >= item.ThoiGianBatDau && hienTai <= item.ThoiGianKetThuc;
+                bool duocThi = item.DuocPhepThi;
 
                 int soLanDaThi = _context.LuotThi
                     .Count(x => x.MaDotThi == item.MaDotThi && x.MaHocSinh == maHocSinh.Value);
@@ -84,30 +79,35 @@ namespace WebQLThiTracNghiem.Controllers
                     item.DangMoHienThi = false;
                     item.TrangThaiHienThi = "Không được phép";
                 }
-                else if (!adminDangMo || !trongThoiGianThi)
+                else if (hienTai < item.ThoiGianBatDau)
                 {
                     item.DangMoHienThi = false;
-                    item.TrangThaiHienThi = "Đã đóng";
+                    item.TrangThaiHienThi = "Sắp diễn ra";
+                }
+                else if (hienTai > item.ThoiGianKetThuc)
+                {
+                    item.DangMoHienThi = false;
+                    item.TrangThaiHienThi = "Đã kết thúc";
                 }
                 else if (!item.ConLuotThi)
                 {
                     item.DangMoHienThi = false;
-                    item.TrangThaiHienThi = "Hết lượt thi";
+                    item.TrangThaiHienThi = "Hết lượt";
                 }
                 else
                 {
                     item.DangMoHienThi = true;
-                    item.TrangThaiHienThi = "Đang mở";
+                    item.TrangThaiHienThi = "Đang thi";
                 }
-            }
-
+            
+        }
             ViewBag.SoBaoDanh = HttpContext.Session.GetString("SoBaoDanh");
             ViewBag.TenDangNhap = HttpContext.Session.GetString("TenDangNhap");
 
             return View(danhSachDotThi);
         }
 
-        [HttpGet]
+            [HttpGet]
         public IActionResult DoiMatKhau()
         {
             if (!DaDangNhap())

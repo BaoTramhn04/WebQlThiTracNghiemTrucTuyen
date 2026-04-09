@@ -50,6 +50,70 @@
                 transform: translateY(0);
             }
         }
+        /* ===== FIX SIDEBAR ===== */
+        .gv-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            background: linear-gradient(180deg, #1e3a5f, #2563eb);
+            color: #fff;
+        }
+
+
+          
+        /* Đẩy nội dung sang phải */
+        .gv-main {
+            margin-left: 260px;
+        }
+
+        /* Đảm bảo layout không bị lệch */
+        .gv-layout {
+            display: flex;
+        }
+
+        /* Menu đẹp hơn */
+        .gv-menu a.active {
+            background-color: #2563eb;
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .gv-menu a:hover {
+            background-color: #1e3a5f;
+            color: #fff;
+        }
+
+        /* ===== TAB STYLE ===== */
+        .gv-tab {
+            border-bottom: none;
+            gap: 10px;
+        }
+
+            .gv-tab .nav-link {
+                border: none;
+                background: #f3f4f6;
+                color: #374151;
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-weight: 500;
+                transition: all 0.2s ease;
+            }
+
+                .gv-tab .nav-link:hover {
+                    background: #e0e7ff;
+                    color: #1d4ed8;
+                }
+
+                .gv-tab .nav-link.active {
+                    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+                    color: #fff;
+                    font-weight: 600;
+                    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+                }
     </style>
 </head>
 <body>

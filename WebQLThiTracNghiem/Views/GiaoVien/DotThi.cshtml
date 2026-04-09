@@ -23,16 +23,28 @@
     {
         <div class="alert alert-danger">@TempData["error"]</div>
     }
-
     <form method="get" class="row g-2 mb-4">
-        <div class="col-md-5">
-            <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="Tìm theo tên đợt thi..." />
+
+        <div class="col-md-4">
+            <input type="text" name="keyword" value="@ViewBag.Keyword"
+                   class="form-control"
+                   placeholder="Tìm theo tên đợt thi..." />
         </div>
 
-        <div class="col-md-7 d-flex gap-2">
+        <div class="col-md-3">
+            <select name="trangThai" class="form-select">
+                <option value="">-- Trạng thái --</option>
+                <option value="SapDienRa" selected="@(ViewBag.TrangThai == "SapDienRa")">Sắp diễn ra</option>
+                <option value="DangDienRa" selected="@(ViewBag.TrangThai == "DangDienRa")">Đang diễn ra</option>
+                <option value="DaKetThuc" selected="@(ViewBag.TrangThai == "DaKetThuc")">Đã kết thúc</option>
+            </select>
+        </div>
+
+        <div class="col-md-5 d-flex gap-2">
             <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
             <a asp-action="DotThi" class="btn btn-outline-secondary">Đặt lại</a>
         </div>
+
     </form>
 
     <div class="table-responsive">
@@ -44,7 +56,8 @@
                     <th style="width:140px;">Môn học</th>
                     <th style="width:170px;">Bắt đầu</th>
                     <th style="width:170px;">Kết thúc</th>
-                    <th style="width:220px;">Thao tác</th>
+                    <th style="width:120px;">Trạng thái</th>
+                    <th style="width:260px;">Thao tác</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,15 +67,98 @@
                     {
                         <tr>
                             <td>@item.MaDotThi</td>
-                            <td>@item.TenDotThi</td>
+                            <td>
+                                <b>@item.TenDotThi</b>
+                                <br />
+                                <small class="text-muted">
+                                    👨‍🎓 @item.SoHocSinh |
+                                    ✅ @item.SoDaThi |
+                                    📊 @(item.SoHocSinh == 0 ? 0 : Math.Round((double)item.SoDaThi * 100 / item.SoHocSinh, 1))%
+                                </small>
+                            </td>
+
                             <td>@item.TenMonHoc</td>
+
                             <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM/yyyy HH:mm"))</td>
                             <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM/yyyy HH:mm"))</td>
+
+                            <!-- 🔥 TRẠNG THÁI -->
                             <td>
-                                <div class="d-flex flex-wrap gap-1">
-                                    <a asp-action="ChiTietDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-info">Chi tiết</a>
-                                    <a asp-action="GanLopVaoDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-primary">Gán lớp</a>
+                                @if (item.TrangThai == "SapDienRa")
+                                {
+                                    <span class="badge bg-warning text-dark">⏳ Sắp diễn ra</span>
+                                }
+                                else if (item.TrangThai == "DangDienRa")
+                                {
+                                    <span class="badge bg-success">🟢 Đang thi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">✔ Đã kết thúc</span>
+                                }
+                            </td>
+
+                            <!-- 🔥 THAO TÁC -->
+                            <td>
+                                <div class="d-flex flex-wrap gap-2 align-items-center">
+
+                                    <!-- Chi tiết -->
+                                    <a asp-action="ChiTietDotThi"
+                                       asp-route-id="@item.MaDotThi"
+                                       class="btn btn-sm btn-outline-info">
+                                        Chi tiết
+                                    </a>
+
+                                    <!-- SỬA + GÁN -->
+                                    @if (item.CoTheSua)
+                                    {
+                                        <a asp-action="GanLopVaoDotThi"
+                                           asp-route-id="@item.MaDotThi"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Gán lớp
+                                        </a>
+
+                                        <a asp-action="SuaDotThi"
+                                           asp-route-id="@item.MaDotThi"
+                                           class="btn btn-sm btn-outline-warning">
+                                            Sửa
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">
+                                            🔒 Đã khóa
+                                        </span>
+                                    }
+
+                                    <!-- XÓA -->
+                                    @if (item.CoTheXoa)
+                                    {
+                                        <form asp-action="XoaDotThi" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@item.MaDotThi" />
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                    onclick="return confirm('Xóa đợt thi?')">
+                                                Xóa
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger"
+                                              title="@item.LyDoKhoa">
+                                            ⚠ Không thể xóa
+                                        </span>
+                                    }
+
                                 </div>
+
+                                <!-- 🔥 LÝ DO (HIỂN THỊ GỌN GÀNG) -->
+                                @if (!string.IsNullOrEmpty(item.LyDoKhoa))
+                                {
+                                    <div class="mt-1 small text-muted">
+                                        ⚠ @item.LyDoKhoa
+                                    </div>
+                                }
                             </td>
                         </tr>
                     }
@@ -70,7 +166,7 @@
                 else
                 {
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-4">
+                        <td colspan="7" class="text-center text-muted py-4">
                             Chưa có đợt thi nào.
                         </td>
                     </tr>
