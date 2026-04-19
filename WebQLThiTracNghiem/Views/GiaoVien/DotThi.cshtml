@@ -5,77 +5,205 @@
     ViewData["Title"] = "Quản lý đợt thi";
 }
 
-<div class="gv-card shadow-sm">
+<div class="gv-card shadow-sm p-4">
+
+    <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <div>
             <h3 class="mb-1">Quản lý đợt thi</h3>
+            @if (TempData["success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mt-3">
+        @TempData["success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show mt-3">
+        @TempData["error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
             <p class="text-muted mb-0">Theo dõi các đợt thi đã tạo và quản lý danh sách dự thi.</p>
         </div>
-        <a asp-action="TaoDotThi" class="btn btn-primary">+ Tạo đợt thi</a>
+
+        <a asp-action="TaoDotThi" class="btn btn-primary">
+            + Tạo đợt thi
+        </a>
     </div>
 
-    @if (TempData["success"] != null)
-    {
-        <div class="alert alert-success">@TempData["success"]</div>
-    }
+    <!-- FILTER -->
+    <form method="get" class="row g-2 mb-3">
 
-    @if (TempData["error"] != null)
-    {
-        <div class="alert alert-danger">@TempData["error"]</div>
-    }
-
-    <form method="get" class="row g-2 mb-4">
-        <div class="col-md-5">
-            <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="Tìm theo tên đợt thi..." />
+        <div class="col-md-4">
+            <input type="text" name="keyword"
+                   value="@ViewBag.Keyword"
+                   class="form-control"
+                   placeholder="Tìm theo tên đợt thi..." />
         </div>
 
-        <div class="col-md-7 d-flex gap-2">
-            <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
+        <div class="col-md-3">
+            <select name="trangThai" class="form-select">
+                <option value="">-- Trạng thái --</option>
+                <option value="SapDienRa" selected="@(ViewBag.TrangThai == "SapDienRa")">Sắp diễn ra</option>
+                <option value="DangDienRa" selected="@(ViewBag.TrangThai == "DangDienRa")">Đang diễn ra</option>
+                <option value="DaKetThuc" selected="@(ViewBag.TrangThai == "DaKetThuc")">Đã kết thúc</option>
+            </select>
+        </div>
+
+        <div class="col-md-5 d-flex gap-2">
+            <button class="btn btn-primary">Lọc dữ liệu</button>
             <a asp-action="DotThi" class="btn btn-outline-secondary">Đặt lại</a>
         </div>
+
     </form>
 
+    <!-- TABLE -->
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
+
             <thead class="table-light">
                 <tr>
                     <th style="width:70px;">Mã</th>
                     <th>Tên đợt thi</th>
-                    <th style="width:140px;">Môn học</th>
-                    <th style="width:170px;">Bắt đầu</th>
-                    <th style="width:170px;">Kết thúc</th>
-                    <th style="width:220px;">Thao tác</th>
+                    <th style="width:100px;">Khối</th>
+                    <th style="width:120px;">Môn</th>
+                    <th style="width:160px;">Bắt đầu</th>
+                    <th style="width:160px;">Kết thúc</th>
+                    <th style="width:120px;">Trạng thái</th>
+                    <th style="width:260px;">Thao tác</th>
                 </tr>
             </thead>
+
             <tbody>
                 @if (Model != null && Model.Any())
                 {
                     @foreach (var item in Model)
                     {
+                        var percent = item.SoHocSinh == 0 ? 0 :
+                        (item.SoDaThi * 100 / item.SoHocSinh);
+
                         <tr>
+
+                            <!-- MÃ -->
                             <td>@item.MaDotThi</td>
-                            <td>@item.TenDotThi</td>
+
+                            <!-- TÊN -->
+                            <td>
+                                <b>@item.TenDotThi</b>
+                                <br />
+                                <small class="text-muted">
+                                    👨‍🎓 @item.SoHocSinh |
+                                    ✅ @item.SoDaThi |
+                                    📊 @percent%
+                                </small>
+                            </td>
+
+                            <!-- KHỐI -->
+                            <td class="text-center">Khối @item.Khoi</td>
+
+                            <!-- MÔN -->
                             <td>@item.TenMonHoc</td>
-                            <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM/yyyy HH:mm"))</td>
-                            <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM/yyyy HH:mm"))</td>
+
+                            <!-- THỜI GIAN -->
+                            <td>@item.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")</td>
+
+                            <!-- TRẠNG THÁI -->
+                            <td>
+                                @if (item.TrangThai == "SapDienRa")
+                                {
+                                    <span class="badge bg-warning text-dark">Sắp diễn ra</span>
+                                }
+                                else if (item.TrangThai == "DangDienRa")
+                                {
+                                    <span class="badge bg-success">Đang thi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Đã kết thúc</span>
+                                }
+                            </td>
+
+                            <!-- ACTION -->
                             <td>
                                 <div class="d-flex flex-wrap gap-1">
-                                    <a asp-action="ChiTietDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-info">Chi tiết</a>
-                                    <a asp-action="GanLopVaoDotThi" asp-route-id="@item.MaDotThi" class="btn btn-sm btn-outline-primary">Gán lớp</a>
+
+                                    <a asp-action="ChiTietDotThi"
+                                       asp-route-id="@item.MaDotThi"
+                                       class="btn btn-sm btn-outline-info">
+                                        Chi tiết
+                                    </a>
+                                    @if (item.CoTheSua && item.TrangThai != "DangDienRa" && item.TrangThai != "DaKetThuc")
+                                    {
+                                        <a asp-action="GanLopVaoDotThi"
+                                           asp-route-id="@item.MaDotThi"
+                                           class="btn btn-sm btn-outline-primary">
+                                            Gán lớp
+                                        </a>
+
+                                        <a asp-action="ChiTietDotThi"
+                                           asp-route-id="@item.MaDotThi"
+                                           class="btn btn-sm btn-outline-warning">
+                                            Sửa
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Đã khóa</span>
+                                    }
+                                 
+                             @if (item.CoTheXoa)
+                                    {
+                                        <form asp-action="XoaDotThi" method="post" class="d-inline">
+                                            <input type="hidden" name="id" value="@item.MaDotThi" />
+                                            <button class="btn btn-sm btn-outline-danger"
+                                                    onclick="return confirm('Xóa đợt thi?')">
+                                                Xóa
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+<span class="badge bg-danger" title="@item.LyDoKhoa">
+    Không thể xóa
+</span>                                    }
+
                                 </div>
                             </td>
+
                         </tr>
                     }
                 }
                 else
                 {
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-4">
-                            Chưa có đợt thi nào.
+                        <td colspan="8" class="text-center text-muted py-4">
+                            Chưa có đợt thi nào
                         </td>
                     </tr>
                 }
             </tbody>
+
         </table>
     </div>
+
+    <!-- PHÂN TRANG -->
+    <div class="d-flex justify-content-center mt-3">
+        @for (int i = 1; i <= (int)(ViewBag.TotalPages ?? 1); i++)
+        {
+            <a href="?page=@i&keyword=@ViewBag.Keyword&trangThai=@ViewBag.TrangThai&khoi=@ViewBag.Khoi"
+               class="btn btn-sm @(i == (ViewBag.CurrentPage ?? 1) ? "btn-primary" : "btn-outline-primary") mx-1">
+                @i
+            </a>
+        }
+    </div>
+
 </div>
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.alert').forEach(a => a.remove());
+}, 3000);
+</script>

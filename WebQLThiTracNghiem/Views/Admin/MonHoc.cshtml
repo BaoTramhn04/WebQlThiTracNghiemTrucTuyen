@@ -1,0 +1,204 @@
+﻿@model List<WebQLThiTracNghiem.Models.MonHoc>
+
+@{
+    ViewData["Title"] = "Quản lý môn học";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">📘 Quản lý môn học</h2>
+
+    <!-- THÔNG BÁO -->
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+
+    <!-- 🔍 SEARCH -->
+    <form method="get" class="mb-3 row">
+        <div class="col-md-10">
+            <input type="text" name="keyword" value="@ViewBag.Keyword"
+                   class="form-control" placeholder="🔍 Tìm môn học..." />
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">Tìm</button>
+        </div>
+    </form>
+
+    <!-- ➕ THÊM -->
+    <div class="card mb-4 shadow-sm border-0">
+
+        <!-- HEADER TRẮNG -->
+        <div class="card-header bg-white fw-bold border-bottom">
+            ➕ Thêm môn học
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body bg-light">
+
+            <form asp-action="ThemMon" method="post" class="row g-3">
+
+                <div class="col-md-10">
+                    <input name="tenMon"
+                           class="form-control"
+                           placeholder="Nhập tên môn học..." required />
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100">
+                        Thêm
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- 📊 TABLE -->
+    <div class="card shadow">
+        <div class="card-header fw-bold bg-dark text-white">
+            📋 Danh sách môn học
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover text-center align-middle">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>#</th>
+                        <th>Tên môn</th>
+                        <th>Số lớp</th>
+                        <th>Số GV</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int stt = (ViewBag.CurrentPage - 1) * 5 + 1;
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@stt</td>
+
+                            <td><b>@item.TenMonHoc</b></td>
+
+                            <td>
+                                @(item.PhanCongGiangDays?.Select(x => x.MaLop).Distinct().Count() ?? 0)
+                            </td>
+
+                            <td>
+                                @(item.PhanCongGiangDays?.Select(x => x.MaGiaoVien).Distinct().Count() ?? 0)
+                            </td>
+
+                            <td>
+                                <!-- 🔍 -->
+                                <a asp-action="ChiTiet"
+                                   asp-route-id="@item.MaMonHoc"
+                                   class="btn btn-info btn-sm">🔍</a>
+
+                                <!-- ✏️ -->
+                                <button class="btn btn-warning btn-sm"
+                                        onclick="toggleEdit(@item.MaMonHoc)">
+                                    ✏️
+                                </button>
+
+                                <!-- 🗑 -->
+                                <a asp-action="XoaMon"
+                                   asp-route-id="@item.MaMonHoc"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Xóa?')">🗑</a>
+                            </td>
+                        </tr>
+
+                        <!-- FORM SỬA -->
+                        <tr id="edit-@item.MaMonHoc" style="display:none;">
+                            <td colspan="5">
+                                <form asp-action="SuaMon" method="post" class="d-flex">
+                                    <input type="hidden" name="id" value="@item.MaMonHoc" />
+                                    <input type="text" name="tenMon"
+                                           value="@item.TenMonHoc"
+                                           class="form-control me-2" />
+                                    <button class="btn btn-success btn-sm">Lưu</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        stt++;
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <!-- 🔥 PHÂN TRANG -->
+    <div class="mt-4 d-flex justify-content-center">
+
+        <ul class="pagination">
+
+            <!-- << -->
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link"
+                   href="@Url.Action("MonHoc", new { page = ViewBag.CurrentPage - 1, keyword = ViewBag.Keyword })">
+                    «
+                </a>
+            </li>
+
+            <!-- số -->
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link"
+                       href="@Url.Action("MonHoc", new { page = i, keyword = ViewBag.Keyword })">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <!-- >> -->
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link"
+                   href="@Url.Action("MonHoc", new { page = ViewBag.CurrentPage + 1, keyword = ViewBag.Keyword })">
+                    »
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<script>
+    function toggleEdit(id) {
+        var row = document.getElementById("edit-" + id);
+        row.style.display = (row.style.display === "none") ? "table-row" : "none";
+    }
+</script>
+<style>
+    .card-header {
+        font-size: 16px;
+    }
+
+    .card-body.bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .form-control {
+        height: 42px;
+    }
+
+    .btn-success {
+        height: 42px;
+    }
+</style>

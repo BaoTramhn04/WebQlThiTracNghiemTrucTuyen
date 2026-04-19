@@ -2,66 +2,308 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "Dashboard Admin";
 }
-
+<!-- ===== THỐNG KÊ NHANH ===== -->
 <div class="row g-4 mb-4">
+
     <div class="col-md-3">
         <div class="stat-card">
+            <div class="card-icon">👨‍🎓</div>
+            <h4 class="text-success">
+                @ViewBag.SoHocSinh
+            </h4>
+            <p>Học sinh</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="card-icon">👨‍🏫</div>
+            <h4 class="text-success">
+                @ViewBag.SoGiaoVien
+            </h4>
+            <p>Giáo viên</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="card-icon">📝</div>
+            <h4 class="text-primary">
+                @ViewBag.SoDotThi
+            </h4>
+            <p>Đợt thi</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="card-icon">📚</div>
+            <h4 class="text-warning">
+                @ViewBag.SoChuyenDe
+            </h4>
+            <p>Chuyên đề</p>
+        </div>
+    </div>
+
+</div>
+<!-- ===== CARD THỐNG KÊ ===== -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-blue">
+            <div class="card-icon">👤</div>
             <h3>@ViewBag.SoNguoiDung</h3>
             <p>Người dùng</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">🛡️</div>
             <h3>@ViewBag.SoVaiTro</h3>
             <p>Vai trò</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">📊</div>
             <h3>@ViewBag.SoNhatKy</h3>
-            <p>Nhật ký hệ thống</p>
+            <p>Nhật ký</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-green">
+            <div class="card-icon">🏫</div>
             <h3>@ViewBag.SoLop</h3>
             <p>Lớp học</p>
         </div>
     </div>
+
 </div>
 
 <div class="row g-4 mb-4">
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-blue">
+            <div class="card-icon">👨‍🏫</div>
             <h3>@ViewBag.SoGiaoVien</h3>
             <p>Giáo viên</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-green">
+            <div class="card-icon">🎓</div>
             <h3>@ViewBag.SoHocSinh</h3>
             <p>Học sinh</p>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">📘</div>
+            <h3>@ViewBag.SoChuyenDe</h3>
+            <p>Chuyên đề</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">❓</div>
+            <h3>@ViewBag.SoCauHoi</h3>
+            <p>Câu hỏi</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">📚</div>
             <h3>@ViewBag.SoMon</h3>
             <p>Môn học</p>
         </div>
     </div>
+
     <div class="col-md-3">
-        <div class="stat-card">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">👥</div>
             <h3>@(ViewBag.SoGiaoVien + ViewBag.SoHocSinh)</h3>
-            <p>Tổng tài khoản giảng dạy & học tập</p>
+            <p>Tổng tài khoản</p>
         </div>
+    </div>
+    <div class="col-md-3">
+    <div class="stat-card gradient-red">
+        <div class="card-icon">📝</div>
+        <h3>@ViewBag.SoDotThi</h3>
+        <p>Đợt thi</p>
+    </div>
+</div>
+</div>
+
+
+<!-- ===== CẢNH BÁO ===== -->
+<div class="card custom-card mb-4">
+    <p class="text-warning">
+   <div class="card-header text-warning fw-bold">⚠ Cảnh báo hệ thống</div>
+
+    <div class="card-body">
+
+        @if (ViewBag.LopChuaPhanCong > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.LopChuaPhanCong</b> lớp chưa phân công giáo viên</p>
+        }
+
+        @if (ViewBag.MonChuaCoChuyenDe > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.MonChuaCoChuyenDe</b> môn chưa có chuyên đề</p>
+        }
+
+        @if (ViewBag.GiaoVienChuaDuocPhanCong > 0)
+        {
+            <p>⚠ Có <b>@ViewBag.GiaoVienChuaDuocPhanCong</b> giáo viên chưa được phân công</p>
+        }
+
     </div>
 </div>
 
-<div class="card custom-card">
-    <div class="card-header fw-semibold">Tổng quan hệ thống</div>
-    <div class="card-body">
-        <p>Hệ thống hiện có <strong>@ViewBag.SoGiaoVien</strong> giáo viên, <strong>@ViewBag.SoHocSinh</strong> học sinh, <strong>@ViewBag.SoLop</strong> lớp học và <strong>@ViewBag.SoMon</strong> môn học.</p>
-        <p>Tổng số tài khoản đang được quản lý là <strong>@ViewBag.SoNguoiDung</strong>, với <strong>@ViewBag.SoVaiTro</strong> vai trò trong hệ thống.</p>
-        <p>Nhật ký hệ thống hiện ghi nhận <strong>@ViewBag.SoNhatKy</strong> hoạt động.</p>
+<!-- ===== LOG ===== -->
+<hr />
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+    <h5 class="mb-0">Hoạt động gần đây</h5>
+
+    <div class="d-flex gap-2">
+        <!-- Xem tất cả -->
+        <a asp-action="NhatKy" class="btn btn-sm btn-outline-primary">
+            Xem tất cả
+        </a>
+
     </div>
 </div>
+
+<table class="table table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Hành động</th>
+            <th>Đối tượng</th>
+            <th>Thời gian</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (ViewBag.Logs != null)
+        {
+            foreach (var log in ViewBag.Logs)
+            {
+                <tr>
+                    <td>
+                        @if (log.HanhDong.Contains("Thêm"))
+                        {
+                            <span class="badge bg-success">@log.HanhDong</span>
+                        }
+                        else if (log.HanhDong.Contains("Xóa"))
+                        {
+                            <span class="badge bg-danger">@log.HanhDong</span>
+                        }
+                        else if (log.HanhDong.Contains("Khóa"))
+                        {
+                            <span class="badge bg-warning text-dark">@log.HanhDong</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@log.HanhDong</span>
+                        }
+                    </td>
+
+                    <td>@log.DoiTuongTacDong</td>
+
+                    <td>
+                        <span class="text-muted">
+                            @log.ThoiGianThucHien.ToString("dd/MM/yyyy HH:mm")
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center text-muted">
+                    Không có dữ liệu
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- ===== CSS ===== -->
+<style>
+    .stat-card {
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .stat-card:hover::after {
+            opacity: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(59,130,246,0.2);
+        }
+
+    .card-icon {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card h3 {
+        margin: 5px 0;
+        font-weight: 700;
+        color: #1e40af;
+    }
+
+    .stat-card p {
+        color: #3b82f6;
+        font-size: 14px;
+    }
+
+    /* CARD */
+    .custom-card {
+        border-radius: 16px;
+        border: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+        background: linear-gradient(90deg, #3b82f6, #60a5fa);
+        color: white;
+        border-radius: 16px 16px 0 0;
+    }
+
+    /* TABLE */
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background: #eff6ff;
+    }
+</style>
+

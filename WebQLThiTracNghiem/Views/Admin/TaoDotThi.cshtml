@@ -1,0 +1,135 @@
+﻿@using WebQLThiTracNghiem.Models.ViewModels
+@model TaoDotThiViewModel
+
+@{
+    ViewData["Title"] = "Tạo đợt thi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow border-0">
+        <div class="card-body">
+
+            <h3 class="mb-4 fw-bold">📝 Tạo đợt thi chung</h3>
+
+            <!-- 🔥 THÔNG BÁO -->
+            @if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show position-fixed"
+                     style="top:20px; right:20px; z-index:9999; min-width:300px;">
+                    ❌ @TempData["error"]
+                    <button class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show position-fixed"
+                     style="top:20px; right:20px; z-index:9999; min-width:300px;">
+                    ✔️ @TempData["success"]
+                    <button class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <!-- 🔥 VALIDATE -->
+            <div class="text-danger mb-3" asp-validation-summary="All"></div>
+
+            <form asp-action="TaoDotThi" method="post">
+
+                <!-- TÊN -->
+                <div class="mb-3">
+                    <label class="form-label">Tên đợt thi</label>
+                    <input asp-for="TenDotThi" class="form-control" placeholder="Nhập tên đợt thi..." />
+                    <span asp-validation-for="TenDotThi" class="text-danger"></span>
+                </div>
+
+                <!-- ĐỀ THI -->
+                <div class="mb-3">
+                    <label class="form-label">Chọn đề thi</label>
+                    <select asp-for="MaDeThi" asp-items="Model.DanhSachDeThi" class="form-select">
+                        <option value="">-- Chọn đề thi --</option>
+                    </select>
+                    <span asp-validation-for="MaDeThi" class="text-danger"></span>
+                </div>
+
+                <!-- 🔥 KHỐI (FIX GỌN + CHUẨN) -->
+                <div class="mb-3">
+                    <label class="form-label">Chọn khối</label>
+
+                    <select asp-for="Khoi" class="form-select">
+                        <option value="">-- Tất cả học sinh --</option>
+                        <option value="10">Khối 10</option>
+                        <option value="11">Khối 11</option>
+                        <option value="12">Khối 12</option>
+                    </select>
+
+                    <small class="text-muted">
+                        Không chọn = áp dụng cho tất cả học sinh
+                    </small>
+
+                    <span asp-validation-for="Khoi" class="text-danger"></span>
+                </div>
+
+                <!-- TIME -->
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Thời gian bắt đầu</label>
+
+                        <input asp-for="ThoiGianBatDau"
+                               type="datetime-local"
+                               class="form-control"
+                               value="@(Model.ThoiGianBatDau == DateTime.MinValue
+                                                                  ? DateTime.Now.AddMinutes(5).ToString("yyyy-MM-ddTHH:mm")
+                                                                  : Model.ThoiGianBatDau.ToString("yyyy-MM-ddTHH:mm"))" />
+
+                        <span asp-validation-for="ThoiGianBatDau" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Thời gian kết thúc</label>
+
+                        <input asp-for="ThoiGianKetThuc"
+                               type="datetime-local"
+                               class="form-control"
+                               value="@(Model.ThoiGianKetThuc == DateTime.MinValue
+                                                                  ? DateTime.Now.AddHours(1).ToString("yyyy-MM-ddTHH:mm")
+                                                                  : Model.ThoiGianKetThuc.ToString("yyyy-MM-ddTHH:mm"))" />
+
+                        <span asp-validation-for="ThoiGianKetThuc" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <!-- BUTTON -->
+                <div class="d-flex justify-content-between mt-3">
+                    <a asp-action="DanhSachDotThi" class="btn btn-secondary">
+                        ← Quay lại
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        ✔️ Tạo đợt thi
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <!-- 🔥 AUTO ẨN THÔNG BÁO -->
+    <script>
+        setTimeout(function () {
+            var alert = document.querySelector(".alert");
+            if (alert) {
+                alert.style.display = "none";
+            }
+        }, 3000);
+    </script>
+}

@@ -5,28 +5,56 @@
 
 <div class="exam-home-page">
 
+ 
+
     <!-- HEADER -->
     <header class="exam-header">
         <div class="container">
             <div class="exam-header-inner">
                 <div class="exam-brand">
                     <div class="exam-logo-box">
-                        <img src="~/images/logo-school.png" alt="Logo trường" />
+                        <img src="~/images/LoGoTruong.jpg" alt="Logo trường" />
                     </div>
                     <div class="exam-brand-text">
-                        <div class="exam-brand-sub">TRƯỜNG THPT NTN</div>
-                        <div class="exam-brand-title">WEBSITE THI TRẮC NGHIỆM</div>
+                        <div class="exam-brand-title" >SmartExam</div>
+                        <div class="exam-brand-sub">Trường THPT Ngô Thì Nhậm</div>
                     </div>
                 </div>
 
                 <div class="exam-header-right">
                     <nav class="exam-nav">
-                        <a href="#gioi-thieu">Giới thiệu</a>
-                        <a href="#tinh-nang">Tính năng</a>
-                        <a href="#truy-cap">Truy cập</a>
-                        <a href="#huong-dan">Hướng dẫn</a>
-                    </nav>
 
+                        <nav class="exam-nav">
+                            <a href="#trang-chu">Trang chủ</a>
+                            <a href="#gioi-thieu">Giới thiệu</a>
+                            <a href="#tinh-nang">Tính năng</a>
+                            <a href="#huong-dan">Hướng dẫn</a>
+                        </nav>
+                    </nav>  
+                    <script>
+                        const sections = document.querySelectorAll("section");
+                        const navLinks = document.querySelectorAll(".exam-nav a");
+
+                        window.addEventListener("scroll", () => {
+                            let current = "";
+
+                            sections.forEach(section => {
+                                const sectionTop = section.offsetTop - 120;
+                                const sectionHeight = section.clientHeight;
+
+                                if (pageYOffset >= sectionTop) {
+                                    current = section.getAttribute("id");
+                                }
+                            });
+
+                            navLinks.forEach(link => {
+                                link.classList.remove("active");
+                                if (link.getAttribute("href") === "#" + current) {
+                                    link.classList.add("active");
+                                }
+                            });
+                        });
+                    </script>
                     <div class="exam-login-group">
                         <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-student">
                             Đăng nhập
@@ -39,273 +67,530 @@
     </header>
 
     <!-- BANNER -->
-    <section class="exam-banner" id="gioi-thieu">
-        <div class="exam-banner-overlay"></div>
-        <div class="container">
-            <div class="exam-banner-content">
-                <div class="exam-banner-left">
-                    <span class="banner-tag">WEBSITE THI TRẮC NGHIỆM </span>
-                    <h1>Website hỗ trợ thi trực tuyến nhanh chóng, rõ ràng và thuận tiện</h1>
-                    <p>
-                        Website được xây dựng nhằm hỗ trợ nhà trường tổ chức thi trắc nghiệm trực tuyến
-                        cho học sinh một cách hiện đại, dễ sử dụng và khoa học. Người dùng có thể đăng nhập,
-                        tham gia thi, quản lý đề thi, đợt thi và theo dõi kết quả trên cùng một nền tảng thống nhất.
-                    </p>
+    <section class="exam-banner" id="trang-chu">
+        <script>
+            const counters = document.querySelectorAll(".stat-number");
 
-                    <div class="exam-banner-actions">
-                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-main">
-                            Đăng nhập học sinh
-                        </a>
-                        <a asp-controller="Home" asp-action="DangNhap" class="btn exam-btn-outline">
-                            Đăng nhập giáo viên
-                        </a>
-                    </div>
+            counters.forEach(counter => {
+                const target = +counter.getAttribute("data-target");
+                let count = 0;
+
+                const speed = target / 50; // tốc độ
+
+                const update = () => {
+                    count += speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.floor(count);
+                        requestAnimationFrame(update);
+                    } else {
+                        counter.innerText = target + "+";
+                    }
+                };
+
+                update();
+            });
+        </script>
+
+        <div class="bokeh">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- GOM TẤT CẢ VÀO 1 KHỐI -->
+        <div class="banner-wrapper">
+
+            <h1 class="neon-text">SmartExam</h1>
+            <p>
+                Hệ thống hỗ trợ quản lý đề thi, tổ chức thi và theo dõi kết quả
+                nhanh chóng, chính xác và thuận tiện.
+            </p>
+
+            <!-- STATS PHẢI NẰM TRONG ĐÂY -->
+            <div class="banner-stats">
+
+                <div class="stat-box">
+                    <i class="stat-icon fa-solid fa-book"></i>
+                    <h3>10+</h3>
+                    <p>Lớp học</p>
                 </div>
 
-                <div class="exam-banner-right">
-                    <div class="banner-info-card">
-                        <h3>Điểm nổi bật</h3>
+                <div class="stat-box">
+                    <i class="stat-icon fa-solid fa-pen"></i>
+                    <h3>50+</h3>
+                    <p>Đề thi</p>
+                </div>
 
-                        <div class="banner-info-list">
-                            <div class="banner-info-item">
-                                <div class="banner-info-icon">01</div>
-                                <div>
-                                    <h5>Tổ chức thi trực tuyến</h5>
-                                    <p>Cho phép tạo đợt thi theo môn học, lớp học và thời gian cụ thể.</p>
-                                </div>
-                            </div>
+                <div class="stat-box">
+                    <i class="stat-icon fa-solid fa-circle-question"></i>
+                    <h3>1000+</h3>
+                    <p>Câu hỏi</p>
+                </div>
 
-                            <div class="banner-info-item">
-                                <div class="banner-info-icon">02</div>
-                                <div>
-                                    <h5>Quản lý tập trung</h5>
-                                    <p>Hỗ trợ quản lý học sinh, câu hỏi, đề thi và kết quả trên website.</p>
-                                </div>
-                            </div>
+                <div class="stat-box">
+                    <i class="stat-icon fa-solid fa-users"></i>
+                    <h3>500+</h3>
+                    <p>Lượt tham gia</p>
+                </div>
 
-                            <div class="banner-info-item">
-                                <div class="banner-info-icon">03</div>
-                                <div>
-                                    <h5>Kết quả nhanh chóng</h5>
-                                    <p>Cho phép chấm điểm tự động và hiển thị kết quả sau khi nộp bài.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="exam-banner-stats">
-                <div class="banner-stat-box">
-                    <strong>20+</strong>
-                    <span>Lớp học</span>
-                </div>
-                <div class="banner-stat-box">
-                    <strong>50+</strong>
-                    <span>Đề thi</span>
-                </div>
-                <div class="banner-stat-box">
-                    <strong>1000+</strong>
-                    <span>Câu hỏi</span>
-                </div>
-                <div class="banner-stat-box">
-                    <strong>500+</strong>
-                    <span>Lượt tham gia</span>
-                </div>
             </div>
         </div>
+
     </section>
 
-    <!-- GIỚI THIỆU -->
-    <section class="home-section intro-section">
-        <div class="container">
-            <div class="section-heading">
-                <span class="section-subtitle">GIỚI THIỆU WEBSITE</span>
-                <h2>Website hỗ trợ thi trắc nghiệm trực tuyến trong nhà trường</h2>
-                <p>
-                    Website được xây dựng nhằm hỗ trợ quá trình tổ chức thi trắc nghiệm
-                    một cách khoa học, giảm thao tác thủ công, tăng hiệu quả quản lý
-                    và tạo môi trường làm bài thuận tiện cho học sinh.
-                </p>
+    <div class="subject-slider">
+        <div class="slider-track">
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/math.png" />
+                <span>Toán</span>
             </div>
 
-            <div class="intro-grid">
-                <div class="intro-card">
-                    <div class="intro-icon">🏫</div>
-                    <h4>Dành cho nhà trường</h4>
-                    <p>
-                        Hỗ trợ quản lý tập trung hoạt động thi trực tuyến, lưu trữ dữ liệu nhất quán
-                        và theo dõi toàn bộ quá trình tổ chức thi.
-                    </p>
-                </div>
-
-                <div class="intro-card">
-                    <div class="intro-icon">👨‍🏫</div>
-                    <h4>Dành cho giáo viên</h4>
-                    <p>
-                        Tạo ngân hàng câu hỏi, xây dựng đề thi, mở đợt thi
-                        và theo dõi kết quả của học sinh theo từng lớp học.
-                    </p>
-                </div>
-
-                <div class="intro-card">
-                    <div class="intro-icon">🎓</div>
-                    <h4>Dành cho học sinh</h4>
-                    <p>
-                        Đăng nhập đơn giản, xem danh sách đợt thi, làm bài trực tuyến
-                        và tra cứu kết quả sau khi hoàn thành bài thi.
-                    </p>
-                </div>
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/physics.png" />
+                <span>Lý</span>
             </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/test-tube.png" />
+                <span>Hóa</span>
+            </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/language.png" />
+                <span>Anh</span>
+            </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/microscope.png" />
+                <span>Sinh</span>
+            </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/time-machine.png" />
+                <span>Sử</span>
+            </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/globe.png" />
+                <span>Địa</span>
+            </div>
+
+            <div class="subject-item">
+                <img src="https://img.icons8.com/ios-filled/100/2563eb/law.png" />
+                <span>GDCD</span>
+            </div>
+            <script>
+                const track = document.querySelector(".slider-track");
+                let items = document.querySelectorAll(".subject-item");
+
+                // clone tất cả item
+                items.forEach(item => {
+                    const clone = item.cloneNode(true);
+                    track.appendChild(clone);
+                });
+
+                let index = 0;
+
+                function slide() {
+                    index++;
+
+                    const itemWidth = items[0].offsetWidth + 20;
+
+                    track.style.transition = "transform 0.6s ease";
+                    track.style.transform = `translateX(-${index * itemWidth}px)`;
+
+                    // khi đi hết list gốc → reset về đầu (không giật)
+                    if (index >= items.length) {
+                        setTimeout(() => {
+                            track.style.transition = "none";
+                            track.style.transform = `translateX(0px)`;
+                            index = 0;
+                        }, 600);
+                    }
+                }
+
+                let interval = setInterval(slide, 2000);
+
+                // hover dừng
+                track.addEventListener("mouseenter", () => clearInterval(interval));
+                track.addEventListener("mouseleave", () => {
+                    interval = setInterval(slide, 2000);
+                });
+            </script>
         </div>
-    </section>
+    </div>
+    </div>
 
-    <!-- TÍNH NĂNG -->
-    <section class="home-section feature-section" id="tinh-nang">
-        <div class="container">
-            <div class="section-heading">
-                <span class="section-subtitle">TÍNH NĂNG NỔI BẬT</span>
-                <h2>Các chức năng chính của website</h2>
-                <p>
-                    Website được thiết kế với các chức năng cần thiết nhằm phục vụ đầy đủ
-                    cho việc quản lý và tổ chức thi trắc nghiệm trực tuyến trong trường học.
-                </p>
-            </div>
+<section class="intro-modern" id="gioi-thieu">
+    <div class="container">
 
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Quản lý tài khoản</h4>
-                    <p>Phân quyền rõ ràng giữa quản trị viên, giáo viên và học sinh.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Ngân hàng câu hỏi</h4>
-                    <p>Lưu trữ và tái sử dụng câu hỏi cho nhiều đề thi khác nhau.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Quản lý đề thi</h4>
-                    <p>Tạo đề thi, cấu hình số lượng câu hỏi và thời gian làm bài phù hợp.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Tổ chức đợt thi</h4>
-                    <p>Thiết lập đợt thi theo lớp, môn học và thời điểm cụ thể.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Làm bài trực tuyến</h4>
-                    <p>Học sinh tham gia làm bài trên giao diện rõ ràng, dễ thao tác và dễ theo dõi.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-top-line"></div>
-                    <h4>Kết quả và thống kê</h4>
-                    <p>Hỗ trợ tổng hợp điểm số, số lượng tham gia và đánh giá chất lượng bài thi.</p>
-                </div>
-            </div>
+        <!-- TITLE -->
+        <div class="section-title text-center">
+            <h2 class="main-title">GIỚI THIỆU</h2>
+            <div class="title-divider"></div>
         </div>
-    </section>
 
-    <!-- CỔNG TRUY CẬP -->
-    <section class="home-section portal-section" id="truy-cap">
-        <div class="container">
-            <div class="section-heading">
-                <span class="section-subtitle">CỔNG TRUY CẬP</span>
-                <h2>Lựa chọn khu vực đăng nhập phù hợp</h2>
-                <p>
-                    Website cung cấp khu vực đăng nhập phù hợp với từng nhóm người dùng,
-                    giúp quá trình sử dụng trở nên trực quan và thuận tiện hơn.
-                </p>
-            </div>
-
-            <div class="portal-grid">
-                <div class="portal-card">
-                    <div class="portal-badge">🎓</div>
-                    <h3>Học sinh</h3>
-                    <p>
-                        Dành cho học sinh tham gia kỳ thi trực tuyến, xem đợt thi,
-                        làm bài, nộp bài và xem kết quả.
-                    </p>
-                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-primary btn-lg">
-                        Đăng nhập học sinh
-                    </a>
-                </div>
-
-                <div class="portal-card">
-                    <div class="portal-badge">👨‍🏫</div>
-                    <h3>Giáo viên</h3>
-                    <p>
-                        Dành cho giáo viên quản lý học sinh, câu hỏi, đề thi,
-                        đợt thi và theo dõi kết quả.
-                    </p>
-                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-outline-primary btn-lg">
-                        Đăng nhập giáo viên
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HƯỚNG DẪN -->
-    <section class="home-section guide-section" id="huong-dan">
-        <div class="container">
-            <div class="guide-box">
-                <div class="guide-left">
-                    <span class="section-subtitle">HƯỚNG DẪN SỬ DỤNG</span>
-                    <h3>Đăng nhập và sử dụng website</h3>
-                    <p>
-                        Học sinh sử dụng <strong>Số báo danh</strong> và mật khẩu để đăng nhập.
-                        Giáo viên sử dụng <strong>Tên đăng nhập hoặc Email</strong>
-                        để truy cập vào khu vực quản lý của website.
-                    </p>
-                </div>
-                <div class="guide-right">
-                    <a asp-controller="Home" asp-action="DangNhap" class="btn btn-primary btn-lg">
-                        Đi tới trang đăng nhập
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="exam-footer">
-        <div class="container">
-            <div class="exam-footer-grid">
-                <div>
-                    <h5>Website thi trắc nghiệm trực tuyến</h5>
-                    <p>
-                        Website hỗ trợ quản lý và tổ chức thi trắc nghiệm trực tuyến
-                        dành cho học sinh trung học phổ thông.
-                    </p>
-                </div>
-
-                <div>
-                    <h5>Liên kết nhanh</h5>
-                    <ul class="footer-links">
-                        <li><a href="#gioi-thieu">Giới thiệu</a></li>
-                        <li><a href="#tinh-nang">Tính năng</a></li>
-                        <li><a href="#truy-cap">Cổng truy cập</a></li>
-                        <li><a href="#huong-dan">Hướng dẫn</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h5>Thông tin liên hệ</h5>
-                    <ul class="footer-links">
-                        <li>Trường THPT ABC</li>
-                        <li>Email: support@thptabc.edu.vn</li>
-                        <li>Hotline: 0900 000 000</li>
-                        <li>Địa chỉ: Hà Nội</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+     <!-- ROW 1 -->
+<div class="intro-row">
+    <div class="intro-img">
+        <img src="/GioiThieu/GioiTHieu_admin.png" />
+    </div>
+    <div class="intro-content">
+        <h3>Nhà trường</h3>
+        <p>
+            Quản lý toàn bộ hệ thống thi trắc nghiệm, tổ chức các kỳ thi và theo dõi dữ liệu tổng thể một cách hiệu quả.
+        </p>
+    </div>
 </div>
+
+<!-- ROW 2 -->
+<div class="intro-row reverse">
+    <div class="intro-img">
+        <img src="/GioiThieu/GioiThieu_giaovien.png" />
+    </div>
+    <div class="intro-content">
+        <h3>Giáo viên</h3>
+        <p>
+            Tạo đề thi, xây dựng ngân hàng câu hỏi và theo dõi kết quả làm bài của học sinh.
+        </p>
+    </div>
+</div>
+
+<!-- ROW 3 -->
+<div class="intro-row">
+    <div class="intro-img">
+        <img src="/GioiThieu/GioiThieu_hocsinh.png" />
+    </div>
+    <div class="intro-content">
+        <h3>Học sinh</h3>
+        <p>
+            Tham gia làm bài thi trực tuyến theo đề được giao và xem kết quả sau khi hoàn thành.
+        </p>
+    </div>
+</div>
+
+</section>
+
+
+
+<section class="highlight-section" id="tinh-nang">
+    <div class="section-title text-center">
+        <h2 class="main-title">ĐẶC TRƯNG</h2>
+        <div class="title-divider"></div>
+        <p class="sub-title">
+            Hệ thống thi trắc nghiệm trực tuyến được phát triển nhằm tối ưu hóa việc quản lý và tổ chức các kỳ thi trên môi trường mạng.
+        </p>
+    </div>
+
+    <!-- SLIDER -->
+    <div class="highlight-slider">
+        <div class="highlight-track" id="highlightTrack">
+
+            <!-- SLIDE 1 -->
+            <div class="highlight-slide">
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-regular fa-clock"></i></div>
+                    <h4>Tiết kiệm thời gian</h4>
+                    <p>Tự động hóa quy trình thi giúp tiết kiệm thời gian.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-solid fa-sliders"></i></div>
+                    <h4>Tăng tính chính xác</h4>
+                    <p>Chấm điểm tự động đảm bảo độ chính xác.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4>Hạn chế gian lận</h4>
+                    <p>Giám sát giúp giảm thiểu gian lận.</p>
+                </div>
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="highlight-slide">
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-solid fa-database"></i></div>
+                    <h4>Lưu trữ dữ liệu</h4>
+                    <p>Lưu trữ an toàn, lâu dài.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <h4>Thống kê kết quả</h4>
+                    <p>Phân tích kết quả học tập.</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fa-solid fa-laptop"></i></div>
+                    <h4>Thi mọi lúc</h4>
+                    <p>Làm bài mọi nơi có internet.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- DOT ĐẶT ĐÚNG TRONG SECTION -->
+    <div class="dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+    </div>
+
+</section>
+<script>
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+        const track = document.getElementById("highlightTrack");
+        const dots = document.querySelectorAll(".dot");
+
+        currentIndex = index;
+
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[index].classList.add("active");
+    }
+</script>
+
+<section class="guide-slider-section">
+    <div class="container text-center">
+
+        <h2 class="guide-title">Hướng dẫn học sinh làm bài</h2>
+        <p class="guide-sub">
+            Các bước làm bài thi trực tuyến nhanh chóng và dễ dàng
+        </p>
+
+        <!-- SLIDER -->
+        <div class="guide-slider">
+
+            <button type="button" class="nav-btn prev">‹</button>
+
+            <div class="guide-track" id="guideTrack">
+
+            <div class="guide-card active">
+                    <div class="step">01</div>
+            <img src="/GioiThieu/HocSinh_DangNhap.png" />
+                    <h4>Đăng nhập</h4>
+                    <p>Học sinh đăng nhập vào hệ thống bằng tài khoản được cấp.</p>
+                </div>
+                
+                <div class="guide-card">
+                    <div class="step">02</div>
+                    <img src="/GioiThieu/HocSinh_CapNhatMatKhau.png" />
+                    <h4>Cập nhật mật khẩu</h4>
+                    <p>Thay đổi mật khẩu nếu tham gia lần đầu tiên</p>
+                </div>
+
+                <div class="guide-card">
+                    <div class="step">03</div>
+
+                    <img src="/GioiThieu/HocSinh.png" />
+                    <h4>Chọn đợt thi</h4>
+                    <p>Chọn đợt thi hoặc bài kiểm tra được giáo viên giao.</p>
+                </div>
+
+                  <div class="guide-card">
+                    <div class="step">04</div>
+
+                    <img src="/GioiThieu/HocSinh_VaoThi.png" />
+                    <h4>Vào thi</h4>
+                    <p>Thực hiện vào chế độ toàn màn hình để vào làm bài.Nếu vượt quá 3 lần vi phạm,hệ thống sẽ tự động nộp bài.</p>
+                </div>
+                <div class="guide-card">
+                    <div class="step">05</div>
+
+                    <img src="/GioiThieu/HocSinh_LamBai.png" />
+                    <h4>Làm bài</h4>
+                    <p>Thực hiện làm bài và chọn đáp án phù hợp.</p>
+                </div>
+
+                <div class="guide-card">
+                    <div class="step">06</div>
+
+                    <img src="/GioiThieu/HocSinh_NopBai.png" />
+                    <h4>Nộp bài</h4>
+                    <p>Kiểm tra lại và nộp bài trước khi hết thời gian.</p>
+                </div>
+
+    
+
+            </div>
+
+            <button type="button" class="nav-btn next">›</button>
+
+        </div>
+
+        <!-- DOT -->
+        <div class="guide-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const track = document.getElementById("guideTrack");
+        const originalCards = document.querySelectorAll(".guide-card");
+        const btnNext = document.querySelector(".next");
+        const btnPrev = document.querySelector(".prev");
+        const dots = document.querySelectorAll(".guide-dots .dot");
+
+        // clone đầu cuối
+        const firstClone = originalCards[0].cloneNode(true);
+        const lastClone = originalCards[originalCards.length - 1].cloneNode(true);
+
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, track.firstChild);
+
+        const cards = document.querySelectorAll(".guide-card");
+
+        let index = 1;
+
+        function updateSlider(animate = true) {
+            const width = cards[0].offsetWidth + 30;
+            const containerWidth = document.querySelector(".guide-slider").offsetWidth;
+            const offset = (containerWidth - width) / 2;
+
+            track.style.transition = animate ? "transform 0.5s ease" : "none";
+            track.style.transform = `translateX(${-index * width + offset}px)`;
+
+            cards.forEach(card => card.classList.remove("active"));
+
+            let realIndex = index - 1;
+            if (realIndex < 0) realIndex = originalCards.length - 1;
+            if (realIndex >= originalCards.length) realIndex = 0;
+
+            cards[index].classList.add("active");
+
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[realIndex].classList.add("active");
+        }
+
+        btnNext.addEventListener("click", () => {
+            index++;
+            updateSlider();
+        });
+
+        btnPrev.addEventListener("click", () => {
+            index--;
+            updateSlider();
+        });
+
+        track.addEventListener("transitionend", () => {
+            if (index === cards.length - 1) {
+                index = 1;
+                updateSlider(false);
+            }
+
+            if (index === 0) {
+                index = originalCards.length;
+                updateSlider(false);
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener("click", () => {
+                index = i + 1;
+                updateSlider();
+            });
+        });
+
+        updateSlider(false);
+    });
+</script>
+
+<script>
+        // BUTTON
+  btnNext.addEventListener("click", () => {
+    index = (index + 1) % cards.length;
+    updateSlider();
+});
+
+btnPrev.addEventListener("click", () => {
+    index = (index - 1 + cards.length) % cards.length;
+    updateSlider();
+});
+
+</script>
+
+<section class="home-section guide-section" id="huong-dan">
+    <div class="container">
+
+        <div class="guide-box">
+
+            <!-- LEFT -->
+            <div class="guide-left">
+                <h3>Đăng nhập và sử dụng hệ thống</h3>
+
+                <ul class="guide-list">
+                    <li>Học sinh đăng nhập bằng mã học sinh và mật khẩu.</li>
+                    <li>Giáo viên đăng nhập bằng tài khoản để truy cập khu vực quản lý.</li>
+                </ul>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="guide-right">
+                <a asp-controller="Home" asp-action="DangNhap" class="btn-go">
+                    Đi tới trang đăng nhập →
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<footer class="exam-footer">
+    <div class="container">
+
+        <div class="exam-footer-grid">
+
+            <!-- CỘT 1: LOGO -->
+            <div class="footer-brand">
+                <img src="/images/LoGoTruong.jpg" class="footer-logo" />
+                <div>
+                    <h4>SmartExam</h4>
+                    <p>Hệ thống thi trắc nghiệm trực tuyến</p>
+                </div>
+            </div>
+
+            <!-- CỘT 2 -->
+            <div>
+                <h5>Liên kết nhanh</h5>
+                <ul class="footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Tính năng</a></li>
+                    <li><a href="#">Cổng truy cập</a></li>
+                    <li><a href="#">Hướng dẫn</a></li>
+                </ul>
+            </div>
+
+            <!-- CỘT 3 -->
+            <div>
+                <h5>Liên hệ</h5>
+                <ul class="footer-links">
+                    <li>THPT Ngô Thì Nhậm</li>
+                    <li>Email: support@thptntn.edu.vn</li>
+                    <li>Hotline: 0900 000 000</li>
+                    <li>Lĩnh Nam,Hoàng Mai,Hà Nội</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">

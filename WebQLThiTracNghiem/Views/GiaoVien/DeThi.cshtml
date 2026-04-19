@@ -31,6 +31,7 @@
 
         <div class="col-md-3">
             <select name="monId" class="form-select">
+
                 <option value="">-- Môn học --</option>
                 @foreach (var mon in ViewBag.MonHoc)
                 {
@@ -41,6 +42,14 @@
             </select>
         </div>
 
+        <div class="col-md-2">
+    <select name="khoi" class="form-select">
+        <option value="">-- Khối --</option>
+        <option value="10" selected="@(ViewBag.Khoi == 10)">Khối 10</option>
+        <option value="11" selected="@(ViewBag.Khoi == 11)">Khối 11</option>
+        <option value="12" selected="@(ViewBag.Khoi == 12)">Khối 12</option>
+    </select>
+</div>
         <div class="col-md-5 d-flex gap-2">
             <button type="submit" class="btn btn-primary">Lọc dữ liệu</button>
             <a asp-action="DeThi" class="btn btn-outline-secondary">Đặt lại</a>
@@ -70,22 +79,126 @@
                             <td>@item.TenDeThi</td>
                             <td>@item.TenMonHoc</td>
                             <td>@item.ThoiGianLamBai phút</td>
-                            <td>@item.SoCau</td>
+
+                            <!-- 🔥 SỐ CÂU -->
+                            <td>
+                                <strong>@item.SoCau</strong>
+                            </td>
+
+                            <!-- 🔥 TRẠNG THÁI -->
                             <td>
                                 @if (item.TrangThai)
                                 {
-                                    <span class="badge bg-primary">Đang dùng</span>
+                                    <span class="badge bg-success">Đang dùng</span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-secondary">Tạm ẩn</span>
+                                    <span class="badge bg-secondary">Nháp</span>
                                 }
                             </td>
+
                             <td>
-                                <div class="d-flex flex-wrap gap-1">
-                                    <a asp-action="ChiTietDeThi" asp-route-id="@item.MaDeThi" class="btn btn-sm btn-outline-info">Chi tiết</a>
-                                    <a asp-action="ThemCauHoiVaoDe" asp-route-id="@item.MaDeThi" class="btn btn-sm btn-outline-primary">Thêm câu hỏi</a>
-                                    <a asp-action="TaoDotThi" class="btn btn-sm btn-outline-success">Tạo đợt thi</a>
+                                <div class="d-flex gap-2">
+
+                                    <!-- 🔥 NÚT CHÍNH -->
+                                    <a asp-action="ThemCauHoiVaoDe"
+                                       asp-route-id="@item.MaDeThi"
+                                       class="btn btn-sm btn-primary">
+                                        + Thêm câu
+                                    </a>
+
+                                    <!-- 🔥 MENU -->
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                data-bs-toggle="dropdown">
+                                            Tùy chọn
+                                        </button>
+
+                                        <ul class="dropdown-menu">
+
+                                            <li>
+                                                <a class="dropdown-item"
+                                                   asp-action="ChiTietDeThi"
+                                                   asp-route-id="@item.MaDeThi">
+                                                    📄 Chi tiết
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a asp-action="SuaDeThi"
+                                                   asp-route-id="@item.MaDeThi"
+                                                   class="dropdown-item">
+                                                    ✏️ Sửa đề
+                                                </a>
+                                            </li>
+
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <a class="dropdown-item"
+                                                   asp-action="InDeThi"
+                                                   asp-route-id="@item.MaDeThi">
+                                                    🖨️ In đề
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="dropdown-item text-success"
+                                                   asp-action="InDeThiCoDapAn"
+                                                   asp-route-id="@item.MaDeThi">
+                                                    ✅ In đáp án
+                                                </a>
+                                            </li>
+                                            @if (!item.DaSuDung)
+                                            {
+                                                <li>
+                                                    <form asp-action="XoaDeThi" method="post">
+                                                        <input type="hidden" name="id" value="@item.MaDeThi" />
+                                                        <button class="dropdown-item text-danger"
+                                                                onclick="return confirm('Xóa đề này?')">
+                                                            🗑️ Xóa đề
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <span class="dropdown-item text-danger fw-bold">
+                                                        🚫 Đề đã được sử dụng
+                                                    </span>
+                                                </li>
+
+                                                <li>
+                                                    <span class="dropdown-item text-muted">
+                                                        Không thể sửa / xóa
+                                                    </span>
+                                                </li>
+
+                                                <li><hr class="dropdown-divider"></li>
+
+                                                <!-- 🔥 COPY ĐỀ -->
+                                                <li>
+                                                    <a class="dropdown-item text-primary"
+                                                       asp-action="CopyDeThi"
+                                                       asp-route-id="@item.MaDeThi">
+                                                        📄 Sao chép đề
+                                                    </a>
+                                                </li>
+                                            }
+
+                                            <li><hr class="dropdown-divider"></li>
+
+                                            <li>
+                                                <a class="dropdown-item text-success"
+                                                   asp-action="TaoDotThi"
+                                                   asp-route-maDeThi="@item.MaDeThi">
+                                                    📅 Tạo đợt thi
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
                                 </div>
                             </td>
                         </tr>
@@ -94,10 +207,86 @@
                 else
                 {
                     <tr>
-                        <td colspan="7" class="text-center text-muted py-4">Chưa có đề thi nào.</td>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            Chưa có đề thi nào.
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+    @if (ViewBag.TotalPages != null && ViewBag.TotalPages > 1)
+{
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+
+            <!-- Prev -->
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link"
+                   href="@Url.Action("DeThi", new {
+                        page = ViewBag.CurrentPage - 1,
+                        keyword = ViewBag.Keyword,
+                        monId = ViewBag.MonId,
+                        khoi = ViewBag.Khoi
+                   })">
+                    ‹
+                </a>
+            </li>
+
+            @{
+                int start = Math.Max(1, ViewBag.CurrentPage - 2);
+                int end = Math.Min(ViewBag.TotalPages, ViewBag.CurrentPage + 2);
+            }
+
+            @for (int i = start; i <= end; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link"
+                       href="@Url.Action("DeThi", new {
+                            page = i,
+                            keyword = ViewBag.Keyword,
+                            monId = ViewBag.MonId,
+                            khoi = ViewBag.Khoi
+                       })">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <!-- Next -->
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link"
+                   href="@Url.Action("DeThi", new {
+                        page = ViewBag.CurrentPage + 1,
+                        keyword = ViewBag.Keyword,
+                        monId = ViewBag.MonId,
+                        khoi = ViewBag.Khoi
+                   })">
+                    ›
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+}
 </div>
+<style>
+
+    .pagination .page-item.active .page-link {
+        background-color: #2563eb;
+        border-color: #2563eb;
+        color: white;
+    }
+
+    .pagination .page-link {
+        border-radius: 6px;
+        margin: 0 4px;
+        color: #333;
+        min-width: 36px;
+        text-align: center;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        opacity: 0.5;
+    }
+</style>

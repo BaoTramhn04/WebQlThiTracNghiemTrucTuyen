@@ -1,0 +1,357 @@
+﻿@model List<WebQLThiTracNghiem.Models.ChuyenDe>
+
+@{
+            ViewData["Title"] = "Quản lý chuyên đề";
+            Layout = "_LayoutAdmin";
+        }
+
+        <div class="container mt-4">
+
+            <h2 class="mb-4">📗 Quản lý chuyên đề</h2>
+
+            <!-- 🔔 THÔNG BÁO -->
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success">@TempData["success"]</div>
+            }
+            @if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["error"]</div>
+            }
+
+            <!-- 🔥 THỐNG KÊ -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6>Tổng chuyên đề</h6>
+<h3>@ViewBag.TongChuyenDe</h3>
+</div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card text-center shadow-sm">
+                        <div class="card-body">
+                            <h6>Số môn học</h6>
+<h3>@ViewBag.SoMon</h3>
+</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 🔍 SEARCH + FILTER -->
+            <form method="get" class="row mb-3">
+
+            <!-- 🔍 SEARCH -->
+            <div class="col-md-6">
+                <input type="text" name="keyword"
+                       value="@ViewBag.Keyword"
+                       class="form-control"
+                       placeholder="🔍 Tìm chuyên đề..." />
+            </div>
+  <div class="col-md-3">
+    <select name="khoi" class="form-select">
+        <option value="">-- Khối --</option>
+
+        @if (ViewBag.SelectedKhoi == 10)
+        {
+            <option value="10" selected>Khối 10</option>
+        }
+        else
+        {
+            <option value="10">Khối 10</option>
+        }
+
+        @if (ViewBag.SelectedKhoi == 11)
+        {
+            <option value="11" selected>Khối 11</option>
+        }
+        else
+        {
+            <option value="11">Khối 11</option>
+        }
+
+        @if (ViewBag.SelectedKhoi == 12)
+        {
+            <option value="12" selected>Khối 12</option>
+        }
+        else
+        {
+            <option value="12">Khối 12</option>
+        }
+
+    </select>
+</div>  
+    <!-- 🔥 FILTER MÔN -->
+            <div class="col-md-4">
+                <select name="mon" class="form-select">
+            <option value="">-- Lọc theo môn --</option>
+
+            @foreach (var m in ViewBag.MonHoc)
+            {
+                if (ViewBag.SelectedMon == m.MaMonHoc)
+                {
+                    <option value="@m.MaMonHoc" selected>@m.TenMonHoc</option>
+                }
+                else
+                {
+                    <option value="@m.MaMonHoc">@m.TenMonHoc</option>
+                }
+            }
+        </select>
+            </div>
+
+            <div class="col-md-2">
+                <button class="btn btn-primary w-100">Lọc</button>
+    </div>
+
+</form>
+
+    <!-- ➕ THÊM -->
+    <div class="card shadow-sm mb-4 border-0">
+
+        <div class="card-header bg-white fw-bold border-bottom">
+            ➕ Thêm chuyên đề
+        </div>
+
+        <div class="card-body bg-light">
+
+          <form asp-action="ThemChuyenDe" method="post" class="row g-3">
+
+    <div class="col-md-4">
+        <input name="tenChuyenDe"
+               class="form-control"
+               placeholder="Tên chuyên đề..." required />
+    </div>
+
+    <div class="col-md-3">
+        <select name="maMonHoc" class="form-select">
+            @foreach (var mon in ViewBag.MonHoc)
+            {
+                <option value="@mon.MaMonHoc">@mon.TenMonHoc</option>
+            }
+        </select>
+    </div>
+
+    <!-- 🔥 CHỖ BẠN CẦN THÊM -->
+    <div class="col-md-3">
+        <select name="khoi" class="form-select" required>
+            <option value="">-- Chọn khối --</option>
+            <option value="10">Khối 10</option>
+            <option value="11">Khối 11</option>
+            <option value="12">Khối 12</option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-success w-100">Thêm</button>
+    </div>
+
+</form>
+
+        </div>
+    </div>
+
+    <!-- 📋 TABLE -->
+    <div class="card shadow">
+
+        <div class="card-header bg-dark text-white fw-bold">
+            📋 Danh sách chuyên đề
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover align-middle text-center">
+
+                <thead class="table-secondary">
+                    <tr>
+                        <th>#</th>
+                        <th>Tên chuyên đề</th>
+                        <th>Môn học</th>
+                        <th>Số câu hỏi</th> <!-- 🔥 thêm -->
+                        <th width="150">Hành động</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @{
+                        int stt = 1;
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@stt</td>
+
+                         <td>
+    <b>@item.TenChuyenDe</b>
+
+    @if (item.Khoi != 0)
+    {
+        <span class="text-muted">(Khối @item.Khoi)</span>
+    }
+</td>
+
+                            <!-- 🔥 CLICK LỌC MÔN -->
+                            <td>
+                                <span class="badge bg-light border px-3 py-2">
+                                   <a href="@Url.Action("ChuyenDe", new { 
+                                         mon = item.MaMonHoc, 
+                                         keyword = Context.Request.Query["keyword"] 
+                                      })"
+                                     class="text-dark text-decoration-none">
+                                     @item.MonHoc?.TenMonHoc
+                                    </a>
+                                </span>
+                            </td>
+
+                            <!-- 🔥 SỐ CÂU HỎI -->
+                            <td>
+                                @(item.CauHois?.Count() ?? 0)
+                            </td>
+
+                            <td>
+                                <!-- ✏️ -->
+                                <button class="btn btn-warning btn-sm"
+                                        onclick="openEditModal('@item.MaChuyenDe', '@item.TenChuyenDe', '@item.MaMonHoc')">
+                                    ✏️
+                                </button>
+
+                                <!-- 🗑 -->
+                                <a asp-action="XoaChuyenDe"
+                                   asp-route-id="@item.MaChuyenDe"
+                                   class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                                    🗑
+                                </a>
+                            </td>
+                        </tr>
+
+                        stt++;
+                    }
+                </tbody>
+
+            </table>
+       <nav class="mt-3">
+    <ul class="pagination justify-content-center">
+
+        @{
+            int current = ViewBag.CurrentPage;
+            int total = ViewBag.TotalPage;
+        }
+
+        <!-- PREV -->
+        <li class="page-item @(current == 1 ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("ChuyenDe", new {
+                   page = current - 1,
+                   keyword = ViewBag.Keyword,
+                   mon = ViewBag.SelectedMon
+               })">
+                &laquo;
+            </a>
+        </li>
+
+        <!-- PAGE NUMBERS -->
+        @for (int i = 1; i <= total; i++)
+        {
+            if (i == 1 || i == total || (i >= current - 1 && i <= current + 1))
+            {
+                <li class="page-item @(i == current ? "active" : "")">
+                    <a class="page-link"
+                       href="@Url.Action("ChuyenDe", new {
+                           page = i,
+                           keyword = ViewBag.Keyword,
+                           mon = ViewBag.SelectedMon
+                       })">
+                        @i
+                    </a>
+                </li>
+            }
+            else if (i == current - 2 || i == current + 2)
+            {
+                <li class="page-item disabled">
+                    <span class="page-link">...</span>
+                </li>
+            }
+        }
+
+        <!-- NEXT -->
+        <li class="page-item @(current == total ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("ChuyenDe", new {
+                   page = current + 1,
+                   keyword = ViewBag.Keyword,
+                   mon = ViewBag.SelectedMon
+               })">
+                &raquo;
+            </a>
+        </li>
+
+    </ul>
+</nav>
+
+    </ul>
+</nav>
+        </div>
+
+    </div>
+
+</div>
+<!-- 🔥 MODAL SỬA -->
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form asp-action="SuaChuyenDe" method="post">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">✏️ Sửa chuyên đề</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" id="editId" name="id" />
+
+                    <div class="mb-3">
+                        <label>Tên chuyên đề</label>
+                        <input type="text" id="editTen" name="tenChuyenDe"
+                               class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Môn học</label>
+                        <select id="editMon" name="maMonHoc" class="form-select">
+                            @foreach (var m in ViewBag.MonHoc)
+                            {
+                                <option value="@m.MaMonHoc">@m.TenMonHoc</option>
+                            }
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success">Lưu</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+    function openEditModal(id, ten, mon) {
+        document.getElementById("editId").value = id;
+        document.getElementById("editTen").value = ten;
+        document.getElementById("editMon").value = mon;
+
+        var modal = new bootstrap.Modal(document.getElementById('editModal'));
+        modal.show();
+    }
+</script>

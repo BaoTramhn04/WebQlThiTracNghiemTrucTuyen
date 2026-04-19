@@ -4,35 +4,35 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "Quản lý giáo viên";
 }
+<div class="card-body">
 
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["success"]
+        </div>
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["error"]
+        </div>
+    }
 <div class="card shadow-sm">
 
     <div class="card-header d-flex justify-content-between align-items-center">
 
         <h5 class="mb-0">Quản lý giáo viên</h5>
 
-        <a asp-action="ExportGiaoVien"
+        <a asp-action="XuatGiaoVienExcel"
            class="btn btn-success">
             Xuất Excel
         </a>
 
     </div>
 
-    <div class="card-body">
-
-        @if (TempData["success"] != null)
-        {
-            <div class="alert alert-success alert-dismissible fade show">
-                <strong>Thành công!</strong>
-                @TempData["success"]
-                <button class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        }
-
-        <!-- FORM THÊM / SỬA -->
-
-        <form method="post" asp-action="LuuGiaoVien" id="formGV">
-
+        <form method="post" enctype="multipart/form-data" asp-action="LuuGiaoVien" id="formGV">
             <input type="hidden" name="id" id="editId" />
 
             <div class="row g-2 mb-4">
@@ -53,6 +53,18 @@
                            required />
                 </div>
 
+                <!-- 🔥 FIX CHECKBOX -->
+                <input type="hidden" name="laDaiDien" id="hiddenDaiDien" value="false" />
+
+                <div class="col-md-2 d-flex align-items-center">
+                    <div class="form-check">
+                        <input type="checkbox"
+                               id="laDaiDien"
+                               class="form-check-input" />
+                        <label class="form-check-label">Đại diện</label>
+                    </div>
+                </div>
+
                 <div class="col-md-2">
                     <button type="submit"
                             class="btn btn-primary w-100"
@@ -70,9 +82,7 @@
                 </div>
 
             </div>
-
         </form>
-
         <!-- SEARCH -->
 
         <form method="get" class="row g-2 mb-3">
@@ -99,95 +109,161 @@
 
         <!-- TABLE -->
 
-        <table class="table table-bordered table-hover align-middle">
+      <table class="table table-bordered table-hover align-middle">
 
-            <thead class="table-light">
-                <tr>
-                    <th width="80">ID</th>
-                    <th>Họ tên</th>
-                    <th>Tên đăng nhập</th>
-                    <th width="120">Trạng thái</th>
-                    <th width="180">Thao tác</th>
-                </tr>
-            </thead>
+    <thead class="table-light">
+        <tr>
+            <th width="80">ID</th>
+            <th>Họ tên</th>
+            <th>Tên đăng nhập</th>
+            <th width="120">Trạng thái</th>
+            <th width="120">Đại diện</th>
+            <th width="180">Thao tác</th>
+        </tr>
+    </thead>
 
-            <tbody>
+    <tbody>
 
-                @foreach (var gv in Model)
-                {
-                    <tr>
+        @foreach (var gv in Model)
+        {
+            <tr>
 
-                        <td>@gv.MaGiaoVien</td>
+                <td>@gv.MaGiaoVien</td>
 
-                        <td>@gv.NguoiDung.HoSoCaNhan.HoTen</td>
+                <td>@gv.NguoiDung.HoSoCaNhan.HoTen</td>
 
-                        <td>@gv.NguoiDung.TenDangNhap</td>
+                <td>@gv.NguoiDung.TenDangNhap</td>
 
-                        <td>
-                            @if (gv.TrangThai)
-                            {
-                                <span class="badge bg-success">Hoạt động</span>
-                            }
-                            else
-                            {
-                                <span class="badge bg-danger">Khóa</span>
-                            }
-                        </td>
+                <!-- ✅ TRẠNG THÁI -->
+                <td>
+                    @if (gv.TrangThai)
+                    {
+                        <span class="badge bg-success">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Khóa</span>
+                    }
+                </td>
 
-                        <td>
+                <!-- ✅ ĐẠI DIỆN -->
+                <td>
+                    @if (gv.LaDaiDien)
+                   {
+        <i class="bi bi-check-circle-fill text-success fs-5"></i>
+    }
+    else
+    {
+        <i class="bi bi-dash-circle text-muted"></i>
+    }
+                </td>
 
-                            <button class="btn btn-sm btn-warning"
+                <!-- ✅ THAO TÁC -->
+                <td class="d-flex gap-1 align-items-center">
+
+                    <!-- 👤 HỒ SƠ -->
+                    <a asp-action="ChiTietNguoiDung"
+                       asp-route-id="@gv.NguoiDung.MaNguoiDung"
+                       class="btn btn-sm btn-info"
+                       title="Hồ sơ">
+                        <i class="bi bi-person"></i>
+                    </a>
+
+                            <!-- ✏️ SỬA -->
+                            <button type="button"
+                                    class="btn btn-sm btn-warning"
+                                    title="Sửa"
                                     onclick="editGV(
-                                    '@gv.MaGiaoVien',
-                                    '@gv.NguoiDung.HoSoCaNhan.HoTen',
-                                    '@gv.NguoiDung.TenDangNhap')">
-                                Sửa
+                '@gv.MaGiaoVien',
+                '@gv.NguoiDung.HoSoCaNhan.HoTen',
+                '@gv.NguoiDung.TenDangNhap',
+                @(gv.LaDaiDien.ToString().ToLower())
+            )">
+                                <i class="bi bi-pencil"></i>
                             </button>
 
-                            <a asp-action="XoaGiaoVien"
-                               asp-route-id="@gv.MaGiaoVien"
-                               class="btn btn-sm btn-danger"
-                               onclick="return confirm('Bạn chắc chắn muốn xóa giáo viên?')">
-                                Xóa
-                            </a>
+                    <!-- 🗑️ XÓA -->
+                    <a asp-action="XoaGiaoVien"
+                       asp-route-id="@gv.MaGiaoVien"
+                       class="btn btn-sm btn-danger"
+                       title="Xóa"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa giáo viên?')">
+                        <i class="bi bi-trash"></i>
+                    </a>
 
-                        </td>
+                </td>
 
-                    </tr>
-                }
+            </tr>
+        }
 
-            </tbody>
+    </tbody>
 
-        </table>
+</table>
 
     </div>
 
 </div>
+<div class="mt-4 d-flex justify-content-center">
 
+    <ul class="pagination">
+
+        <!-- << -->
+        <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachGiaoVien", new { page = ViewBag.CurrentPage - 1, keyword = ViewBag.Keyword })">
+                «
+            </a>
+        </li>
+
+        <!-- số -->
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link"
+                   href="@Url.Action("DanhSachGiaoVien", new { page = i, keyword = ViewBag.Keyword })">
+                    @i
+                </a>
+            </li>
+        }
+
+        <!-- >> -->
+        <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+            <a class="page-link"
+               href="@Url.Action("DanhSachGiaoVien", new { page = ViewBag.CurrentPage + 1, keyword = ViewBag.Keyword })">
+                »
+            </a>
+        </li>
+
+    </ul>
+
+</div>
 
 <script>
-
-function editGV(id,ten,user)
+function editGV(id,ten,user,laDaiDien)
 {
     document.getElementById("editId").value=id
     document.getElementById("editTen").value=ten
     document.getElementById("editUser").value=user
+    document.getElementById("laDaiDien").checked = laDaiDien
 
     document.getElementById("btnSave").innerText="Cập nhật"
 }
 
-function resetForm()
-{
-    document.getElementById("editId").value=""
-    document.getElementById("editTen").value=""
-    document.getElementById("editUser").value=""
+    function resetForm()
+    {
+        document.getElementById("editId").value=""
+        document.getElementById("editTen").value=""
+        document.getElementById("editUser").value=""
+        document.getElementById("laDaiDien").checked = false
+        document.getElementById("btnSave").innerText="Thêm"
+    }
 
-    document.getElementById("btnSave").innerText="Thêm"
-}
-
-setTimeout(function(){
-    var alert=document.querySelector(".alert")
-    if(alert){alert.style.display="none"}
-},3000)
-
+    setTimeout(function(){
+        var alert=document.querySelector(".alert")
+        if(alert){alert.style.display="none"}
+    },3000)
+        document.getElementById("formGV").addEventListener("submit", function () {
+        var isChecked = document.getElementById("laDaiDien").checked;
+        document.getElementById("hiddenDaiDien").value = isChecked;
+    });
 </script>

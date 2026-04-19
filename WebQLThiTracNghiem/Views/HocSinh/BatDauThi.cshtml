@@ -1,250 +1,545 @@
 ﻿@model WebQLThiTracNghiem.Models.ViewModels.BatDauThiViewModel
-
 @{
-    Layout = "~/Views/Shared/_LayoutThi.cshtml";
-    ViewData["Title"] = "Xác nhận bắt đầu thi";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuẩn bị làm bài</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
 
-<div class="container py-5">
-    <div class="mx-auto" style="max-width: 960px;">
-        <div class="text-center mb-4">
-            <h1 class="fw-bold mb-2" style="color:#0f172a;">Xác nhận bắt đầu thi</h1>
-            <p class="text-muted mb-0" style="font-size: 17px;">
-                Vui lòng kiểm tra thông tin bài thi trước khi bắt đầu làm bài
-            </p>
-        </div>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-        <div class="exam-confirm-card">
-            <div class="exam-confirm-top">
-                <div class="exam-badge">Khu vực làm bài thi</div>
-                <h2 class="exam-title">@Model.TenDotThi</h2>
-                <p class="exam-subtitle mb-0">
-                    Bạn sắp tham gia bài thi <strong>@Model.TenDeThi</strong> - môn <strong>@Model.MonThi</strong>.
-                </p>
-            </div>
+            body::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1") center/cover no-repeat;
+                opacity: 0.15;
+                z-index: 0;
+            }
 
-            <div class="exam-alert-box">
-                <span class="exam-alert-icon">ℹ</span>
-                <span>
-                    Sau khi nhấn <strong>“Bắt đầu làm bài”</strong>, hệ thống sẽ ghi nhận thời gian và chuyển sang giao diện làm bài.
-                </span>
-            </div>
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            filter: blur(2px);
+            animation: float 12s infinite ease-in-out;
+           
+        }
 
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="exam-info-card">
-                        <div class="exam-info-label">Thời gian bắt đầu</div>
-                        <div class="exam-info-value">@Model.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")</div>
-                    </div>
-                </div>
+            .bubble.x1 {
+                width: 120px;
+                height: 120px;
+                left: 10%;
+                bottom: -100px;
+            }
 
-                <div class="col-md-6">
-                    <div class="exam-info-card">
-                        <div class="exam-info-label">Thời gian kết thúc</div>
-                        <div class="exam-info-value">@Model.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")</div>
-                    </div>
-                </div>
-            </div>
+            .bubble.x2 {
+                width: 160px;
+                height: 160px;
+                left: 70%;
+                bottom: -120px;
+                animation-duration: 15s;
+            }
 
-            <div class="row g-4 mb-4">
-                <div class="col-md-6">
-                    <div class="exam-info-card">
-                        <div class="exam-info-label">Thời gian làm bài</div>
-                        <div class="exam-info-value">@Model.ThoiGianLamBai phút</div>
-                    </div>
-                </div>
+            .bubble.x3 {
+                width: 90px;
+                height: 90px;
+                left: 40%;
+                bottom: -90px;
+                animation-duration: 13s;
+            }
 
-                <div class="col-md-6">
-                    <div class="exam-info-card">
-                        <div class="exam-info-label">Số lượng câu hỏi</div>
-                        <div class="exam-info-value">@Model.SoLuongCauHoi câu</div>
-                    </div>
-                </div>
-            </div>
+            .bubble.x4 {
+                width: 140px;
+                height: 140px;
+                left: 85%;
+                bottom: -110px;
+                animation-duration: 17s;
+            }
 
-            <div class="exam-note-box mb-4">
-                <h5 class="fw-bold mb-3" style="color:#0f172a;">Lưu ý trước khi vào thi</h5>
+        @@keyframes float {
+            0%
 
-                <div class="exam-note-item">
-                    <span class="exam-note-dot"></span>
-                    <span>Không tắt trình duyệt trong quá trình làm bài.</span>
-                </div>
+        {
+            transform: translateY(0);
+        }
 
-                <div class="exam-note-item">
-                    <span class="exam-note-dot"></span>
-                    <span>Hệ thống có thể tự động nộp bài khi hết thời gian làm bài.</span>
-                </div>
+        50% {
+            transform: translateY(-400px);
+        }
 
-                <div class="exam-note-item">
-                    <span class="exam-note-dot"></span>
-                    <span>Hãy kiểm tra kỹ đáp án trước khi nhấn nộp bài.</span>
-                </div>
-            </div>
+        100% {
+            transform: translateY(0);
+        }
 
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <form asp-action="TaoLuotThi" method="post" class="m-0">
-                    <input type="hidden" name="maDotThi" value="@Model.MaDotThi" />
-                    <button type="submit" class="btn exam-start-btn">
-                        Bắt đầu làm bài
-                    </button>
-                </form>
+        }
 
-                <a asp-controller="HocSinh"
-                   asp-action="DanhSachDotThi"
-                   class="btn exam-back-btn">
-                    Quay lại
-                </a>
-            </div>
+        .card {
+            width: 420px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 24px;
+            padding: 25px;
+            text-align: center;
+            /* 🔥 VIỀN XỊN */
+            border: 1.5px solid rgba(56,189,248,0.6);
+            /* 🔥 GLOW (QUAN TRỌNG NHẤT) */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 25px rgba(56,189,248,0.4), 0 0 60px rgba(56,189,248,0.25);
+            backdrop-filter: blur(6px);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.25), 0 0 35px rgba(56,189,248,0.6), 0 0 80px rgba(56,189,248,0.35);
+            }
+
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 25px 60px rgba(0,0,0,0.25), 0 0 35px rgba(56,189,248,0.6), 0 0 80px rgba(56,189,248,0.35);
+            }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #38bdf8;
+        }
+
+        h2 {
+            margin-bottom: 5px;
+            color: #0f172a;
+        }
+
+        .info {
+            text-align: left;
+            margin-top: 15px;
+        }
+
+            .info p {
+                margin: 8px 0;
+                color: #334155;
+                font-size: 14px;
+                white-space: nowrap;
+            }
+
+        .select-box {
+            margin: 25px 0 18px;
+            text-align: left;
+        }
+
+            .select-box label {
+                display: block;
+                margin-bottom: 6px;
+                font-weight: 600;
+                color: #1e293b;
+            }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #cbd5f5;
+            outline: none;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .btn-start {
+            width: 100%;
+            padding: 12px;
+            background: #38bdf8;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .btn-start:hover {
+                background: #2563eb;
+                transform: scale(1.03);
+            }
+
+        .disabled {
+            background: #94a3b8 !important;
+            cursor: not-allowed;
+        }
+
+        .menu-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .menu-icon {
+            font-size: 26px;
+            cursor: pointer;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 45px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            min-width: 200px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: 0.25s ease;
+        }
+
+            .dropdown-menu.show {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .dropdown-menu a {
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+                color: #0f172a;
+                transition: 0.2s;
+            }
+
+                .dropdown-menu a:hover {
+                    background: #eff6ff;
+                }
+        /* ===== SLIDE NHẸ NHÀNG ===== */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-40px); /* 🔥 chỉ lệch nhẹ thôi */
+            animation: slideSoft 0.6s ease-out forwards;
+        }
+
+        @@keyframes slideSoft {
+            from
+
+        {
+            opacity: 0;
+            transform: translateX(-40px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        }
+
+        }
+
+        .info-box {
+            margin-top: 15px;
+            width: 100%;
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* mỗi dòng */
+        .row {
+            display: flex;
+            align-items: center;
+            padding: 8px 0; /* thay margin = padding cho đẹp */
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2); /* 🔥 dòng kẻ */
+        }
+
+            /* bỏ dòng cuối */
+            .row:last-child {
+                border-bottom: none;
+            }
+
+        /* label */
+        .label {
+            width: 160px; /* 🔥 tăng để không lệch */
+            min-width: 160px; /* khóa cứng */
+            font-weight: 600;
+            color: #1e293b;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        /* value */
+        .value {
+            flex: 1;
+            text-align: left;
+            color: #475569;
+            font-size: 14px;
+        }
+
+     
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+            .btn-row .btn-start,
+            .btn-row .btn-login {
+                flex: 1;
+            }
+
+        .btn-login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            color: #3b82f6;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #cbd5f5;
+            transition: 0.2s;
+        }
+
+            .btn-login:hover {
+                background: #eff6ff;
+            }
+
+            // Thông báo
+        .alert {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: left;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .alert.success {
+            background: #dcfce7;
+            color: #166534;
+            border-left: 5px solid #22c55e;
+        }
+
+        .alert.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 5px solid #ef4444;
+        }
+
+       @@keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="bubble x1"></div>
+    <div class="bubble x2"></div>
+    <div class="bubble x3"></div>
+    <div class="bubble x4"></div>
+    <!-- MENU ☰ -->
+    <div class="menu-wrapper">
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="/HocSinh/DoiMatKhau">
+                🔒 Đổi mật khẩu
+            </a>       
         </div>
     </div>
-</div>
+    <div class="card" id="startCard">
+        <!-- Avatar -->
+        <img src="@Url.Content(string.IsNullOrEmpty(Model.AvatarUrl)
+                 ? "~/images/avatar-default.png"
+                 : (Model.AvatarUrl.StartsWith("/Avatar")
+                     ? "~" + Model.AvatarUrl
+                     : "~/Avatar/" + Model.AvatarUrl))"
+             class="avatar" />
+       <div class="info-box">
+            <div class="row">
+                <div class="label">Họ tên:</div>
+                <div class="value">@Model.HoTen</div>
+            </div>
 
-<style>
-    .exam-confirm-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 28px;
-        padding: 32px;
-        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            <div class="row">
+                <div class="label">Mã học sinh:</div>
+                <div class="value">@Model.MaHocSinh</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Số báo danh:</div>
+                <div class="value">@Model.SoBaoDanh</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Lớp:</div>
+                <div class="value">@Model.Lop</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Ngày sinh:</div>
+                <div class="value">@Model.NgaySinh?.ToString("dd/MM/yyyy")</div>
+            </div>
+
+            <div class="row">
+                <div class="label">Giới tính:</div>
+                <div class="value">@Model.GioiTinh</div>
+            </div>
+        </div>
+      
+        <!-- 🔥 FORM POST -->
+        <form method="post" action="/HocSinh/TaoLuotThi">
+            <div class="select-box">
+                <label>Chọn đợt thi:</label>
+                <select id="dotThi" name="maDotThi" required>
+                    <option value="">-- Chọn đợt thi --</option>
+
+    
+    @foreach (var dot in Model.DanhSachDotThi)
+{
+    if (dot.DaNopBai)
+    {
+        <option value="@dot.MaDotThi" disabled>
+            @dot.MonThi - @dot.TenDotThi
+            (@dot.ThoiGianBatDau.ToString("dd/MM HH:mm") - @dot.ThoiGianKetThuc.ToString("HH:mm"))
+            - @dot.ThoiGianLamBai phút
+            (ĐÃ NỘP)
+        </option>
     }
-
-    .exam-confirm-top {
-        margin-bottom: 24px;
+    else
+    {
+        <option value="@dot.MaDotThi">
+            @dot.MonThi - @dot.TenDotThi
+            (@dot.ThoiGianBatDau.ToString("dd/MM HH:mm") - @dot.ThoiGianKetThuc.ToString("HH:mm"))
+            - @dot.ThoiGianLamBai phút
+        </option>
     }
+}
+                </select>
+            </div>
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert success auto-hide">
+                    ✔️ @TempData["Success"]
+                </div>
+            }
 
-    .exam-badge {
-        display: inline-block;
-        background: #eff6ff;
-        color: #2563eb;
-        border: 1px solid #bfdbfe;
-        padding: 8px 14px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 700;
-        margin-bottom: 16px;
+            @if (TempData["Loi"] != null)
+            {
+                <div class="alert error auto-hide">
+                    ❌ @TempData["Loi"]
+                </div>
+            }
+
+            <div class="btn-row">
+                <a href="/Home/DangNhap" class="btn-login">
+                    Quay lại
+                </a>
+
+                <button type="submit" id="btnStart" class="btn-start disabled" disabled>
+                    BẮT ĐẦU LÀM BÀI
+                </button>
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+              document.addEventListener("DOMContentLoaded", function () {
+
+            const select = document.getElementById("dotThi");
+            const btn = document.getElementById("btnStart");
+            const menu = document.getElementById("dropdownMenu");
+            const icon = document.querySelector(".menu-icon");
+            const card = document.getElementById("startCard");
+
+            // ===== ENABLE BUTTON =====
+           select.addEventListener("change", function () {
+
+    const selectedOption = this.options[this.selectedIndex];
+
+    if (this.value !== "" && !selectedOption.disabled) {
+        btn.classList.remove("disabled");
+        btn.disabled = false;
+    } else {
+        btn.classList.add("disabled");
+        btn.disabled = true;
     }
+});
 
-    .exam-title {
-        font-size: 34px;
-        font-weight: 800;
-        color: #0f172a;
-        margin-bottom: 10px;
-        line-height: 1.25;
-    }
+            // ===== MENU TOGGLE =====
+            window.toggleMenu = function () {
+                menu.classList.toggle("show");
+            };
 
-    .exam-subtitle {
-        font-size: 17px;
-        color: #475569;
-        line-height: 1.7;
-    }
+            // 🔥 TỰ ĐỘNG MỞ MENU
+            setTimeout(() => {
+                menu.classList.add("show");
+            }, 300);
 
-    .exam-alert-box {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: #ecfeff;
-        border: 1px solid #bae6fd;
-        color: #0f172a;
-        border-radius: 18px;
-        padding: 16px 18px;
-        margin-bottom: 24px;
-        font-size: 16px;
-    }
+            // CLICK NGOÀI → ĐÓNG MENU
+            document.addEventListener("click", function (e) {
+                if (!icon.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.remove("show");
+                }
+            });
 
-    .exam-alert-icon {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: #0ea5e9;
-        color: #fff;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        flex-shrink: 0;
-    }
+            // ===== CARD ANIMATION =====
+            setTimeout(() => {
+                card.classList.add("slide-in-left");
+            }, 100);
 
-    .exam-info-card {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 20px;
-        padding: 22px;
-        height: 100%;
-    }
+        });
+               
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                document.querySelectorAll(".auto-hide").forEach(el => {
+                    el.style.opacity = "0";
+                    el.style.transition = "opacity 0.5s ease";
 
-    .exam-info-label {
-        font-size: 14px;
-        color: #64748b;
-        margin-bottom: 8px;
-    }
+                    setTimeout(() => {
+                        el.remove();
+                    }, 500);
+                });
+            }, 3000);
+        });
+  
+    </script>
 
-    .exam-info-value {
-        font-size: 28px;
-        font-weight: 800;
-        color: #0f172a;
-        line-height: 1.3;
-    }
-
-    .exam-note-box {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 20px;
-        padding: 22px;
-    }
-
-    .exam-note-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 10px;
-        color: #334155;
-        font-size: 16px;
-        line-height: 1.6;
-    }
-
-        .exam-note-item:last-child {
-            margin-bottom: 0;
-        }
-
-    .exam-note-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #2563eb;
-        margin-top: 8px;
-        flex-shrink: 0;
-    }
-
-    .exam-start-btn {
-        background: #2563eb;
-        border: none;
-        color: #fff;
-        font-weight: 700;
-        font-size: 17px;
-        padding: 14px 28px;
-        border-radius: 14px;
-        min-width: 220px;
-        box-shadow: 0 10px 24px rgba(37, 99, 235, 0.25);
-    }
-
-        .exam-start-btn:hover {
-            background: #1d4ed8;
-            color: #fff;
-        }
-
-    .exam-back-btn {
-        background: #ffffff;
-        border: 1px solid #cbd5e1;
-        color: #475569;
-        font-weight: 700;
-        font-size: 17px;
-        padding: 14px 28px;
-        border-radius: 14px;
-        min-width: 180px;
-    }
-
-        .exam-back-btn:hover {
-            background: #f8fafc;
-            color: #334155;
-        }
-</style>
+</body>
+</html>

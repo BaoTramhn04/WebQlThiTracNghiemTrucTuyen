@@ -21,5 +21,7 @@ namespace WebQLThiTracNghiem.Models
 
         public int MaVaiTro { get; set; }
         public HoSoCaNhan HoSoCaNhan { get; set; }
+        public int SoLanDangNhapSai { get; set; } = 0;
+
     }
 }

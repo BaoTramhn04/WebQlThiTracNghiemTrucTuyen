@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Import đề thi";
+}
+
+<div class="gv-card shadow-sm">
+    <h3 class="mb-3">📥 Import đề thi</h3>
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+
+    <form asp-action="ImportDeThi" method="post" enctype="multipart/form-data">
+
+        <!-- Tên đề -->
+        <div class="mb-3">
+            <label class="form-label">Tên đề thi</label>
+            <input type="text" name="tenDeThi" class="form-control"
+                   placeholder="Nhập tên đề..." required />
+        </div>
+
+        <!-- KHỐI -->
+        <div class="mb-3">
+            <label class="form-label">Khối</label>
+            <select name="khoi" class="form-select" required>
+                <option value="">-- Chọn khối --</option>
+                <option value="10">Khối 10</option>
+                <option value="11">Khối 11</option>
+                <option value="12">Khối 12</option>
+            </select>
+        </div>
+
+        <!-- Môn học -->
+        <div class="mb-3">
+            <label class="form-label">Môn học</label>
+            <select name="maMonHoc" class="form-select" required>
+                <option value="">-- Chọn môn học --</option>
+
+                @if (ViewBag.MonHoc != null)
+                {
+                    foreach (var mon in ViewBag.MonHoc)
+                    {
+                        <option value="@mon.MaMonHoc">
+                            @mon.TenMonHoc
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <!-- Loại đề -->
+        <div class="mb-3">
+            <label class="form-label">Loại đề</label>
+
+            @if (ViewBag.LaDaiDien == true)
+            {
+                <select name="LoaiDe" class="form-select">
+                    <option value="Rieng">Riêng</option>
+                    <option value="Chung">Chung</option>
+                </select>
+                <small class="text-success">✔ Bạn là giáo viên đại diện (được tạo đề chung)</small>
+            }
+            else
+            {
+<input type="hidden" name="LoaiDe" value="Rieng" />
+<input type="text" class="form-control" value="Riêng" disabled />
+                <small class="text-muted">Bạn chỉ được tạo đề riêng</small>
+            }
+        </div>
+
+        <!-- Thời gian -->
+        <div class="mb-3">
+            <label class="form-label">Thời gian làm bài (phút)</label>
+            <input type="number" name="thoiGianLamBai"
+                   class="form-control"
+                   value="15"
+                   min="1" required />
+        </div>
+
+        <!-- File -->
+        <div class="mb-3">
+            <label class="form-label">Chọn file Excel</label>
+            <input type="file" name="file"
+                   class="form-control"
+                   accept=".xlsx,.xls" required />
+        </div>
+
+        <!-- Hướng dẫn -->
+        <div class="mb-3 p-3 bg-light rounded border">
+            <small class="text-muted">
+                <b>📊 Định dạng Excel:</b><br /><br />
+
+                <b>Cột 1:</b> Nội dung câu hỏi<br />
+                <b>Cột 2-5:</b> Đáp án A, B, C, D<br />
+                <b>Cột 6:</b> Đáp án đúng (A/B/C/D)<br />
+                <b>Cột 7:</b> Tên chuyên đề (thuộc môn đã chọn)<br />
+                <b>Cột 8:</b> Mức độ (1-3 hoặc Nhận biết / Thông hiểu / Vận dụng)
+            </small>
+        </div>
+
+        <!-- Button -->
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                📥 Import đề thi
+            </button>
+
+            <a asp-action="DeThi" class="btn btn-secondary">
+                ← Quay lại
+            </a>
+        </div>
+
+    </form>
+</div>

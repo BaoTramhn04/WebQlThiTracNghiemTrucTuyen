@@ -1,0 +1,197 @@
+﻿@model IEnumerable<WebQLThiTracNghiem.Models.ViewModels.ThongKeLopVM>
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h3 class="fw-bold mb-4">📊 Dashboard thống kê hệ thống</h3>
+
+    <!-- 🔥 FILTER -->
+    <form method="get" class="card p-3 mb-4 shadow-sm border-0">
+        <div class="row g-2">
+
+            <div class="col-md-4">
+                <select name="maDotThi" class="form-select">
+                    <option value="">-- Tất cả đợt thi --</option>
+                    @foreach (var dt in ViewBag.DotThiList)
+                    {
+                        <option value="@dt.MaDotThi"
+                                selected="@(ViewBag.SelectedDotThi == dt.MaDotThi)">
+                            @dt.TenDotThi
+                        </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <select name="khoi" class="form-select">
+                    <option value="">-- Khối --</option>
+                    <option value="10" selected="@(ViewBag.SelectedKhoi == 10)">Khối 10</option>
+                    <option value="11" selected="@(ViewBag.SelectedKhoi == 11)">Khối 11</option>
+                    <option value="12" selected="@(ViewBag.SelectedKhoi == 12)">Khối 12</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 d-flex gap-2">
+                <button class="btn btn-primary w-100">Lọc</button>
+                <a asp-action="ThongKeTong" class="btn btn-secondary w-100">Reset</a>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- 🔥 SUMMARY -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h6>Tổng lớp</h6>
+                    <h3>@Model.Count()</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h6>Lớp tốt nhất</h6>
+                    <h5 class="text-success">@ViewBag.TopLop?.TenLop</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h6>Lớp yếu nhất</h6>
+                    <h5 class="text-danger">@ViewBag.LopYeu?.TenLop</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 🔥 CHART -->
+    <div class="card mb-4 shadow border-0">
+        <div class="card-header fw-bold text-white bg-primary">
+            📊 So sánh điểm trung bình các lớp
+        </div>
+        <div class="card-body">
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+
+    <!-- 🔥 TABLE -->
+    <div class="card shadow border-0">
+
+        <div class="card-header fw-bold bg-dark text-white">
+            📋 Chi tiết thống kê lớp
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover text-center align-middle">
+
+                <thead class="table-light">
+                    <tr>
+                        <th>Lớp</th>
+                        <th>👨‍🎓 HS</th>
+                        <th>📝 Đợt thi</th>
+                        <th>🎯 Điểm TB</th>
+                        <th>✅ Tỷ lệ đạt</th>
+                        <th>🏆 Rank</th>
+                        <th>📊 Chất lượng</th>
+                        <th>📚 Theo môn</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="@(item.Rank == 1 ? "table-success fw-bold" : "")">
+
+                            <td>@item.TenLop</td>
+                            <td>@item.SoHocSinh</td>
+                            <td>@item.SoDotThi</td>
+
+                            <td>
+                                <span class="badge bg-primary">
+                                    @item.DiemTB.ToString("0.0")
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info">
+                                    @item.TyLeDat.ToString("0.0") %
+                                </span>
+                            </td>
+
+                            <td>#@item.Rank</td>
+
+                            <!-- 🔥 CHẤT LƯỢNG -->
+                            <td style="min-width:180px;">
+                                <div class="small text-start">
+                                    🟢 Giỏi: @item.SoGioi <br />
+                                    🔵 Khá: @item.SoKha <br />
+                                    🟡 TB: @item.SoTB <br />
+                                    🔴 Yếu: @item.SoYeu
+                                </div>
+                            </td>
+
+                            <!-- 🔥 THEO MÔN -->
+                            <td style="min-width:220px; text-align:left;">
+                                @if (item.ThongKeMon != null && item.ThongKeMon.Any())
+                                {
+                                    foreach (var mon in item.ThongKeMon)
+                                    {
+                                        <div class="small mb-1">
+                                            <b>@mon.Mon</b>:
+                                            @mon.SoLuot lượt |
+                                            <span class="text-primary">@mon.DiemTB.ToString("0.0")</span>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Không có dữ liệu</span>
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- 🔥 CHART -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const labels = @Html.Raw(Json.Serialize(Model.Select(x => x.TenLop)));
+    const data = @Html.Raw(Json.Serialize(Model.Select(x => x.DiemTB)));
+
+    new Chart(document.getElementById('chart'), {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Điểm trung bình',
+                data: data
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>

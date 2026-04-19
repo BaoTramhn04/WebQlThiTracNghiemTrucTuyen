@@ -21,9 +21,10 @@ namespace WebQLThiTracNghiem.Models
         public bool TronDapAn { get; set; }
 
         public int NguoiTao { get; set; }
-
+        public int Khoi { get; set; }
         public bool TrangThai { get; set; }
         [ForeignKey("MaMonHoc")]
         public MonHoc MonHoc { get; set; }
+        public string LoaiDe { get; set; } // "Chung" | "Lop"
     }
 }

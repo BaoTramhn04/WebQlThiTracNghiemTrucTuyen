@@ -30,7 +30,7 @@ namespace WebQLThiTracNghiem.Controllers
                 return RedirectToAction("BangDieuKhien", "GiaoVien");
 
             if (vaiTro == 3)
-                return RedirectToAction("DanhSachDotThi", "HocSinh");
+                return RedirectToAction("BatDauThi", "HocSinh");
 
             return View("~/Views/Home/DangNhap.cshtml");
         }
@@ -64,14 +64,43 @@ namespace WebQLThiTracNghiem.Controllers
                 }
 
                 var user = _context.NguoiDung
-                    .FirstOrDefault(x => x.MaNguoiDung == hs.MaNguoiDung && x.TrangThai);
+     .FirstOrDefault(x => x.MaNguoiDung == hs.MaNguoiDung);
 
-                if (user == null || user.MatKhau.Trim() != model.MatKhau.Trim())
+                if (user == null)
                 {
-                    ViewBag.LoiDangNhap = "Sai mật khẩu";
+                    ViewBag.LoiDangNhap = "Tài khoản không tồn tại";
                     return View("~/Views/Home/DangNhap.cshtml", model);
                 }
 
+                // 🔥 THÊM ĐOẠN NÀY (QUAN TRỌNG)
+                if (!user.TrangThai)
+                {
+                    ViewBag.LoiDangNhap = "Tài khoản đã bị khóa!";
+                    return View("~/Views/Home/DangNhap.cshtml", model);
+                }
+
+                if (user.MatKhau.Trim() != model.MatKhau.Trim())
+                {
+                    user.SoLanDangNhapSai++;
+
+                    if (user.SoLanDangNhapSai >= 3)
+                    {
+                        user.TrangThai = false;
+                        _context.SaveChanges();
+
+                        ViewBag.LoiDangNhap = "Tài khoản đã bị khóa do nhập sai quá 3 lần!";
+                        return View("~/Views/Home/DangNhap.cshtml", model);
+                    }
+
+                    _context.SaveChanges();
+
+                    ViewBag.LoiDangNhap = $"Sai mật khẩu ({user.SoLanDangNhapSai}/3)";
+                    return View("~/Views/Home/DangNhap.cshtml", model);
+                }
+
+             
+                user.SoLanDangNhapSai = 0;
+                _context.SaveChanges();
                 // ✅ Session học sinh
                 HttpContext.Session.SetInt32("VaiTro", 3);
                 HttpContext.Session.SetInt32("MaNguoiDung", user.MaNguoiDung);
@@ -85,20 +114,48 @@ namespace WebQLThiTracNghiem.Controllers
 
                 HttpContext.Session.SetString("TenNguoiDung", hoSo?.HoTen ?? "Học sinh");
 
-                return RedirectToAction("DanhSachDotThi", "HocSinh");
+                return RedirectToAction("BatDauThi", "HocSinh");
             }
 
             // =========================
             // 2. GIÁO VIÊN / ADMIN (NHẬP CHỮ)
             // =========================
             var userLogin = _context.NguoiDung
-                .FirstOrDefault(x => x.TenDangNhap == input && x.TrangThai);
+                .FirstOrDefault(x => x.TenDangNhap == input);
 
-            if (userLogin == null || userLogin.MatKhau.Trim() != model.MatKhau.Trim())
+            if (userLogin == null)
             {
-                ViewBag.LoiDangNhap = "Sai tên đăng nhập hoặc mật khẩu";
+                ViewBag.LoiDangNhap = "Tài khoản không tồn tại";
                 return View("~/Views/Home/DangNhap.cshtml", model);
             }
+
+            // 🔥 THÊM ĐOẠN NÀY
+            if (!userLogin.TrangThai)
+            {
+                ViewBag.LoiDangNhap = "Tài khoản đã bị khóa!";
+                return View("~/Views/Home/DangNhap.cshtml", model);
+            }
+
+            if (userLogin.MatKhau.Trim() != model.MatKhau.Trim())
+            {
+                userLogin.SoLanDangNhapSai++;
+
+                if (userLogin.SoLanDangNhapSai >= 3)
+                {
+                    userLogin.TrangThai = false;
+                    _context.SaveChanges();
+
+                    ViewBag.LoiDangNhap = "Tài khoản đã bị khóa do nhập sai quá 3 lần!";
+                    return View("~/Views/Home/DangNhap.cshtml", model);
+                }
+
+                _context.SaveChanges();
+
+                ViewBag.LoiDangNhap = $"Sai ({userLogin.SoLanDangNhapSai}/3)";
+                return View("~/Views/Home/DangNhap.cshtml", model);
+            }
+
+         
 
             // 🔥 FIX QUAN TRỌNG: map role chuẩn
             int vaiTro = userLogin.MaVaiTro;
@@ -106,7 +163,8 @@ namespace WebQLThiTracNghiem.Controllers
             // Nếu DB bạn không đúng chuẩn → ép lại
             if (vaiTro != 1 && vaiTro != 2)
                 vaiTro = 2; // mặc định giáo viên
-
+            userLogin.SoLanDangNhapSai = 0;
+            _context.SaveChanges();
             HttpContext.Session.SetInt32("VaiTro", vaiTro);
             HttpContext.Session.SetInt32("MaNguoiDung", userLogin.MaNguoiDung);
 
@@ -128,6 +186,7 @@ namespace WebQLThiTracNghiem.Controllers
                 .FirstOrDefault(x => x.MaNguoiDung == userLogin.MaNguoiDung);
 
             HttpContext.Session.SetString("TenNguoiDung", hoSoGV?.HoTen ?? "Người dùng");
+
 
             // =========================
             // ĐIỀU HƯỚNG

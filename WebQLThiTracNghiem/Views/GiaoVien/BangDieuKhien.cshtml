@@ -5,101 +5,133 @@
     ViewData["Title"] = "Bảng điều khiển";
 }
 
-<div class="gv-stats">
-    <div class="gv-stat-box">
-        <h3>@ViewBag.SoLop</h3>
-        <p>Lớp đang quản lý</p>
+<!-- ===== STATS (GIỐNG ADMIN) ===== -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-blue">
+            <div class="card-icon">📚</div>
+            <h3>@ViewBag.SoLop</h3>
+            <p>Lớp</p>
+        </div>
     </div>
-    <div class="gv-stat-box">
-        <h3>@ViewBag.SoHocSinh</h3>
-        <p>Học sinh thuộc lớp phụ trách</p>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-green">
+            <div class="card-icon">🎓</div>
+            <h3>@ViewBag.SoHocSinh</h3>
+            <p>Học sinh</p>
+        </div>
     </div>
-    <div class="gv-stat-box">
-        <h3>@ViewBag.SoCauHoi</h3>
-        <p>Câu hỏi trong ngân hàng</p>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-purple">
+            <div class="card-icon">❓</div>
+            <h3>@ViewBag.SoCauHoi</h3>
+            <p>Câu hỏi</p>
+        </div>
     </div>
-    <div class="gv-stat-box">
-        <h3>@ViewBag.SoDeThi</h3>
-        <p>Đề thi đã tạo</p>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-orange">
+            <div class="card-icon">📝</div>
+            <h3>@ViewBag.SoDeThi</h3>
+            <p>Đề thi</p>
+        </div>
     </div>
-    <div class="gv-stat-box">
-        <h3>@ViewBag.SoDotThi</h3>
-        <p>Đợt thi đã tạo</p>
+
+    <div class="col-md-3">
+        <div class="stat-card gradient-red">
+            <div class="card-icon">⏳</div>
+            <h3>@ViewBag.SoDotThi</h3>
+            <p>Đợt thi</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== QUICK ACTION ===== -->
+<div class="card custom-card mb-4">
+    <div class="card-header fw-bold">
+        ⚡ Chức năng nhanh
+    </div>
+
+    <div class="card-body">
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <a asp-action="HocSinh" class="action-box">👨‍🎓 Học sinh</a>
+            </div>
+
+            <div class="col-md-4">
+                <a asp-action="CauHoi" class="action-box">❓ Câu hỏi</a>
+            </div>
+
+            <div class="col-md-4">
+                <a asp-action="DeThi" class="action-box">📝 Đề thi</a>
+            </div>
+
+            <div class="col-md-4">
+                <a asp-action="DotThi" class="action-box">⏳ Đợt thi</a>
+            </div>
+
+            <div class="col-md-4">
+                <a asp-action="ThongKe" class="action-box">📊 Thống kê</a>
+            </div>
+
+            <div class="col-md-4">
+                <a asp-action="ThongTinCaNhan" class="action-box">👤 Cá nhân</a>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<div class="gv-card">
-    <div class="gv-card-title">Chức năng nhanh</div>
+<!-- ===== HOẠT ĐỘNG ===== -->
+<div class="card custom-card">
 
-    <div class="gv-actions">
-        <a asp-controller="GiaoVien" asp-action="HocSinh" class="gv-action-card">
-            <h4>Quản lý học sinh</h4>
-            <p>Quản lý danh sách học sinh theo lớp, tìm kiếm và theo dõi thông tin học sinh.</p>
-        </a>
+    <div class="card-header d-flex justify-content-between">
+        <span>📌 Hoạt động gần đây</span>
 
-        <a asp-controller="GiaoVien" asp-action="CauHoi" class="gv-action-card">
-            <h4>Ngân hàng câu hỏi</h4>
-            <p>Thêm, sửa, ẩn câu hỏi và tổ chức câu hỏi theo môn học, chuyên đề.</p>
-        </a>
-
-        <a asp-controller="GiaoVien" asp-action="DeThi" class="gv-action-card">
-            <h4>Quản lý đề thi</h4>
-            <p>Tạo đề thi từ ngân hàng câu hỏi, cấu hình thời gian và nội dung đề thi.</p>
-        </a>
-
-        <a asp-controller="GiaoVien" asp-action="DotThi" class="gv-action-card">
-            <h4>Quản lý đợt thi</h4>
-            <p>Tạo đợt thi, gán lớp tham gia và quản lý thời gian bắt đầu, kết thúc.</p>
-        </a>
-
-        <a asp-controller="GiaoVien" asp-action="ThongKe" class="gv-action-card">
-            <h4>Thống kê kết quả</h4>
-            <p>Xem điểm trung bình, số lượng tham gia và theo dõi kết quả thi của học sinh.</p>
-        </a>
-
-        <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan" class="gv-action-card">
-            <h4>Thông tin cá nhân</h4>
-            <p>Xem thông tin giáo viên và cập nhật mật khẩu tài khoản.</p>
+        <a asp-action="TatCaHoatDong" class="btn btn-sm btn-outline-primary">
+            Xem tất cả
         </a>
     </div>
-</div>
 
-<div class="gv-card">
-    <div class="gv-card-title">Hoạt động gần đây</div>
-
-    <div class="gv-table-wrap">
-        <table class="gv-table">
-            <thead>
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
                 <tr>
                     <th>Đợt thi</th>
-                    <th>Môn học</th>
+                    <th>Môn</th>
                     <th>Bắt đầu</th>
                     <th>Kết thúc</th>
                     <th>Trạng thái</th>
                 </tr>
             </thead>
+
             <tbody>
                 @if (Model != null && Model.Any())
                 {
-                    @foreach (var item in Model)
+                    foreach (var item in Model)
                     {
                         <tr>
                             <td>@item.TenDotThi</td>
                             <td>@item.TenMonHoc</td>
-                            <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM/yyyy HH:mm"))</td>
-                            <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM/yyyy HH:mm"))</td>
+                            <td>@(((DateTime)item.ThoiGianBatDau).ToString("dd/MM HH:mm"))</td>
+                            <td>@(((DateTime)item.ThoiGianKetThuc).ToString("dd/MM HH:mm"))</td>
                             <td>
                                 @if (item.TrangThaiText == "Đang mở")
                                 {
-                                    <span class="gv-badge gv-badge-success">Đang mở</span>
+                                    <span class="badge bg-success">Đang mở</span>
                                 }
                                 else if (item.TrangThaiText == "Sắp diễn ra")
                                 {
-                                    <span class="gv-badge gv-badge-warning">Sắp diễn ra</span>
+                                    <span class="badge bg-warning text-dark">Sắp diễn ra</span>
                                 }
                                 else
                                 {
-                                    <span class="gv-badge gv-badge-info">Đã kết thúc</span>
+                                    <span class="badge bg-primary">Đã kết thúc</span>
                                 }
                             </td>
                         </tr>
@@ -108,10 +140,97 @@
                 else
                 {
                     <tr>
-                        <td colspan="5" class="text-center">Chưa có hoạt động nào.</td>
+                        <td colspan="5" class="text-center text-muted">
+                            Chưa có hoạt động nào
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+
+<!-- ===== STYLE ===== -->
+<style>
+
+    /* CARD ADMIN STYLE */
+    .stat-card {
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+        .stat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(59,130,246,0.2);
+        }
+
+    .card-icon {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    .stat-card h3 {
+        font-weight: 700;
+        color: #1e40af;
+    }
+
+    .stat-card p {
+        font-size: 14px;
+        color: #3b82f6;
+    }
+
+    /* gradient */
+    .gradient-blue {
+        background: linear-gradient(135deg,#eff6ff,#dbeafe);
+    }
+
+    .gradient-green {
+        background: linear-gradient(135deg,#ecfdf5,#d1fae5);
+    }
+
+    .gradient-purple {
+        background: linear-gradient(135deg,#f5f3ff,#ede9fe);
+    }
+
+    .gradient-orange {
+        background: linear-gradient(135deg,#fff7ed,#ffedd5);
+    }
+
+    .gradient-red {
+        background: linear-gradient(135deg,#fef2f2,#fee2e2);
+    }
+
+    /* card */
+    .custom-card {
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    /* action */
+    .action-box {
+        display: block;
+        padding: 14px;
+        border-radius: 10px;
+        background: #f9fafb;
+        text-decoration: none;
+        color: #111;
+        text-align: center;
+        transition: 0.2s;
+        border: 1px solid #e5e7eb;
+    }
+
+        .action-box:hover {
+            background: #eff6ff;
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+    /* table hover */
+    .table-hover tbody tr:hover {
+        background: #eff6ff;
+    }
+
+</style>

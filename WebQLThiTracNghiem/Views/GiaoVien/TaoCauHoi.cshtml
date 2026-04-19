@@ -8,7 +8,7 @@
 <div class="gv-card shadow-sm">
     <div class="mb-3">
         <h3 class="mb-1">Thêm câu hỏi mới</h3>
-        <p class="text-muted mb-0">Nhập đầy đủ nội dung câu hỏi và 4 đáp án.</p>
+        <p class="text-muted mb-0">Bạn có thể nhập nội dung, dán ảnh (Ctrl + V) hoặc thêm link ảnh.</p>
     </div>
 
     @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
@@ -45,9 +45,18 @@
                 </div>
             </div>
 
+            <!-- 🔥 NỘI DUNG -->
             <div class="col-12">
                 <label class="form-label">Nội dung câu hỏi</label>
-                <textarea asp-for="NoiDung" class="form-control" rows="4" placeholder="Nhập nội dung câu hỏi..."></textarea>
+
+                <!-- hidden -->
+                <input type="hidden" name="NoiDung" id="noiDungHidden" />
+
+                <!-- editor -->
+                <div id="editor" contenteditable="true"
+                     class="form-control"
+                     style="min-height:120px;"></div>
+
                 <span asp-validation-for="NoiDung" class="text-danger"></span>
             </div>
         </div>
@@ -57,45 +66,20 @@
         <h5 class="mb-3">Đáp án</h5>
 
         <div class="row g-3">
-            <div class="col-12">
-                <label class="form-label">Đáp án A</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <input type="radio" name="dapAnDung" value="0" checked />
-                    </span>
-                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án A" />
-                </div>
-            </div>
+            @for (int i = 0; i < 4; i++)
+            {
+                var label = ((char)('A' + i)).ToString();
 
-            <div class="col-12">
-                <label class="form-label">Đáp án B</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <input type="radio" name="dapAnDung" value="1" />
-                    </span>
-                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án B" />
+                <div class="col-12">
+                    <label class="form-label">Đáp án @label</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <input type="radio" name="dapAnDung" value="@i" @(i == 0 ? "checked" : "") />
+                        </span>
+                        <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án @label" />
+                    </div>
                 </div>
-            </div>
-
-            <div class="col-12">
-                <label class="form-label">Đáp án C</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <input type="radio" name="dapAnDung" value="2" />
-                    </span>
-                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án C" />
-                </div>
-            </div>
-
-            <div class="col-12">
-                <label class="form-label">Đáp án D</label>
-                <div class="input-group">
-                    <span class="input-group-text">
-                        <input type="radio" name="dapAnDung" value="3" />
-                    </span>
-                    <input type="text" name="dapAn" class="form-control" placeholder="Nhập đáp án D" />
-                </div>
-            </div>
+            }
         </div>
 
         <div class="mt-4 d-flex gap-2">
@@ -107,4 +91,48 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const editor = document.getElementById("editor");
+        const hidden = document.getElementById("noiDungHidden");
+
+        // 🔥 FIX QUAN TRỌNG
+        document.querySelector("form").addEventListener("submit", function (e) {
+
+            let html = editor.innerHTML.trim();
+            let text = editor.innerText.trim();
+
+            // ❌ nếu rỗng thật
+            if (!text) {
+                e.preventDefault();
+                alert("Vui lòng nhập nội dung câu hỏi!");
+                return;
+            }
+
+            hidden.value = html;
+        });
+
+        // 👉 paste ảnh
+        editor.addEventListener("paste", function (e) {
+            e.preventDefault();
+
+            const items = (e.clipboardData || window.clipboardData).items;
+
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf("image") !== -1) {
+                    const file = items[i].getAsFile();
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        const img = document.createElement("img");
+                        img.src = event.target.result;
+                        img.style.maxWidth = "100%";
+                        editor.appendChild(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
 }

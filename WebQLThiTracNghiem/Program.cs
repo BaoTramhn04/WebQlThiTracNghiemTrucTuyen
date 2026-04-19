@@ -1,18 +1,22 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using WebQLThiTracNghiem.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ✅ EPPlus (version 7 trở xuống)
+ExcelPackage.License.SetNonCommercialPersonal("BaoTram");
+// Add services to the container
+builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -24,8 +28,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+// ✅ thứ tự chuẩn
 app.UseSession();
+app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=TrangChu}/{id?}");

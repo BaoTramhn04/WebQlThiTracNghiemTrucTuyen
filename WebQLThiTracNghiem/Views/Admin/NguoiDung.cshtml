@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<WebQLThiTracNghiem.Models.NguoiDung>
+@{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewData["Title"] = "Quản lý người dùng";
 }
@@ -6,14 +7,26 @@
 <div class="card custom-card">
     <div class="card-header d-flex justify-content-between align-items-center">
         <span class="fw-semibold">Danh sách người dùng</span>
-        <button class="btn btn-primary">+ Thêm người dùng</button>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
+            <form method="get" class="mb-3">
+                <input type="text" name="keyword"
+                       value="@Context.Request.Query["keyword"]"
+                       placeholder="Tìm theo tên, mã hoặc username"
+                       class="form-control"
+                       style="width:300px; display:inline-block;" />
+
+                <button type="submit" class="btn btn-primary">Tìm</button>
+
+                <a asp-action="NguoiDung" class="btn btn-secondary">Tất cả</a>
+            </form>
             <table class="table table-bordered table-hover align-middle">
                 <thead class="table-light">
                     <tr>
                         <th>Mã</th>
+                        <th>Họ tên</th>
                         <th>Tên đăng nhập</th>
                         <th>Vai trò</th>
                         <th>Trạng thái</th>
@@ -22,41 +35,138 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>admin</td>
-                        <td>Admin</td>
-                        <td><span class="badge bg-success">Hoạt động</span></td>
-                        <td>01/01/2025</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Sửa</button>
-                            <button class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>gv01</td>
-                        <td>Giáo viên</td>
-                        <td><span class="badge bg-success">Hoạt động</span></td>
-                        <td>01/01/2025</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Sửa</button>
-                            <button class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>hs01</td>
-                        <td>Học sinh</td>
-                        <td><span class="badge bg-secondary">Khóa</span></td>
-                        <td>01/01/2025</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning">Sửa</button>
-                            <button class="btn btn-sm btn-danger">Xóa</button>
-                        </td>
-                    </tr>
+                    @{
+                        int stt = 1;
+                    }
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaNguoiDung</td>
+                            <td>@item.HoSoCaNhan?.HoTen</td>
+                            <td>@item.TenDangNhap</td>
+
+                            <td>
+                                @if (item.MaVaiTro == 1)
+                                {
+                                    <span class="badge bg-danger">Admin</span>
+                                }
+                                else if (item.MaVaiTro == 2)
+                                {
+                                    <span class="badge bg-primary">Giáo viên</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">Học sinh</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (item.TrangThai)
+                                {
+                                    <span class="badge bg-success">Hoạt động</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Đã khóa</span>
+                                }
+                            </td>
+
+                            <td>
+                                @item.NgayTao.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                <a asp-action="ResetMatKhau"
+                                   asp-route-id="@item.MaNguoiDung"
+                                   class="btn btn-sm btn-warning"
+                                   onclick="return confirm('Reset mật khẩu về 1111?')">
+                                    Reset
+                                </a>
+
+                                @if (item.TrangThai)
+                                {
+                                    <a asp-action="KhoaUser"
+                                       asp-route-id="@item.MaNguoiDung"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Khóa tài khoản?')">
+                                        Khóa
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a asp-action="MoKhoaUser"
+                                       asp-route-id="@item.MaNguoiDung"
+                                       class="btn btn-sm btn-success"
+                                       onclick="return confirm('Mở khóa tài khoản?')">
+                                        Mở
+                                    </a>
+                                }
+                            </td>
+                        </tr>
+
+                        stt++;
+                    }
+
+
                 </tbody>
+
             </table>
+           @{
+    int current = ViewBag.CurrentPage;
+    int total = ViewBag.TotalPages;
+}
+
+<nav>
+    <ul class="pagination justify-content-center">
+
+        <!-- Prev -->
+        @if (current > 1)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   href="@Url.Action("NguoiDung", new { page = current - 1, keyword = ViewBag.Keyword })">
+                    «
+                </a>
+            </li>
+        }
+
+        <!-- Chỉ hiện 5 trang quanh trang hiện tại -->
+        @for (int i = Math.Max(1, current - 2); i <= Math.Min(total, current + 2); i++)
+        {
+            <li class="page-item @(i == current ? "active" : "")">
+                <a class="page-link"
+                   href="@Url.Action("NguoiDung", new { page = i, keyword = ViewBag.Keyword })">
+                    @i
+                </a>
+            </li>
+        }
+
+        <!-- Next -->
+        @if (current < total)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   href="@Url.Action("NguoiDung", new { page = current + 1, keyword = ViewBag.Keyword })">
+                    »
+                </a>
+            </li>
+        }
+
+    </ul>
+</nav>
         </div>
     </div>
 </div>
+<style>
+    .table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table td, .table th {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+    </style>

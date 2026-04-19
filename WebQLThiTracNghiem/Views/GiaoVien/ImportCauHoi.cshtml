@@ -1,0 +1,92 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    ViewData["Title"] = "Import câu hỏi";
+}
+
+<div class="gv-card shadow-sm">
+    <h3 class="mb-3">📥 Import câu hỏi tự động</h3>
+    <p class="text-muted">Hỗ trợ import từ Excel hoặc Word theo đúng định dạng bên dưới</p>
+
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">@TempData["success"]</div>
+    }
+
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
+
+    <!-- ================= EXCEL ================= -->
+    <div class="mb-4">
+        <h5>📊 Import từ Excel</h5>
+
+        <form asp-action="ImportExcel" method="post" enctype="multipart/form-data" class="d-flex gap-2">
+
+            <select name="khoi" class="form-select" style="max-width:120px;" required>
+                <option value="">Khối</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+
+            <input type="file" name="file" class="form-control" accept=".xlsx,.xls" required />
+
+            <button class="btn btn-success">Import Excel</button>
+        </form>
+
+        <div class="mt-2 small text-muted">
+            <b>Định dạng Excel:</b><br />
+            Cột 1: Nội dung câu hỏi<br />
+            Cột 2: Đáp án A<br />
+            Cột 3: Đáp án B<br />
+            Cột 4: Đáp án C (có thể bỏ trống)<br />
+            Cột 5: Đáp án D (có thể bỏ trống)<br />
+            Cột 6: Đáp án đúng (A/B/C/D)<br />
+            Cột 7: Mức độ (1-3)<br />
+            Cột 8: Tên chuyên đề (phải tồn tại trong hệ thống)<br />
+            <span class="text-success">✔ Khối được chọn ở phía trên</span>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- ================= WORD ================= -->
+    <div class="mb-4">
+        <h5>📄 Import từ Word</h5>
+
+        <form asp-action="ImportWord" method="post" enctype="multipart/form-data" class="d-flex gap-2">
+
+            <select name="khoi" class="form-select" style="max-width:120px;" required>
+                <option value="">Khối</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+
+            <input type="file" name="file" class="form-control" accept=".doc,.docx" required />
+
+            <button class="btn btn-primary">Import Word</button>
+        </form>
+
+        <div class="mt-2 small text-muted">
+            <b>Định dạng Word (mỗi câu 1 block):</b>
+
+<pre style="background:#f8f9fa; padding:10px; border-radius:6px;">
+===CÂU HỎI===
+Chuyên đề: Nguyên hàm tích phân
+Nội dung: Đạo hàm của x^2 là gì?
+A. 2x
+B. x
+C. x^2
+D. 1
+Đáp án: A
+</pre>
+
+            <span class="text-danger">
+                ⚠️ Lưu ý: Phải có ít nhất 2 đáp án, chuyên đề phải tồn tại trong hệ thống
+            </span>
+        </div>
+    </div>
+
+</div>

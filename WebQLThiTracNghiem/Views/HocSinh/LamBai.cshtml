@@ -1,11 +1,87 @@
 ﻿@model WebQLThiTracNghiem.Models.ViewModels.LamBaiThiViewModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutThi.cshtml";
+    Layout = null;
     ViewData["Title"] = "Làm bài thi";
 }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<div class="container-fluid py-4 px-4">
+
+<div class="exam-header-pro mb-4">
+    <div class="d-flex align-items-center gap-4">
+
+        <img src="@Url.Content(string.IsNullOrEmpty(ViewBag.AnhDaiDien)
+                 ? "~/images/avatar-default.png"
+                 : "~/Avatar/" + ViewBag.AnhDaiDien)"
+             class="avatar-big" />
+
+        <div class="student-info-grid">
+            <div><b>Họ tên:</b> @ViewBag.HoTen</div>
+            <div><b>Mã HS:</b> @ViewBag.MaHocSinh</div>
+            <div><b>SBD:</b> @ViewBag.SoBaoDanh</div>
+            <div><b>Môn:</b> @Model.MonThi</div>
+            <div><b>Đợt thi:</b> @Model.TenDotThi</div>
+            <div><b>Thời gian:</b> @Model.ThoiGianLamBai phút</div>
+        </div>
+
+    </div>
+</div>
+
+<div id="popup" style="
+position:fixed;inset:0;background:rgba(0,0,0,0.4);
+display:none;justify-content:center;align-items:center;z-index:999999;">
+    <div style="background:white;padding:25px;border-radius:16px;width:320px;text-align:center;">
+        <h3 style="color:#4f46e5;">SmartExam</h3>
+        <p id="popupMsg"></p>
+        <button onclick="closePopup()" style="
+            margin-top:10px;padding:8px 20px;background:#4f46e5;color:white;border:none;border-radius:8px;">
+            OK
+        </button>
+    </div>
+</div>
+<div id="forceFullscreenOverlay" style="
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    text-align: center;
+">
+    <div style="
+        background: rgba(255,255,255,0.15);
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+    ">
+        <h2 style="margin-bottom:10px;">🚀 Bắt đầu làm bài</h2>
+       <div style="text-align:left;margin-bottom:20px;">
+    ⚠️ Lưu ý:
+    <ul>
+        <li>Không thoát màn hình quá 3 lần</li>
+        <li>Không copy / paste</li>
+        <li>Không chuyển tab</li>
+        <li>Vi phạm sẽ bị nộp bài</li>
+    </ul>
+</div>
+
+        <button id="btnEnterFullscreen" style="
+            padding: 12px 24px;
+            font-size: 16px;
+            background: white;
+            color: #2563eb;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        ">
+            Vào toàn màn hình
+        </button>
+    </div>
+</div>
+<div class="container py-4">
     <form asp-controller="HocSinh" asp-action="NopBai" method="post" id="lamBaiForm">
         @Html.AntiForgeryToken()
 
@@ -19,20 +95,8 @@
         <input type="hidden" asp-for="ThoiDiemHetGio" />
 
         <div class="row g-4">
-            <div class="col-lg-9">
-                <div class="student-page-card mb-4">
-                    <div class="student-page-card-header">
-                        <h2 class="student-page-title">Bài thi đang thực hiện</h2>
-                    </div>
-
-                    <div class="student-page-card-body">
-                        <p><strong>Đợt thi:</strong> @Model.TenDotThi</p>
-                        <p><strong>Đề thi:</strong> @Model.TenDeThi</p>
-                        <p><strong>Môn thi:</strong> @Model.MonThi</p>
-                        <p><strong>Thời gian làm bài:</strong> @Model.ThoiGianLamBai phút</p>
-                        <p><strong>Mã lượt thi:</strong> @Model.MaLuotThi</p>
-                    </div>
-                </div>
+            <div class="col-lg-9">            
+              
 
                 @if (Model.DanhSachCauHoi == null || !Model.DanhSachCauHoi.Any())
                 {
@@ -50,7 +114,9 @@
                         <input type="hidden" asp-for="DanhSachCauHoi[i].NoiDung" />
                         <input type="hidden" asp-for="DanhSachCauHoi[i].DiemCauHoi" />
 
-                        <div class="student-page-card mb-4 question-card" id="cau-@(i + 1)">
+                        <div class="student-page-card mb-4 question-card"
+                             id="cau-@(i + 1)"
+                             style="display:none">
                             <div class="student-page-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                                 <h3 class="student-page-title m-0" style="font-size: 22px;">
                                     Câu @(i + 1)
@@ -69,7 +135,7 @@
 
                             <div class="student-page-card-body">
                                 <p class="mb-4" style="font-size: 20px;">
-                                    <strong>Nội dung:</strong> @cauHoi.NoiDung
+                                    <strong>Nội dung:</strong> @Html.Raw(cauHoi.NoiDung)
                                 </p>
 
                                 @if (cauHoi.DanhSachDapAn != null && cauHoi.DanhSachDapAn.Any())
@@ -103,17 +169,20 @@
                             </div>
                         </div>
                     }
+                  
+                    <div class="d-flex justify-content-between align-items-center mt-4">
 
-                    <div class="d-flex gap-2 flex-wrap mt-4">
-                        <button type="submit" id="btnNopBai" class="btn btn-danger px-4 py-2">
+                        <div>
+                            <button type="button" class="btn btn-secondary" onclick="prevQuestion()">← Trước</button>
+                            <button type="button" class="btn btn-primary" onclick="nextQuestion()">Tiếp →</button>
+                        </div>
+
+                        <button type="button" id="btnNopBai"
+                                class="btn btn-danger fw-bold"
+                                style="background:linear-gradient(135deg,#ef4444,#dc2626);border:none;border-radius:12px;">
                             Nộp bài
                         </button>
 
-                        <a asp-controller="HocSinh"
-                           asp-action="DanhSachDotThi"
-                           class="btn btn-outline-secondary px-4 py-2">
-                            Quay lại
-                        </a>
                     </div>
                 }
             </div>
@@ -150,7 +219,8 @@
                         <div class="question-palette">
                             @for (int i = 0; i < Model.DanhSachCauHoi.Count; i++)
                             {
-                                <a href="#cau-@(i + 1)"
+                                <a href="javascript:void(0)"
+                                   onclick="showQuestion(@i)"
                                    class="question-nav-btn status-empty"
                                    id="nav-question-@i">
                                     <span class="question-number">@(i + 1)</span>
@@ -164,320 +234,861 @@
         </div>
     </form>
 </div>
+<div id="confirmPopup" style="
+position:fixed;inset:0;background:rgba(0,0,0,0.4);
+display:none;justify-content:center;align-items:center;z-index:999999;">
 
+    <div style="background:white;padding:25px;border-radius:16px;width:320px;text-align:center;">
+        <h3 style="color:#4f46e5;">SmartExam</h3>
+        <p id="confirmMsg"></p>
+
+        <div style="margin-top:15px;display:flex;gap:10px;justify-content:center;">
+            <button onclick="confirmYes()" style="
+                padding:8px 20px;background:#22c55e;color:white;border:none;border-radius:8px;">
+                Nộp bài
+            </button>
+
+            <button onclick="confirmNo()" style="
+                padding:8px 20px;background:#e5e7eb;border:none;border-radius:8px;">
+                Hủy
+            </button>
+        </div>
+    </div>
+</div>
 <style>
-    .answer-option {
-        cursor: pointer;
-        background: #fff;
-        transition: all 0.2s ease;
+/* ===== GLOBAL ===== */
+body {
+    background: #f8fafc;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* ===== HEADER (LÀM NHẸ LẠI) ===== */
+.exam-header-pro {
+    background: #ffffff;
+    color: #1e293b;
+    padding: 18px 22px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* avatar */
+.avatar-big {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #e5e7eb;
+    object-fit: cover;
+}
+
+/* info */
+.student-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 20px;
+    font-size: 14px;
+    color: #475569;
+}
+
+/* ===== CARD ===== */
+.student-page-card {
+    border-radius: 16px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.student-page-card-header {
+    background: #f8fafc;
+    padding: 14px 18px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.student-page-card-body {
+    padding: 18px;
+}
+
+/* ===== TITLE ===== */
+.student-page-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* ===== QUESTION ===== */
+    .question-card {
+        animation: fadeIn 0.2s ease;
     }
 
-        .answer-option:hover {
-            background: #f8fbff;
-            border-color: #93c5fd !important;
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
         }
 
-    .question-palette {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
-    .question-nav-btn {
-        display: flex;
-        align-items: center;
+
+/* ===== ANSWER (BỎ VIỀN GẮT) ===== */
+.answer-option {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: none; /* ❌ bỏ viền */
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #f8fafc;
+}
+
+.answer-option:hover {
+    background: #eef2ff;
+}
+
+.answer-option.active {
+    background: #dbeafe;
+}
+
+/* radio */
+.question-radio {
+    transform: scale(1.1);
+}
+
+/* ===== BUTTON ===== */
+button {
+    border-radius: 10px !important;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    border: none;
+}
+
+.btn-danger {
+    background: #ef4444;
+    border: none;
+}
+
+/* ===== RIGHT PANEL ===== */
+.countdown-panel {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.countdown-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.countdown-time {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-top: 5px;
+}
+
+/* ===== STATUS ===== */
+.status-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+}
+
+.status-empty {
+    background: #f1f5f9;
+}
+
+.status-done {
+    background: #22c55e !important;
+    border-color: #22c55e !important;
+}
+
+/* ===== NAV QUESTION (SỬA CHỖ BẠN HỎI) ===== */
+.question-palette {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* rộng hơn để chứa "Câu 1" */
+    gap: 10px;
+}
+
+.question-nav-btn {
+    height: 44px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 13px;
+    border: 1px solid #e5e7eb;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f8fafc;
+    transition: all 0.2s ease;
+
+    text-decoration: none; /* ❌ bỏ gạch dưới */
+    color: #1e293b;
+}
+
+.question-nav-btn:hover {
+    background: #eef2ff;
+}
+
+.question-nav-btn.active {
+    background: #3b82f6;
+    color: white;
+}
+
+/* ❌ đảm bảo KHÔNG có underline */
+.question-nav-btn,
+.question-nav-btn:link,
+.question-nav-btn:visited {
+    text-decoration: none !important;
+}
+
+/* flag */
+.flag-icon {
+    font-size: 11px;
+    margin-left: 3px;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.overlay-box button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+    .success-popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        display: none;
         justify-content: center;
-        gap: 4px;
-        height: 44px;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 700;
-        border: 1px solid #dbe2ea;
-        color: #0f172a;
-        transition: all 0.2s ease;
+        align-items: center;
+        z-index: 999999;
     }
 
-        .question-nav-btn:hover {
-            transform: translateY(-1px);
+    .success-box {
+        background: white;
+        padding: 35px 30px;
+        border-radius: 18px;
+        width: 360px;
+        text-align: center;
+        animation: scaleIn 0.3s ease;
+    }
+
+    @@keyframes scaleIn {
+        from
+
+    {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    }
+
+    /* ===== CHECKMARK ===== */
+    .checkmark-circle {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 15px;
+    }
+
+    .checkmark {
+        width: 80px;
+        height: 80px;
+        stroke: #22c55e;
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .checkmark-circle-bg {
+        stroke: #22c55e;
+        stroke-width: 3;
+        stroke-dasharray: 157;
+        stroke-dashoffset: 157;
+        animation: strokeCircle 0.5s ease forwards;
+    }
+
+    .checkmark-check {
+        stroke-dasharray: 48;
+        stroke-dashoffset: 48;
+        animation: strokeCheck 0.4s ease 0.5s forwards;
+    }
+
+    @@keyframes strokeCircle {
+        to
+
+    {
+        stroke-dashoffset: 0;
+    }
+
+    }
+
+    @@keyframes strokeCheck {
+        to
+
+    {
+        stroke-dashoffset: 0;
+    }
+
+    }
+
+    /* TEXT */
+    .success-box h3 {
+        margin-top: 10px;
+        font-size: 22px;
+        color: #16a34a;
+    }
+
+    .success-box p {
+        color: #475569;
+        margin-top: 5px;
+    }
+
+    /* BUTTON */
+    .btn-ok {
+        margin-top: 20px;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg,#22c55e,#16a34a);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .btn-ok:hover {
+            transform: scale(1.05);
         }
 
-    .question-number {
-        line-height: 1;
-    }
-
-    .flag-icon {
-        font-size: 13px;
-        line-height: 1;
-    }
-
-    .flag-demo {
-        font-size: 16px;
-        line-height: 1;
-    }
-
-    .status-empty {
-        background: #f8fafc;
-        color: #334155;
-        border-color: #dbe2ea;
-    }
-
-    .status-done {
-        background: #2563eb;
-        color: #ffffff;
-        border-color: #2563eb;
-    }
-
-    .status-box {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border-radius: 6px;
-        border: 1px solid #dbe2ea;
-    }
-
-    .countdown-panel {
-        border: 1px solid #bfdbfe;
-        background: #eff6ff;
-        border-radius: 16px;
-        padding: 16px;
-        text-align: center;
-    }
-
-    .countdown-label {
-        font-size: 14px;
-        font-weight: 600;
-        color: #1e3a8a;
-        margin-bottom: 8px;
-    }
-
-    .countdown-time {
-        font-size: 30px;
-        font-weight: 800;
-        color: #1d4ed8;
-        letter-spacing: 1px;
-    }
 </style>
 
-@section Scripts {
+<div id="submitSuccessPopup" class="success-popup">
+    <div class="success-box">
+
+        <!-- ICON SUCCESS -->
+        <div class="checkmark-circle">
+            <svg viewBox="0 0 52 52" class="checkmark">
+                <circle class="checkmark-circle-bg" cx="26" cy="26" r="25" fill="none" />
+                <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16" />
+            </svg>
+        </div>
+
+        <h3>Nộp bài thành công</h3>
+        <p>Bài thi của bạn đã được ghi nhận.</p>
+
+        <button onclick="goToLogin()" class="btn-ok">
+            OK
+        </button>
+    </div>
+</div>
+
     <script>
+        let daNop = false;
         let daTuDongNop = false;
-
         const maLuotThi = "@Model.MaLuotThi";
-        const storageKeyAnswers = `exam_answers_${maLuotThi}`;
-        const storageKeyReview = `exam_review_${maLuotThi}`;
+let soLanViPham = parseInt(localStorage.getItem("viPham_" + maLuotThi)) || 0;   
+const MAX_VI_PHAM = 3;
+        let dangTrongFullscreen = false;
 
-        function getSavedAnswers() {
-            const raw = localStorage.getItem(storageKeyAnswers);
-            return raw ? JSON.parse(raw) : {};
+        
+        const STORAGE_KEY = "answers_" + maLuotThi;
+
+// ===== SAVE =====
+function saveAnswers() {
+    const answers = {};
+    document.querySelectorAll(".question-radio:checked").forEach(r => {
+        answers[r.name] = r.value;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
+}
+
+// ===== LOAD =====
+function loadAnswers() {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+    document.querySelectorAll(".question-radio").forEach(radio => {
+        if (saved[radio.name] == radio.value) {
+
+            radio.checked = true;
+
+            radio.closest(".answer-option")?.classList.add("active");
+
+            const index = radio.dataset.questionIndex;
+
+            document.getElementById("nav-question-" + index)
+                ?.classList.add("status-done");
         }
+    });
+}
+        // ===== START =====
+        document.addEventListener("DOMContentLoaded", () => {
+            loadAnswers();
+             const daBatDau = localStorage.getItem("started_" + maLuotThi);
 
-        function saveAnswer(questionIndex, answerValue) {
-            const answers = getSavedAnswers();
-            answers[questionIndex] = answerValue;
-            localStorage.setItem(storageKeyAnswers, JSON.stringify(answers));
-        }
+            if (daBatDau === "true") {
+    document.getElementById("forceFullscreenOverlay").style.display = "none";
+    dangTrongFullscreen = true;
 
-        function restoreAnswers() {
-            const answers = getSavedAnswers();
-
-            Object.keys(answers).forEach(index => {
-                const value = answers[index];
-                const radio = document.querySelector(
-                    `input.question-radio[data-question-index="${index}"][value="${value}"]`
-                );
-                if (radio) {
-                    radio.checked = true;
-                }
-            });
-        }
-
-        function getSavedReview() {
-            const raw = localStorage.getItem(storageKeyReview);
-            return raw ? JSON.parse(raw) : {};
-        }
-
-        function saveReview(questionIndex, isChecked) {
-            const reviewState = getSavedReview();
-            reviewState[questionIndex] = isChecked;
-            localStorage.setItem(storageKeyReview, JSON.stringify(reviewState));
-        }
-
-        function restoreReview() {
-            const reviewState = getSavedReview();
-
-            Object.keys(reviewState).forEach(index => {
-                const checkbox = document.querySelector(
-                    `input.review-checkbox[data-question-index="${index}"]`
-                );
-                if (checkbox) {
-                    checkbox.checked = reviewState[index];
-                }
-            });
-        }
-
-        function clearExamStorage() {
-            localStorage.removeItem(storageKeyAnswers);
-            localStorage.removeItem(storageKeyReview);
-        }
-
-        function updateQuestionStatus(index) {
-            const radios = document.querySelectorAll(`input.question-radio[data-question-index="${index}"]`);
-            const review = document.querySelector(`input.review-checkbox[data-question-index="${index}"]`);
-            const navBtn = document.getElementById(`nav-question-${index}`);
-            const flag = document.getElementById(`flag-${index}`);
-
-            if (!navBtn) return;
-
-            let hasSelected = false;
-            radios.forEach(r => {
-                if (r.checked) {
-                    hasSelected = true;
-                }
-            });
-
-            navBtn.classList.remove("status-empty", "status-done");
-
-            if (hasSelected) {
-                navBtn.classList.add("status-done");
-            } else {
-                navBtn.classList.add("status-empty");
+    // tự bật lại fullscreen
+    setTimeout(() => {
+        forceFullscreenLoop();
+    }, 500);
             }
+            // 🔒 CHẶN BACK
+            history.pushState(null, null, location.href);
+           window.onpopstate = function () {
+    history.pushState(null, null, location.href);
 
-            if (flag) {
-                flag.innerHTML = (review && review.checked) ? "🚩" : "";
-            }
-        }
+    canhBaoGianLan();
+    showForceFullscreenOverlay();
+    forceFullscreenLoop();
+};
+ 
+        
+  
+            showQuestion(0);
 
-        function demSoCauChuaLam() {
-            const totalQuestions = document.querySelectorAll(".question-nav-btn").length;
-            let chuaLam = 0;
+            const overlay = document.getElementById("forceFullscreenOverlay");
+            const btn = document.getElementById("btnEnterFullscreen");
 
-            for (let i = 0; i < totalQuestions; i++) {
-                const radios = document.querySelectorAll(`input.question-radio[data-question-index="${i}"]`);
-                let hasSelected = false;
+            btn.onclick = async () => {
+                try {
+                    await document.documentElement.requestFullscreen();
 
-                radios.forEach(r => {
-                    if (r.checked) hasSelected = true;
+                    overlay.style.display = "none";
+                    dangTrongFullscreen = true;
+                    // 🔥 LƯU trạng thái đã bắt đầu thi
+        localStorage.setItem("started_" + maLuotThi, "true");
+                } catch {
+                    showPopup("Không bật được fullscreen!");
+                }
+            };
+
+            // RADIO
+            document.querySelectorAll(".question-radio").forEach(radio=>{
+             radio.addEventListener("change", function(){
+
+    saveAnswers(); // ✅ chỉ giữ cái này
+
+    const parent = this.closest(".question-card");
+
+
+                    parent.querySelectorAll(".answer-option")
+                        .forEach(l => l.classList.remove("active"));
+
+                    this.closest(".answer-option").classList.add("active");
+
+                    const index = this.dataset.questionIndex;
+
+                    document.getElementById("nav-question-" + index)
+                        ?.classList.add("status-done");
                 });
+                 
+            });
+              setInterval(() => {
+    if (!daNop) {
+        saveAnswers();
+    }
+}, 3000); // mỗi 3s
 
-                if (!hasSelected) chuaLam++;
-            }
+         window.addEventListener("beforeunload", function () {
+    if (!daNop) {
+        saveAnswers();
+    }
+});
+            // FLAG
+            document.querySelectorAll(".review-checkbox").forEach(cb=>{
+                cb.addEventListener("change", function(){
 
-            return chuaLam;
-        }
-
-        function submitFormSafe() {
-            if (daTuDongNop) return;
-
-            daTuDongNop = true;
-
-            const btn = document.getElementById("btnNopBai");
-            if (btn) {
-                btn.disabled = true;
-                btn.innerText = "Đang nộp bài...";
-            }
-
-            const form = document.getElementById("lamBaiForm");
-            if (form) {
-                form.submit();
-            }
-        }
-
-        function startCountdown() {
-            const timerElement = document.getElementById("countdownTimer");
-            if (!timerElement) return;
-
-            const endTimeString = "@Model.ThoiDiemHetGio.ToString("yyyy-MM-ddTHH:mm:ss")";
-            const endTime = new Date(endTimeString).getTime();
-
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = endTime - now;
-
-                if (distance <= 0) {
-                    timerElement.innerHTML = "00:00:00";
-                    alert("Đã hết thời gian làm bài. Hệ thống sẽ tự động nộp bài.");
-                    submitFormSafe();
-                    return;
-                }
-
-                const hours = Math.floor(distance / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                timerElement.innerHTML =
-                    `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            const totalQuestions = document.querySelectorAll(".question-nav-btn").length;
-
-            restoreAnswers();
-            restoreReview();
-
-            for (let i = 0; i < totalQuestions; i++) {
-                updateQuestionStatus(i);
-            }
-
-            document.querySelectorAll(".question-radio").forEach(radio => {
-                radio.addEventListener("change", function () {
-                    const index = this.getAttribute("data-question-index");
-                    saveAnswer(index, this.value);
-                    updateQuestionStatus(index);
+                    const index = this.dataset.questionIndex;
+                    document.getElementById("flag-" + index).innerText =
+                        this.checked ? "🚩" : "";
                 });
             });
 
-            document.querySelectorAll(".review-checkbox").forEach(checkbox => {
-                checkbox.addEventListener("change", function () {
-                    const index = this.getAttribute("data-question-index");
-                    saveReview(index, this.checked);
-                    updateQuestionStatus(index);
-                });
+            document.getElementById("btnNopBai")?.addEventListener("click", function (e) {
+                e.preventDefault();
+                confirmSubmitExam();
             });
-
-            const form = document.getElementById("lamBaiForm");
-            form.addEventListener("submit", function (e) {
-                if (daTuDongNop) return;
-
-                const chuaLam = demSoCauChuaLam();
-
-                if (chuaLam > 0) {
-                    const xacNhan = confirm(`Bạn còn ${chuaLam} câu chưa trả lời. Bạn có muốn nộp bài không?`);
-                    if (!xacNhan) {
-                        e.preventDefault();
-                        return;
-                    }
-                }
-
-                const btn = document.getElementById("btnNopBai");
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerText = "Đang nộp bài...";
-                }
-            });
-
-            const btn = document.getElementById("btnNopBai");
-            if (btn) {
-                btn.addEventListener("dblclick", function (e) {
-                    e.preventDefault();
-                });
-            }
 
             startCountdown();
         });
 
-        window.addEventListener("beforeunload", function (e) {
-            if (!daTuDongNop) {
+        // ===== FORCE FULLSCREEN =====
+        async function forceFullscreenLoop() {
+
+            if (document.fullscreenElement) return;
+
+            try {
+                await document.documentElement.requestFullscreen();
+                dangTrongFullscreen = true;
+            } catch {
+                setTimeout(forceFullscreenLoop, 1000);
+            }
+        }
+
+        // ===== SUBMIT =====
+        function submitFormSafe() {
+            if (daTuDongNop) return;
+            daTuDongNop = true;
+            document.getElementById("lamBaiForm")?.submit();
+        }
+
+        // ===== COUNT =====
+        function countUnanswered() {
+            const total = document.querySelectorAll(".question-nav-btn").length;
+            const answered = document.querySelectorAll(".question-radio:checked").length;
+            return total - answered;
+        }
+
+        // ===== NỘP BÀI =====
+        function confirmSubmitExam() {
+
+            const conLai = countUnanswered();
+
+            let msg = "Bạn có chắc muốn nộp bài?";
+            if (conLai > 0) {
+                msg += `\n⚠️ Còn ${conLai} câu chưa làm`;
+            }
+
+            showConfirmPopup(msg, () => {
+                daNop = true;
+                showSubmitSuccessPopup();
+            });
+        }
+
+        // ===== KEY =====
+        document.addEventListener("keydown", function (e) {
+
+            if (daNop) return;
+
+                if (e.key === "F12") {
+        e.preventDefault();
+        canhBaoGianLan();
+    }
+            // ❌ ESC
+            if (e.key === "Escape") {
                 e.preventDefault();
-                e.returnValue = "";
+                canhBaoGianLan();
+                showForceFullscreenOverlay();
+                forceFullscreenLoop();
+            }
+
+            // ❌ F5 / reload
+            if (e.key === "F5" || (e.ctrlKey && e.key.toLowerCase() === "r")) {
+                e.preventDefault();
+                canhBaoGianLan();
+                showForceFullscreenOverlay();
+                forceFullscreenLoop();
+            }
+
+            // ❌ BACKSPACE
+            if (e.key === "Backspace") {
+                const tag = e.target.tagName.toLowerCase();
+
+                if (tag !== "input" && tag !== "textarea") {
+                    e.preventDefault();
+                    canhBaoGianLan();
+                    showForceFullscreenOverlay();
+                    forceFullscreenLoop();
+                }
             }
         });
 
-        window.clearExamStorage = clearExamStorage;
+        // ===== FULLSCREEN CHANGE =====
+        document.addEventListener("fullscreenchange", function () {
+
+            if (daNop) return;
+
+            if (!document.fullscreenElement) {
+                canhBaoGianLan();
+                showForceFullscreenOverlay();
+                forceFullscreenLoop();
+            }
+        });
+
+        // ===== BLUR =====
+              window.addEventListener("blur", function () {
+
+            if (daNop) return;
+
+            setTimeout(() => {
+                if (!document.hasFocus()) {
+                    canhBaoGianLan();
+                    showForceFullscreenOverlay();
+                    forceFullscreenLoop();
+                }
+            }, 300);
+
+        });
+
+        // ===== OVERLAY =====
+        function showForceFullscreenOverlay() {
+
+            let overlay = document.getElementById("forceFullscreenBack");
+            if (overlay) return;
+
+            overlay = document.createElement("div");
+            overlay.id = "forceFullscreenBack";
+
+            overlay.style = `
+                position:fixed;
+                inset:0;
+                background:linear-gradient(135deg,#1e3a8a,#3b82f6);
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                z-index:999999;
+                flex-direction:column;
+            `;
+
+            overlay.innerHTML = `
+                <h2 style="color:white;margin-bottom:20px;">
+                    SmartExam - Quay lại toàn màn hình
+                </h2>
+
+                <button id="btnBackFullscreen"
+                    style="padding:15px 30px;font-size:18px;background:white;color:#1e3a8a;border:none;border-radius:10px;">
+                    🔄 Quay lại
+                </button>
+            `;
+
+            document.body.appendChild(overlay);
+
+            forceFullscreenLoop();
+
+            document.getElementById("btnBackFullscreen").onclick = async () => {
+                try {
+                    await document.documentElement.requestFullscreen();
+                    overlay.remove();
+                } catch {
+                    showPopup("Không thể fullscreen!");
+                }
+            };
+        }
+
+        // ===== TIMER =====
+        function startCountdown() {
+
+            const el = document.getElementById("countdownTimer");
+    const end = new Date("@Model.ThoiDiemHetGio.ToString("yyyy-MM-ddTHH:mm:ss.fff")").getTime();
+    function tick() {
+
+                const d = end - Date.now();
+
+                if (d <= 0) {
+                    el.innerHTML = "00:00:00";
+
+                    if (!daNop) {
+                        daNop = true;
+                          submitFormSafe(); 
+                        showSubmitSuccessPopup();
+                    }
+                    return;
+                }
+
+                const h = Math.floor(d / 3600000);
+                const m = Math.floor((d % 3600000) / 60000);
+                const s = Math.floor((d % 60000) / 1000);
+
+                el.innerHTML =
+                    `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        }
+        // ===== POPUP SUCCESS =====
+           function showSubmitSuccessPopup() {
+
+        const popup = document.getElementById("submitSuccessPopup");
+        popup.style.display = "flex";
+
+        
+    }
+
+        // ===== NAV =====
+        let currentQuestion = 0;
+
+        function showQuestion(index){
+
+            document.querySelectorAll(".question-card")
+                .forEach(q => q.style.display = "none");
+
+            document.querySelectorAll(".question-nav-btn")
+                .forEach(b => b.classList.remove("active"));
+
+            const el = document.getElementById("cau-" + (index + 1));
+            if(el) el.style.display = "block";
+
+            document.getElementById("nav-question-" + index)
+                ?.classList.add("active");
+
+            currentQuestion = index;
+        }
+
+        function nextQuestion(){
+            if(currentQuestion < document.querySelectorAll(".question-card").length - 1){
+                showQuestion(currentQuestion + 1);
+            }
+        }
+
+        function prevQuestion(){
+            if(currentQuestion > 0){
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        // ===== POPUP =====
+      function showPopup(msg){
+    document.getElementById("popupMsg").innerHTML = `
+        <div style="color:#dc2626;font-weight:600;">
+            ⚠️ ${msg}
+        </div>
+        <div style="margin-top:10px;color:#374151;">
+            Hành vi này có thể bị coi là gian lận.
+        </div>
+    `;
+    document.getElementById("popup").style.display = "flex";
+}
+
+        function closePopup(){
+            document.getElementById("popup").style.display = "none";
+        }
+
+        // ===== CONFIRM =====
+        let confirmCallback = null;
+
+        function showConfirmPopup(msg, callback){
+            document.getElementById("confirmMsg").innerText = msg;
+            document.getElementById("confirmPopup").style.display = "flex";
+            confirmCallback = callback;
+        }
+
+        function confirmYes(){
+            document.getElementById("confirmPopup").style.display = "none";
+            if(confirmCallback) confirmCallback();
+        }
+
+        function confirmNo(){
+            document.getElementById("confirmPopup").style.display = "none";
+        }
+            function redirectHome() {
+        window.location.href = "/Home/DangNhap"; // hoặc trang bạn muốn
+    }
+        function submitAndRedirect() {
+        submitFormSafe(); // nộp bài
+
+        setTimeout(() => {
+            redirectHome(); // về trang chủ
+        }, 300);
+    }
+    function canhBaoGianLan() {
+
+    soLanViPham++;
+
+// 🔥 LƯU lại
+localStorage.setItem("viPham_" + maLuotThi, soLanViPham);
+
+    if (soLanViPham >= MAX_VI_PHAM) {
+
+        showPopup(`🚫 Bạn đã vi phạm ${soLanViPham} lần! Hệ thống sẽ tự động nộp bài.`);
+
+        setTimeout(() => {
+            if (!daNop) {
+                daNop = true;
+                showSubmitSuccessPopup();
+            }
+        }, 1500);
+
+        return;
+    }
+
+    showPopup(`⚠️ Bạn đã vi phạm ${soLanViPham} lần!\nCòn ${MAX_VI_PHAM - soLanViPham} lần trước khi bị nộp bài.`);
+}
+// Chặn copy
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("paste", e => e.preventDefault());
+
+document.addEventListener("keydown", function (e) {
+
+    if (e.ctrlKey && e.key.toLowerCase() === "c") {
+        e.preventDefault();
+        canhBaoGianLan();
+    }
+
+    if (e.ctrlKey && e.key.toLowerCase() === "v") {
+        e.preventDefault();
+        canhBaoGianLan();
+    }
+});
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        canhBaoGianLan();
+    });
+           function goToLogin() {
+
+        daNop = true;
+         
+
+
+        // Gửi form bằng fetch (AJAX) → KHÔNG bị redirect sang trang Kết quả
+        const form = document.getElementById("lamBaiForm");
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData
+        })
+        .then(() => {
+            // Sau khi nộp xong → về login
+               localStorage.removeItem(STORAGE_KEY); // 🔥 thêm dòng này
+            localStorage.removeItem("viPham_" + maLuotThi);
+            localStorage.removeItem("started_" + maLuotThi);
+            window.location.href = "/Home/DangNhap";
+        })
+        .catch(() => {
+            alert("Lỗi khi nộp bài!");
+        });
+    }
     </script>
-}
-}

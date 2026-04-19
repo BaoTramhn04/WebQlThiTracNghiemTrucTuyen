@@ -41,6 +41,17 @@
 
         <div class="col-md-2">
             <select name="mucDo" class="form-select">
+                <div class="col-md-2">
+                    <select name="khoi" class="form-select">
+                        <option value="">-- Khối --</option>
+                        @foreach (var k in ViewBag.DanhSachKhoi)
+                        {
+                            <option value="@k" selected="@(ViewBag.Khoi == k)">
+                                Khối @k
+                            </option>
+                        }
+                    </select>
+                </div>
                 <option value="">-- Mức độ --</option>
                 <option value="1" selected="@(ViewBag.MucDo != null && ViewBag.MucDo == 1)">Nhận biết</option>
                 <option value="2" selected="@(ViewBag.MucDo != null && ViewBag.MucDo == 2)">Thông hiểu</option>

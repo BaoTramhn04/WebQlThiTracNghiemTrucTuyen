@@ -1,0 +1,185 @@
+﻿@model WebQLThiTracNghiem.Models.ViewModels.KetQuaThiViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Chi tiết bài làm học sinh";
+}
+
+<div class="container py-4">
+
+    <!-- 🔥 THÔNG TIN CHUNG -->
+    <div class="mb-4">
+        <h3>📄 Chi tiết bài làm</h3>
+
+        <div class="d-flex align-items-center gap-3">
+
+            <img src="@Url.Content(string.IsNullOrEmpty(ViewBag.Avatar)
+                     ? "~/images/avatar-default.png"
+                     : "~/Avatar/" + ViewBag.Avatar)"
+                 style="width:60px;height:60px;border-radius:50%;object-fit:cover;" />
+
+            <div>
+                <b>@ViewBag.HoTen</b> |
+                Mã HS: @ViewBag.MaHocSinh
+            </div>
+
+        </div>
+
+        <div class="mt-2">
+            <b>Đợt thi:</b> @Model.TenDotThi |
+            <b>Đề:</b> @Model.TenDeThi |
+            <b>Môn:</b> @Model.MonThi
+        </div>
+
+        <div class="mt-2">
+            <b>Điểm:</b>
+            <span class="badge bg-success fs-6">
+                @Model.TongDiem
+            </span>
+
+            | <b>Đúng:</b> @Model.SoCauDung / @Model.TongSoCau
+        </div>
+    </div>
+
+    @{
+        int i = 1;
+    }
+
+    @foreach (var item in Model.ChiTietCauHoi)
+    {
+        var cardClass = item.DungSai ? "question-correct" : "question-wrong";
+
+        <div class="question-result-card @cardClass">
+
+            <!-- HEADER -->
+            <div class="question-header">
+                <div class="question-number">
+                    Câu @i
+                </div>
+
+                @if (item.DungSai)
+                {
+                    <span class="result-chip correct-chip">✔ Đúng</span>
+                }
+                else
+                {
+                    <span class="result-chip wrong-chip">✘ Sai</span>
+                }
+            </div>
+
+            <!-- NỘI DUNG -->
+            <div class="question-content">
+                @item.NoiDungCauHoi
+            </div>
+
+            <!-- 🔥 DANH SÁCH ĐÁP ÁN -->
+            <div class="answer-list">
+
+                @foreach (var da in item.DanhSachDapAn)
+                {
+                    bool isChosen = da.NoiDung == item.NoiDungDapAnChon;
+                    bool isCorrect = da.NoiDung == item.NoiDungDapAnDung;
+
+                    string css = "answer-item";
+
+                    if (isCorrect)
+                        css += " correct-answer";
+
+                    if (isChosen && !isCorrect)
+                        css += " wrong-answer";
+
+                    <div class="@css">
+                        @da.NoiDung
+                    </div>
+                }
+
+            </div>
+
+            <!-- 🔥 HIỆN ĐÁP ÁN ĐÚNG NẾU SAI -->
+            @if (!item.DungSai)
+            {
+                <div class="mt-2 text-success fw-semibold">
+                    Đáp án đúng: @item.NoiDungDapAnDung
+                </div>
+            }
+
+        </div>
+
+        i++;
+    }
+
+</div>
+
+<style>
+
+    .question-result-card {
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .question-correct {
+        background: #ecfdf5;
+    }
+
+    .question-wrong {
+        background: #fff7ed;
+    }
+
+    .question-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .question-number {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .result-chip {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .correct-chip {
+        background: #16a34a;
+        color: white;
+    }
+
+    .wrong-chip {
+        background: #dc2626;
+        color: white;
+    }
+
+    .question-content {
+        font-size: 17px;
+        margin-bottom: 16px;
+    }
+
+    .answer-item {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 8px;
+        background: white;
+    }
+
+    .correct-answer {
+        background: #dcfce7;
+        border-color: #16a34a;
+        color: #166534;
+        font-weight: bold;
+    }
+
+    .wrong-answer {
+        background: #fee2e2;
+        border-color: #dc2626;
+        text-decoration: line-through;
+    }
+
+</style>

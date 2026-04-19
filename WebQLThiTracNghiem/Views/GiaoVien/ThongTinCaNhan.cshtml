@@ -1,81 +1,150 @@
 ﻿@model WebQLThiTracNghiem.Models.GiaoVien
 
 @{
-Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
 }
 
-<div class="gv-card">
+<div class="container mt-4">
 
-<h3>Thông tin cá nhân</h3>
+    <div class="card shadow-lg p-4 profile-card">
 
-<table class="table table-bordered">
+        <!-- HEADER -->
+        <div class="text-center mb-3">
+            <img id="previewAvatar"
+                 src="@Url.Content(string.IsNullOrEmpty(Model.NguoiDung.HoSoCaNhan?.AnhDaiDien)
+                         ? "~/images/avatar-default.png"
+                         : "~/Avatar/" + Model.NguoiDung.HoSoCaNhan.AnhDaiDien)"
+                 class="avatar-lg" />
 
-<tr>
-<td width="200">Họ tên</td>
-<td>@Model.NguoiDung.HoSoCaNhan.HoTen</td>
-</tr>
+            <h4>@Model.NguoiDung.HoSoCaNhan.HoTen</h4>
+            <p class="text-muted">Giáo viên</p>
+        </div>
 
-<tr>
-<td>Ngày sinh</td>
-<td>@Model.NguoiDung.HoSoCaNhan.NgaySinh</td>
-</tr>
+        <!-- HIỂN THỊ THÔNG TIN -->
+        <div id="viewMode">
+            <p><b>Ngày sinh:</b> @Model.NguoiDung.HoSoCaNhan?.NgaySinh?.ToString("dd/MM/yyyy")</p>
+            <p><b>Giới tính:</b> @Model.NguoiDung.HoSoCaNhan.GioiTinh</p>
+            <p><b>SĐT:</b> @Model.NguoiDung.HoSoCaNhan.SoDienThoai</p>
+            <p><b>Địa chỉ:</b> @Model.NguoiDung.HoSoCaNhan.DiaChi</p>
+            <p><b>Tài khoản:</b> @Model.NguoiDung.TenDangNhap</p>
 
-<tr>
-<td>Giới tính</td>
-<td>@Model.NguoiDung.HoSoCaNhan.GioiTinh</td>
-</tr>
+            <div class="mt-3">
+                <button class="btn btn-warning me-2" onclick="showEdit()">
+                    ✏️ Chỉnh sửa
+                </button>
 
-<tr>
-<td>Số điện thoại</td>
-<td>@Model.NguoiDung.HoSoCaNhan.SoDienThoai</td>
-</tr>
+                <button class="btn btn-danger" onclick="showPassword()">
+                    🔒 Đổi mật khẩu
+                </button>
+            </div>
+        </div>
 
-<tr>
-<td>Địa chỉ</td>
-<td>@Model.NguoiDung.HoSoCaNhan.DiaChi</td>
-</tr>
+        <!-- FORM CHỈNH SỬA -->
+        <form method="post" enctype="multipart/form-data" id="editForm" style="display:none;">
+            <h5 class="mt-3">📋 Chỉnh sửa thông tin</h5>
 
-<tr>
-<td>Tên đăng nhập</td>
-<td>@Model.NguoiDung.TenDangNhap</td>
-</tr>
+            <input type="file" name="file" class="form-control mb-3" onchange="previewImage(event)" />
 
-</table>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Ngày sinh</label>
+                    <input type="date" name="ngaySinh"
+                           value="@(Model.NguoiDung.HoSoCaNhan?.NgaySinh?.ToString("yyyy-MM-dd"))"
+                           class="form-control" />
+                </div>
 
-<hr/>
+                <div class="col-md-6">
+                    <label>SĐT</label>
+                    <input type="text" name="soDienThoai"
+                           value="@Model.NguoiDung.HoSoCaNhan.SoDienThoai"
+                           class="form-control" />
+                </div>
 
-<h4>Đổi mật khẩu</h4>
+                <div class="col-md-12 mt-3">
+                    <label>Địa chỉ</label>
+                    <input type="text" name="diaChi"
+                           value="@Model.NguoiDung.HoSoCaNhan.DiaChi"
+                           class="form-control" />
+                </div>
+            </div>
 
-@if(ViewBag.Loi != null)
-{
-<div class="alert alert-danger">
-@ViewBag.Loi
+            <div class="mt-3">
+                <button class="btn btn-primary">💾 Lưu</button>
+                <button type="button" class="btn btn-secondary" onclick="cancelAll()">Huỷ</button>
+            </div>
+        </form>
+
+        <!-- FORM ĐỔI MẬT KHẨU -->
+        <form method="post" id="passwordForm" style="display:none;">
+            <h5 class="mt-3 text-danger">🔒 Đổi mật khẩu</h5>
+
+            <div class="mb-3">
+                <label>Mật khẩu cũ</label>
+                <input type="password" name="matKhauCu" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+                <label>Mật khẩu mới</label>
+                <input type="password" name="matKhauMoi" class="form-control" />
+            </div>
+
+            <div>
+                <button class="btn btn-danger">Đổi mật khẩu</button>
+                <button type="button" class="btn btn-secondary" onclick="cancelAll()">Huỷ</button>
+            </div>
+        </form>
+
+    </div>
+
 </div>
-}
 
-@if(ViewBag.ThongBao != null)
-{
-<div class="alert alert-success">
-@ViewBag.ThongBao
-</div>
-}
+<!-- JS -->
+<script>
+    function showEdit() {
+        document.getElementById("viewMode").style.display = "none";
+        document.getElementById("editForm").style.display = "block";
+        document.getElementById("passwordForm").style.display = "none";
+    }
 
-<form method="post">
+    function showPassword() {
+        document.getElementById("viewMode").style.display = "none";
+        document.getElementById("editForm").style.display = "none";
+        document.getElementById("passwordForm").style.display = "block";
+    }
 
-<div class="mb-3">
-<label>Mật khẩu cũ</label>
-<input type="password" name="matKhauCu" class="form-control"/>
-</div>
+    function cancelAll() {
+        document.getElementById("viewMode").style.display = "block";
+        document.getElementById("editForm").style.display = "none";
+        document.getElementById("passwordForm").style.display = "none";
+    }
 
-<div class="mb-3">
-<label>Mật khẩu mới</label>
-<input type="password" name="matKhauMoi" class="form-control"/>
-</div>
+    function previewImage(event) {
+        const img = document.getElementById('previewAvatar');
+        img.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
 
-<button class="btn btn-primary">
-Cập nhật mật khẩu
-</button>
+<style>
+    .profile-card {
+        max-width: 800px;
+        margin: auto;
+        border-radius: 15px;
+    }
 
-</form>
+    .avatar-lg {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #2563eb;
+        object-fit: cover;
+    }
 
-</div>
+    .form-control {
+        border-radius: 8px;
+    }
+
+    button {
+        border-radius: 10px;
+        padding: 8px 14px;
+    }
+</style>

@@ -15,8 +15,12 @@ namespace WebQLThiTracNghiem.Models
         [StringLength(100)]
         public string TenLop { get; set; } = string.Empty;
 
+        public int Khoi { get; set; }
+
         [Required]
         [StringLength(20)]
         public string NamHoc { get; set; } = string.Empty;
+
+        public ICollection<PhanCongGiangDay> PhanCongs { get; set; }
     }
 }

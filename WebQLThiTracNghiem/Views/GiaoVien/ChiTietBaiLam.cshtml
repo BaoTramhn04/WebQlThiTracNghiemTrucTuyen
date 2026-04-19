@@ -1,0 +1,235 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
+
+    var hs = ViewBag.HocSinh;
+    var lt = ViewBag.LuotThi;
+    var ct = ViewBag.ChiTiet as IEnumerable<dynamic>;
+}
+
+<div class="gv-card">
+
+    <!-- HEADER -->
+    <div class="exam-header-pro mb-4">
+        <div class="d-flex align-items-center gap-4">
+
+            <img src="@Url.Content(hs != null && !string.IsNullOrEmpty(hs.Avatar)
+                     ? "~/Avatar/" + hs.Avatar
+                     : "~/images/avatar-default.png")"
+                 class="avatar-big" />
+            <div class="student-info-grid">
+                <div><b>Họ tên:</b> @hs?.HoTen</div>
+                <div><b>Mã HS:</b> @hs?.MaHocSinh</div>
+                <div><b>Môn:</b> @lt?.TenMonHoc</div>
+                <div><b>Đề:</b> @lt?.TenDeThi</div>
+                <div><b>Đợt thi:</b> @lt?.TenDotThi</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TỔNG KẾT -->
+    <div class="result-summary-card mb-4">
+
+        <h2 class="result-title">Kết quả bài thi</h2>
+
+        <div class="result-score-box">
+
+            <div class="result-score-main">
+                @ViewBag.SoCauDung / @ViewBag.TongSoCau
+            </div>
+
+            <div class="result-score-text">
+                Số câu trả lời đúng
+            </div>
+
+            <div class="result-point">
+                Điểm: <strong>@lt?.Diem</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CHI TIẾT -->
+    @if (ct != null)
+    {
+        int i = 1;
+
+        foreach (var item in ct)
+        {
+            var cardClass = item.DungSai ? "question-correct" : "question-wrong";
+
+            <div class="question-result-card @cardClass">
+
+                <!-- HEADER -->
+                <div class="question-header">
+
+                    <div class="question-number">
+                        Câu @i
+                    </div>
+
+                    @if (item.DungSai)
+                    {
+                        <span class="result-chip correct-chip">✔ Đúng</span>
+                    }
+                    else
+                    {
+                        <span class="result-chip wrong-chip">✘ Sai</span>
+                    }
+
+                </div>
+
+                <!-- NỘI DUNG -->
+                <div class="question-content">
+                    @Html.Raw(item.NoiDung)
+                </div>
+
+                <!-- ĐÁP ÁN -->
+                <div class="answer-list">
+                    @foreach (var da in item.DapAns)
+                    {
+                        string css = "answer-item";
+
+                        if (da.LaDapAnDung)
+                            css += " correct-answer";
+
+                        if (da.DuocChon && !da.LaDapAnDung)
+                            css += " wrong-answer";
+
+                        <div class="@css">
+                            @da.NoiDung
+                        </div>
+                    }
+                </div>
+
+                <!-- ĐÁP ÁN ĐÚNG -->
+                @if (!item.DungSai)
+                {
+                    <div class="correct-text">
+                        Đáp án đúng:
+                        <b>
+                            @((item.DapAns as IEnumerable<dynamic>)
+                                            .FirstOrDefault(x => x.LaDapAnDung)?.NoiDung)
+            </b>
+        </div>
+                }
+
+            </div>
+
+            i++;
+        }
+    }
+
+</div>
+
+<style>
+    .exam-header-pro {
+        background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid #bae6fd;
+    }
+
+    .avatar-big {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 3px solid #38bdf8;
+    }
+
+    .student-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px 20px;
+    }
+
+    .result-summary-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 25px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .result-score-main {
+        font-size: 40px;
+        font-weight: 800;
+        color: #2563eb;
+    }
+
+    .result-score-text {
+        margin-top: 5px;
+        color: #64748b;
+    }
+
+    .result-point {
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    .question-result-card {
+        border-radius: 18px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .question-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .question-number {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .result-chip {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .correct-chip {
+        background: #16a34a;
+        color: white;
+    }
+
+    .wrong-chip {
+        background: #dc2626;
+        color: white;
+    }
+
+    .question-content {
+        margin-bottom: 12px;
+        font-size: 16px;
+    }
+
+    .answer-item {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 6px;
+        background: white;
+    }
+
+    .correct-answer {
+        background: #dcfce7;
+        border-color: #16a34a;
+        font-weight: bold;
+    }
+
+    .wrong-answer {
+        background: #fee2e2;
+        border-color: #dc2626;
+        text-decoration: line-through;
+    }
+
+    .correct-text {
+        margin-top: 8px;
+        color: #16a34a;
+        font-weight: 600;
+    }
+</style>

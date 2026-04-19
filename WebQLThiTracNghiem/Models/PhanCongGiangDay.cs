@@ -26,5 +26,7 @@ namespace WebQLThiTracNghiem.Models
 
         [ForeignKey("MaMon")]
         public MonHoc MonHoc { get; set; }
+
+        public bool LaDaiDien { get; set; }
     }
 }

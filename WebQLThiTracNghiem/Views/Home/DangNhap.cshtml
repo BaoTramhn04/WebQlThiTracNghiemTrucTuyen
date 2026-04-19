@@ -21,18 +21,27 @@
     <!-- Toast thông báo -->
     @if (TempData["Success"] != null)
     {
-        <div class="toast-custom success" id="toastMessage">
-            @TempData["Success"]
+        <div class="toast-new success toast-auto">
+            <span class="toast-icon">✔️</span>
+            <span>@TempData["Success"]</span>
+
+            <div class="toast-progress"></div> <!-- 🔥 THÊM DÒNG NÀY -->
         </div>
     }
 
-    @if (TempData["Error"] != null || ViewBag.LoiDangNhap != null || ViewBag.Error != null)
-    {
-        <div class="toast-custom error" id="toastMessage">
-            @(TempData["Error"] ?? ViewBag.LoiDangNhap ?? ViewBag.Error)
-        </div>
-    }
+  @{
+    var msg = TempData["Error"] ?? ViewBag.LoiDangNhap ?? ViewBag.Error;
+    var isWarning = msg != null && msg.ToString().Contains("/3");
+}
 
+@if (msg != null)
+{
+    <div class="toast-new @(isWarning ? "warning" : "error") toast-auto">
+        <span class="toast-icon">@(isWarning ? "⚠️" : "❌")</span>
+        <span>@msg</span>
+        <div class="toast-progress"></div>
+    </div>
+}
     <div class="login-wrapper">
         <div class="login-card shadow-lg" id="loginCard">
             <div class="text-center mb-4">
@@ -45,7 +54,7 @@
                     <label class="form-label fw-semibold">Tên đăng nhập</label>
                     <input name="ThongTinDangNhap"
                            class="form-control input-custom"
-                           placeholder="Nhập mã học sinh hoặc tên đăng nhập" />
+                           placeholder="Nhập tên đăng nhập" />
                     <span asp-validation-for="MaHocSinh" class="text-danger small"></span>
                 </div>
 
@@ -69,7 +78,7 @@
                         <span id="btnText">Đăng nhập</span>
                     </button>
                 </div>
-                <div class="text-center mb-3">
+                <div class="text-center mt-4">
                     <a asp-controller="Home" asp-action="TrangChu" class="btn btn-home">
                         ← Về trang chủ
                     </a>
@@ -82,7 +91,7 @@
 <style>
     .login-bg {
         min-height: 100vh;
-        background: linear-gradient(135deg, #1d4ed8, #2563eb, #60a5fa);
+        background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
         position: relative;
         overflow: hidden;
         transition: all 0.35s ease;
@@ -95,7 +104,8 @@
     .bubble {
         position: absolute;
         border-radius: 50%;
-        background: rgba(255,255,255,0.15);
+        background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+        filter: blur(2px);
         animation: float 12s infinite ease-in-out;
         transition: all 0.35s ease;
     }
@@ -184,14 +194,19 @@
     .login-card {
         width: 100%;
         max-width: 460px;
-        background: rgba(255,255,255,0.96);
+        background: rgba(255,255,255,0.85);
         border-radius: 24px;
         padding: 36px;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(14px);
         box-shadow: 0 20px 50px rgba(0,0,0,0.18);
         border: 1px solid rgba(255,255,255,0.4);
         transition: all 0.35s ease;
+        position: relative;
+        overflow: hidden;
     }
+
+
+
 
     .dark-mode .login-card {
         background: rgba(15, 23, 42, 0.88);
@@ -216,6 +231,11 @@
         transition: color 0.35s ease;
     }
 
+    #loginTitle {
+        white-space: nowrap;
+        font-size: 26px;
+    }
+
     .dark-mode .login-subtitle {
         color: #cbd5e1;
     }
@@ -235,8 +255,9 @@
     }
 
         .input-custom:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.15);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 0.25rem rgba(147, 197, 253, 0.25);
+            transform: scale(1.02);
         }
 
     .dark-mode .input-custom {
@@ -255,7 +276,7 @@
         }
 
     .btn-login {
-        background: linear-gradient(135deg, #2563eb, #60a5fa);
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
         border: none;
         border-radius: 14px;
         padding: 12px;
@@ -276,27 +297,59 @@
             cursor: not-allowed;
         }
 
-    .toast-custom {
-        position: fixed;
-        top: 22px;
-        right: 22px;
-        padding: 14px 20px;
+    .toast-new {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 300px;
+        max-width: 420px;
+        padding: 14px 18px;
         border-radius: 14px;
-        color: white;
-        font-weight: 600;
+        background: #ffffff;
+        color: #374151;
+        position: fixed;
+        top: 20px;
+        right: 20px;
         z-index: 9999;
-        animation: slideIn 0.4s ease;
-        box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-        min-width: 280px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        animation: slideInRight 0.4s ease;
     }
 
-        .toast-custom.success {
-            background: linear-gradient(135deg, #16a34a, #22c55e);
+    /* ICON */
+    .toast-icon {
+        font-size: 20px;
+    }
+
+    /* SUCCESS */
+    .toast-new.success {
+        border-left: 6px solid #22c55e;
+    }
+
+        .toast-new.success .toast-icon {
+            color: #22c55e;
         }
 
-        .toast-custom.error {
-            background: linear-gradient(135deg, #dc2626, #ef4444);
+    /* ERROR */
+    .toast-new.error {
+        border-left: 6px solid #ef4444;
+    }
+
+        .toast-new.error .toast-icon {
+            color: #ef4444;
         }
+
+    /* ANIMATION */
+    @@keyframes slideInRight {
+        from {
+            transform: translateX(120%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
 
     @@keyframes slideIn {
         from {
@@ -357,6 +410,43 @@
             white-space: nowrap;
         }
     }
+
+    .toast-progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        border-radius: 0 0 14px 14px;
+        animation: progressBar 3s linear forwards;
+    }
+
+    /* màu theo loại */
+    .toast-new.success .toast-progress {
+        background: #22c55e;
+        overflow: hidden;
+    }
+
+    .toast-new.error .toast-progress {
+        background: #ef4444;
+        overflow: hidden;
+    }
+
+    .toast-new.warning .toast-progress {
+        background: #f59e0b;
+        overflow: hidden;
+    }
+
+    /* animation */
+    @@keyframes progressBar {
+        from {
+            width: 100%;
+        }
+
+        to {
+            width: 0%;
+        }
+    }
 </style>
 
 <script>
@@ -407,13 +497,18 @@
             });
         }
 
-        setTimeout(function () {
-            const toast = document.getElementById("toastMessage");
-            if (toast) {
-                toast.style.transition = "opacity 0.5s ease";
-                toast.style.opacity = "0";
-                setTimeout(() => toast.remove(), 500);
-            }
+         const toasts = document.querySelectorAll(".toast-auto");
+
+    toasts.forEach((toast) => {
+        setTimeout(() => {
+            toast.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            toast.style.opacity = "0";
+            toast.style.transform = "translateX(100%)";
+
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
         }, 3000);
+    });
     });
 </script>

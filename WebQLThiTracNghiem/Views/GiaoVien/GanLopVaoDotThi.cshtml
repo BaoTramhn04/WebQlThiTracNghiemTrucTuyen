@@ -13,7 +13,10 @@
         </div>
         <a asp-action="ChiTietDotThi" asp-route-id="@dotThi.MaDotThi" class="btn btn-outline-secondary">Quay lại chi tiết</a>
     </div>
-
+    @{
+        var dsLop = ViewBag.DanhSachLop as List<WebQLThiTracNghiem.Models.Lop>;
+    }
+    <div>Số lớp: @(dsLop?.Count ?? 0)</div>
     @if (TempData["error"] != null)
     {
         <div class="alert alert-danger">@TempData["error"]</div>
@@ -31,14 +34,25 @@
             <label class="fw-semibold d-block mb-3">Chọn lớp tham gia</label>
 
             <div class="row g-3">
-                @foreach (var lop in ViewBag.DanhSachLop)
+                @{
+                    var dsLop = ViewBag.DanhSachLop as List<WebQLThiTracNghiem.Models.Lop>;
+                }
+
+                @if (dsLop != null && dsLop.Any())
                 {
-                    <div class="col-md-4">
-                        <label class="border rounded p-3 w-100 d-flex align-items-center gap-2">
-                            <input type="checkbox" name="lopIds" value="@lop.MaLop" />
-                            <span>@lop.TenLop</span>
-                        </label>
-                    </div>
+                    foreach (var lop in dsLop)
+                    {
+                        <div class="col-md-4">
+                            <label class="border rounded p-3 w-100 d-flex align-items-center gap-2">
+                                <input type="checkbox" name="lopIds" value="@lop.MaLop" />
+                                <span>@lop.TenLop</span>
+                            </label>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-danger">Không có lớp nào</div>
                 }
             </div>
         </div>

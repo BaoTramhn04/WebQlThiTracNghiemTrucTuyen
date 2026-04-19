@@ -24,5 +24,8 @@ namespace WebQLThiTracNghiem.Models
 
         [ForeignKey("MaDeThi")]
         public DeThi DeThi { get; set; }
+        public int? NguoiTao { get; set; }
+        public int Khoi { get; set; }
+        public bool IsKhoa { get; set; } = false;
     }
 }

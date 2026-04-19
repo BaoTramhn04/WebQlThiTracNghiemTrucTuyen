@@ -1,145 +1,360 @@
-﻿<!DOCTYPE html>
+﻿@inject WebQLThiTracNghiem.Data.ApplicationDbContext _context
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Website thi trắc nghiệm</title>
 
+    <!-- ICON -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/giaovien.css" asp-append-version="true" />
 
     <style>
-        .gv-user-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 2px;
-            margin-right: 10px;
+
+        /* ===== SIDEBAR ===== */
+        .gv-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1e3a8a, #1e40af);
+            color: #fff;
+            transition: 0.3s;
+            overflow-y: auto;
         }
 
-        .gv-user-badge {
-            display: inline-block;
+            /* collapse */
+            .gv-sidebar.collapsed {
+                width: 80px;
+            }
+
+        /* ===== USER BOX ===== */
+        .gv-user-box {
+            text-align: center;
+            padding: 20px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .gv-subject-text {
-            font-size: 13px;
-            color: #6b7280;
-            font-weight: 500;
+        /* avatar */
+        .gv-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.3);
+            margin-bottom: 10px;
         }
 
-        .gv-toast-success {
-            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-            color: #166534;
-            border: 1px solid #86efac;
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 16px;
+        /* tên */
+        .gv-user-name {
             font-weight: 600;
-            box-shadow: 0 8px 20px rgba(22, 101, 52, 0.08);
-            animation: gvFadeInDown 0.4s ease;
+            font-size: 14px;
+            color: #fff;
         }
 
-        @@keyframes gvFadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
+        /* bộ môn */
+        .gv-user-role {
+            font-size: 13px;
+            color: #cbd5f5;
+        }
+
+        /* collapse thì ẩn info */
+        .gv-sidebar.collapsed .gv-user-name,
+        .gv-sidebar.collapsed .gv-user-role {
+            display: none;
+        }
+
+        /* ===== MENU ===== */
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            margin: 6px 10px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+            /* hover */
+            .menu-item:hover {
+                background: rgba(255,255,255,0.15);
+                transform: translateX(4px);
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            /* active */
+            .menu-item.active {
+                background: #3b82f6;
+                box-shadow: 0 0 10px rgba(59,130,246,0.5);
             }
+
+            /* icon */
+            .menu-item i {
+                width: 20px;
+                height: 20px;
+            }
+
+        /* collapse menu */
+        .gv-sidebar.collapsed .menu-item span {
+            display: none;
         }
+
+        .gv-sidebar.collapsed .menu-item {
+            justify-content: center;
+        }
+
+        /* ===== SUBMENU ===== */
+        .submenu {
+            padding-left: 10px;
+            margin-top: 2px;
+        }
+
+        /* item */
+        .submenu-item {
+            display: block;
+            padding: 8px 12px;
+            margin: 4px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #dbeafe;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+            /* hover submenu */
+            .submenu-item:hover {
+                background: rgba(255,255,255,0.15);
+                padding-left: 16px;
+            }
+
+        /* active submenu */
+        .active-sub {
+            background: #2563eb;
+            color: #fff !important;
+        }
+
+        /* ===== MAIN ===== */
+        .gv-main {
+            margin-left: 250px;
+            transition: 0.3s;
+        }
+
+            .gv-main.expand {
+                margin-left: 80px;
+            }
+
+        /* ===== HEADER ===== */
+        .gv-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* left */
+        .gv-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* button toggle */
+        .btn-toggle {
+            border: none;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+
+            /* hover button */
+            .btn-toggle:hover {
+                background: #e5e7eb;
+            }
+
     </style>
 </head>
+
 <body>
+    @{
+        var maNguoiDung = Context.Session.GetInt32("MaNguoiDung");
 
-    <div class="gv-layout">
+        // 🔥 lấy từ session trước (nhanh)
+        var avatar = Context.Session.GetString("Avatar");
 
-        <!-- Sidebar -->
-        <aside class="gv-sidebar">
+        // 🔥 nếu chưa có thì mới query DB (chỉ 1 lần)
+        if (string.IsNullOrEmpty(avatar) && maNguoiDung != null)
+        {
+            avatar = _context.HoSoCaNhan
+            .Where(x => x.MaNguoiDung == maNguoiDung)
+            .Select(x => x.AnhDaiDien)
+            .FirstOrDefault();
+        }
+    }
 
-            <div class="gv-sidebar-top">
-                <div class="gv-logo-box">
-                    <img src="~/images/logo-school.png" alt="Logo" />
-                </div>
+<div class="gv-layout">
 
-                <div class="gv-brand">
-                    <div class="gv-brand-sub">TRƯỜNG THPT ABC</div>
-                    <div class="gv-brand-title">KHU VỰC GIÁO VIÊN</div>
-                </div>
-            </div>
+<aside class="gv-sidebar">
 
-            <nav class="gv-menu">
+    <!-- USER BOX -->
+    <div class="gv-user-box">
+                <img src="@Url.Content(string.IsNullOrEmpty(avatar)
+                             ? "~/images/avatar-default.png"
+                             : "~/Avatar/" + avatar)"
+                     class="gv-avatar" />
 
-                <a asp-controller="GiaoVien" asp-action="BangDieuKhien"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "BangDieuKhien" ? "active" : "")">
-                    Bảng điều khiển
-                </a>
+        <div class="gv-user-name">
+            @(Context.Session.GetString("TenNguoiDung") ?? "Giáo viên")
+        </div>
 
-                <a asp-controller="GiaoVien" asp-action="ThongTinCaNhan"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongTinCaNhan" ? "active" : "")">
-                    Thông tin cá nhân
-                </a>
+        <div class="gv-user-role">
+            @(Context.Session.GetString("BoMonDay") ?? "Chưa cập nhật")
+        </div>
 
-                <a asp-controller="GiaoVien" asp-action="HocSinh"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "HocSinh" ? "active" : "")">
-                    Quản lý học sinh
-                </a>
+    </div>
 
-                <a asp-controller="GiaoVien" asp-action="CauHoi"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "CauHoi" ? "active" : "")">
-                    Quản lý câu hỏi
-                </a>
+    <!-- MENU -->
+    <nav>
 
-                <a asp-controller="GiaoVien" asp-action="DeThi"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DeThi" ? "active" : "")">
-                    Quản lý đề thi
-                </a>
+        @{
+            var action = ViewContext.RouteData.Values["action"]?.ToString();
+        }
 
-                <a asp-controller="GiaoVien" asp-action="DotThi"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "DotThi" ? "active" : "")">
-                    Quản lý đợt thi
-                </a>
+        <!-- Tổng quan -->
+        <a asp-action="BangDieuKhien"
+           class="menu-item @(action == "BangDieuKhien" ? "active" : null)">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Tổng quan</span>
+        </a>
 
-                <a asp-controller="GiaoVien" asp-action="ThongKe"
-                   class="@(ViewContext.RouteData.Values["action"]?.ToString() == "ThongKe" ? "active" : "")">
-                    Thống kê
-                </a>
+        <!-- Tài khoản -->
+        <a asp-action="ThongTinCaNhan"
+           class="menu-item @(action == "ThongTinCaNhan" ? "active" : null)">
+            <i data-lucide="user"></i>
+            <span>Tài khoản cá nhân</span>
+        </a>
 
-            </nav>
+        <!-- Học sinh -->
+        <a asp-action="HocSinh"
+           class="menu-item @(action == "HocSinh" ? "active" : null)">
+            <i data-lucide="users"></i>
+            <span>Quản lý học sinh</span>
+        </a>
 
-        </aside>
+        <!-- ================= CÂU HỎI ================= -->
+        @{
+            var isCauHoi = action == "CauHoi"
+                        || action == "TaoCauHoi"
+                        || action == "ImportCauHoi";
+        }
 
-        <!-- Main -->
+        <div class="menu-item @(isCauHoi ? "active" : null)"
+             onclick="toggleSubMenu(this)">
+            <i data-lucide="book-open"></i>
+            <span>Quản lý câu hỏi</span>
+        </div>
+
+        <div class="submenu" style="display:@(isCauHoi ? "block" : "none")">
+
+            <a asp-controller="GiaoVien" asp-action="CauHoi"
+               class="submenu-item @(action == "CauHoi" ? "active-sub" : null)">
+                📋 Danh sách câu hỏi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="TaoCauHoi"
+               class="submenu-item @(action == "TaoCauHoi" ? "active-sub" : null)">
+                ➕ Thêm câu hỏi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="ImportCauHoi"
+               class="submenu-item @(action == "ImportCauHoi" ? "active-sub" : null)">
+                📥 Import câu hỏi
+            </a>
+
+        </div>
+
+        <!-- ================= ĐỀ THI ================= -->
+        @{
+            var isDeThi = action == "DeThi"
+                       || action == "TaoDeThi"
+                       || action == "ImportDeThi"
+                       || action == "ChiTietDeThi";
+        }
+
+        <div class="menu-item @(isDeThi ? "active" : null)"
+             onclick="toggleSubMenu(this)">
+            <i data-lucide="file-text"></i>
+            <span>Quản lý đề thi</span>
+        </div>
+
+        <div class="submenu" style="display:@(isDeThi ? "block" : "none")">
+
+            <a asp-controller="GiaoVien" asp-action="DeThi"
+               class="submenu-item @(action == "DeThi" ? "active-sub" : null)">
+                📄 Danh sách đề thi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="TaoDeThi"
+               class="submenu-item @(action == "TaoDeThi" ? "active-sub" : null)">
+                ➕ Tạo đề thi
+            </a>
+
+            <a asp-controller="GiaoVien" asp-action="ImportDeThi"
+               class="submenu-item @(action == "ImportDeThi" ? "active-sub" : null)">
+                📥 Import đề thi
+            </a>
+
+        </div>
+
+        <!-- Đợt thi -->
+        <a asp-action="DotThi"
+           class="menu-item @(action == "DotThi" ? "active" : null)">
+            <i data-lucide="calendar"></i>
+            <span>Quản lý đợt thi</span>
+        </a>
+
+        <!-- Thống kê -->
+        <a asp-action="ThongKe"
+           class="menu-item @(action == "ThongKe" ? "active" : null)">
+            <i data-lucide="bar-chart-3"></i>
+            <span>Quản lý thống kê</span>
+        </a>
+
+    </nav>
+
+</aside>
+        <!-- MAIN -->
         <div class="gv-main">
 
+            <!-- HEADER -->
             <header class="gv-header">
 
-                <div>
-                    <h1>@ViewData["Title"]</h1>
-                    <p>Khu vực quản lý dành cho giáo viên</p>
+                <div class="gv-header-left">
+                    <button class="btn-toggle" onclick="toggleSidebar()">☰</button>
+
+                    <div>
+                        <small class="text-muted">Khu vực giáo viên</small>
+                    </div>
                 </div>
 
-                <div class="gv-header-right">
-
-                    <div class="gv-user-info">
-                        <span class="gv-user-badge">
-                            Xin chào, @(Context.Session.GetString("TenNguoiDung") ?? "Giáo viên")
-                        </span>
-
-                        <span class="gv-subject-text">
-                            Bộ môn giảng dạy: @(Context.Session.GetString("BoMonDay") ?? "Chưa cập nhật")
-                        </span>
-                    </div>
+                <div class="d-flex align-items-center gap-3">
 
                     <a asp-controller="Home" asp-action="TrangChu"
-                       class="btn btn-outline-primary">
+                       class="btn btn-outline-primary btn-sm"
+                       onclick="return confirm('Bạn có muốn quay về trang chủ không?')">
                         Trang chủ
                     </a>
-
                     <a asp-controller="Auth" asp-action="DangXuat"
-                       class="btn btn-danger">
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Bạn có muốn đăng xuất không?')">
                         Đăng xuất
                     </a>
 
@@ -147,15 +362,8 @@
 
             </header>
 
-            <main class="gv-content">
-
-                @if (TempData["LoginSuccess"] != null)
-                {
-                    <div class="gv-toast-success" id="gvLoginToast">
-                        @TempData["LoginSuccess"]
-                    </div>
-                }
-
+            <!-- CONTENT -->
+            <main class="p-3">
                 @RenderBody()
             </main>
 
@@ -166,19 +374,30 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        setTimeout(function () {
-            var toast = document.getElementById("gvLoginToast");
-            if (toast) {
-                toast.style.transition = "opacity 0.5s ease";
-                toast.style.opacity = "0";
-                setTimeout(function () {
-                    toast.remove();
-                }, 500);
+        function toggleSidebar() {
+            document.querySelector(".gv-sidebar").classList.toggle("collapsed");
+            document.querySelector(".gv-main").classList.toggle("expand");
+        }
+
+        // load icon
+        lucide.createIcons();
+    </script>
+    @RenderSection("Scripts", required: false)
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['$$', '$$']]
             }
-        }, 2500);
+        };
     </script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    function toggleSubMenu(el) {
+        const next = el.nextElementSibling;
+        next.style.display = next.style.display === "block" ? "none" : "block";
+    }
+</script>
 </body>
 </html>

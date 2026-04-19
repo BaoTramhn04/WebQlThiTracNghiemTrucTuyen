@@ -8,45 +8,95 @@
 <div class="gv-card shadow-sm">
     <div class="mb-3">
         <h3 class="mb-1">Tạo đợt thi mới</h3>
-        <p class="text-muted mb-0">Chọn đề thi, đặt thời gian và tạo đợt thi cho học sinh tham gia.</p>
+        <p class="text-muted mb-0">
+            Chọn khối, đề thi, đặt thời gian và tạo đợt thi cho học sinh tham gia.
+        </p>
     </div>
+
+    <!-- 🔥 HIỂN THỊ LỖI -->
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["error"]</div>
+    }
 
     @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
     <form asp-action="TaoDotThi" method="post">
         @Html.AntiForgeryToken()
 
+        <!-- 🔥 KHÔNG CẦN hidden khoi nữa -->
+        <!-- (đã lấy từ đề thi trong controller) -->
+
         <div class="row g-3">
-            <div class="col-md-8">
-                <label class="form-label">Tên đợt thi</label>
-                <input asp-for="TenDotThi" class="form-control" placeholder="Ví dụ: Thi thử cuối kỳ lớp 12A" />
+
+            <!-- 🔥 KHỐI -->
+            <div class="col-md-4">
+                <label class="form-label">Khối</label>
+                <select class="form-select"
+                        onchange="location.href='?khoi=' + this.value">
+
+                    <option value="">-- Chọn khối --</option>
+                    <option value="10" selected="@(ViewBag.Khoi == 10)">Khối 10</option>
+                    <option value="11" selected="@(ViewBag.Khoi == 11)">Khối 11</option>
+                    <option value="12" selected="@(ViewBag.Khoi == 12)">Khối 12</option>
+                </select>
             </div>
 
-            <div class="col-md-4">
+            <!-- TÊN -->
+            <div class="col-md-8">
+                <label class="form-label">Tên đợt thi</label>
+                <input asp-for="TenDotThi" class="form-control"
+                       placeholder="Ví dụ: Thi thử cuối kỳ lớp 12A" required />
+            </div>
+
+            <!-- 🔥 FIX CHÍNH Ở ĐÂY -->
+            <div class="col-md-6">
                 <label class="form-label">Đề thi</label>
-                <select asp-for="MaDeThi" class="form-select">
+
+                <select name="MaDeThi" class="form-select" required>
                     <option value="">-- Chọn đề thi --</option>
-                    @foreach (var de in ViewBag.DeThi)
+
+                    @if (ViewBag.DeThi != null)
                     {
-                        <option value="@de.MaDeThi">@de.TenDeThi</option>
+                        foreach (var de in ViewBag.DeThi)
+                        {
+                            <option value="@de.MaDeThi"
+                                    selected="@(Model?.MaDeThi == de.MaDeThi)">
+                                @de.TenDeThi (Khối @de.Khoi)
+                            </option>
+                        }
                     }
                 </select>
             </div>
 
+            <!-- TG BẮT ĐẦU -->
             <div class="col-md-6">
                 <label class="form-label">Thời gian bắt đầu</label>
-                <input asp-for="ThoiGianBatDau" type="datetime-local" class="form-control" />
+                <input asp-for="ThoiGianBatDau"
+                       type="datetime-local"
+                       class="form-control"
+                       required />
             </div>
 
+            <!-- TG KẾT THÚC -->
             <div class="col-md-6">
                 <label class="form-label">Thời gian kết thúc</label>
-                <input asp-for="ThoiGianKetThuc" type="datetime-local" class="form-control" />
+                <input asp-for="ThoiGianKetThuc"
+                       type="datetime-local"
+                       class="form-control"
+                       required />
             </div>
+
         </div>
 
         <div class="mt-4 d-flex gap-2">
-            <button type="submit" class="btn btn-primary">Tạo đợt thi</button>
-            <a asp-action="DotThi" class="btn btn-outline-secondary">Quay lại</a>
+            <button type="submit" class="btn btn-primary">
+                Tạo đợt thi
+            </button>
+
+            <a asp-action="DotThi" class="btn btn-outline-secondary">
+                Quay lại
+            </a>
         </div>
     </form>
 </div>

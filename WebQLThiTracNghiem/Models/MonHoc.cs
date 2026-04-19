@@ -14,5 +14,11 @@ namespace WebQLThiTracNghiem.Models
         [Required]
         [StringLength(100)]
         public string TenMonHoc { get; set; } = string.Empty;
+
+
+        public ICollection<PhanCongGiangDay> PhanCongGiangDays { get; set; } = new List<PhanCongGiangDay>();
+
+        public ICollection<DeThi> DeThis { get; set; }
+
     }
 }

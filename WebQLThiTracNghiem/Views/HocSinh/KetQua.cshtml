@@ -1,9 +1,25 @@
 ﻿@model WebQLThiTracNghiem.Models.ViewModels.KetQuaThiViewModel
 
 @{
-    Layout = "~/Views/Shared/_LayoutThi.cshtml";
+    Layout = null;
     ViewData["Title"] = "Kết quả bài thi";
 }
+<div class="exam-header-pro mb-4">
+    <div class="d-flex align-items-center gap-4">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+             class="avatar-big" />
+
+        <div class="student-info-grid">
+            <div><b>Họ tên:</b> @ViewBag.HoTen</div>
+            <div><b>SBD:</b> @ViewBag.SoBaoDanh</div>
+            <div><b>Môn:</b> @Model.MonThi</div>
+            <div><b>Đề:</b> @Model.TenDeThi</div>
+            <div><b>Đợt thi:</b> @Model.TenDotThi</div>
+        </div>
+
+    </div>
+</div>
 
 <div class="container py-4">
 
@@ -87,58 +103,47 @@
                         @item.NoiDungCauHoi
                     </div>
 
-                    <div class="answer-row">
+                    <div class="answer-list">
 
-                        <div class="answer-box">
-                            <div class="answer-label">
-                                Đáp án bạn chọn
+                        @foreach (var da in item.DanhSachDapAn)
+                        {
+                            bool isChosen = da.NoiDung == item.NoiDungDapAnChon;
+                            bool isCorrect = da.NoiDung == item.NoiDungDapAnDung;
+
+                            string css = "answer-item";
+
+                            if (isCorrect)
+                            {
+                                css += " correct-answer";
+                            }
+
+                            if (isChosen && !isCorrect)
+                            {
+                                css += " wrong-answer";
+                            }
+
+                            <div class="@css">
+                                @da.NoiDung
                             </div>
-
-                            <div class="answer-value">
-                                @(item.NoiDungDapAnChon ?? "Chưa chọn")
-                            </div>
-                        </div>
-
-                        <div class="answer-box correct-answer">
-
-                            <div class="answer-label">
-                                Đáp án đúng
-                            </div>
-
-                            <div class="answer-value">
-                                @item.NoiDungDapAnDung
-                            </div>
-
-                        </div>
-
-                        <div class="answer-score">
-
-                            +@item.DiemCau điểm
-
-                        </div>
+                        }
 
                     </div>
 
+                    @if (!item.DungSai)
+                    {
+                        <div class="correct-text">
+                            Đáp án đúng là: <b>@item.NoiDungDapAnDung</b>
+                        </div>
+                    }
+
                 </div>
             }
-
-            <div class="mt-4">
-
-                <a asp-controller="HocSinh"
-                   asp-action="DanhSachDotThi"
-                   class="btn btn-outline-primary">
-
-                    Quay lại danh sách đợt thi
-
-                </a>
-
             </div>
 
         </div>
 
     </div>
 
-</div>
 
 
 <style>
@@ -278,6 +283,60 @@
     align-items:center;
 }
 
+    .exam-header-pro {
+        background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid #bae6fd;
+        margin-bottom: 20px;
+    }
+
+    .avatar-big {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 3px solid #38bdf8;
+    }
+
+    .student-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px 20px;
+    }
+
+    .answer-list {
+        margin-top: 10px;
+    }
+
+    .answer-item {
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        margin-bottom: 8px;
+        background: white;
+    }
+
+    /* đúng */
+    .correct-answer {
+        background: #dcfce7;
+        border-color: #16a34a;
+        color: #166534;
+        font-weight: bold;
+    }
+
+    /* chọn sai */
+    .wrong-answer {
+        background: #fee2e2;
+        border-color: #dc2626;
+        text-decoration: line-through;
+    }
+
+    /* dòng đáp án đúng */
+    .correct-text {
+        margin-top: 10px;
+        color: #16a34a;
+        font-weight: 600;
+    }
 </style>
 @section Scripts {
     <script>

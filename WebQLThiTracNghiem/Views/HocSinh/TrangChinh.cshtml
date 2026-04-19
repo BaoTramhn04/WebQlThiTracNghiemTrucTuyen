@@ -1,0 +1,167 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Khu vực học sinh";
+}
+
+<div class="student-dashboard container mt-4">
+
+    <!-- ===== THÔNG TIN HỌC SINH ===== -->
+    <div class="student-card">
+        <img src="https://i.pravatar.cc/100" class="avatar" />
+
+        <div class="student-info">
+            <h3>@Model.HoTen</h3>
+            <p>SBD: @Model.SoBaoDanh</p>
+            <p>Lớp: @Model.Lop</p>
+        </div>
+
+        <div class="student-actions">
+            <a href="/HocSinh/CapNhat" class="btn btn-outline-primary">Cập nhật</a>
+            <a href="/HocSinh/DoiMatKhau" class="btn btn-outline-danger">Đổi mật khẩu</a>
+        </div>
+    </div>
+
+    <!-- ===== TITLE ===== -->
+    <h4 class="section-title">Đợt thi của bạn</h4>
+
+    <!-- ===== DANH SÁCH ĐỢT THI ===== -->
+    <div class="exam-list">
+
+        @if (Model.DotThis != null)
+        {
+            foreach (var dot in Model.DotThis)
+            {
+                <div class="exam-card @(dot.TrangThai ? "" : "disabled")">
+
+                    <h5>@dot.TenDotThi</h5>
+                    <p><b>Môn:</b> @dot.MonThi</p>
+                    <p><b>Bắt đầu:</b> @dot.BatDau</p>
+                    <p><b>Kết thúc:</b> @dot.KetThuc</p>
+
+                    @if (dot.TrangThai)
+                    {
+                        <span class="status open">Được phép</span>
+                        <a href="/Thi/Start/@dot.Id" class="btn btn-primary w-100 mt-3">Vào thi</a>
+                    }
+                    else
+                    {
+                        <span class="status closed">Đã đóng</span>
+                        <button class="btn btn-secondary w-100 mt-3" disabled>Hết hạn</button>
+                    }
+
+                </div>
+            }
+        }
+        else
+        {
+            <p>Không có đợt thi nào</p>
+        }
+
+    </div>
+</div>
+
+<style>
+    /* ===== CONTAINER ===== */
+    .student-dashboard {
+        max-width: 1100px;
+    }
+
+    /* ===== STUDENT CARD ===== */
+    .student-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(135deg, #3b82f6, #60a5fa);
+        color: white;
+        padding: 25px;
+        border-radius: 18px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    /* AVATAR */
+    .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid white;
+    }
+
+    /* INFO */
+    .student-info {
+        flex: 1;
+        margin-left: 20px;
+    }
+
+        .student-info h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+    /* ACTION BUTTON */
+    .student-actions a {
+        margin-left: 10px;
+    }
+
+    /* TITLE */
+    .section-title {
+        margin: 40px 0 20px;
+        font-weight: 700;
+    }
+
+    /* ===== EXAM LIST ===== */
+    .exam-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+
+    /* ===== CARD ===== */
+    .exam-card {
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        transition: 0.3s;
+    }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* DISABLED */
+        .exam-card.disabled {
+            opacity: 0.6;
+        }
+
+    /* STATUS */
+    .status {
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+        .status.open {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status.closed {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+    /* BUTTON */
+    .btn-primary {
+        background: linear-gradient(135deg, #2563eb, #60a5fa);
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+</style>

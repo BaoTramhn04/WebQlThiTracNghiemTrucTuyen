@@ -1,0 +1,111 @@
+﻿@model WebQLThiTracNghiem.Models.NguoiDung
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Hồ sơ người dùng";
+}
+<link href="https://cdn.jsdelivr.net/npm/cropperjs/dist/cropper.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/cropperjs/dist/cropper.min.js"></script>
+
+<div class="card shadow-sm">
+    <div class="card-header fw-semibold">
+        👤 Hồ sơ người dùng
+    </div>
+
+    <div class="card-body">
+
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="hidden" asp-for="MaNguoiDung" />
+
+            <!-- 🔥 QUAY LẠI -->
+            <input type="hidden" name="returnUrl" value="@Context.Request.Headers["Referer"]" />
+
+            <div class="row">
+
+                <!-- 🔥 AVATAR -->
+                <div class="col-md-4 text-center">
+
+                    <!-- HIỂN THỊ ẢNH -->
+                    <img id="previewAvatar"
+                         src="@(string.IsNullOrEmpty(Model.HoSoCaNhan?.AnhDaiDien)
+                                                         ? "/images/avatar-default.png"
+                                                         : "/Avatar/" + Model.HoSoCaNhan.AnhDaiDien)"
+                         class="mb-3 shadow"
+                         style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #ddd;" />
+
+                    <!-- INPUT FILE -->
+                    <input type="file" name="avatar" class="form-control" onchange="previewImage(event)" />
+
+                </div>
+
+                <!-- 🔥 THÔNG TIN -->
+                <div class="col-md-8">
+
+                    <div class="mb-3">
+                        <label>Họ tên</label>
+                        <input asp-for="HoSoCaNhan.HoTen" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tên đăng nhập</label>
+                        <input asp-for="TenDangNhap" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Số điện thoại</label>
+                        <input asp-for="HoSoCaNhan.SoDienThoai" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Ngày sinh</label>
+                        <input asp-for="HoSoCaNhan.NgaySinh" type="date" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Giới tính</label>
+                        <select asp-for="HoSoCaNhan.GioiTinh" class="form-select">
+                            <option value="">-- Chọn --</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Địa chỉ</label>
+                        <input asp-for="HoSoCaNhan.DiaChi" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Vai trò</label>
+                        <input value="@(Model.MaVaiTro == 1 ? "Admin" : Model.MaVaiTro == 2 ? "Giáo viên" : "Học sinh")"
+                               class="form-control"
+                               disabled />
+                    </div>
+
+                    <button class="btn btn-success">
+                        💾 Cập nhật
+                    </button>
+
+                    <a href="@Context.Request.Headers["Referer"]" class="btn btn-secondary">
+                        Quay lại
+                    </a>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- 🔥 PREVIEW ẢNH -->
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('previewAvatar');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

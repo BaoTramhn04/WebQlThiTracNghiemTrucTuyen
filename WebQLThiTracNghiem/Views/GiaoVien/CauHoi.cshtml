@@ -20,10 +20,9 @@
     {
         <div class="alert alert-success">@TempData["success"]</div>
     }
-
-    @if (TempData["error"] != null)
+    @if (TempData["error"] is string errorMsg)
     {
-        <div class="alert alert-danger">@TempData["error"]</div>
+        <div class="alert alert-danger">@errorMsg</div>
     }
 
     <form method="get" class="row g-2 mb-4">
@@ -31,6 +30,14 @@
             <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control" placeholder="Tìm theo nội dung câu hỏi..." />
         </div>
 
+        <div class="col-md-2">
+            <select name="khoi" class="form-select">
+                <option value="">-- Khối --</option>
+                <option value="10" selected="@(ViewBag.Khoi == 10)">Khối 10</option>
+                <option value="11" selected="@(ViewBag.Khoi == 11)">Khối 11</option>
+                <option value="12" selected="@(ViewBag.Khoi == 12)">Khối 12</option>
+            </select>
+        </div>
         <div class="col-md-2">
             <select name="monId" class="form-select">
                 <option value="">-- Môn học --</option>
@@ -77,6 +84,56 @@
             <a asp-action="CauHoi" class="btn btn-outline-secondary">Đặt lại</a>
         </div>
     </form>
+    <ul class="nav nav-tabs gv-tab mb-3">
+
+       <li class="nav-item">
+    <a class="nav-link @(ViewBag.Loai == null ? "active" : "")"
+       href="@Url.Action("CauHoi", new {
+           loai = "",
+           khoi = ViewBag.Khoi,
+           monId = ViewBag.MonId,
+           chuyenDeId = ViewBag.ChuyenDeId,
+           mucDo = ViewBag.MucDo,
+           trangThai = ViewBag.TrangThai,
+           keyword = ViewBag.Keyword
+       })">
+        📋 Tất cả
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link @(ViewBag.Loai == "mine" ? "active" : "")"
+       href="@Url.Action("CauHoi", new {
+           loai = "mine",
+           khoi = ViewBag.Khoi,
+           monId = ViewBag.MonId,
+           chuyenDeId = ViewBag.ChuyenDeId,
+           mucDo = ViewBag.MucDo,
+           trangThai = ViewBag.TrangThai,
+           keyword = ViewBag.Keyword
+       })">
+        👤 Câu của tôi
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link @(ViewBag.Loai == "other" ? "active" : "")"
+       href="@Url.Action("CauHoi", new {
+           loai = "other",
+           khoi = ViewBag.Khoi,
+           monId = ViewBag.MonId,
+           chuyenDeId = ViewBag.ChuyenDeId,
+           mucDo = ViewBag.MucDo,
+           trangThai = ViewBag.TrangThai,
+           keyword = ViewBag.Keyword
+       })">
+        👥 GV khác
+    </a>
+</li>
+
+    </ul>
+
+
 
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
@@ -86,9 +143,11 @@
                     <th>Nội dung câu hỏi</th>
                     <th style="width:140px;">Môn học</th>
                     <th style="width:160px;">Chuyên đề</th>
+                    <th style="width:120px;">Khối</th>
                     <th style="width:120px;">Mức độ</th>
                     <th style="width:120px;">Trạng thái</th>
                     <th style="width:130px;">Ngày tạo</th>
+                    <th style="width:120px;">Phân loại</th>
                     <th style="width:220px;">Thao tác</th>
                 </tr>
             </thead>
@@ -100,14 +159,17 @@
                         <tr>
                             <td>@item.MaCauHoi</td>
                             <td>
-                                @(item.NoiDung != null && item.NoiDung.Length > 120
-                                    ? item.NoiDung.Substring(0, 120) + "..."
-                                    : item.NoiDung)
+                                <div style="max-width:300px; max-height:120px; overflow:hidden;">
+                                    @Html.Raw(item.NoiDung)
+                                </div>
                             </td>
-                            <td>@item.TenMonHoc</td>
-                            <td>@item.TenChuyenDe</td>
+                    <td>@item.TenMonHoc</td>
+                    <td>@item.TenChuyenDe</td>
                             <td>
-                                @if (item.MucDo == 1)
+                                <span class="badge bg-info">Khối @item.Khoi</span>
+                            </td>
+                    <td>
+                        @if (item.MucDo == 1)
                                 {
                                     <span class="badge bg-success">Nhận biết</span>
                                 }
@@ -132,32 +194,49 @@
                             </td>
                             <td>@(((DateTime)item.NgayTao).ToString("dd/MM/yyyy"))</td>
                             <td>
+                                @if (item.NguoiTao == ViewBag.MaGV)
+                                {
+                                    <span class="badge bg-success">Của tôi</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">GV khác</span>
+                                }
+                            </td>
+                            <td>
                                 <div class="d-flex flex-wrap gap-1">
                                     <a asp-action="ChiTietCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-info">
                                         Chi tiết
                                     </a>
 
-                                    <a asp-action="SuaCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-primary">
-                                        Sửa
-                                    </a>
+                                    @if (item.NguoiTao == ViewBag.MaGV)
+                                    {
+                                        <a asp-action="SuaCauHoi" asp-route-id="@item.MaCauHoi" class="btn btn-sm btn-outline-primary">
+                                            Sửa
+                                        </a>
+                                    }
 
-                                    <form asp-action="DoiTrangThaiCauHoi" asp-route-id="@item.MaCauHoi" method="post" class="d-inline">
-                                        @Html.AntiForgeryToken()
-                                        @if (item.TrangThai)
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                    onclick="return confirm('Bạn có chắc muốn ẩn câu hỏi này không?')">
-                                                Ẩn
-                                            </button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-sm btn-outline-success"
-                                                    onclick="return confirm('Bật lại câu hỏi này?')">
-                                                Bật lại
-                                            </button>
-                                        }
-                                    </form>
+                                    @if (item.NguoiTao == ViewBag.MaGV)
+                                    {
+                                        <form asp-action="DoiTrangThaiCauHoi" asp-route-id="@item.MaCauHoi" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+
+                                            @if (item.TrangThai)
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                        onclick="return confirm('Bạn có chắc muốn ẩn câu hỏi này không?')">
+                                                    Ẩn
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-sm btn-outline-success"
+                                                        onclick="return confirm('Bật lại câu hỏi này?')">
+                                                    Bật lại
+                                                </button>
+                                            }
+                                        </form>
+                                    }
                                 </div>
                             </td>
                         </tr>
@@ -173,5 +252,96 @@
                 }
             </tbody>
         </table>
-    </div>
-</div>
+        <div class="d-flex justify-content-center mt-4">
+            <ul class="pagination">
+
+                <!-- Prev -->
+                <li class="page-item @(ViewBag.Page == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       href="?page=@(ViewBag.Page - 1)&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
+                        &lsaquo;
+                    </a>
+                </li>
+
+                @{
+                    int current = ViewBag.Page;
+                    int total = ViewBag.TotalPage;
+
+                    int start = Math.Max(1, current - 2);
+                    int end = Math.Min(total, current + 2);
+                }
+
+                <!-- Trang đầu -->
+                @if (start > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page=1&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
+                            1
+                        </a>
+                    </li>
+
+                    @if (start > 2)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+                }
+
+                <!-- Các trang giữa -->
+                @for (int i = start; i <= end; i++)
+                {
+                    <li class="page-item @(i == current ? "active" : "")">
+                        <a class="page-link"
+                           href="?page=@i&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <!-- Trang cuối -->
+                @if (end < total)
+                {
+                    if (end < total - 1)
+                    {
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    }
+
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="?page=@total&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
+                            @total
+                        </a>
+                    </li>
+                }
+
+                <!-- Next -->
+                <li class="page-item @(ViewBag.Page == ViewBag.TotalPage ? "disabled" : "")">
+                    <a class="page-link"
+                       href="?page=@(ViewBag.Page + 1)&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
+                        &rsaquo;
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+<style>
+    .pagination .page-link {
+        border-radius: 8px;
+        margin: 0 4px;
+        color: #333;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #2563eb;
+        border-color: #2563eb;
+        color: #fff;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        opacity: 0.5;
+    }
+</style>

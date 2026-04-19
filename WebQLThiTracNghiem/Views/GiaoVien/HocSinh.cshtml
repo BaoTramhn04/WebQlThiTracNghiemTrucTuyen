@@ -125,18 +125,18 @@
 
                             <td>
 
-                                <button class="btn btn-sm btn-outline-primary"
-                                        onclick="openEditModal('@hs.MaHocSinh','@hs.MaLop')">
-                                    Chuyển lớp
-                                </button>
 
-                                <a asp-action="XoaHocSinh"
-                                   asp-route-id="@hs.MaHocSinh"
-                                   class="btn btn-sm btn-outline-danger"
-                                   onclick="return confirm('Xóa học sinh khỏi lớp?')">
-                                    Xóa khỏi lớp
-                                </a>
 
+                             <form asp-action="XoaHocSinh" method="post" style="display:inline;"
+      onsubmit="return confirm('Xóa học sinh khỏi lớp?');">
+
+    <input type="hidden" name="id" value="@hs.MaHocSinh" />
+
+    <button type="submit" class="btn btn-sm btn-outline-danger">
+        🗑 Xóa khỏi lớp
+    </button>
+
+</form>
                             </td>
 
                         </tr>
@@ -147,6 +147,66 @@
 
         </table>
 
+      @{
+    int current = ViewBag.Page;
+    int total = ViewBag.TotalPage;
+
+    int start = Math.Max(1, current - 2);
+    int end = Math.Min(total, current + 2);
+}
+
+<div class="pagination">
+
+    <!-- PREV -->
+    @if (current > 1)
+    {
+        <a href="@Url.Action("HocSinh", new {
+            page = current - 1,
+            keyword = ViewBag.Keyword,
+            lopId = ViewBag.LopId
+        })" class="page-btn">‹</a>
+    }
+
+    <!-- FIRST -->
+    @if (start > 1)
+    {
+        <a href="@Url.Action("HocSinh", new { page = 1 })" class="page-btn">1</a>
+        <span class="dots">...</span>
+    }
+
+    <!-- MAIN -->
+    @for (int i = start; i <= end; i++)
+    {
+        <a href="@Url.Action("HocSinh", new {
+            page = i,
+            keyword = ViewBag.Keyword,
+            lopId = ViewBag.LopId
+        })"
+           class="page-btn @(i == current ? "active" : "")">
+            @i
+        </a>
+    }
+
+    <!-- LAST -->
+    @if (end < total)
+    {
+        <span class="dots">...</span>
+        <a href="@Url.Action("HocSinh", new { page = total })" class="page-btn">@total</a>
+    }
+
+    <!-- NEXT -->
+    @if (current < total)
+    {
+        <a href="@Url.Action("HocSinh", new {
+            page = current + 1,
+            keyword = ViewBag.Keyword,
+            lopId = ViewBag.LopId
+        })" class="page-btn">›</a>
+    }
+
+</div>
+
+</div>
     </div>
 
 </div>
@@ -228,17 +288,51 @@
 
 <script>
 
-function openEditModal(id, lop)
-{
-    document.getElementById("editId").value = id;
+    function openEditModal(id, lop)
+    {
+        document.getElementById("editId").value = id;
 
-    if(lop != null)
-        document.getElementById("editLop").value = lop;
+        if(lop != null)
+            document.getElementById("editLop").value = lop;
 
-    var modal = new bootstrap.Modal(
-        document.getElementById('modalSuaHocSinh'));
+        var modal = new bootstrap.Modal(
+            document.getElementById('modalSuaHocSinh'));
 
-    modal.show();
-}
+        modal.show();
+    }
 
 </script>
+<style>
+    .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.page-btn:hover {
+    background: #e5e7eb;
+}
+
+.page-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.dots {
+    padding: 6px 8px;
+    color: #999;
+}
+</style>

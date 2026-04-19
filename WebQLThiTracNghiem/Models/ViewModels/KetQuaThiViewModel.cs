@@ -31,5 +31,6 @@
 
         public bool DungSai { get; set; }
         public double DiemCau { get; set; }
+        public List<DapAnThiViewModel> DanhSachDapAn { get; set; }
     }
 }

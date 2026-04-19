@@ -1,0 +1,236 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Danh sách đợt thi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold">📚 Danh sách đợt thi</h2>
+
+        <a asp-action="TaoDotThi" class="btn btn-primary shadow-sm">
+            + Tạo đợt thi
+        </a>
+    </div>
+
+    <!-- 🔥 FILTER -->
+    <form method="get" class="card p-3 mb-3 shadow-sm border-0">
+        <div class="row g-2">
+
+            <div class="col-md-3">
+                <input type="text" name="keyword"
+                       value="@Context.Request.Query["keyword"]"
+                       class="form-control"
+                       placeholder="Tên đợt thi..." />
+            </div>
+
+            <div class="col-md-2">
+                <input type="date" name="fromDate"
+                       value="@Context.Request.Query["fromDate"]"
+                       class="form-control" />
+            </div>
+
+            <div class="col-md-2">
+                <input type="date" name="toDate"
+                       value="@Context.Request.Query["toDate"]"
+                       class="form-control" />
+            </div>
+
+            @{
+                var khoi = Context.Request.Query["khoi"].FirstOrDefault();
+            }
+
+            <div class="col-md-2">
+                <select name="khoi" class="form-select">
+                    <option value="">-- Khối --</option>
+
+                    @if (khoi == "10")
+                    {
+                        <option value="10" selected>Khối 10</option>
+                    }
+                    else
+                    {
+                        <option value="10">Khối 10</option>
+                    }
+
+                    @if (khoi == "11")
+                    {
+                        <option value="11" selected>Khối 11</option>
+                    }
+                    else
+                    {
+                        <option value="11">Khối 11</option>
+                    }
+
+                    @if (khoi == "12")
+                    {
+                        <option value="12" selected>Khối 12</option>
+                    }
+                    else
+                    {
+                        <option value="12">Khối 12</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button class="btn btn-primary w-100">Lọc</button>
+                <a asp-action="DanhSachDotThi" class="btn btn-secondary w-100">
+                    Reset
+                </a>
+            </div>
+
+        </div>
+    </form>
+@foreach (var item in Model)
+{
+    var now = DateTime.Now;
+    var sapDienRa = item.ThoiGianBatDau > now;
+    var dangDienRa = item.ThoiGianBatDau <= now && item.ThoiGianKetThuc >= now;
+    var daKetThuc = item.ThoiGianKetThuc < now;
+
+    var percent = item.TongHocSinh == 0 ? 0 :
+    (item.SoThiSinhDaThi * 100 / item.TongHocSinh);
+
+    <div class="card mb-3 shadow-sm border-0">
+        <div class="card-body">
+
+            <!-- 📝 TÊN -->
+            <div class="fw-bold mb-1">
+                @item.TenDotThi - @item.TenDe
+            </div>
+
+            <!-- ⏱ THỜI GIAN -->
+            <div class="text-muted small">
+                @item.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")
+            </div>
+            <div class="fw-semibold mb-2">
+                → @item.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")
+            </div>
+
+            <!-- 📊 TIẾN ĐỘ -->
+            <div class="small mb-1">
+                @item.SoThiSinhDaThi / @item.TongHocSinh học sinh
+            </div>
+
+            <div class="progress mb-2" style="height:10px;">
+                <div class="progress-bar bg-success"
+                     style="width:@(percent)%">
+                </div>
+            </div>
+
+            <!-- 🔥 FOOTER -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <!-- TRẠNG THÁI -->
+                <div>
+                    @if (sapDienRa)
+                    {
+                        <span class="badge bg-warning">Sắp diễn ra</span>
+                    }
+                    else if (dangDienRa)
+                    {
+                        <span class="badge bg-success">Đang diễn ra</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Đã kết thúc</span>
+                    }
+
+                    @if (item.Khoi != null && item.Khoi != 0)
+                    {
+                        <span class="badge bg-info">Khối @item.Khoi</span>
+                    }
+                </div>
+
+                <!-- ACTION -->
+                <div class="d-flex gap-2">
+
+                    <a asp-action="ChiTietDotThi"
+                       asp-route-id="@item.MaDotThi"
+                       class="btn btn-sm btn-info">
+                        👀
+                    </a>
+
+                    @if (sapDienRa)
+                    {
+                            <a asp-action="ChiTietDotThi"
+                               asp-route-id="@item.MaDotThi"
+                               class="btn btn-sm btn-primary">
+                                ✏️
+                            </a>
+                    }
+
+                    @if (sapDienRa)
+                    {
+                        <form asp-action="XoaDotThi"
+                              method="post"
+                              onsubmit="return confirm('Xóa đợt thi này?');">
+
+                            <input type="hidden" name="id" value="@item.MaDotThi" />
+
+                            <button class="btn btn-sm btn-danger">🗑️</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Không thể xóa</span>
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+}
+    <!-- 🔥 PHÂN TRANG -->
+    <div class="d-flex justify-content-center mt-3">
+        @for (int i = 1; i <= (int)(ViewBag.TotalPages ?? 1); i++)
+        {
+            <a href="?page=@i&keyword=@Context.Request.Query["keyword"]&fromDate=@Context.Request.Query["fromDate"]&toDate=@Context.Request.Query["toDate"]&khoi=@Context.Request.Query["khoi"]"
+               class="btn btn-sm @(i == (ViewBag.CurrentPage ?? 1) ? "btn-primary" : "btn-outline-primary") mx-1">
+                @i
+            </a>
+        }
+    </div>
+
+</div>
+
+<!-- 🔥 ALERT -->
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show position-fixed"
+         style="top:20px; right:20px; z-index:9999;">
+        ❌ @TempData["error"]
+        <button class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (TempData["success"] != null && !string.IsNullOrEmpty(TempData["success"].ToString()))
+{
+    <div id="toast-success"
+         class="toast-box"
+         style="top:80px; right:20px; position:fixed; z-index:9999;
+                    background:#e6fffa; padding:10px 15px; border-radius:10px; display:flex; align-items:center; gap:8px;">
+
+        ✔️ <span>@TempData["success"]</span>
+
+        <button class="btn-close ms-auto" onclick="closeToast()"></button>
+    </div>
+}
+
+<script>
+    function closeToast() {
+        var toast = document.getElementById("toast-success");
+        if (toast) toast.style.display = "none";
+    }
+
+    setTimeout(function () {
+        var toast = document.getElementById("toast-success");
+        if (toast) toast.style.display = "none";
+    }, 3000);
+</script>

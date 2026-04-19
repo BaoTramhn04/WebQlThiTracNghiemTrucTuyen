@@ -17,31 +17,129 @@
         @Html.AntiForgeryToken()
 
         <div class="row g-3">
+
+            <!-- TÊN -->
             <div class="col-md-8">
                 <label class="form-label">Tên đề thi</label>
-                <input asp-for="TenDeThi" class="form-control" placeholder="Ví dụ: Đề ôn tập chương Hàm số" />
+                <input asp-for="TenDeThi" class="form-control"
+                       placeholder="Ví dụ: Đề ôn tập chương Hàm số" />
             </div>
 
+            <!-- MÔN -->
             <div class="col-md-4">
                 <label class="form-label">Môn học</label>
-               <select asp-for="MaMonHoc" class="form-select">
-    <option value="">-- Chọn môn học --</option>
-    @foreach (var mon in ViewBag.MonHoc)
-    {
-        <option value="@mon.MaMonHoc">@mon.TenMonHoc</option>
-    }
-</select>
+                <select asp-for="MaMonHoc" class="form-select" id="monHoc" required>
+                    <option value="">-- Chọn môn học --</option>
+
+                    @foreach (var mon in ViewBag.MonHoc)
+                    {
+                        if (Model?.MaMonHoc == mon.MaMonHoc)
+                        {
+                            <option value="@mon.MaMonHoc" selected>
+                                @mon.TenMonHoc
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@mon.MaMonHoc">
+                                @mon.TenMonHoc
+                            </option>
+                        }
+                    }
+                </select>
             </div>
 
+            <!-- KHỐI -->
+            <div class="col-md-4">
+                <label class="form-label">Khối</label>
+                <select asp-for="Khoi" class="form-select" required>
+                    <option value="">-- Chọn khối --</option>
+
+                    @if (Model?.Khoi == 10)
+                    {
+                        <option value="10" selected>Khối 10</option>
+                    }
+                    else
+                    {
+                        <option value="10">Khối 10</option>
+                    }
+
+                    @if (Model?.Khoi == 11)
+                    {
+                        <option value="11" selected>Khối 11</option>
+                    }
+                    else
+                    {
+                        <option value="11">Khối 11</option>
+                    }
+
+                    @if (Model?.Khoi == 12)
+                    {
+                        <option value="12" selected>Khối 12</option>
+                    }
+                    else
+                    {
+                        <option value="12">Khối 12</option>
+                    }
+                </select>
+            </div>
+
+            <!-- LOẠI ĐỀ -->
+            <div class="col-md-4">
+                <label class="form-label">Loại đề</label>
+                <select asp-for="LoaiDe" class="form-select" id="loaiDe">
+                    <option value="Lop">Đề riêng</option>
+                </select>
+            </div>
+
+            <!-- THỜI GIAN -->
             <div class="col-md-4">
                 <label class="form-label">Thời gian làm bài (phút)</label>
-                <input asp-for="ThoiGianLamBai" type="number" class="form-control" min="1" />
+                <input asp-for="ThoiGianLamBai"
+                       type="number"
+                       class="form-control"
+                       min="1" required />
             </div>
+
         </div>
 
         <div class="mt-4 d-flex gap-2">
-            <button type="submit" class="btn btn-primary">Tạo đề thi</button>
-            <a asp-action="DeThi" class="btn btn-outline-secondary">Quay lại</a>
+            <button type="submit" class="btn btn-primary">
+                Tạo đề thi
+            </button>
+
+            <a asp-action="DeThi" class="btn btn-outline-secondary">
+                Quay lại
+            </a>
         </div>
     </form>
 </div>
+
+@section Scripts {
+    <script>
+        let laDaiDien = {};
+
+        try {
+            laDaiDien = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.LaDaiDienTheoMon));
+        } catch {
+            laDaiDien = {};
+        }
+
+        const monSelect = document.getElementById("monHoc");
+        const loaiDe = document.getElementById("loaiDe");
+
+        function updateLoaiDe() {
+            const monId = monSelect.value;
+
+            loaiDe.innerHTML = '<option value="Lop">Đề riêng</option>';
+
+            if (laDaiDien && laDaiDien[monId] === true) {
+                loaiDe.innerHTML += '<option value="Chung">Đề chung</option>';
+            }
+        }
+
+        monSelect.addEventListener("change", updateLoaiDe);
+
+        setTimeout(updateLoaiDe, 100);
+    </script>
+}

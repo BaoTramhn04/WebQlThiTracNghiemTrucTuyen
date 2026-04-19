@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebQLThiTracNghiem.Models
 {
@@ -17,6 +18,12 @@ namespace WebQLThiTracNghiem.Models
 
         public DateTime? ThoiDiemNopBai { get; set; }
 
+        public double? Diem { get; set; }
+
         public bool TrangThai { get; set; }
+
+        // 🔥 FIX CHUẨN FK
+        [ForeignKey("MaHocSinh")]
+        public HocSinh HocSinh { get; set; }
     }
 }
