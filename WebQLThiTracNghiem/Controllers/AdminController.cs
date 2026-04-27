@@ -1314,17 +1314,22 @@ namespace WebQLThiTracNghiem.Controllers
             {
                 var ws = package.Workbook.Worksheets.Add("GiaoVien");
 
-                ws.Cells[1, 1].Value = "Tên giáo viên";
-                ws.Cells[1, 2].Value = "Tên đăng nhập";
-                ws.Cells[1, 3].Value = "Mật khẩu";
+                ws.Cells[1, 1].Value = "ID";
+                ws.Cells[1, 2].Value = "Họ tên";
+                ws.Cells[1, 3].Value = "Tên đăng nhập";
+                ws.Cells[1, 4].Value = "Trạng thái";
+                ws.Cells[1, 5].Value = "Đại diện";
 
                 int row = 2;
 
                 foreach (var gv in list)
                 {
-                    ws.Cells[row, 1].Value = gv.NguoiDung?.HoSoCaNhan?.HoTen;
-                    ws.Cells[row, 2].Value = gv.NguoiDung?.TenDangNhap;
-                    ws.Cells[row, 3].Value = gv.NguoiDung?.MatKhau;
+                    ws.Cells[row, 1].Value = gv.MaGiaoVien;
+                    ws.Cells[row, 2].Value = gv.NguoiDung?.HoSoCaNhan?.HoTen;
+                    ws.Cells[row, 3].Value = gv.NguoiDung?.TenDangNhap;
+                    ws.Cells[row, 4].Value = gv.TrangThai ? "Hoạt động" : "Khóa";
+                    ws.Cells[row, 5].Value = gv.LaDaiDien ? "✔" : "";
+
                     row++;
                 }
 
@@ -1338,7 +1343,6 @@ namespace WebQLThiTracNghiem.Controllers
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     "DanhSachGiaoVien.xlsx");
             }
-
         }
         // ===============================
         // XUẤT EXCEL HỌC SINH
@@ -1355,21 +1359,28 @@ namespace WebQLThiTracNghiem.Controllers
             using (var package = new ExcelPackage())
             {
                 var ws = package.Workbook.Worksheets.Add("HocSinh");
-
-                // Header
-                ws.Cells[1, 1].Value = "Tên học sinh";
-                ws.Cells[1, 2].Value = "Tên đăng nhập";
-                ws.Cells[1, 3].Value = "Mật khẩu";
+                ws.Cells[1, 1].Value = "ID";
+                ws.Cells[1, 2].Value = "Họ tên";
+                ws.Cells[1, 3].Value = "Tên đăng nhập";
                 ws.Cells[1, 4].Value = "Lớp";
+                ws.Cells[1, 5].Value = "SBD";
+                ws.Cells[1, 6].Value = "Trạng thái";
+                using (var range = ws.Cells[1, 1, 1, 6])
+                {
+                    range.Style.Font.Bold = true;
+                }
 
                 int row = 2;
 
                 foreach (var hs in list)
                 {
-                    ws.Cells[row, 1].Value = hs.NguoiDung?.HoSoCaNhan?.HoTen;
-                    ws.Cells[row, 2].Value = hs.NguoiDung?.TenDangNhap;
-                    ws.Cells[row, 3].Value = hs.NguoiDung?.MatKhau;
+                    ws.Cells[row, 1].Value = hs.MaHocSinh;
+                    ws.Cells[row, 2].Value = hs.NguoiDung?.HoSoCaNhan?.HoTen;
+                    ws.Cells[row, 3].Value = hs.NguoiDung?.TenDangNhap;
                     ws.Cells[row, 4].Value = hs.Lop?.TenLop;
+                    ws.Cells[row, 5].Value = hs.SoBaoDanh;
+                    ws.Cells[row, 6].Value = hs.TrangThai ? "Đang hoạt động" : "Khóa";
+
                     row++;
                 }
 
@@ -2062,6 +2073,7 @@ namespace WebQLThiTracNghiem.Controllers
 
                         select new
                         {
+                            MaHocSinh = hs.MaHocSinh,
                             Ten = hoso.HoTen,
                             Lop = lop != null ? lop.TenLop : "",
 
@@ -2079,50 +2091,46 @@ namespace WebQLThiTracNghiem.Controllers
             {
                 var ws = package.Workbook.Worksheets.Add("ChiTietDotThi");
 
-                // HEADER
-                ws.Cells[1, 1].Value = "Họ tên";
-                ws.Cells[1, 2].Value = "Lớp";
-                ws.Cells[1, 3].Value = "Thời gian vào";
-                ws.Cells[1, 4].Value = "Thời gian nộp";
-                ws.Cells[1, 5].Value = "Điểm";
-                ws.Cells[1, 6].Value = "Trạng thái";
+                // ===== HEADER =====
+                ws.Cells[1, 1].Value = "Mã học sinh";
+                ws.Cells[1, 2].Value = "Họ tên";
+                ws.Cells[1, 3].Value = "Lớp";
+                ws.Cells[1, 4].Value = "Thời gian vào";
+                ws.Cells[1, 5].Value = "Thời gian nộp";
+                ws.Cells[1, 6].Value = "Điểm";
+                ws.Cells[1, 7].Value = "Trạng thái";
 
                 // STYLE HEADER
-                using (var range = ws.Cells[1, 1, 1, 6])
+                using (var range = ws.Cells[1, 1, 1, 7])
                 {
                     range.Style.Font.Bold = true;
                 }
 
-                //FORMAT DATE
-                ws.Column(3).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                // FORMAT DATE
                 ws.Column(4).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                ws.Column(5).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
 
                 int row = 2;
 
                 foreach (var item in data)
                 {
-                    ws.Cells[row, 1].Value = item.Ten;
-                    ws.Cells[row, 2].Value = item.Lop;
-             
-                    if (item.ThoiGianVao.HasValue)
-                        ws.Cells[row, 3].Value = item.ThoiGianVao.Value;
-                    else
-                        ws.Cells[row, 3].Value = "";
+                    ws.Cells[row, 1].Value = item.MaHocSinh; // ✅ FIX
+                    ws.Cells[row, 2].Value = item.Ten;
+                    ws.Cells[row, 3].Value = item.Lop;
 
-                    if (item.ThoiGianNop.HasValue)
-                        ws.Cells[row, 4].Value = item.ThoiGianNop.Value;
-                    else
-                        ws.Cells[row, 4].Value = "";
+                    ws.Cells[row, 4].Value = item.ThoiGianVao ?? (object)"";
+                    ws.Cells[row, 5].Value = item.ThoiGianNop ?? (object)"";
 
-                    ws.Cells[row, 5].Value = item.Diem ?? 0;
-                    ws.Cells[row, 6].Value = item.TrangThai;
+                    ws.Cells[row, 6].Value = item.Diem ?? 0;
+                    ws.Cells[row, 7].Value = item.TrangThai;
 
+                    // COLOR STATUS
                     if (item.TrangThai == "Đã nộp")
-                        ws.Cells[row, 6].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                        ws.Cells[row, 7].Style.Font.Color.SetColor(System.Drawing.Color.Green);
                     else if (item.TrangThai == "Chưa nộp")
-                        ws.Cells[row, 6].Style.Font.Color.SetColor(System.Drawing.Color.Orange);
+                        ws.Cells[row, 7].Style.Font.Color.SetColor(System.Drawing.Color.Orange);
                     else
-                        ws.Cells[row, 6].Style.Font.Color.SetColor(System.Drawing.Color.Red);
+                        ws.Cells[row, 7].Style.Font.Color.SetColor(System.Drawing.Color.Red);
 
                     row++;
                 }
@@ -2136,6 +2144,7 @@ namespace WebQLThiTracNghiem.Controllers
                     "ChiTietDotThi.xlsx");
             }
         
+
 
     }
     }

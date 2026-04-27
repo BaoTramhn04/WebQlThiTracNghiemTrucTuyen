@@ -2718,7 +2718,7 @@ namespace WebQLThiTracNghiem.Controllers
 
                         select new
                         {
-                            hs.SoBaoDanh,
+                            hs.MaHocSinh,
                             hoso.HoTen,
                             lop.TenLop,
                             ThoiDiemVao = lt != null ? lt.ThoiDiemBatDau : (DateTime?)null,
@@ -2730,30 +2730,48 @@ namespace WebQLThiTracNghiem.Controllers
             {
                 var ws = package.Workbook.Worksheets.Add("ChiTietDotThi");
 
-                // HEADER
-                ws.Cells[1, 1].Value = "SBD";
+                // ===== HEADER =====
+                ws.Cells[1, 1].Value = "Mã học sinh";
                 ws.Cells[1, 2].Value = "Họ tên";
                 ws.Cells[1, 3].Value = "Lớp";
                 ws.Cells[1, 4].Value = "Thời điểm vào";
                 ws.Cells[1, 5].Value = "Thời điểm nộp";
                 ws.Cells[1, 6].Value = "Điểm";
+                ws.Cells[1, 7].Value = "Trạng thái";
+
+                // STYLE HEADER
+                using (var range = ws.Cells[1, 1, 1, 7])
+                {
+                    range.Style.Font.Bold = true;
+                }
+
+                // FORMAT NGÀY THEO CỘT (chuẩn hơn)
+                ws.Column(4).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                ws.Column(5).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
 
                 int row = 2;
 
                 foreach (var item in data)
                 {
-                    ws.Cells[row, 1].Value = item.SoBaoDanh;
+                    ws.Cells[row, 1].Value = item.MaHocSinh;
                     ws.Cells[row, 2].Value = item.HoTen;
                     ws.Cells[row, 3].Value = item.TenLop;
 
-                    // FORMAT NGÀY CHUẨN
-                    ws.Cells[row, 4].Value = item.ThoiDiemVao;
-                    ws.Cells[row, 4].Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                    // NULL SAFE
+                    ws.Cells[row, 4].Value = item.ThoiDiemVao ?? (object)"";
+                    ws.Cells[row, 5].Value = item.ThoiDiemNop ?? (object)"";
 
-                    ws.Cells[row, 5].Value = item.ThoiDiemNop;
-                    ws.Cells[row, 5].Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
+                    ws.Cells[row, 6].Value = item.Diem ?? 0;
 
-                    ws.Cells[row, 6].Value = item.Diem;
+                    // TRẠNG THÁI
+                    string trangThai = item.ThoiDiemNop == null ? "Chưa nộp" : "Đã nộp";
+                    ws.Cells[row, 7].Value = trangThai;
+
+                    // MÀU TRẠNG THÁI (xịn hơn UI luôn 😎)
+                    if (trangThai == "Đã nộp")
+                        ws.Cells[row, 7].Style.Font.Color.SetColor(System.Drawing.Color.Green);
+                    else
+                        ws.Cells[row, 7].Style.Font.Color.SetColor(System.Drawing.Color.Red);
 
                     row++;
                 }
@@ -2766,7 +2784,6 @@ namespace WebQLThiTracNghiem.Controllers
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     $"ChiTietDotThi_{id}.xlsx");
             }
-
         }
         public IActionResult TaoDeThiTuDong()
         {
