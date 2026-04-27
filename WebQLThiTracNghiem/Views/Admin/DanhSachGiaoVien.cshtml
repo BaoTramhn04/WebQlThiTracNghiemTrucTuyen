@@ -53,7 +53,6 @@
                            required />
                 </div>
 
-                <!-- 🔥 FIX CHECKBOX -->
                 <input type="hidden" name="laDaiDien" id="hiddenDaiDien" value="false" />
 
                 <div class="col-md-2 d-flex align-items-center">
@@ -83,7 +82,6 @@
 
             </div>
         </form>
-        <!-- SEARCH -->
 
         <form method="get" class="row g-2 mb-3">
 
@@ -107,7 +105,6 @@
 
         </form>
 
-        <!-- TABLE -->
 
       <table class="table table-bordered table-hover align-middle">
 
@@ -134,7 +131,6 @@
 
                 <td>@gv.NguoiDung.TenDangNhap</td>
 
-                <!-- ✅ TRẠNG THÁI -->
                 <td>
                     @if (gv.TrangThai)
                     {
@@ -146,7 +142,6 @@
                     }
                 </td>
 
-                <!-- ✅ ĐẠI DIỆN -->
                 <td>
                     @if (gv.LaDaiDien)
                    {
@@ -158,10 +153,8 @@
     }
                 </td>
 
-                <!-- ✅ THAO TÁC -->
                 <td class="d-flex gap-1 align-items-center">
 
-                    <!-- 👤 HỒ SƠ -->
                     <a asp-action="ChiTietNguoiDung"
                        asp-route-id="@gv.NguoiDung.MaNguoiDung"
                        class="btn btn-sm btn-info"
@@ -169,7 +162,6 @@
                         <i class="bi bi-person"></i>
                     </a>
 
-                            <!-- ✏️ SỬA -->
                             <button type="button"
                                     class="btn btn-sm btn-warning"
                                     title="Sửa"
@@ -182,7 +174,6 @@
                                 <i class="bi bi-pencil"></i>
                             </button>
 
-                    <!-- 🗑️ XÓA -->
                     <a asp-action="XoaGiaoVien"
                        asp-route-id="@gv.MaGiaoVien"
                        class="btn btn-sm btn-danger"

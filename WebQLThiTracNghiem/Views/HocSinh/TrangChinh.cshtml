@@ -5,7 +5,6 @@
 
 <div class="student-dashboard container mt-4">
 
-    <!-- ===== THÔNG TIN HỌC SINH ===== -->
     <div class="student-card">
         <img src="https://i.pravatar.cc/100" class="avatar" />
 
@@ -21,10 +20,8 @@
         </div>
     </div>
 
-    <!-- ===== TITLE ===== -->
     <h4 class="section-title">Đợt thi của bạn</h4>
 
-    <!-- ===== DANH SÁCH ĐỢT THI ===== -->
     <div class="exam-list">
 
         @if (Model.DotThis != null)
@@ -61,12 +58,10 @@
 </div>
 
 <style>
-    /* ===== CONTAINER ===== */
     .student-dashboard {
         max-width: 1100px;
     }
 
-    /* ===== STUDENT CARD ===== */
     .student-card {
         display: flex;
         align-items: center;
@@ -78,7 +73,6 @@
         box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     }
 
-    /* AVATAR */
     .avatar {
         width: 80px;
         height: 80px;
@@ -86,7 +80,6 @@
         border: 3px solid white;
     }
 
-    /* INFO */
     .student-info {
         flex: 1;
         margin-left: 20px;
@@ -97,25 +90,21 @@
             font-weight: 700;
         }
 
-    /* ACTION BUTTON */
     .student-actions a {
         margin-left: 10px;
     }
 
-    /* TITLE */
     .section-title {
         margin: 40px 0 20px;
         font-weight: 700;
     }
 
-    /* ===== EXAM LIST ===== */
     .exam-list {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 20px;
     }
 
-    /* ===== CARD ===== */
     .exam-card {
         background: white;
         padding: 20px;
@@ -128,12 +117,10 @@
             transform: translateY(-5px);
         }
 
-        /* DISABLED */
         .exam-card.disabled {
             opacity: 0.6;
         }
 
-    /* STATUS */
     .status {
         padding: 6px 12px;
         border-radius: 999px;
@@ -152,7 +139,6 @@
             color: #dc2626;
         }
 
-    /* BUTTON */
     .btn-primary {
         background: linear-gradient(135deg, #2563eb, #60a5fa);
         border: none;

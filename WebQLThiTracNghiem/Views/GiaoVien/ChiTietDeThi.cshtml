@@ -1,4 +1,4 @@
-﻿    @{
+﻿@{
     Layout = "~/Views/Shared/_LayoutGiaoVien.cshtml";
     ViewData["Title"] = "Chi tiết đề thi";
 
@@ -60,16 +60,16 @@
                 {
                     @foreach (var item in dsCauHoi)
                     {
-                        <tr>
+                        <tr class="cauhoi-row" onclick="toggleDapAn(@item.MaCauHoi)">
                             <td>@item.MaCauHoi</td>
                             <td>
                                 @(item.NoiDung != null && item.NoiDung.Length > 120
-                                    ? item.NoiDung.Substring(0, 120) + "..."
-                                    : item.NoiDung)
-                            </td>
-                            <td>@item.TenChuyenDe</td>
-                            <td>
-                                @if (item.MucDo == 1)
+                                                        ? item.NoiDung.Substring(0, 120) + "..."
+                                                        : item.NoiDung)
+                    </td>
+                    <td>@item.TenChuyenDe</td>
+                    <td>
+                        @if (item.MucDo == 1)
                                 {
                                     <span class="badge bg-success">Nhận biết</span>
                                 }
@@ -82,7 +82,7 @@
                                     <span class="badge bg-danger">Vận dụng</span>
                                 }
                             </td>
-                            <td>
+                            <td onclick="event.stopPropagation();">
                                 <form asp-action="XoaCauHoiKhoiDe" method="post">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="maDeThi" value="@deThi.MaDeThi" />
@@ -92,6 +92,32 @@
                                         Xóa
                                     </button>
                                 </form>
+                            </td>
+                        </tr>
+
+                        <tr id="dapAn-@item.MaCauHoi" style="display:none; background:#f8fafc;">
+                            <td colspan="5">
+                                <div class="ps-3">
+
+                                    @if (item.DapAns != null)
+                                    {
+                                        foreach (var da in item.DapAns)
+                                        {
+                                            <div class="mb-1 @(da.LaDapAnDung ? "text-success fw-bold" : "")">
+                                                • @da.NoiDung
+                                                @if (da.LaDapAnDung)
+                                                {
+                                                    <span>(Đúng)</span>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Không có đáp án</span>
+                                    }
+
+                                </div>
                             </td>
                         </tr>
                     }
@@ -108,3 +134,23 @@
         </table>
     </div>
 </div>
+
+<script>
+    function toggleDapAn(id) {
+        const row = document.getElementById("dapAn-" + id);
+        if (!row) return;
+
+        row.style.display = (row.style.display === "none") ? "table-row" : "none";
+    }
+</script>
+
+<style>
+    .cauhoi-row {
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .cauhoi-row:hover {
+            background-color: #f1f5f9;
+        }
+</style>

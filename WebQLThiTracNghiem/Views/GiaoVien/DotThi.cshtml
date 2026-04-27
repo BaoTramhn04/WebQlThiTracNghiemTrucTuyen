@@ -34,7 +34,6 @@
         </a>
     </div>
 
-    <!-- FILTER -->
     <form method="get" class="row g-2 mb-3">
 
         <div class="col-md-4">
@@ -101,17 +100,13 @@
                                 </small>
                             </td>
 
-                            <!-- KHỐI -->
                             <td class="text-center">Khối @item.Khoi</td>
 
-                            <!-- MÔN -->
                             <td>@item.TenMonHoc</td>
 
-                            <!-- THỜI GIAN -->
                             <td>@item.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")</td>
                             <td>@item.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")</td>
 
-                            <!-- TRẠNG THÁI -->
                             <td>
                                 @if (item.TrangThai == "SapDienRa")
                                 {
@@ -127,7 +122,6 @@
                                 }
                             </td>
 
-                            <!-- ACTION -->
                             <td>
                                 <div class="d-flex flex-wrap gap-1">
 
@@ -167,9 +161,10 @@
                                     }
                                     else
                                     {
-<span class="badge bg-danger" title="@item.LyDoKhoa">
-    Không thể xóa
-</span>                                    }
+                                        <span class="badge bg-danger" title="@item.LyDoKhoa">
+                                             Không thể xóa
+                                            </span>                         
+                                    }
 
                                 </div>
                             </td>
@@ -190,7 +185,6 @@
         </table>
     </div>
 
-    <!-- PHÂN TRANG -->
     <div class="d-flex justify-content-center mt-3">
         @for (int i = 1; i <= (int)(ViewBag.TotalPages ?? 1); i++)
         {

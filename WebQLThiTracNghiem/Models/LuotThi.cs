@@ -22,7 +22,6 @@ namespace WebQLThiTracNghiem.Models
 
         public bool TrangThai { get; set; }
 
-        // 🔥 FIX CHUẨN FK
         [ForeignKey("MaHocSinh")]
         public HocSinh HocSinh { get; set; }
     }

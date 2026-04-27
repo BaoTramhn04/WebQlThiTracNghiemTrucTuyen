@@ -18,15 +18,12 @@
 
             <input type="hidden" asp-for="MaNguoiDung" />
 
-            <!-- 🔥 QUAY LẠI -->
             <input type="hidden" name="returnUrl" value="@Context.Request.Headers["Referer"]" />
 
             <div class="row">
 
-                <!-- 🔥 AVATAR -->
                 <div class="col-md-4 text-center">
 
-                    <!-- HIỂN THỊ ẢNH -->
                     <img id="previewAvatar"
                          src="@(string.IsNullOrEmpty(Model.HoSoCaNhan?.AnhDaiDien)
                                                          ? "/images/avatar-default.png"
@@ -34,12 +31,10 @@
                          class="mb-3 shadow"
                          style="width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid #ddd;" />
 
-                    <!-- INPUT FILE -->
                     <input type="file" name="avatar" class="form-control" onchange="previewImage(event)" />
 
                 </div>
 
-                <!-- 🔥 THÔNG TIN -->
                 <div class="col-md-8">
 
                     <div class="mb-3">
@@ -98,7 +93,7 @@
     </div>
 </div>
 
-<!-- 🔥 PREVIEW ẢNH -->
+<!-- PREVIEW ẢNH -->
 <script>
     function previewImage(event) {
         var reader = new FileReader();

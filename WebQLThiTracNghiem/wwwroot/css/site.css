@@ -116,7 +116,7 @@ body.dark {
     }
 }
 
-/* ===== ANIMATION MƯỢT HƠN ===== */
+/* ===== ANIMATION ===== */
 .card {
     transition: all 0.3s ease;
 }
@@ -125,7 +125,6 @@ body.dark {
         transform: translateY(-8px) scale(1.02);
     }
 
-/* ===== FIX NHỎ CHO BUTTON ===== */
 .btn-main:hover {
     transform: translateY(-2px);
 }

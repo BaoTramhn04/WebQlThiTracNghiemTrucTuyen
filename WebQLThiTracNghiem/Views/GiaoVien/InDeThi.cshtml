@@ -57,14 +57,12 @@
             font-size: 14px;
         }
 
-        /* LINE */
         .line {
             border-top: 1px solid #000;
             width: 60%;
             margin: 5px auto;
         }
 
-        /* MÃ ĐỀ */
         .ma-de {
             float: right;
             border: 1px solid #000;
@@ -73,7 +71,6 @@
             margin-top: 10px;
         }
 
-        /* INFO */
         .info {
             margin-top: 20px;
         }
@@ -86,12 +83,10 @@
             margin: 20px 0;
         }
 
-        /* QUESTION */
         .question {
             margin-bottom: 18px;
         }
 
-        /* ANSWER */
         .answers {
             margin-left: 25px;
         }
@@ -100,7 +95,6 @@
                 margin-bottom: 4px;
             }
 
-        /* BUTTON */
         .btn-print {
             position: fixed;
             top: 15px;
@@ -135,7 +129,6 @@
 
     <div class="exam-paper">
 
-        <!-- HEADER -->
         <div class="header">
             <div class="header-left">
                 BỘ GIÁO DỤC VÀ ĐÀO TẠO<br />
@@ -149,21 +142,18 @@
             </div>
         </div>
 
-        <!-- CENTER -->
         <div class="header-center">
             <h2>ĐỀ THI</h2>
             <div class="sub-title">(Đề có @Model.Count() câu)</div>
             <div class="line"></div>
         </div>
 
-        <!-- MÃ ĐỀ -->
         <div class="ma-de">
             Mã đề: @ViewBag.MaDe
         </div>
 
         <div style="clear:both"></div>
 
-        <!-- INFO -->
         <div class="info">
             <div><b>Họ và tên:</b> ............................................................</div>
             <div><b>Lớp:</b> ............................</div>
@@ -171,7 +161,6 @@
 
         <hr />
 
-        <!-- QUESTIONS -->
         @foreach (var item in Model)
         {
             <div class="question">

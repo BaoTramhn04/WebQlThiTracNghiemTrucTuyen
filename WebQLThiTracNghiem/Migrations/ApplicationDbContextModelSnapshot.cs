@@ -2734,6 +2734,9 @@ namespace WebQLThiTracNghiem.Migrations
                     b.Property<double>("DiemCauHoi")
                         .HasColumnType("float");
 
+                    b.Property<int>("ThuTu")
+                        .HasColumnType("int");
+
                     b.HasKey("MaDeThi", "MaCauHoi");
 
                     b.ToTable("ChiTietDeThi");
@@ -2743,2041 +2746,2381 @@ namespace WebQLThiTracNghiem.Migrations
                         {
                             MaDeThi = 1,
                             MaCauHoi = 3,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 8,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 9,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 4,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 2,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 1,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 7,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 6,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 1,
-                            MaCauHoi = 5,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 1,
                             MaCauHoi = 10,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 86,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 4,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 83,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 6,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 81,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 1,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 89,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 5,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 88,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 2,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 85,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 7,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 2,
-                            MaCauHoi = 90,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 1,
+                            MaCauHoi = 8,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 1,
+                            MaCauHoi = 9,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 2,
                             MaCauHoi = 87,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 2,
+                            MaCauHoi = 90,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 2,
+                            MaCauHoi = 86,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 2,
+                            MaCauHoi = 81,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 2,
+                            MaCauHoi = 83,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 2,
                             MaCauHoi = 82,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 2,
                             MaCauHoi = 84,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 3,
-                            MaCauHoi = 166,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 2,
+                            MaCauHoi = 85,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 3,
-                            MaCauHoi = 163,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 2,
+                            MaCauHoi = 88,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 3,
-                            MaCauHoi = 170,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 3,
-                            MaCauHoi = 161,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 3,
-                            MaCauHoi = 168,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 3,
-                            MaCauHoi = 164,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 2,
+                            MaCauHoi = 89,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 3,
                             MaCauHoi = 162,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 3,
                             MaCauHoi = 165,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 166,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 168,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 3,
                             MaCauHoi = 169,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 164,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 170,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 161,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 3,
+                            MaCauHoi = 163,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 3,
                             MaCauHoi = 167,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 4,
-                            MaCauHoi = 12,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 4,
-                            MaCauHoi = 19,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 4,
-                            MaCauHoi = 11,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 4,
-                            MaCauHoi = 16,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
                             MaCauHoi = 20,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
                             MaCauHoi = 14,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
                             MaCauHoi = 15,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
-                            MaCauHoi = 18,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 12,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
-                            MaCauHoi = 13,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 16,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 4,
+                            MaCauHoi = 19,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 4,
                             MaCauHoi = 17,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 5,
-                            MaCauHoi = 93,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 4,
+                            MaCauHoi = 13,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 4,
+                            MaCauHoi = 11,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 4,
+                            MaCauHoi = 18,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 100,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 5,
-                            MaCauHoi = 96,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 5,
-                            MaCauHoi = 97,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 99,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 5,
-                            MaCauHoi = 92,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 98,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 91,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 94,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 5,
                             MaCauHoi = 95,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 6,
-                            MaCauHoi = 179,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 5,
+                            MaCauHoi = 93,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 6,
-                            MaCauHoi = 180,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 5,
+                            MaCauHoi = 92,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 6,
-                            MaCauHoi = 178,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 5,
+                            MaCauHoi = 97,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 6,
-                            MaCauHoi = 176,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 6,
-                            MaCauHoi = 171,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 6,
-                            MaCauHoi = 172,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 5,
+                            MaCauHoi = 96,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 6,
                             MaCauHoi = 177,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 6,
-                            MaCauHoi = 174,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 6,
                             MaCauHoi = 173,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 180,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 6,
                             MaCauHoi = 175,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 7,
-                            MaCauHoi = 29,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 6,
+                            MaCauHoi = 174,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 176,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 172,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 178,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 179,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 6,
+                            MaCauHoi = 171,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 7,
                             MaCauHoi = 21,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 7,
-                            MaCauHoi = 22,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 28,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 24,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 23,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 25,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 30,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 7,
-                            MaCauHoi = 26,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 29,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 7,
                             MaCauHoi = 27,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 30,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 25,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 22,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 24,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 23,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 28,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 7,
+                            MaCauHoi = 26,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 8,
                             MaCauHoi = 102,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 106,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 8,
                             MaCauHoi = 107,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 109,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 101,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 108,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 105,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 110,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 8,
-                            MaCauHoi = 103,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 8,
                             MaCauHoi = 104,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 9,
-                            MaCauHoi = 185,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 8,
+                            MaCauHoi = 106,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 9,
-                            MaCauHoi = 181,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 8,
+                            MaCauHoi = 103,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 9,
-                            MaCauHoi = 186,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 8,
+                            MaCauHoi = 105,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 9,
-                            MaCauHoi = 187,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 8,
+                            MaCauHoi = 101,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 8,
+                            MaCauHoi = 109,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 8,
+                            MaCauHoi = 108,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 8,
+                            MaCauHoi = 110,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
                             MaCauHoi = 189,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
-                            MaCauHoi = 184,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 187,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
                             MaCauHoi = 190,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
-                            MaCauHoi = 183,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 181,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
                             MaCauHoi = 188,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 9,
+                            MaCauHoi = 183,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 9,
+                            MaCauHoi = 184,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 9,
                             MaCauHoi = 182,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 10,
-                            MaCauHoi = 35,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 9,
+                            MaCauHoi = 185,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 10,
-                            MaCauHoi = 34,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 31,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 32,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 39,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 40,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 37,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 38,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 10,
-                            MaCauHoi = 33,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 9,
+                            MaCauHoi = 186,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 10,
                             MaCauHoi = 36,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 11,
-                            MaCauHoi = 111,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 10,
+                            MaCauHoi = 40,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 11,
-                            MaCauHoi = 117,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 10,
+                            MaCauHoi = 37,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 32,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 38,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 34,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 39,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 31,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 33,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 10,
+                            MaCauHoi = 35,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 11,
                             MaCauHoi = 116,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 11,
-                            MaCauHoi = 118,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 11,
-                            MaCauHoi = 115,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 11,
-                            MaCauHoi = 114,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 11,
-                            MaCauHoi = 120,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 11,
-                            MaCauHoi = 119,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 11,
                             MaCauHoi = 112,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 11,
                             MaCauHoi = 113,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 200,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 117,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 197,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 111,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 196,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 115,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 191,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 114,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 199,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 120,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 12,
-                            MaCauHoi = 195,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 11,
+                            MaCauHoi = 119,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 11,
+                            MaCauHoi = 118,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 12,
                             MaCauHoi = 193,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 12,
-                            MaCauHoi = 198,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 195,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 12,
-                            MaCauHoi = 194,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 197,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 12,
                             MaCauHoi = 192,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 13,
-                            MaCauHoi = 45,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 12,
+                            MaCauHoi = 200,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 13,
-                            MaCauHoi = 43,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 12,
+                            MaCauHoi = 199,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 13,
-                            MaCauHoi = 50,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 12,
+                            MaCauHoi = 191,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 13,
-                            MaCauHoi = 44,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 12,
+                            MaCauHoi = 198,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 12,
+                            MaCauHoi = 196,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 12,
+                            MaCauHoi = 194,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 13,
                             MaCauHoi = 49,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 13,
-                            MaCauHoi = 41,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 13,
-                            MaCauHoi = 42,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 13,
-                            MaCauHoi = 46,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 13,
                             MaCauHoi = 48,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 13,
+                            MaCauHoi = 45,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 13,
+                            MaCauHoi = 44,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 13,
+                            MaCauHoi = 50,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 13,
+                            MaCauHoi = 41,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 13,
+                            MaCauHoi = 46,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 13,
                             MaCauHoi = 47,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 14,
-                            MaCauHoi = 121,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 13,
+                            MaCauHoi = 43,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 14,
-                            MaCauHoi = 128,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 14,
-                            MaCauHoi = 123,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 14,
-                            MaCauHoi = 126,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 14,
-                            MaCauHoi = 127,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 14,
-                            MaCauHoi = 122,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 13,
+                            MaCauHoi = 42,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 14,
                             MaCauHoi = 124,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 14,
-                            MaCauHoi = 129,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 14,
-                            MaCauHoi = 125,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 123,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 14,
                             MaCauHoi = 130,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 15,
-                            MaCauHoi = 201,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 14,
+                            MaCauHoi = 127,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 15,
-                            MaCauHoi = 207,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 14,
+                            MaCauHoi = 121,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 15,
-                            MaCauHoi = 204,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 14,
+                            MaCauHoi = 129,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 15,
-                            MaCauHoi = 206,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 14,
+                            MaCauHoi = 128,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 15,
-                            MaCauHoi = 210,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 14,
+                            MaCauHoi = 126,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 14,
+                            MaCauHoi = 125,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 14,
+                            MaCauHoi = 122,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 15,
                             MaCauHoi = 208,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 15,
-                            MaCauHoi = 203,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 206,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 15,
-                            MaCauHoi = 205,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 204,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 15,
+                            MaCauHoi = 207,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 15,
                             MaCauHoi = 209,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 15,
+                            MaCauHoi = 203,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 15,
                             MaCauHoi = 202,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 16,
-                            MaCauHoi = 53,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 15,
+                            MaCauHoi = 210,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 16,
-                            MaCauHoi = 57,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 15,
+                            MaCauHoi = 205,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 16,
-                            MaCauHoi = 54,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 16,
-                            MaCauHoi = 51,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 16,
-                            MaCauHoi = 60,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 16,
-                            MaCauHoi = 59,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 15,
+                            MaCauHoi = 201,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 16,
                             MaCauHoi = 55,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 16,
-                            MaCauHoi = 58,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 16,
-                            MaCauHoi = 56,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 16,
                             MaCauHoi = 52,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 17,
-                            MaCauHoi = 136,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 16,
+                            MaCauHoi = 51,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 17,
-                            MaCauHoi = 131,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 16,
+                            MaCauHoi = 57,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 17,
-                            MaCauHoi = 135,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 16,
+                            MaCauHoi = 58,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 17,
-                            MaCauHoi = 140,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 16,
+                            MaCauHoi = 53,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 16,
+                            MaCauHoi = 54,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 16,
+                            MaCauHoi = 59,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 16,
+                            MaCauHoi = 56,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 16,
+                            MaCauHoi = 60,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 17,
                             MaCauHoi = 132,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 17,
-                            MaCauHoi = 138,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 17,
                             MaCauHoi = 139,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 17,
-                            MaCauHoi = 134,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 17,
-                            MaCauHoi = 133,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 17,
                             MaCauHoi = 137,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 216,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 131,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 211,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 135,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 217,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 140,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 214,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 134,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 218,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 133,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 212,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 136,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 18,
-                            MaCauHoi = 219,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 18,
-                            MaCauHoi = 215,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 18,
-                            MaCauHoi = 213,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 17,
+                            MaCauHoi = 138,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 18,
                             MaCauHoi = 220,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 67,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 217,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 63,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 215,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 68,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 216,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 62,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 219,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 64,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 211,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 19,
-                            MaCauHoi = 65,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 18,
+                            MaCauHoi = 213,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 18,
+                            MaCauHoi = 218,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 18,
+                            MaCauHoi = 214,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 18,
+                            MaCauHoi = 212,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 19,
                             MaCauHoi = 69,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 19,
-                            MaCauHoi = 61,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 65,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 19,
-                            MaCauHoi = 66,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 67,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 19,
                             MaCauHoi = 70,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 20,
-                            MaCauHoi = 150,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 19,
+                            MaCauHoi = 64,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 19,
+                            MaCauHoi = 68,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 19,
+                            MaCauHoi = 62,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 19,
+                            MaCauHoi = 63,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 19,
+                            MaCauHoi = 66,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 19,
+                            MaCauHoi = 61,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 20,
                             MaCauHoi = 142,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 146,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 149,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 148,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 143,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 144,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 145,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 20,
-                            MaCauHoi = 141,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 20,
                             MaCauHoi = 147,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 143,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 148,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 141,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 150,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 149,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 144,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 146,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 20,
+                            MaCauHoi = 145,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 21,
                             MaCauHoi = 222,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 21,
                             MaCauHoi = 230,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 21,
-                            MaCauHoi = 226,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 21,
-                            MaCauHoi = 225,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 21,
-                            MaCauHoi = 229,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 21,
-                            MaCauHoi = 224,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 21,
-                            MaCauHoi = 227,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 21,
                             MaCauHoi = 221,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 21,
-                            MaCauHoi = 223,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 227,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 21,
+                            MaCauHoi = 224,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 21,
+                            MaCauHoi = 225,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 21,
                             MaCauHoi = 228,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 22,
-                            MaCauHoi = 77,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 21,
+                            MaCauHoi = 223,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 22,
-                            MaCauHoi = 74,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 21,
+                            MaCauHoi = 226,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 22,
-                            MaCauHoi = 79,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 21,
+                            MaCauHoi = 229,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 22,
                             MaCauHoi = 72,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 22,
-                            MaCauHoi = 80,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 22,
-                            MaCauHoi = 75,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 22,
-                            MaCauHoi = 76,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 22,
-                            MaCauHoi = 78,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 22,
                             MaCauHoi = 71,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 22,
+                            MaCauHoi = 76,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 22,
+                            MaCauHoi = 75,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 22,
                             MaCauHoi = 73,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 23,
-                            MaCauHoi = 157,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 22,
+                            MaCauHoi = 77,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 23,
-                            MaCauHoi = 152,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 22,
+                            MaCauHoi = 74,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 23,
-                            MaCauHoi = 158,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 22,
+                            MaCauHoi = 79,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 23,
-                            MaCauHoi = 155,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 22,
+                            MaCauHoi = 80,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 23,
-                            MaCauHoi = 156,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 23,
-                            MaCauHoi = 154,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 23,
-                            MaCauHoi = 159,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 22,
+                            MaCauHoi = 78,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 23,
                             MaCauHoi = 151,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 159,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 152,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 154,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 157,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 158,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 23,
+                            MaCauHoi = 156,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 23,
                             MaCauHoi = 153,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 23,
                             MaCauHoi = 160,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 24,
-                            MaCauHoi = 236,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 24,
-                            MaCauHoi = 237,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 24,
-                            MaCauHoi = 234,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 23,
+                            MaCauHoi = 155,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 24,
                             MaCauHoi = 232,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 237,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 24,
                             MaCauHoi = 231,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 24,
-                            MaCauHoi = 240,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 24,
-                            MaCauHoi = 233,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 24,
-                            MaCauHoi = 238,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 24,
                             MaCauHoi = 235,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 234,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 24,
                             MaCauHoi = 239,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 233,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 236,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 240,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 24,
+                            MaCauHoi = 238,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 25,
                             MaCauHoi = 9,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 25,
-                            MaCauHoi = 1,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 25,
-                            MaCauHoi = 8,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 25,
-                            MaCauHoi = 6,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 25,
                             MaCauHoi = 2,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 25,
-                            MaCauHoi = 5,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 25,
                             MaCauHoi = 7,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 25,
-                            MaCauHoi = 10,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 25,
                             MaCauHoi = 3,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 25,
+                            MaCauHoi = 1,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 25,
+                            MaCauHoi = 10,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 25,
                             MaCauHoi = 4,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 26,
-                            MaCauHoi = 18,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 25,
+                            MaCauHoi = 8,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 26,
-                            MaCauHoi = 15,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 25,
+                            MaCauHoi = 5,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 26,
-                            MaCauHoi = 19,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 26,
-                            MaCauHoi = 11,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 26,
-                            MaCauHoi = 12,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 25,
+                            MaCauHoi = 6,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 26,
                             MaCauHoi = 14,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 26,
                             MaCauHoi = 13,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 26,
                             MaCauHoi = 17,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 26,
                             MaCauHoi = 16,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 26,
+                            MaCauHoi = 19,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 26,
                             MaCauHoi = 20,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 27,
-                            MaCauHoi = 26,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 26,
+                            MaCauHoi = 15,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 27,
-                            MaCauHoi = 24,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 26,
+                            MaCauHoi = 12,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 27,
-                            MaCauHoi = 30,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 26,
+                            MaCauHoi = 11,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 27,
-                            MaCauHoi = 23,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 27,
-                            MaCauHoi = 25,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 27,
-                            MaCauHoi = 28,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 27,
-                            MaCauHoi = 21,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 27,
-                            MaCauHoi = 27,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 26,
+                            MaCauHoi = 18,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 27,
                             MaCauHoi = 22,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 27,
+                            MaCauHoi = 24,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 27,
+                            MaCauHoi = 30,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 27,
+                            MaCauHoi = 26,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 27,
                             MaCauHoi = 29,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 28,
-                            MaCauHoi = 35,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 27,
+                            MaCauHoi = 27,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 28,
-                            MaCauHoi = 39,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 27,
+                            MaCauHoi = 25,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 28,
-                            MaCauHoi = 32,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 27,
+                            MaCauHoi = 28,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 28,
-                            MaCauHoi = 36,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 27,
+                            MaCauHoi = 23,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 28,
-                            MaCauHoi = 34,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 27,
+                            MaCauHoi = 21,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 28,
                             MaCauHoi = 31,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 28,
-                            MaCauHoi = 37,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 36,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 28,
                             MaCauHoi = 40,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 28,
+                            MaCauHoi = 34,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 28,
+                            MaCauHoi = 35,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 28,
                             MaCauHoi = 33,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 28,
+                            MaCauHoi = 32,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 28,
+                            MaCauHoi = 39,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 28,
+                            MaCauHoi = 37,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 28,
                             MaCauHoi = 38,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 46,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 29,
                             MaCauHoi = 50,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 44,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 48,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 41,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 42,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 43,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 49,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 29,
-                            MaCauHoi = 47,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 29,
                             MaCauHoi = 45,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 30,
-                            MaCauHoi = 51,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 29,
+                            MaCauHoi = 48,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 30,
-                            MaCauHoi = 52,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 29,
+                            MaCauHoi = 43,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 30,
-                            MaCauHoi = 53,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 29,
+                            MaCauHoi = 42,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 30,
-                            MaCauHoi = 58,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 29,
+                            MaCauHoi = 44,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 29,
+                            MaCauHoi = 47,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 29,
+                            MaCauHoi = 41,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 29,
+                            MaCauHoi = 49,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 29,
+                            MaCauHoi = 46,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 30,
                             MaCauHoi = 59,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 30,
                             MaCauHoi = 54,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 30,
-                            MaCauHoi = 57,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 30,
-                            MaCauHoi = 55,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 53,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 30,
                             MaCauHoi = 56,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 30,
                             MaCauHoi = 60,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 30,
+                            MaCauHoi = 55,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 30,
+                            MaCauHoi = 52,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 30,
+                            MaCauHoi = 57,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 30,
+                            MaCauHoi = 51,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 30,
+                            MaCauHoi = 58,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 31,
                             MaCauHoi = 65,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 70,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 64,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 67,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 61,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 66,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 31,
-                            MaCauHoi = 63,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 31,
                             MaCauHoi = 68,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 31,
+                            MaCauHoi = 61,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 31,
                             MaCauHoi = 69,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 31,
+                            MaCauHoi = 66,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 31,
+                            MaCauHoi = 70,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 31,
+                            MaCauHoi = 67,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 31,
                             MaCauHoi = 62,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 32,
-                            MaCauHoi = 80,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 31,
+                            MaCauHoi = 64,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 31,
+                            MaCauHoi = 63,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 32,
                             MaCauHoi = 72,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 32,
-                            MaCauHoi = 73,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 32,
-                            MaCauHoi = 78,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 32,
-                            MaCauHoi = 71,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 32,
                             MaCauHoi = 74,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 32,
-                            MaCauHoi = 77,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 32,
-                            MaCauHoi = 79,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 32,
-                            MaCauHoi = 75,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 80,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 32,
                             MaCauHoi = 76,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 33,
-                            MaCauHoi = 6,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 32,
+                            MaCauHoi = 73,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 33,
-                            MaCauHoi = 5,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 32,
+                            MaCauHoi = 71,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 33,
-                            MaCauHoi = 1,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 32,
+                            MaCauHoi = 75,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 33,
-                            MaCauHoi = 2,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 32,
+                            MaCauHoi = 78,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 33,
-                            MaCauHoi = 7,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 32,
+                            MaCauHoi = 77,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 32,
+                            MaCauHoi = 79,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 33,
                             MaCauHoi = 4,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 33,
-                            MaCauHoi = 10,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 33,
-                            MaCauHoi = 3,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 33,
-                            MaCauHoi = 9,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 33,
                             MaCauHoi = 8,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
-                            MaDeThi = 34,
-                            MaCauHoi = 17,
-                            DiemCauHoi = 0.0
+                            MaDeThi = 33,
+                            MaCauHoi = 3,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 10,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 1,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 6,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 9,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 2,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 7,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 33,
+                            MaCauHoi = 5,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
                             MaCauHoi = 12,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 34,
-                            MaCauHoi = 19,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
                             MaCauHoi = 20,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
-                            MaCauHoi = 14,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 34,
-                            MaCauHoi = 11,
-                            DiemCauHoi = 0.0
-                        },
-                        new
-                        {
-                            MaDeThi = 34,
-                            MaCauHoi = 18,
-                            DiemCauHoi = 0.0
+                            MaCauHoi = 17,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
                             MaCauHoi = 16,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 34,
+                            MaCauHoi = 11,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 34,
+                            MaCauHoi = 19,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
                             MaCauHoi = 15,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 34,
+                            MaCauHoi = 18,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
+                        },
+                        new
+                        {
+                            MaDeThi = 34,
+                            MaCauHoi = 14,
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         },
                         new
                         {
                             MaDeThi = 34,
                             MaCauHoi = 13,
-                            DiemCauHoi = 0.0
+                            DiemCauHoi = 0.0,
+                            ThuTu = 0
                         });
                 });
 
@@ -15103,7 +15446,7 @@ namespace WebQLThiTracNghiem.Migrations
                     b.HasData(
                         new
                         {
-                            MaHocSinh = 2026010001,
+                            MaHocSinh = 26010101,
                             MaLop = 1,
                             MaNguoiDung = 500,
                             SoBaoDanh = "0101",
@@ -15111,7 +15454,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010002,
+                            MaHocSinh = 26010202,
                             MaLop = 1,
                             MaNguoiDung = 501,
                             SoBaoDanh = "0102",
@@ -15119,7 +15462,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010003,
+                            MaHocSinh = 26010303,
                             MaLop = 1,
                             MaNguoiDung = 502,
                             SoBaoDanh = "0103",
@@ -15127,7 +15470,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010004,
+                            MaHocSinh = 26010404,
                             MaLop = 1,
                             MaNguoiDung = 503,
                             SoBaoDanh = "0104",
@@ -15135,7 +15478,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010005,
+                            MaHocSinh = 26010505,
                             MaLop = 1,
                             MaNguoiDung = 504,
                             SoBaoDanh = "0105",
@@ -15143,7 +15486,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010006,
+                            MaHocSinh = 26010606,
                             MaLop = 1,
                             MaNguoiDung = 505,
                             SoBaoDanh = "0106",
@@ -15151,7 +15494,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010007,
+                            MaHocSinh = 26010707,
                             MaLop = 1,
                             MaNguoiDung = 506,
                             SoBaoDanh = "0107",
@@ -15159,7 +15502,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010008,
+                            MaHocSinh = 26010808,
                             MaLop = 1,
                             MaNguoiDung = 507,
                             SoBaoDanh = "0108",
@@ -15167,7 +15510,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010009,
+                            MaHocSinh = 26010909,
                             MaLop = 1,
                             MaNguoiDung = 508,
                             SoBaoDanh = "0109",
@@ -15175,7 +15518,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010010,
+                            MaHocSinh = 26011010,
                             MaLop = 1,
                             MaNguoiDung = 509,
                             SoBaoDanh = "0110",
@@ -15183,7 +15526,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010011,
+                            MaHocSinh = 26011111,
                             MaLop = 1,
                             MaNguoiDung = 510,
                             SoBaoDanh = "0111",
@@ -15191,7 +15534,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010012,
+                            MaHocSinh = 26011212,
                             MaLop = 1,
                             MaNguoiDung = 511,
                             SoBaoDanh = "0112",
@@ -15199,7 +15542,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010013,
+                            MaHocSinh = 26011313,
                             MaLop = 1,
                             MaNguoiDung = 512,
                             SoBaoDanh = "0113",
@@ -15207,7 +15550,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010014,
+                            MaHocSinh = 26011414,
                             MaLop = 1,
                             MaNguoiDung = 513,
                             SoBaoDanh = "0114",
@@ -15215,7 +15558,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026010015,
+                            MaHocSinh = 26011515,
                             MaLop = 1,
                             MaNguoiDung = 514,
                             SoBaoDanh = "0115",
@@ -15223,7 +15566,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020016,
+                            MaHocSinh = 26020116,
                             MaLop = 2,
                             MaNguoiDung = 515,
                             SoBaoDanh = "0201",
@@ -15231,7 +15574,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020017,
+                            MaHocSinh = 26020217,
                             MaLop = 2,
                             MaNguoiDung = 516,
                             SoBaoDanh = "0202",
@@ -15239,7 +15582,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020018,
+                            MaHocSinh = 26020318,
                             MaLop = 2,
                             MaNguoiDung = 517,
                             SoBaoDanh = "0203",
@@ -15247,7 +15590,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020019,
+                            MaHocSinh = 26020419,
                             MaLop = 2,
                             MaNguoiDung = 518,
                             SoBaoDanh = "0204",
@@ -15255,7 +15598,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020020,
+                            MaHocSinh = 26020520,
                             MaLop = 2,
                             MaNguoiDung = 519,
                             SoBaoDanh = "0205",
@@ -15263,7 +15606,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020021,
+                            MaHocSinh = 26020621,
                             MaLop = 2,
                             MaNguoiDung = 520,
                             SoBaoDanh = "0206",
@@ -15271,7 +15614,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020022,
+                            MaHocSinh = 26020722,
                             MaLop = 2,
                             MaNguoiDung = 521,
                             SoBaoDanh = "0207",
@@ -15279,7 +15622,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020023,
+                            MaHocSinh = 26020823,
                             MaLop = 2,
                             MaNguoiDung = 522,
                             SoBaoDanh = "0208",
@@ -15287,7 +15630,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020024,
+                            MaHocSinh = 26020924,
                             MaLop = 2,
                             MaNguoiDung = 523,
                             SoBaoDanh = "0209",
@@ -15295,7 +15638,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020025,
+                            MaHocSinh = 26021025,
                             MaLop = 2,
                             MaNguoiDung = 524,
                             SoBaoDanh = "0210",
@@ -15303,7 +15646,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020026,
+                            MaHocSinh = 26021126,
                             MaLop = 2,
                             MaNguoiDung = 525,
                             SoBaoDanh = "0211",
@@ -15311,7 +15654,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020027,
+                            MaHocSinh = 26021227,
                             MaLop = 2,
                             MaNguoiDung = 526,
                             SoBaoDanh = "0212",
@@ -15319,7 +15662,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020028,
+                            MaHocSinh = 26021328,
                             MaLop = 2,
                             MaNguoiDung = 527,
                             SoBaoDanh = "0213",
@@ -15327,7 +15670,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020029,
+                            MaHocSinh = 26021429,
                             MaLop = 2,
                             MaNguoiDung = 528,
                             SoBaoDanh = "0214",
@@ -15335,7 +15678,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026020030,
+                            MaHocSinh = 26021530,
                             MaLop = 2,
                             MaNguoiDung = 529,
                             SoBaoDanh = "0215",
@@ -15343,7 +15686,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030031,
+                            MaHocSinh = 26030131,
                             MaLop = 3,
                             MaNguoiDung = 530,
                             SoBaoDanh = "0301",
@@ -15351,7 +15694,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030032,
+                            MaHocSinh = 26030232,
                             MaLop = 3,
                             MaNguoiDung = 531,
                             SoBaoDanh = "0302",
@@ -15359,7 +15702,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030033,
+                            MaHocSinh = 26030333,
                             MaLop = 3,
                             MaNguoiDung = 532,
                             SoBaoDanh = "0303",
@@ -15367,7 +15710,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030034,
+                            MaHocSinh = 26030434,
                             MaLop = 3,
                             MaNguoiDung = 533,
                             SoBaoDanh = "0304",
@@ -15375,7 +15718,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030035,
+                            MaHocSinh = 26030535,
                             MaLop = 3,
                             MaNguoiDung = 534,
                             SoBaoDanh = "0305",
@@ -15383,7 +15726,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030036,
+                            MaHocSinh = 26030636,
                             MaLop = 3,
                             MaNguoiDung = 535,
                             SoBaoDanh = "0306",
@@ -15391,7 +15734,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030037,
+                            MaHocSinh = 26030737,
                             MaLop = 3,
                             MaNguoiDung = 536,
                             SoBaoDanh = "0307",
@@ -15399,7 +15742,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030038,
+                            MaHocSinh = 26030838,
                             MaLop = 3,
                             MaNguoiDung = 537,
                             SoBaoDanh = "0308",
@@ -15407,7 +15750,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030039,
+                            MaHocSinh = 26030939,
                             MaLop = 3,
                             MaNguoiDung = 538,
                             SoBaoDanh = "0309",
@@ -15415,7 +15758,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030040,
+                            MaHocSinh = 26031040,
                             MaLop = 3,
                             MaNguoiDung = 539,
                             SoBaoDanh = "0310",
@@ -15423,7 +15766,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030041,
+                            MaHocSinh = 26031141,
                             MaLop = 3,
                             MaNguoiDung = 540,
                             SoBaoDanh = "0311",
@@ -15431,7 +15774,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030042,
+                            MaHocSinh = 26031242,
                             MaLop = 3,
                             MaNguoiDung = 541,
                             SoBaoDanh = "0312",
@@ -15439,7 +15782,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030043,
+                            MaHocSinh = 26031343,
                             MaLop = 3,
                             MaNguoiDung = 542,
                             SoBaoDanh = "0313",
@@ -15447,7 +15790,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030044,
+                            MaHocSinh = 26031444,
                             MaLop = 3,
                             MaNguoiDung = 543,
                             SoBaoDanh = "0314",
@@ -15455,7 +15798,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026030045,
+                            MaHocSinh = 26031545,
                             MaLop = 3,
                             MaNguoiDung = 544,
                             SoBaoDanh = "0315",
@@ -15463,7 +15806,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040046,
+                            MaHocSinh = 26040146,
                             MaLop = 4,
                             MaNguoiDung = 545,
                             SoBaoDanh = "0401",
@@ -15471,7 +15814,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040047,
+                            MaHocSinh = 26040247,
                             MaLop = 4,
                             MaNguoiDung = 546,
                             SoBaoDanh = "0402",
@@ -15479,7 +15822,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040048,
+                            MaHocSinh = 26040348,
                             MaLop = 4,
                             MaNguoiDung = 547,
                             SoBaoDanh = "0403",
@@ -15487,7 +15830,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040049,
+                            MaHocSinh = 26040449,
                             MaLop = 4,
                             MaNguoiDung = 548,
                             SoBaoDanh = "0404",
@@ -15495,7 +15838,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040050,
+                            MaHocSinh = 26040550,
                             MaLop = 4,
                             MaNguoiDung = 549,
                             SoBaoDanh = "0405",
@@ -15503,7 +15846,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040051,
+                            MaHocSinh = 26040651,
                             MaLop = 4,
                             MaNguoiDung = 550,
                             SoBaoDanh = "0406",
@@ -15511,7 +15854,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040052,
+                            MaHocSinh = 26040752,
                             MaLop = 4,
                             MaNguoiDung = 551,
                             SoBaoDanh = "0407",
@@ -15519,7 +15862,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040053,
+                            MaHocSinh = 26040853,
                             MaLop = 4,
                             MaNguoiDung = 552,
                             SoBaoDanh = "0408",
@@ -15527,7 +15870,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040054,
+                            MaHocSinh = 26040954,
                             MaLop = 4,
                             MaNguoiDung = 553,
                             SoBaoDanh = "0409",
@@ -15535,7 +15878,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040055,
+                            MaHocSinh = 26041055,
                             MaLop = 4,
                             MaNguoiDung = 554,
                             SoBaoDanh = "0410",
@@ -15543,7 +15886,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040056,
+                            MaHocSinh = 26041156,
                             MaLop = 4,
                             MaNguoiDung = 555,
                             SoBaoDanh = "0411",
@@ -15551,7 +15894,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040057,
+                            MaHocSinh = 26041257,
                             MaLop = 4,
                             MaNguoiDung = 556,
                             SoBaoDanh = "0412",
@@ -15559,7 +15902,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040058,
+                            MaHocSinh = 26041358,
                             MaLop = 4,
                             MaNguoiDung = 557,
                             SoBaoDanh = "0413",
@@ -15567,7 +15910,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040059,
+                            MaHocSinh = 26041459,
                             MaLop = 4,
                             MaNguoiDung = 558,
                             SoBaoDanh = "0414",
@@ -15575,7 +15918,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026040060,
+                            MaHocSinh = 26041560,
                             MaLop = 4,
                             MaNguoiDung = 559,
                             SoBaoDanh = "0415",
@@ -15583,7 +15926,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050061,
+                            MaHocSinh = 26050161,
                             MaLop = 5,
                             MaNguoiDung = 560,
                             SoBaoDanh = "0501",
@@ -15591,7 +15934,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050062,
+                            MaHocSinh = 26050262,
                             MaLop = 5,
                             MaNguoiDung = 561,
                             SoBaoDanh = "0502",
@@ -15599,7 +15942,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050063,
+                            MaHocSinh = 26050363,
                             MaLop = 5,
                             MaNguoiDung = 562,
                             SoBaoDanh = "0503",
@@ -15607,7 +15950,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050064,
+                            MaHocSinh = 26050464,
                             MaLop = 5,
                             MaNguoiDung = 563,
                             SoBaoDanh = "0504",
@@ -15615,7 +15958,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050065,
+                            MaHocSinh = 26050565,
                             MaLop = 5,
                             MaNguoiDung = 564,
                             SoBaoDanh = "0505",
@@ -15623,7 +15966,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050066,
+                            MaHocSinh = 26050666,
                             MaLop = 5,
                             MaNguoiDung = 565,
                             SoBaoDanh = "0506",
@@ -15631,7 +15974,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050067,
+                            MaHocSinh = 26050767,
                             MaLop = 5,
                             MaNguoiDung = 566,
                             SoBaoDanh = "0507",
@@ -15639,7 +15982,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050068,
+                            MaHocSinh = 26050868,
                             MaLop = 5,
                             MaNguoiDung = 567,
                             SoBaoDanh = "0508",
@@ -15647,7 +15990,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050069,
+                            MaHocSinh = 26050969,
                             MaLop = 5,
                             MaNguoiDung = 568,
                             SoBaoDanh = "0509",
@@ -15655,7 +15998,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050070,
+                            MaHocSinh = 26051070,
                             MaLop = 5,
                             MaNguoiDung = 569,
                             SoBaoDanh = "0510",
@@ -15663,7 +16006,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050071,
+                            MaHocSinh = 26051171,
                             MaLop = 5,
                             MaNguoiDung = 570,
                             SoBaoDanh = "0511",
@@ -15671,7 +16014,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050072,
+                            MaHocSinh = 26051272,
                             MaLop = 5,
                             MaNguoiDung = 571,
                             SoBaoDanh = "0512",
@@ -15679,7 +16022,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050073,
+                            MaHocSinh = 26051373,
                             MaLop = 5,
                             MaNguoiDung = 572,
                             SoBaoDanh = "0513",
@@ -15687,7 +16030,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050074,
+                            MaHocSinh = 26051474,
                             MaLop = 5,
                             MaNguoiDung = 573,
                             SoBaoDanh = "0514",
@@ -15695,7 +16038,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026050075,
+                            MaHocSinh = 26051575,
                             MaLop = 5,
                             MaNguoiDung = 574,
                             SoBaoDanh = "0515",
@@ -15703,7 +16046,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060076,
+                            MaHocSinh = 26060176,
                             MaLop = 6,
                             MaNguoiDung = 575,
                             SoBaoDanh = "0601",
@@ -15711,7 +16054,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060077,
+                            MaHocSinh = 26060277,
                             MaLop = 6,
                             MaNguoiDung = 576,
                             SoBaoDanh = "0602",
@@ -15719,7 +16062,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060078,
+                            MaHocSinh = 26060378,
                             MaLop = 6,
                             MaNguoiDung = 577,
                             SoBaoDanh = "0603",
@@ -15727,7 +16070,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060079,
+                            MaHocSinh = 26060479,
                             MaLop = 6,
                             MaNguoiDung = 578,
                             SoBaoDanh = "0604",
@@ -15735,7 +16078,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060080,
+                            MaHocSinh = 26060580,
                             MaLop = 6,
                             MaNguoiDung = 579,
                             SoBaoDanh = "0605",
@@ -15743,7 +16086,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060081,
+                            MaHocSinh = 26060681,
                             MaLop = 6,
                             MaNguoiDung = 580,
                             SoBaoDanh = "0606",
@@ -15751,7 +16094,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060082,
+                            MaHocSinh = 26060782,
                             MaLop = 6,
                             MaNguoiDung = 581,
                             SoBaoDanh = "0607",
@@ -15759,7 +16102,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060083,
+                            MaHocSinh = 26060883,
                             MaLop = 6,
                             MaNguoiDung = 582,
                             SoBaoDanh = "0608",
@@ -15767,7 +16110,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060084,
+                            MaHocSinh = 26060984,
                             MaLop = 6,
                             MaNguoiDung = 583,
                             SoBaoDanh = "0609",
@@ -15775,7 +16118,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060085,
+                            MaHocSinh = 26061085,
                             MaLop = 6,
                             MaNguoiDung = 584,
                             SoBaoDanh = "0610",
@@ -15783,7 +16126,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060086,
+                            MaHocSinh = 26061186,
                             MaLop = 6,
                             MaNguoiDung = 585,
                             SoBaoDanh = "0611",
@@ -15791,7 +16134,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060087,
+                            MaHocSinh = 26061287,
                             MaLop = 6,
                             MaNguoiDung = 586,
                             SoBaoDanh = "0612",
@@ -15799,7 +16142,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060088,
+                            MaHocSinh = 26061388,
                             MaLop = 6,
                             MaNguoiDung = 587,
                             SoBaoDanh = "0613",
@@ -15807,7 +16150,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060089,
+                            MaHocSinh = 26061489,
                             MaLop = 6,
                             MaNguoiDung = 588,
                             SoBaoDanh = "0614",
@@ -15815,7 +16158,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2026060090,
+                            MaHocSinh = 26061590,
                             MaLop = 6,
                             MaNguoiDung = 589,
                             SoBaoDanh = "0615",
@@ -15823,7 +16166,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070091,
+                            MaHocSinh = 25070191,
                             MaLop = 7,
                             MaNguoiDung = 590,
                             SoBaoDanh = "0701",
@@ -15831,7 +16174,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070092,
+                            MaHocSinh = 25070292,
                             MaLop = 7,
                             MaNguoiDung = 591,
                             SoBaoDanh = "0702",
@@ -15839,7 +16182,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070093,
+                            MaHocSinh = 25070393,
                             MaLop = 7,
                             MaNguoiDung = 592,
                             SoBaoDanh = "0703",
@@ -15847,7 +16190,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070094,
+                            MaHocSinh = 25070494,
                             MaLop = 7,
                             MaNguoiDung = 593,
                             SoBaoDanh = "0704",
@@ -15855,7 +16198,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070095,
+                            MaHocSinh = 25070595,
                             MaLop = 7,
                             MaNguoiDung = 594,
                             SoBaoDanh = "0705",
@@ -15863,7 +16206,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070096,
+                            MaHocSinh = 25070696,
                             MaLop = 7,
                             MaNguoiDung = 595,
                             SoBaoDanh = "0706",
@@ -15871,7 +16214,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070097,
+                            MaHocSinh = 25070797,
                             MaLop = 7,
                             MaNguoiDung = 596,
                             SoBaoDanh = "0707",
@@ -15879,7 +16222,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070098,
+                            MaHocSinh = 25070898,
                             MaLop = 7,
                             MaNguoiDung = 597,
                             SoBaoDanh = "0708",
@@ -15887,7 +16230,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070099,
+                            MaHocSinh = 25070999,
                             MaLop = 7,
                             MaNguoiDung = 598,
                             SoBaoDanh = "0709",
@@ -15895,7 +16238,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070100,
+                            MaHocSinh = 250710100,
                             MaLop = 7,
                             MaNguoiDung = 599,
                             SoBaoDanh = "0710",
@@ -15903,7 +16246,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070101,
+                            MaHocSinh = 250711101,
                             MaLop = 7,
                             MaNguoiDung = 600,
                             SoBaoDanh = "0711",
@@ -15911,7 +16254,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070102,
+                            MaHocSinh = 250712102,
                             MaLop = 7,
                             MaNguoiDung = 601,
                             SoBaoDanh = "0712",
@@ -15919,7 +16262,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070103,
+                            MaHocSinh = 250713103,
                             MaLop = 7,
                             MaNguoiDung = 602,
                             SoBaoDanh = "0713",
@@ -15927,7 +16270,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070104,
+                            MaHocSinh = 250714104,
                             MaLop = 7,
                             MaNguoiDung = 603,
                             SoBaoDanh = "0714",
@@ -15935,7 +16278,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025070105,
+                            MaHocSinh = 250715105,
                             MaLop = 7,
                             MaNguoiDung = 604,
                             SoBaoDanh = "0715",
@@ -15943,7 +16286,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080106,
+                            MaHocSinh = 250801106,
                             MaLop = 8,
                             MaNguoiDung = 605,
                             SoBaoDanh = "0801",
@@ -15951,7 +16294,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080107,
+                            MaHocSinh = 250802107,
                             MaLop = 8,
                             MaNguoiDung = 606,
                             SoBaoDanh = "0802",
@@ -15959,7 +16302,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080108,
+                            MaHocSinh = 250803108,
                             MaLop = 8,
                             MaNguoiDung = 607,
                             SoBaoDanh = "0803",
@@ -15967,7 +16310,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080109,
+                            MaHocSinh = 250804109,
                             MaLop = 8,
                             MaNguoiDung = 608,
                             SoBaoDanh = "0804",
@@ -15975,7 +16318,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080110,
+                            MaHocSinh = 250805110,
                             MaLop = 8,
                             MaNguoiDung = 609,
                             SoBaoDanh = "0805",
@@ -15983,7 +16326,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080111,
+                            MaHocSinh = 250806111,
                             MaLop = 8,
                             MaNguoiDung = 610,
                             SoBaoDanh = "0806",
@@ -15991,7 +16334,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080112,
+                            MaHocSinh = 250807112,
                             MaLop = 8,
                             MaNguoiDung = 611,
                             SoBaoDanh = "0807",
@@ -15999,7 +16342,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080113,
+                            MaHocSinh = 250808113,
                             MaLop = 8,
                             MaNguoiDung = 612,
                             SoBaoDanh = "0808",
@@ -16007,7 +16350,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080114,
+                            MaHocSinh = 250809114,
                             MaLop = 8,
                             MaNguoiDung = 613,
                             SoBaoDanh = "0809",
@@ -16015,7 +16358,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080115,
+                            MaHocSinh = 250810115,
                             MaLop = 8,
                             MaNguoiDung = 614,
                             SoBaoDanh = "0810",
@@ -16023,7 +16366,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080116,
+                            MaHocSinh = 250811116,
                             MaLop = 8,
                             MaNguoiDung = 615,
                             SoBaoDanh = "0811",
@@ -16031,7 +16374,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080117,
+                            MaHocSinh = 250812117,
                             MaLop = 8,
                             MaNguoiDung = 616,
                             SoBaoDanh = "0812",
@@ -16039,7 +16382,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080118,
+                            MaHocSinh = 250813118,
                             MaLop = 8,
                             MaNguoiDung = 617,
                             SoBaoDanh = "0813",
@@ -16047,7 +16390,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080119,
+                            MaHocSinh = 250814119,
                             MaLop = 8,
                             MaNguoiDung = 618,
                             SoBaoDanh = "0814",
@@ -16055,7 +16398,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025080120,
+                            MaHocSinh = 250815120,
                             MaLop = 8,
                             MaNguoiDung = 619,
                             SoBaoDanh = "0815",
@@ -16063,7 +16406,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090121,
+                            MaHocSinh = 250901121,
                             MaLop = 9,
                             MaNguoiDung = 620,
                             SoBaoDanh = "0901",
@@ -16071,7 +16414,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090122,
+                            MaHocSinh = 250902122,
                             MaLop = 9,
                             MaNguoiDung = 621,
                             SoBaoDanh = "0902",
@@ -16079,7 +16422,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090123,
+                            MaHocSinh = 250903123,
                             MaLop = 9,
                             MaNguoiDung = 622,
                             SoBaoDanh = "0903",
@@ -16087,7 +16430,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090124,
+                            MaHocSinh = 250904124,
                             MaLop = 9,
                             MaNguoiDung = 623,
                             SoBaoDanh = "0904",
@@ -16095,7 +16438,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090125,
+                            MaHocSinh = 250905125,
                             MaLop = 9,
                             MaNguoiDung = 624,
                             SoBaoDanh = "0905",
@@ -16103,7 +16446,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090126,
+                            MaHocSinh = 250906126,
                             MaLop = 9,
                             MaNguoiDung = 625,
                             SoBaoDanh = "0906",
@@ -16111,7 +16454,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090127,
+                            MaHocSinh = 250907127,
                             MaLop = 9,
                             MaNguoiDung = 626,
                             SoBaoDanh = "0907",
@@ -16119,7 +16462,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090128,
+                            MaHocSinh = 250908128,
                             MaLop = 9,
                             MaNguoiDung = 627,
                             SoBaoDanh = "0908",
@@ -16127,7 +16470,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090129,
+                            MaHocSinh = 250909129,
                             MaLop = 9,
                             MaNguoiDung = 628,
                             SoBaoDanh = "0909",
@@ -16135,7 +16478,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090130,
+                            MaHocSinh = 250910130,
                             MaLop = 9,
                             MaNguoiDung = 629,
                             SoBaoDanh = "0910",
@@ -16143,7 +16486,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090131,
+                            MaHocSinh = 250911131,
                             MaLop = 9,
                             MaNguoiDung = 630,
                             SoBaoDanh = "0911",
@@ -16151,7 +16494,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090132,
+                            MaHocSinh = 250912132,
                             MaLop = 9,
                             MaNguoiDung = 631,
                             SoBaoDanh = "0912",
@@ -16159,7 +16502,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090133,
+                            MaHocSinh = 250913133,
                             MaLop = 9,
                             MaNguoiDung = 632,
                             SoBaoDanh = "0913",
@@ -16167,7 +16510,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090134,
+                            MaHocSinh = 250914134,
                             MaLop = 9,
                             MaNguoiDung = 633,
                             SoBaoDanh = "0914",
@@ -16175,7 +16518,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025090135,
+                            MaHocSinh = 250915135,
                             MaLop = 9,
                             MaNguoiDung = 634,
                             SoBaoDanh = "0915",
@@ -16183,7 +16526,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100136,
+                            MaHocSinh = 251001136,
                             MaLop = 10,
                             MaNguoiDung = 635,
                             SoBaoDanh = "1001",
@@ -16191,7 +16534,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100137,
+                            MaHocSinh = 251002137,
                             MaLop = 10,
                             MaNguoiDung = 636,
                             SoBaoDanh = "1002",
@@ -16199,7 +16542,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100138,
+                            MaHocSinh = 251003138,
                             MaLop = 10,
                             MaNguoiDung = 637,
                             SoBaoDanh = "1003",
@@ -16207,7 +16550,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100139,
+                            MaHocSinh = 251004139,
                             MaLop = 10,
                             MaNguoiDung = 638,
                             SoBaoDanh = "1004",
@@ -16215,7 +16558,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100140,
+                            MaHocSinh = 251005140,
                             MaLop = 10,
                             MaNguoiDung = 639,
                             SoBaoDanh = "1005",
@@ -16223,7 +16566,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100141,
+                            MaHocSinh = 251006141,
                             MaLop = 10,
                             MaNguoiDung = 640,
                             SoBaoDanh = "1006",
@@ -16231,7 +16574,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100142,
+                            MaHocSinh = 251007142,
                             MaLop = 10,
                             MaNguoiDung = 641,
                             SoBaoDanh = "1007",
@@ -16239,7 +16582,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100143,
+                            MaHocSinh = 251008143,
                             MaLop = 10,
                             MaNguoiDung = 642,
                             SoBaoDanh = "1008",
@@ -16247,7 +16590,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100144,
+                            MaHocSinh = 251009144,
                             MaLop = 10,
                             MaNguoiDung = 643,
                             SoBaoDanh = "1009",
@@ -16255,7 +16598,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100145,
+                            MaHocSinh = 251010145,
                             MaLop = 10,
                             MaNguoiDung = 644,
                             SoBaoDanh = "1010",
@@ -16263,7 +16606,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100146,
+                            MaHocSinh = 251011146,
                             MaLop = 10,
                             MaNguoiDung = 645,
                             SoBaoDanh = "1011",
@@ -16271,7 +16614,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100147,
+                            MaHocSinh = 251012147,
                             MaLop = 10,
                             MaNguoiDung = 646,
                             SoBaoDanh = "1012",
@@ -16279,7 +16622,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100148,
+                            MaHocSinh = 251013148,
                             MaLop = 10,
                             MaNguoiDung = 647,
                             SoBaoDanh = "1013",
@@ -16287,7 +16630,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100149,
+                            MaHocSinh = 251014149,
                             MaLop = 10,
                             MaNguoiDung = 648,
                             SoBaoDanh = "1014",
@@ -16295,7 +16638,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025100150,
+                            MaHocSinh = 251015150,
                             MaLop = 10,
                             MaNguoiDung = 649,
                             SoBaoDanh = "1015",
@@ -16303,7 +16646,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110151,
+                            MaHocSinh = 251101151,
                             MaLop = 11,
                             MaNguoiDung = 650,
                             SoBaoDanh = "1101",
@@ -16311,7 +16654,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110152,
+                            MaHocSinh = 251102152,
                             MaLop = 11,
                             MaNguoiDung = 651,
                             SoBaoDanh = "1102",
@@ -16319,7 +16662,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110153,
+                            MaHocSinh = 251103153,
                             MaLop = 11,
                             MaNguoiDung = 652,
                             SoBaoDanh = "1103",
@@ -16327,7 +16670,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110154,
+                            MaHocSinh = 251104154,
                             MaLop = 11,
                             MaNguoiDung = 653,
                             SoBaoDanh = "1104",
@@ -16335,7 +16678,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110155,
+                            MaHocSinh = 251105155,
                             MaLop = 11,
                             MaNguoiDung = 654,
                             SoBaoDanh = "1105",
@@ -16343,7 +16686,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110156,
+                            MaHocSinh = 251106156,
                             MaLop = 11,
                             MaNguoiDung = 655,
                             SoBaoDanh = "1106",
@@ -16351,7 +16694,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110157,
+                            MaHocSinh = 251107157,
                             MaLop = 11,
                             MaNguoiDung = 656,
                             SoBaoDanh = "1107",
@@ -16359,7 +16702,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110158,
+                            MaHocSinh = 251108158,
                             MaLop = 11,
                             MaNguoiDung = 657,
                             SoBaoDanh = "1108",
@@ -16367,7 +16710,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110159,
+                            MaHocSinh = 251109159,
                             MaLop = 11,
                             MaNguoiDung = 658,
                             SoBaoDanh = "1109",
@@ -16375,7 +16718,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110160,
+                            MaHocSinh = 251110160,
                             MaLop = 11,
                             MaNguoiDung = 659,
                             SoBaoDanh = "1110",
@@ -16383,7 +16726,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110161,
+                            MaHocSinh = 251111161,
                             MaLop = 11,
                             MaNguoiDung = 660,
                             SoBaoDanh = "1111",
@@ -16391,7 +16734,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110162,
+                            MaHocSinh = 251112162,
                             MaLop = 11,
                             MaNguoiDung = 661,
                             SoBaoDanh = "1112",
@@ -16399,7 +16742,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110163,
+                            MaHocSinh = 251113163,
                             MaLop = 11,
                             MaNguoiDung = 662,
                             SoBaoDanh = "1113",
@@ -16407,7 +16750,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110164,
+                            MaHocSinh = 251114164,
                             MaLop = 11,
                             MaNguoiDung = 663,
                             SoBaoDanh = "1114",
@@ -16415,7 +16758,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025110165,
+                            MaHocSinh = 251115165,
                             MaLop = 11,
                             MaNguoiDung = 664,
                             SoBaoDanh = "1115",
@@ -16423,7 +16766,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120166,
+                            MaHocSinh = 251201166,
                             MaLop = 12,
                             MaNguoiDung = 665,
                             SoBaoDanh = "1201",
@@ -16431,7 +16774,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120167,
+                            MaHocSinh = 251202167,
                             MaLop = 12,
                             MaNguoiDung = 666,
                             SoBaoDanh = "1202",
@@ -16439,7 +16782,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120168,
+                            MaHocSinh = 251203168,
                             MaLop = 12,
                             MaNguoiDung = 667,
                             SoBaoDanh = "1203",
@@ -16447,7 +16790,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120169,
+                            MaHocSinh = 251204169,
                             MaLop = 12,
                             MaNguoiDung = 668,
                             SoBaoDanh = "1204",
@@ -16455,7 +16798,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120170,
+                            MaHocSinh = 251205170,
                             MaLop = 12,
                             MaNguoiDung = 669,
                             SoBaoDanh = "1205",
@@ -16463,7 +16806,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120171,
+                            MaHocSinh = 251206171,
                             MaLop = 12,
                             MaNguoiDung = 670,
                             SoBaoDanh = "1206",
@@ -16471,7 +16814,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120172,
+                            MaHocSinh = 251207172,
                             MaLop = 12,
                             MaNguoiDung = 671,
                             SoBaoDanh = "1207",
@@ -16479,7 +16822,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120173,
+                            MaHocSinh = 251208173,
                             MaLop = 12,
                             MaNguoiDung = 672,
                             SoBaoDanh = "1208",
@@ -16487,7 +16830,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120174,
+                            MaHocSinh = 251209174,
                             MaLop = 12,
                             MaNguoiDung = 673,
                             SoBaoDanh = "1209",
@@ -16495,7 +16838,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120175,
+                            MaHocSinh = 251210175,
                             MaLop = 12,
                             MaNguoiDung = 674,
                             SoBaoDanh = "1210",
@@ -16503,7 +16846,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120176,
+                            MaHocSinh = 251211176,
                             MaLop = 12,
                             MaNguoiDung = 675,
                             SoBaoDanh = "1211",
@@ -16511,7 +16854,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120177,
+                            MaHocSinh = 251212177,
                             MaLop = 12,
                             MaNguoiDung = 676,
                             SoBaoDanh = "1212",
@@ -16519,7 +16862,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120178,
+                            MaHocSinh = 251213178,
                             MaLop = 12,
                             MaNguoiDung = 677,
                             SoBaoDanh = "1213",
@@ -16527,7 +16870,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120179,
+                            MaHocSinh = 251214179,
                             MaLop = 12,
                             MaNguoiDung = 678,
                             SoBaoDanh = "1214",
@@ -16535,7 +16878,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2025120180,
+                            MaHocSinh = 251215180,
                             MaLop = 12,
                             MaNguoiDung = 679,
                             SoBaoDanh = "1215",
@@ -16543,7 +16886,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130181,
+                            MaHocSinh = 241301181,
                             MaLop = 13,
                             MaNguoiDung = 680,
                             SoBaoDanh = "1301",
@@ -16551,7 +16894,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130182,
+                            MaHocSinh = 241302182,
                             MaLop = 13,
                             MaNguoiDung = 681,
                             SoBaoDanh = "1302",
@@ -16559,7 +16902,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130183,
+                            MaHocSinh = 241303183,
                             MaLop = 13,
                             MaNguoiDung = 682,
                             SoBaoDanh = "1303",
@@ -16567,7 +16910,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130184,
+                            MaHocSinh = 241304184,
                             MaLop = 13,
                             MaNguoiDung = 683,
                             SoBaoDanh = "1304",
@@ -16575,7 +16918,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130185,
+                            MaHocSinh = 241305185,
                             MaLop = 13,
                             MaNguoiDung = 684,
                             SoBaoDanh = "1305",
@@ -16583,7 +16926,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130186,
+                            MaHocSinh = 241306186,
                             MaLop = 13,
                             MaNguoiDung = 685,
                             SoBaoDanh = "1306",
@@ -16591,7 +16934,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130187,
+                            MaHocSinh = 241307187,
                             MaLop = 13,
                             MaNguoiDung = 686,
                             SoBaoDanh = "1307",
@@ -16599,7 +16942,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130188,
+                            MaHocSinh = 241308188,
                             MaLop = 13,
                             MaNguoiDung = 687,
                             SoBaoDanh = "1308",
@@ -16607,7 +16950,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130189,
+                            MaHocSinh = 241309189,
                             MaLop = 13,
                             MaNguoiDung = 688,
                             SoBaoDanh = "1309",
@@ -16615,7 +16958,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130190,
+                            MaHocSinh = 241310190,
                             MaLop = 13,
                             MaNguoiDung = 689,
                             SoBaoDanh = "1310",
@@ -16623,7 +16966,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130191,
+                            MaHocSinh = 241311191,
                             MaLop = 13,
                             MaNguoiDung = 690,
                             SoBaoDanh = "1311",
@@ -16631,7 +16974,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130192,
+                            MaHocSinh = 241312192,
                             MaLop = 13,
                             MaNguoiDung = 691,
                             SoBaoDanh = "1312",
@@ -16639,7 +16982,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130193,
+                            MaHocSinh = 241313193,
                             MaLop = 13,
                             MaNguoiDung = 692,
                             SoBaoDanh = "1313",
@@ -16647,7 +16990,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130194,
+                            MaHocSinh = 241314194,
                             MaLop = 13,
                             MaNguoiDung = 693,
                             SoBaoDanh = "1314",
@@ -16655,7 +16998,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024130195,
+                            MaHocSinh = 241315195,
                             MaLop = 13,
                             MaNguoiDung = 694,
                             SoBaoDanh = "1315",
@@ -16663,7 +17006,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140196,
+                            MaHocSinh = 241401196,
                             MaLop = 14,
                             MaNguoiDung = 695,
                             SoBaoDanh = "1401",
@@ -16671,7 +17014,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140197,
+                            MaHocSinh = 241402197,
                             MaLop = 14,
                             MaNguoiDung = 696,
                             SoBaoDanh = "1402",
@@ -16679,7 +17022,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140198,
+                            MaHocSinh = 241403198,
                             MaLop = 14,
                             MaNguoiDung = 697,
                             SoBaoDanh = "1403",
@@ -16687,7 +17030,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140199,
+                            MaHocSinh = 241404199,
                             MaLop = 14,
                             MaNguoiDung = 698,
                             SoBaoDanh = "1404",
@@ -16695,7 +17038,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140200,
+                            MaHocSinh = 241405200,
                             MaLop = 14,
                             MaNguoiDung = 699,
                             SoBaoDanh = "1405",
@@ -16703,7 +17046,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140201,
+                            MaHocSinh = 241406201,
                             MaLop = 14,
                             MaNguoiDung = 700,
                             SoBaoDanh = "1406",
@@ -16711,7 +17054,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140202,
+                            MaHocSinh = 241407202,
                             MaLop = 14,
                             MaNguoiDung = 701,
                             SoBaoDanh = "1407",
@@ -16719,7 +17062,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140203,
+                            MaHocSinh = 241408203,
                             MaLop = 14,
                             MaNguoiDung = 702,
                             SoBaoDanh = "1408",
@@ -16727,7 +17070,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140204,
+                            MaHocSinh = 241409204,
                             MaLop = 14,
                             MaNguoiDung = 703,
                             SoBaoDanh = "1409",
@@ -16735,7 +17078,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140205,
+                            MaHocSinh = 241410205,
                             MaLop = 14,
                             MaNguoiDung = 704,
                             SoBaoDanh = "1410",
@@ -16743,7 +17086,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140206,
+                            MaHocSinh = 241411206,
                             MaLop = 14,
                             MaNguoiDung = 705,
                             SoBaoDanh = "1411",
@@ -16751,7 +17094,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140207,
+                            MaHocSinh = 241412207,
                             MaLop = 14,
                             MaNguoiDung = 706,
                             SoBaoDanh = "1412",
@@ -16759,7 +17102,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140208,
+                            MaHocSinh = 241413208,
                             MaLop = 14,
                             MaNguoiDung = 707,
                             SoBaoDanh = "1413",
@@ -16767,7 +17110,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140209,
+                            MaHocSinh = 241414209,
                             MaLop = 14,
                             MaNguoiDung = 708,
                             SoBaoDanh = "1414",
@@ -16775,7 +17118,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024140210,
+                            MaHocSinh = 241415210,
                             MaLop = 14,
                             MaNguoiDung = 709,
                             SoBaoDanh = "1415",
@@ -16783,7 +17126,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150211,
+                            MaHocSinh = 241501211,
                             MaLop = 15,
                             MaNguoiDung = 710,
                             SoBaoDanh = "1501",
@@ -16791,7 +17134,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150212,
+                            MaHocSinh = 241502212,
                             MaLop = 15,
                             MaNguoiDung = 711,
                             SoBaoDanh = "1502",
@@ -16799,7 +17142,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150213,
+                            MaHocSinh = 241503213,
                             MaLop = 15,
                             MaNguoiDung = 712,
                             SoBaoDanh = "1503",
@@ -16807,7 +17150,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150214,
+                            MaHocSinh = 241504214,
                             MaLop = 15,
                             MaNguoiDung = 713,
                             SoBaoDanh = "1504",
@@ -16815,7 +17158,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150215,
+                            MaHocSinh = 241505215,
                             MaLop = 15,
                             MaNguoiDung = 714,
                             SoBaoDanh = "1505",
@@ -16823,7 +17166,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150216,
+                            MaHocSinh = 241506216,
                             MaLop = 15,
                             MaNguoiDung = 715,
                             SoBaoDanh = "1506",
@@ -16831,7 +17174,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150217,
+                            MaHocSinh = 241507217,
                             MaLop = 15,
                             MaNguoiDung = 716,
                             SoBaoDanh = "1507",
@@ -16839,7 +17182,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150218,
+                            MaHocSinh = 241508218,
                             MaLop = 15,
                             MaNguoiDung = 717,
                             SoBaoDanh = "1508",
@@ -16847,7 +17190,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150219,
+                            MaHocSinh = 241509219,
                             MaLop = 15,
                             MaNguoiDung = 718,
                             SoBaoDanh = "1509",
@@ -16855,7 +17198,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150220,
+                            MaHocSinh = 241510220,
                             MaLop = 15,
                             MaNguoiDung = 719,
                             SoBaoDanh = "1510",
@@ -16863,7 +17206,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150221,
+                            MaHocSinh = 241511221,
                             MaLop = 15,
                             MaNguoiDung = 720,
                             SoBaoDanh = "1511",
@@ -16871,7 +17214,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150222,
+                            MaHocSinh = 241512222,
                             MaLop = 15,
                             MaNguoiDung = 721,
                             SoBaoDanh = "1512",
@@ -16879,7 +17222,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150223,
+                            MaHocSinh = 241513223,
                             MaLop = 15,
                             MaNguoiDung = 722,
                             SoBaoDanh = "1513",
@@ -16887,7 +17230,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150224,
+                            MaHocSinh = 241514224,
                             MaLop = 15,
                             MaNguoiDung = 723,
                             SoBaoDanh = "1514",
@@ -16895,7 +17238,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024150225,
+                            MaHocSinh = 241515225,
                             MaLop = 15,
                             MaNguoiDung = 724,
                             SoBaoDanh = "1515",
@@ -16903,7 +17246,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160226,
+                            MaHocSinh = 241601226,
                             MaLop = 16,
                             MaNguoiDung = 725,
                             SoBaoDanh = "1601",
@@ -16911,7 +17254,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160227,
+                            MaHocSinh = 241602227,
                             MaLop = 16,
                             MaNguoiDung = 726,
                             SoBaoDanh = "1602",
@@ -16919,7 +17262,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160228,
+                            MaHocSinh = 241603228,
                             MaLop = 16,
                             MaNguoiDung = 727,
                             SoBaoDanh = "1603",
@@ -16927,7 +17270,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160229,
+                            MaHocSinh = 241604229,
                             MaLop = 16,
                             MaNguoiDung = 728,
                             SoBaoDanh = "1604",
@@ -16935,7 +17278,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160230,
+                            MaHocSinh = 241605230,
                             MaLop = 16,
                             MaNguoiDung = 729,
                             SoBaoDanh = "1605",
@@ -16943,7 +17286,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160231,
+                            MaHocSinh = 241606231,
                             MaLop = 16,
                             MaNguoiDung = 730,
                             SoBaoDanh = "1606",
@@ -16951,7 +17294,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160232,
+                            MaHocSinh = 241607232,
                             MaLop = 16,
                             MaNguoiDung = 731,
                             SoBaoDanh = "1607",
@@ -16959,7 +17302,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160233,
+                            MaHocSinh = 241608233,
                             MaLop = 16,
                             MaNguoiDung = 732,
                             SoBaoDanh = "1608",
@@ -16967,7 +17310,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160234,
+                            MaHocSinh = 241609234,
                             MaLop = 16,
                             MaNguoiDung = 733,
                             SoBaoDanh = "1609",
@@ -16975,7 +17318,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160235,
+                            MaHocSinh = 241610235,
                             MaLop = 16,
                             MaNguoiDung = 734,
                             SoBaoDanh = "1610",
@@ -16983,7 +17326,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160236,
+                            MaHocSinh = 241611236,
                             MaLop = 16,
                             MaNguoiDung = 735,
                             SoBaoDanh = "1611",
@@ -16991,7 +17334,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160237,
+                            MaHocSinh = 241612237,
                             MaLop = 16,
                             MaNguoiDung = 736,
                             SoBaoDanh = "1612",
@@ -16999,7 +17342,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160238,
+                            MaHocSinh = 241613238,
                             MaLop = 16,
                             MaNguoiDung = 737,
                             SoBaoDanh = "1613",
@@ -17007,7 +17350,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160239,
+                            MaHocSinh = 241614239,
                             MaLop = 16,
                             MaNguoiDung = 738,
                             SoBaoDanh = "1614",
@@ -17015,7 +17358,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024160240,
+                            MaHocSinh = 241615240,
                             MaLop = 16,
                             MaNguoiDung = 739,
                             SoBaoDanh = "1615",
@@ -17023,7 +17366,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170241,
+                            MaHocSinh = 241701241,
                             MaLop = 17,
                             MaNguoiDung = 740,
                             SoBaoDanh = "1701",
@@ -17031,7 +17374,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170242,
+                            MaHocSinh = 241702242,
                             MaLop = 17,
                             MaNguoiDung = 741,
                             SoBaoDanh = "1702",
@@ -17039,7 +17382,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170243,
+                            MaHocSinh = 241703243,
                             MaLop = 17,
                             MaNguoiDung = 742,
                             SoBaoDanh = "1703",
@@ -17047,7 +17390,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170244,
+                            MaHocSinh = 241704244,
                             MaLop = 17,
                             MaNguoiDung = 743,
                             SoBaoDanh = "1704",
@@ -17055,7 +17398,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170245,
+                            MaHocSinh = 241705245,
                             MaLop = 17,
                             MaNguoiDung = 744,
                             SoBaoDanh = "1705",
@@ -17063,7 +17406,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170246,
+                            MaHocSinh = 241706246,
                             MaLop = 17,
                             MaNguoiDung = 745,
                             SoBaoDanh = "1706",
@@ -17071,7 +17414,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170247,
+                            MaHocSinh = 241707247,
                             MaLop = 17,
                             MaNguoiDung = 746,
                             SoBaoDanh = "1707",
@@ -17079,7 +17422,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170248,
+                            MaHocSinh = 241708248,
                             MaLop = 17,
                             MaNguoiDung = 747,
                             SoBaoDanh = "1708",
@@ -17087,7 +17430,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170249,
+                            MaHocSinh = 241709249,
                             MaLop = 17,
                             MaNguoiDung = 748,
                             SoBaoDanh = "1709",
@@ -17095,7 +17438,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170250,
+                            MaHocSinh = 241710250,
                             MaLop = 17,
                             MaNguoiDung = 749,
                             SoBaoDanh = "1710",
@@ -17103,7 +17446,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170251,
+                            MaHocSinh = 241711251,
                             MaLop = 17,
                             MaNguoiDung = 750,
                             SoBaoDanh = "1711",
@@ -17111,7 +17454,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170252,
+                            MaHocSinh = 241712252,
                             MaLop = 17,
                             MaNguoiDung = 751,
                             SoBaoDanh = "1712",
@@ -17119,7 +17462,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170253,
+                            MaHocSinh = 241713253,
                             MaLop = 17,
                             MaNguoiDung = 752,
                             SoBaoDanh = "1713",
@@ -17127,7 +17470,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170254,
+                            MaHocSinh = 241714254,
                             MaLop = 17,
                             MaNguoiDung = 753,
                             SoBaoDanh = "1714",
@@ -17135,7 +17478,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024170255,
+                            MaHocSinh = 241715255,
                             MaLop = 17,
                             MaNguoiDung = 754,
                             SoBaoDanh = "1715",
@@ -17143,7 +17486,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180256,
+                            MaHocSinh = 241801256,
                             MaLop = 18,
                             MaNguoiDung = 755,
                             SoBaoDanh = "1801",
@@ -17151,7 +17494,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180257,
+                            MaHocSinh = 241802257,
                             MaLop = 18,
                             MaNguoiDung = 756,
                             SoBaoDanh = "1802",
@@ -17159,7 +17502,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180258,
+                            MaHocSinh = 241803258,
                             MaLop = 18,
                             MaNguoiDung = 757,
                             SoBaoDanh = "1803",
@@ -17167,7 +17510,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180259,
+                            MaHocSinh = 241804259,
                             MaLop = 18,
                             MaNguoiDung = 758,
                             SoBaoDanh = "1804",
@@ -17175,7 +17518,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180260,
+                            MaHocSinh = 241805260,
                             MaLop = 18,
                             MaNguoiDung = 759,
                             SoBaoDanh = "1805",
@@ -17183,7 +17526,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180261,
+                            MaHocSinh = 241806261,
                             MaLop = 18,
                             MaNguoiDung = 760,
                             SoBaoDanh = "1806",
@@ -17191,7 +17534,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180262,
+                            MaHocSinh = 241807262,
                             MaLop = 18,
                             MaNguoiDung = 761,
                             SoBaoDanh = "1807",
@@ -17199,7 +17542,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180263,
+                            MaHocSinh = 241808263,
                             MaLop = 18,
                             MaNguoiDung = 762,
                             SoBaoDanh = "1808",
@@ -17207,7 +17550,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180264,
+                            MaHocSinh = 241809264,
                             MaLop = 18,
                             MaNguoiDung = 763,
                             SoBaoDanh = "1809",
@@ -17215,7 +17558,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180265,
+                            MaHocSinh = 241810265,
                             MaLop = 18,
                             MaNguoiDung = 764,
                             SoBaoDanh = "1810",
@@ -17223,7 +17566,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180266,
+                            MaHocSinh = 241811266,
                             MaLop = 18,
                             MaNguoiDung = 765,
                             SoBaoDanh = "1811",
@@ -17231,7 +17574,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180267,
+                            MaHocSinh = 241812267,
                             MaLop = 18,
                             MaNguoiDung = 766,
                             SoBaoDanh = "1812",
@@ -17239,7 +17582,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180268,
+                            MaHocSinh = 241813268,
                             MaLop = 18,
                             MaNguoiDung = 767,
                             SoBaoDanh = "1813",
@@ -17247,7 +17590,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180269,
+                            MaHocSinh = 241814269,
                             MaLop = 18,
                             MaNguoiDung = 768,
                             SoBaoDanh = "1814",
@@ -17255,7 +17598,7 @@ namespace WebQLThiTracNghiem.Migrations
                         },
                         new
                         {
-                            MaHocSinh = 2024180270,
+                            MaHocSinh = 241815270,
                             MaLop = 18,
                             MaNguoiDung = 769,
                             SoBaoDanh = "1815",
@@ -17761,7 +18104,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs1",
+                            TenDangNhap = "26010101",
                             TrangThai = true
                         },
                         new
@@ -17771,7 +18114,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs2",
+                            TenDangNhap = "26010202",
                             TrangThai = true
                         },
                         new
@@ -17781,7 +18124,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs3",
+                            TenDangNhap = "26010303",
                             TrangThai = true
                         },
                         new
@@ -17791,7 +18134,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs4",
+                            TenDangNhap = "26010404",
                             TrangThai = true
                         },
                         new
@@ -17801,7 +18144,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs5",
+                            TenDangNhap = "26010505",
                             TrangThai = true
                         },
                         new
@@ -17811,7 +18154,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs6",
+                            TenDangNhap = "26010606",
                             TrangThai = true
                         },
                         new
@@ -17821,7 +18164,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs7",
+                            TenDangNhap = "26010707",
                             TrangThai = true
                         },
                         new
@@ -17831,7 +18174,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs8",
+                            TenDangNhap = "26010808",
                             TrangThai = true
                         },
                         new
@@ -17841,7 +18184,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs9",
+                            TenDangNhap = "26010909",
                             TrangThai = true
                         },
                         new
@@ -17851,7 +18194,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs10",
+                            TenDangNhap = "26011010",
                             TrangThai = true
                         },
                         new
@@ -17861,7 +18204,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs11",
+                            TenDangNhap = "26011111",
                             TrangThai = true
                         },
                         new
@@ -17871,7 +18214,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs12",
+                            TenDangNhap = "26011212",
                             TrangThai = true
                         },
                         new
@@ -17881,7 +18224,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs13",
+                            TenDangNhap = "26011313",
                             TrangThai = true
                         },
                         new
@@ -17891,7 +18234,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs14",
+                            TenDangNhap = "26011414",
                             TrangThai = true
                         },
                         new
@@ -17901,7 +18244,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs15",
+                            TenDangNhap = "26011515",
                             TrangThai = true
                         },
                         new
@@ -17911,7 +18254,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs16",
+                            TenDangNhap = "26020116",
                             TrangThai = true
                         },
                         new
@@ -17921,7 +18264,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs17",
+                            TenDangNhap = "26020217",
                             TrangThai = true
                         },
                         new
@@ -17931,7 +18274,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs18",
+                            TenDangNhap = "26020318",
                             TrangThai = true
                         },
                         new
@@ -17941,7 +18284,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs19",
+                            TenDangNhap = "26020419",
                             TrangThai = true
                         },
                         new
@@ -17951,7 +18294,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs20",
+                            TenDangNhap = "26020520",
                             TrangThai = true
                         },
                         new
@@ -17961,7 +18304,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs21",
+                            TenDangNhap = "26020621",
                             TrangThai = true
                         },
                         new
@@ -17971,7 +18314,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs22",
+                            TenDangNhap = "26020722",
                             TrangThai = true
                         },
                         new
@@ -17981,7 +18324,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs23",
+                            TenDangNhap = "26020823",
                             TrangThai = true
                         },
                         new
@@ -17991,7 +18334,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs24",
+                            TenDangNhap = "26020924",
                             TrangThai = true
                         },
                         new
@@ -18001,7 +18344,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs25",
+                            TenDangNhap = "26021025",
                             TrangThai = true
                         },
                         new
@@ -18011,7 +18354,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs26",
+                            TenDangNhap = "26021126",
                             TrangThai = true
                         },
                         new
@@ -18021,7 +18364,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs27",
+                            TenDangNhap = "26021227",
                             TrangThai = true
                         },
                         new
@@ -18031,7 +18374,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs28",
+                            TenDangNhap = "26021328",
                             TrangThai = true
                         },
                         new
@@ -18041,7 +18384,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs29",
+                            TenDangNhap = "26021429",
                             TrangThai = true
                         },
                         new
@@ -18051,7 +18394,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs30",
+                            TenDangNhap = "26021530",
                             TrangThai = true
                         },
                         new
@@ -18061,7 +18404,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs31",
+                            TenDangNhap = "26030131",
                             TrangThai = true
                         },
                         new
@@ -18071,7 +18414,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs32",
+                            TenDangNhap = "26030232",
                             TrangThai = true
                         },
                         new
@@ -18081,7 +18424,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs33",
+                            TenDangNhap = "26030333",
                             TrangThai = true
                         },
                         new
@@ -18091,7 +18434,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs34",
+                            TenDangNhap = "26030434",
                             TrangThai = true
                         },
                         new
@@ -18101,7 +18444,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs35",
+                            TenDangNhap = "26030535",
                             TrangThai = true
                         },
                         new
@@ -18111,7 +18454,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs36",
+                            TenDangNhap = "26030636",
                             TrangThai = true
                         },
                         new
@@ -18121,7 +18464,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs37",
+                            TenDangNhap = "26030737",
                             TrangThai = true
                         },
                         new
@@ -18131,7 +18474,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs38",
+                            TenDangNhap = "26030838",
                             TrangThai = true
                         },
                         new
@@ -18141,7 +18484,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs39",
+                            TenDangNhap = "26030939",
                             TrangThai = true
                         },
                         new
@@ -18151,7 +18494,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs40",
+                            TenDangNhap = "26031040",
                             TrangThai = true
                         },
                         new
@@ -18161,7 +18504,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs41",
+                            TenDangNhap = "26031141",
                             TrangThai = true
                         },
                         new
@@ -18171,7 +18514,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs42",
+                            TenDangNhap = "26031242",
                             TrangThai = true
                         },
                         new
@@ -18181,7 +18524,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs43",
+                            TenDangNhap = "26031343",
                             TrangThai = true
                         },
                         new
@@ -18191,7 +18534,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs44",
+                            TenDangNhap = "26031444",
                             TrangThai = true
                         },
                         new
@@ -18201,7 +18544,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs45",
+                            TenDangNhap = "26031545",
                             TrangThai = true
                         },
                         new
@@ -18211,7 +18554,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs46",
+                            TenDangNhap = "26040146",
                             TrangThai = true
                         },
                         new
@@ -18221,7 +18564,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs47",
+                            TenDangNhap = "26040247",
                             TrangThai = true
                         },
                         new
@@ -18231,7 +18574,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs48",
+                            TenDangNhap = "26040348",
                             TrangThai = true
                         },
                         new
@@ -18241,7 +18584,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs49",
+                            TenDangNhap = "26040449",
                             TrangThai = true
                         },
                         new
@@ -18251,7 +18594,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs50",
+                            TenDangNhap = "26040550",
                             TrangThai = true
                         },
                         new
@@ -18261,7 +18604,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs51",
+                            TenDangNhap = "26040651",
                             TrangThai = true
                         },
                         new
@@ -18271,7 +18614,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs52",
+                            TenDangNhap = "26040752",
                             TrangThai = true
                         },
                         new
@@ -18281,7 +18624,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs53",
+                            TenDangNhap = "26040853",
                             TrangThai = true
                         },
                         new
@@ -18291,7 +18634,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs54",
+                            TenDangNhap = "26040954",
                             TrangThai = true
                         },
                         new
@@ -18301,7 +18644,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs55",
+                            TenDangNhap = "26041055",
                             TrangThai = true
                         },
                         new
@@ -18311,7 +18654,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs56",
+                            TenDangNhap = "26041156",
                             TrangThai = true
                         },
                         new
@@ -18321,7 +18664,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs57",
+                            TenDangNhap = "26041257",
                             TrangThai = true
                         },
                         new
@@ -18331,7 +18674,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs58",
+                            TenDangNhap = "26041358",
                             TrangThai = true
                         },
                         new
@@ -18341,7 +18684,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs59",
+                            TenDangNhap = "26041459",
                             TrangThai = true
                         },
                         new
@@ -18351,7 +18694,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs60",
+                            TenDangNhap = "26041560",
                             TrangThai = true
                         },
                         new
@@ -18361,7 +18704,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs61",
+                            TenDangNhap = "26050161",
                             TrangThai = true
                         },
                         new
@@ -18371,7 +18714,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs62",
+                            TenDangNhap = "26050262",
                             TrangThai = true
                         },
                         new
@@ -18381,7 +18724,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs63",
+                            TenDangNhap = "26050363",
                             TrangThai = true
                         },
                         new
@@ -18391,7 +18734,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs64",
+                            TenDangNhap = "26050464",
                             TrangThai = true
                         },
                         new
@@ -18401,7 +18744,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs65",
+                            TenDangNhap = "26050565",
                             TrangThai = true
                         },
                         new
@@ -18411,7 +18754,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs66",
+                            TenDangNhap = "26050666",
                             TrangThai = true
                         },
                         new
@@ -18421,7 +18764,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs67",
+                            TenDangNhap = "26050767",
                             TrangThai = true
                         },
                         new
@@ -18431,7 +18774,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs68",
+                            TenDangNhap = "26050868",
                             TrangThai = true
                         },
                         new
@@ -18441,7 +18784,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs69",
+                            TenDangNhap = "26050969",
                             TrangThai = true
                         },
                         new
@@ -18451,7 +18794,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs70",
+                            TenDangNhap = "26051070",
                             TrangThai = true
                         },
                         new
@@ -18461,7 +18804,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs71",
+                            TenDangNhap = "26051171",
                             TrangThai = true
                         },
                         new
@@ -18471,7 +18814,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs72",
+                            TenDangNhap = "26051272",
                             TrangThai = true
                         },
                         new
@@ -18481,7 +18824,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs73",
+                            TenDangNhap = "26051373",
                             TrangThai = true
                         },
                         new
@@ -18491,7 +18834,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs74",
+                            TenDangNhap = "26051474",
                             TrangThai = true
                         },
                         new
@@ -18501,7 +18844,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs75",
+                            TenDangNhap = "26051575",
                             TrangThai = true
                         },
                         new
@@ -18511,7 +18854,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs76",
+                            TenDangNhap = "26060176",
                             TrangThai = true
                         },
                         new
@@ -18521,7 +18864,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs77",
+                            TenDangNhap = "26060277",
                             TrangThai = true
                         },
                         new
@@ -18531,7 +18874,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs78",
+                            TenDangNhap = "26060378",
                             TrangThai = true
                         },
                         new
@@ -18541,7 +18884,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs79",
+                            TenDangNhap = "26060479",
                             TrangThai = true
                         },
                         new
@@ -18551,7 +18894,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs80",
+                            TenDangNhap = "26060580",
                             TrangThai = true
                         },
                         new
@@ -18561,7 +18904,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs81",
+                            TenDangNhap = "26060681",
                             TrangThai = true
                         },
                         new
@@ -18571,7 +18914,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs82",
+                            TenDangNhap = "26060782",
                             TrangThai = true
                         },
                         new
@@ -18581,7 +18924,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs83",
+                            TenDangNhap = "26060883",
                             TrangThai = true
                         },
                         new
@@ -18591,7 +18934,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs84",
+                            TenDangNhap = "26060984",
                             TrangThai = true
                         },
                         new
@@ -18601,7 +18944,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs85",
+                            TenDangNhap = "26061085",
                             TrangThai = true
                         },
                         new
@@ -18611,7 +18954,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs86",
+                            TenDangNhap = "26061186",
                             TrangThai = true
                         },
                         new
@@ -18621,7 +18964,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs87",
+                            TenDangNhap = "26061287",
                             TrangThai = true
                         },
                         new
@@ -18631,7 +18974,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs88",
+                            TenDangNhap = "26061388",
                             TrangThai = true
                         },
                         new
@@ -18641,7 +18984,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs89",
+                            TenDangNhap = "26061489",
                             TrangThai = true
                         },
                         new
@@ -18651,7 +18994,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs90",
+                            TenDangNhap = "26061590",
                             TrangThai = true
                         },
                         new
@@ -18661,7 +19004,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs91",
+                            TenDangNhap = "25070191",
                             TrangThai = true
                         },
                         new
@@ -18671,7 +19014,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs92",
+                            TenDangNhap = "25070292",
                             TrangThai = true
                         },
                         new
@@ -18681,7 +19024,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs93",
+                            TenDangNhap = "25070393",
                             TrangThai = true
                         },
                         new
@@ -18691,7 +19034,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs94",
+                            TenDangNhap = "25070494",
                             TrangThai = true
                         },
                         new
@@ -18701,7 +19044,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs95",
+                            TenDangNhap = "25070595",
                             TrangThai = true
                         },
                         new
@@ -18711,7 +19054,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs96",
+                            TenDangNhap = "25070696",
                             TrangThai = true
                         },
                         new
@@ -18721,7 +19064,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs97",
+                            TenDangNhap = "25070797",
                             TrangThai = true
                         },
                         new
@@ -18731,7 +19074,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs98",
+                            TenDangNhap = "25070898",
                             TrangThai = true
                         },
                         new
@@ -18741,7 +19084,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs99",
+                            TenDangNhap = "25070999",
                             TrangThai = true
                         },
                         new
@@ -18751,7 +19094,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs100",
+                            TenDangNhap = "250710100",
                             TrangThai = true
                         },
                         new
@@ -18761,7 +19104,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs101",
+                            TenDangNhap = "250711101",
                             TrangThai = true
                         },
                         new
@@ -18771,7 +19114,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs102",
+                            TenDangNhap = "250712102",
                             TrangThai = true
                         },
                         new
@@ -18781,7 +19124,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs103",
+                            TenDangNhap = "250713103",
                             TrangThai = true
                         },
                         new
@@ -18791,7 +19134,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs104",
+                            TenDangNhap = "250714104",
                             TrangThai = true
                         },
                         new
@@ -18801,7 +19144,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs105",
+                            TenDangNhap = "250715105",
                             TrangThai = true
                         },
                         new
@@ -18811,7 +19154,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs106",
+                            TenDangNhap = "250801106",
                             TrangThai = true
                         },
                         new
@@ -18821,7 +19164,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs107",
+                            TenDangNhap = "250802107",
                             TrangThai = true
                         },
                         new
@@ -18831,7 +19174,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs108",
+                            TenDangNhap = "250803108",
                             TrangThai = true
                         },
                         new
@@ -18841,7 +19184,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs109",
+                            TenDangNhap = "250804109",
                             TrangThai = true
                         },
                         new
@@ -18851,7 +19194,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs110",
+                            TenDangNhap = "250805110",
                             TrangThai = true
                         },
                         new
@@ -18861,7 +19204,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs111",
+                            TenDangNhap = "250806111",
                             TrangThai = true
                         },
                         new
@@ -18871,7 +19214,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs112",
+                            TenDangNhap = "250807112",
                             TrangThai = true
                         },
                         new
@@ -18881,7 +19224,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs113",
+                            TenDangNhap = "250808113",
                             TrangThai = true
                         },
                         new
@@ -18891,7 +19234,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs114",
+                            TenDangNhap = "250809114",
                             TrangThai = true
                         },
                         new
@@ -18901,7 +19244,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs115",
+                            TenDangNhap = "250810115",
                             TrangThai = true
                         },
                         new
@@ -18911,7 +19254,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs116",
+                            TenDangNhap = "250811116",
                             TrangThai = true
                         },
                         new
@@ -18921,7 +19264,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs117",
+                            TenDangNhap = "250812117",
                             TrangThai = true
                         },
                         new
@@ -18931,7 +19274,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs118",
+                            TenDangNhap = "250813118",
                             TrangThai = true
                         },
                         new
@@ -18941,7 +19284,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs119",
+                            TenDangNhap = "250814119",
                             TrangThai = true
                         },
                         new
@@ -18951,7 +19294,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs120",
+                            TenDangNhap = "250815120",
                             TrangThai = true
                         },
                         new
@@ -18961,7 +19304,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs121",
+                            TenDangNhap = "250901121",
                             TrangThai = true
                         },
                         new
@@ -18971,7 +19314,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs122",
+                            TenDangNhap = "250902122",
                             TrangThai = true
                         },
                         new
@@ -18981,7 +19324,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs123",
+                            TenDangNhap = "250903123",
                             TrangThai = true
                         },
                         new
@@ -18991,7 +19334,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs124",
+                            TenDangNhap = "250904124",
                             TrangThai = true
                         },
                         new
@@ -19001,7 +19344,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs125",
+                            TenDangNhap = "250905125",
                             TrangThai = true
                         },
                         new
@@ -19011,7 +19354,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs126",
+                            TenDangNhap = "250906126",
                             TrangThai = true
                         },
                         new
@@ -19021,7 +19364,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs127",
+                            TenDangNhap = "250907127",
                             TrangThai = true
                         },
                         new
@@ -19031,7 +19374,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs128",
+                            TenDangNhap = "250908128",
                             TrangThai = true
                         },
                         new
@@ -19041,7 +19384,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs129",
+                            TenDangNhap = "250909129",
                             TrangThai = true
                         },
                         new
@@ -19051,7 +19394,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs130",
+                            TenDangNhap = "250910130",
                             TrangThai = true
                         },
                         new
@@ -19061,7 +19404,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs131",
+                            TenDangNhap = "250911131",
                             TrangThai = true
                         },
                         new
@@ -19071,7 +19414,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs132",
+                            TenDangNhap = "250912132",
                             TrangThai = true
                         },
                         new
@@ -19081,7 +19424,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs133",
+                            TenDangNhap = "250913133",
                             TrangThai = true
                         },
                         new
@@ -19091,7 +19434,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs134",
+                            TenDangNhap = "250914134",
                             TrangThai = true
                         },
                         new
@@ -19101,7 +19444,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs135",
+                            TenDangNhap = "250915135",
                             TrangThai = true
                         },
                         new
@@ -19111,7 +19454,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs136",
+                            TenDangNhap = "251001136",
                             TrangThai = true
                         },
                         new
@@ -19121,7 +19464,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs137",
+                            TenDangNhap = "251002137",
                             TrangThai = true
                         },
                         new
@@ -19131,7 +19474,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs138",
+                            TenDangNhap = "251003138",
                             TrangThai = true
                         },
                         new
@@ -19141,7 +19484,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs139",
+                            TenDangNhap = "251004139",
                             TrangThai = true
                         },
                         new
@@ -19151,7 +19494,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs140",
+                            TenDangNhap = "251005140",
                             TrangThai = true
                         },
                         new
@@ -19161,7 +19504,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs141",
+                            TenDangNhap = "251006141",
                             TrangThai = true
                         },
                         new
@@ -19171,7 +19514,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs142",
+                            TenDangNhap = "251007142",
                             TrangThai = true
                         },
                         new
@@ -19181,7 +19524,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs143",
+                            TenDangNhap = "251008143",
                             TrangThai = true
                         },
                         new
@@ -19191,7 +19534,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs144",
+                            TenDangNhap = "251009144",
                             TrangThai = true
                         },
                         new
@@ -19201,7 +19544,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs145",
+                            TenDangNhap = "251010145",
                             TrangThai = true
                         },
                         new
@@ -19211,7 +19554,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs146",
+                            TenDangNhap = "251011146",
                             TrangThai = true
                         },
                         new
@@ -19221,7 +19564,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs147",
+                            TenDangNhap = "251012147",
                             TrangThai = true
                         },
                         new
@@ -19231,7 +19574,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs148",
+                            TenDangNhap = "251013148",
                             TrangThai = true
                         },
                         new
@@ -19241,7 +19584,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs149",
+                            TenDangNhap = "251014149",
                             TrangThai = true
                         },
                         new
@@ -19251,7 +19594,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs150",
+                            TenDangNhap = "251015150",
                             TrangThai = true
                         },
                         new
@@ -19261,7 +19604,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs151",
+                            TenDangNhap = "251101151",
                             TrangThai = true
                         },
                         new
@@ -19271,7 +19614,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs152",
+                            TenDangNhap = "251102152",
                             TrangThai = true
                         },
                         new
@@ -19281,7 +19624,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs153",
+                            TenDangNhap = "251103153",
                             TrangThai = true
                         },
                         new
@@ -19291,7 +19634,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs154",
+                            TenDangNhap = "251104154",
                             TrangThai = true
                         },
                         new
@@ -19301,7 +19644,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs155",
+                            TenDangNhap = "251105155",
                             TrangThai = true
                         },
                         new
@@ -19311,7 +19654,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs156",
+                            TenDangNhap = "251106156",
                             TrangThai = true
                         },
                         new
@@ -19321,7 +19664,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs157",
+                            TenDangNhap = "251107157",
                             TrangThai = true
                         },
                         new
@@ -19331,7 +19674,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs158",
+                            TenDangNhap = "251108158",
                             TrangThai = true
                         },
                         new
@@ -19341,7 +19684,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs159",
+                            TenDangNhap = "251109159",
                             TrangThai = true
                         },
                         new
@@ -19351,7 +19694,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs160",
+                            TenDangNhap = "251110160",
                             TrangThai = true
                         },
                         new
@@ -19361,7 +19704,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs161",
+                            TenDangNhap = "251111161",
                             TrangThai = true
                         },
                         new
@@ -19371,7 +19714,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs162",
+                            TenDangNhap = "251112162",
                             TrangThai = true
                         },
                         new
@@ -19381,7 +19724,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs163",
+                            TenDangNhap = "251113163",
                             TrangThai = true
                         },
                         new
@@ -19391,7 +19734,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs164",
+                            TenDangNhap = "251114164",
                             TrangThai = true
                         },
                         new
@@ -19401,7 +19744,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs165",
+                            TenDangNhap = "251115165",
                             TrangThai = true
                         },
                         new
@@ -19411,7 +19754,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs166",
+                            TenDangNhap = "251201166",
                             TrangThai = true
                         },
                         new
@@ -19421,7 +19764,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs167",
+                            TenDangNhap = "251202167",
                             TrangThai = true
                         },
                         new
@@ -19431,7 +19774,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs168",
+                            TenDangNhap = "251203168",
                             TrangThai = true
                         },
                         new
@@ -19441,7 +19784,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs169",
+                            TenDangNhap = "251204169",
                             TrangThai = true
                         },
                         new
@@ -19451,7 +19794,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs170",
+                            TenDangNhap = "251205170",
                             TrangThai = true
                         },
                         new
@@ -19461,7 +19804,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs171",
+                            TenDangNhap = "251206171",
                             TrangThai = true
                         },
                         new
@@ -19471,7 +19814,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs172",
+                            TenDangNhap = "251207172",
                             TrangThai = true
                         },
                         new
@@ -19481,7 +19824,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs173",
+                            TenDangNhap = "251208173",
                             TrangThai = true
                         },
                         new
@@ -19491,7 +19834,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs174",
+                            TenDangNhap = "251209174",
                             TrangThai = true
                         },
                         new
@@ -19501,7 +19844,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs175",
+                            TenDangNhap = "251210175",
                             TrangThai = true
                         },
                         new
@@ -19511,7 +19854,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs176",
+                            TenDangNhap = "251211176",
                             TrangThai = true
                         },
                         new
@@ -19521,7 +19864,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs177",
+                            TenDangNhap = "251212177",
                             TrangThai = true
                         },
                         new
@@ -19531,7 +19874,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs178",
+                            TenDangNhap = "251213178",
                             TrangThai = true
                         },
                         new
@@ -19541,7 +19884,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs179",
+                            TenDangNhap = "251214179",
                             TrangThai = true
                         },
                         new
@@ -19551,7 +19894,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs180",
+                            TenDangNhap = "251215180",
                             TrangThai = true
                         },
                         new
@@ -19561,7 +19904,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs181",
+                            TenDangNhap = "241301181",
                             TrangThai = true
                         },
                         new
@@ -19571,7 +19914,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs182",
+                            TenDangNhap = "241302182",
                             TrangThai = true
                         },
                         new
@@ -19581,7 +19924,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs183",
+                            TenDangNhap = "241303183",
                             TrangThai = true
                         },
                         new
@@ -19591,7 +19934,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs184",
+                            TenDangNhap = "241304184",
                             TrangThai = true
                         },
                         new
@@ -19601,7 +19944,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs185",
+                            TenDangNhap = "241305185",
                             TrangThai = true
                         },
                         new
@@ -19611,7 +19954,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs186",
+                            TenDangNhap = "241306186",
                             TrangThai = true
                         },
                         new
@@ -19621,7 +19964,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs187",
+                            TenDangNhap = "241307187",
                             TrangThai = true
                         },
                         new
@@ -19631,7 +19974,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs188",
+                            TenDangNhap = "241308188",
                             TrangThai = true
                         },
                         new
@@ -19641,7 +19984,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs189",
+                            TenDangNhap = "241309189",
                             TrangThai = true
                         },
                         new
@@ -19651,7 +19994,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs190",
+                            TenDangNhap = "241310190",
                             TrangThai = true
                         },
                         new
@@ -19661,7 +20004,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs191",
+                            TenDangNhap = "241311191",
                             TrangThai = true
                         },
                         new
@@ -19671,7 +20014,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs192",
+                            TenDangNhap = "241312192",
                             TrangThai = true
                         },
                         new
@@ -19681,7 +20024,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs193",
+                            TenDangNhap = "241313193",
                             TrangThai = true
                         },
                         new
@@ -19691,7 +20034,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs194",
+                            TenDangNhap = "241314194",
                             TrangThai = true
                         },
                         new
@@ -19701,7 +20044,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs195",
+                            TenDangNhap = "241315195",
                             TrangThai = true
                         },
                         new
@@ -19711,7 +20054,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs196",
+                            TenDangNhap = "241401196",
                             TrangThai = true
                         },
                         new
@@ -19721,7 +20064,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs197",
+                            TenDangNhap = "241402197",
                             TrangThai = true
                         },
                         new
@@ -19731,7 +20074,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs198",
+                            TenDangNhap = "241403198",
                             TrangThai = true
                         },
                         new
@@ -19741,7 +20084,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs199",
+                            TenDangNhap = "241404199",
                             TrangThai = true
                         },
                         new
@@ -19751,7 +20094,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs200",
+                            TenDangNhap = "241405200",
                             TrangThai = true
                         },
                         new
@@ -19761,7 +20104,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs201",
+                            TenDangNhap = "241406201",
                             TrangThai = true
                         },
                         new
@@ -19771,7 +20114,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs202",
+                            TenDangNhap = "241407202",
                             TrangThai = true
                         },
                         new
@@ -19781,7 +20124,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs203",
+                            TenDangNhap = "241408203",
                             TrangThai = true
                         },
                         new
@@ -19791,7 +20134,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs204",
+                            TenDangNhap = "241409204",
                             TrangThai = true
                         },
                         new
@@ -19801,7 +20144,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs205",
+                            TenDangNhap = "241410205",
                             TrangThai = true
                         },
                         new
@@ -19811,7 +20154,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs206",
+                            TenDangNhap = "241411206",
                             TrangThai = true
                         },
                         new
@@ -19821,7 +20164,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs207",
+                            TenDangNhap = "241412207",
                             TrangThai = true
                         },
                         new
@@ -19831,7 +20174,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs208",
+                            TenDangNhap = "241413208",
                             TrangThai = true
                         },
                         new
@@ -19841,7 +20184,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs209",
+                            TenDangNhap = "241414209",
                             TrangThai = true
                         },
                         new
@@ -19851,7 +20194,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs210",
+                            TenDangNhap = "241415210",
                             TrangThai = true
                         },
                         new
@@ -19861,7 +20204,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs211",
+                            TenDangNhap = "241501211",
                             TrangThai = true
                         },
                         new
@@ -19871,7 +20214,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs212",
+                            TenDangNhap = "241502212",
                             TrangThai = true
                         },
                         new
@@ -19881,7 +20224,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs213",
+                            TenDangNhap = "241503213",
                             TrangThai = true
                         },
                         new
@@ -19891,7 +20234,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs214",
+                            TenDangNhap = "241504214",
                             TrangThai = true
                         },
                         new
@@ -19901,7 +20244,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs215",
+                            TenDangNhap = "241505215",
                             TrangThai = true
                         },
                         new
@@ -19911,7 +20254,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs216",
+                            TenDangNhap = "241506216",
                             TrangThai = true
                         },
                         new
@@ -19921,7 +20264,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs217",
+                            TenDangNhap = "241507217",
                             TrangThai = true
                         },
                         new
@@ -19931,7 +20274,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs218",
+                            TenDangNhap = "241508218",
                             TrangThai = true
                         },
                         new
@@ -19941,7 +20284,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs219",
+                            TenDangNhap = "241509219",
                             TrangThai = true
                         },
                         new
@@ -19951,7 +20294,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs220",
+                            TenDangNhap = "241510220",
                             TrangThai = true
                         },
                         new
@@ -19961,7 +20304,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs221",
+                            TenDangNhap = "241511221",
                             TrangThai = true
                         },
                         new
@@ -19971,7 +20314,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs222",
+                            TenDangNhap = "241512222",
                             TrangThai = true
                         },
                         new
@@ -19981,7 +20324,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs223",
+                            TenDangNhap = "241513223",
                             TrangThai = true
                         },
                         new
@@ -19991,7 +20334,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs224",
+                            TenDangNhap = "241514224",
                             TrangThai = true
                         },
                         new
@@ -20001,7 +20344,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs225",
+                            TenDangNhap = "241515225",
                             TrangThai = true
                         },
                         new
@@ -20011,7 +20354,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs226",
+                            TenDangNhap = "241601226",
                             TrangThai = true
                         },
                         new
@@ -20021,7 +20364,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs227",
+                            TenDangNhap = "241602227",
                             TrangThai = true
                         },
                         new
@@ -20031,7 +20374,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs228",
+                            TenDangNhap = "241603228",
                             TrangThai = true
                         },
                         new
@@ -20041,7 +20384,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs229",
+                            TenDangNhap = "241604229",
                             TrangThai = true
                         },
                         new
@@ -20051,7 +20394,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs230",
+                            TenDangNhap = "241605230",
                             TrangThai = true
                         },
                         new
@@ -20061,7 +20404,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs231",
+                            TenDangNhap = "241606231",
                             TrangThai = true
                         },
                         new
@@ -20071,7 +20414,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs232",
+                            TenDangNhap = "241607232",
                             TrangThai = true
                         },
                         new
@@ -20081,7 +20424,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs233",
+                            TenDangNhap = "241608233",
                             TrangThai = true
                         },
                         new
@@ -20091,7 +20434,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs234",
+                            TenDangNhap = "241609234",
                             TrangThai = true
                         },
                         new
@@ -20101,7 +20444,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs235",
+                            TenDangNhap = "241610235",
                             TrangThai = true
                         },
                         new
@@ -20111,7 +20454,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs236",
+                            TenDangNhap = "241611236",
                             TrangThai = true
                         },
                         new
@@ -20121,7 +20464,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs237",
+                            TenDangNhap = "241612237",
                             TrangThai = true
                         },
                         new
@@ -20131,7 +20474,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs238",
+                            TenDangNhap = "241613238",
                             TrangThai = true
                         },
                         new
@@ -20141,7 +20484,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs239",
+                            TenDangNhap = "241614239",
                             TrangThai = true
                         },
                         new
@@ -20151,7 +20494,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs240",
+                            TenDangNhap = "241615240",
                             TrangThai = true
                         },
                         new
@@ -20161,7 +20504,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs241",
+                            TenDangNhap = "241701241",
                             TrangThai = true
                         },
                         new
@@ -20171,7 +20514,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs242",
+                            TenDangNhap = "241702242",
                             TrangThai = true
                         },
                         new
@@ -20181,7 +20524,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs243",
+                            TenDangNhap = "241703243",
                             TrangThai = true
                         },
                         new
@@ -20191,7 +20534,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs244",
+                            TenDangNhap = "241704244",
                             TrangThai = true
                         },
                         new
@@ -20201,7 +20544,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs245",
+                            TenDangNhap = "241705245",
                             TrangThai = true
                         },
                         new
@@ -20211,7 +20554,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs246",
+                            TenDangNhap = "241706246",
                             TrangThai = true
                         },
                         new
@@ -20221,7 +20564,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs247",
+                            TenDangNhap = "241707247",
                             TrangThai = true
                         },
                         new
@@ -20231,7 +20574,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs248",
+                            TenDangNhap = "241708248",
                             TrangThai = true
                         },
                         new
@@ -20241,7 +20584,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs249",
+                            TenDangNhap = "241709249",
                             TrangThai = true
                         },
                         new
@@ -20251,7 +20594,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs250",
+                            TenDangNhap = "241710250",
                             TrangThai = true
                         },
                         new
@@ -20261,7 +20604,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs251",
+                            TenDangNhap = "241711251",
                             TrangThai = true
                         },
                         new
@@ -20271,7 +20614,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs252",
+                            TenDangNhap = "241712252",
                             TrangThai = true
                         },
                         new
@@ -20281,7 +20624,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs253",
+                            TenDangNhap = "241713253",
                             TrangThai = true
                         },
                         new
@@ -20291,7 +20634,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs254",
+                            TenDangNhap = "241714254",
                             TrangThai = true
                         },
                         new
@@ -20301,7 +20644,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs255",
+                            TenDangNhap = "241715255",
                             TrangThai = true
                         },
                         new
@@ -20311,7 +20654,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs256",
+                            TenDangNhap = "241801256",
                             TrangThai = true
                         },
                         new
@@ -20321,7 +20664,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs257",
+                            TenDangNhap = "241802257",
                             TrangThai = true
                         },
                         new
@@ -20331,7 +20674,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs258",
+                            TenDangNhap = "241803258",
                             TrangThai = true
                         },
                         new
@@ -20341,7 +20684,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs259",
+                            TenDangNhap = "241804259",
                             TrangThai = true
                         },
                         new
@@ -20351,7 +20694,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs260",
+                            TenDangNhap = "241805260",
                             TrangThai = true
                         },
                         new
@@ -20361,7 +20704,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs261",
+                            TenDangNhap = "241806261",
                             TrangThai = true
                         },
                         new
@@ -20371,7 +20714,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs262",
+                            TenDangNhap = "241807262",
                             TrangThai = true
                         },
                         new
@@ -20381,7 +20724,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs263",
+                            TenDangNhap = "241808263",
                             TrangThai = true
                         },
                         new
@@ -20391,7 +20734,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs264",
+                            TenDangNhap = "241809264",
                             TrangThai = true
                         },
                         new
@@ -20401,7 +20744,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs265",
+                            TenDangNhap = "241810265",
                             TrangThai = true
                         },
                         new
@@ -20411,7 +20754,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs266",
+                            TenDangNhap = "241811266",
                             TrangThai = true
                         },
                         new
@@ -20421,7 +20764,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs267",
+                            TenDangNhap = "241812267",
                             TrangThai = true
                         },
                         new
@@ -20431,7 +20774,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs268",
+                            TenDangNhap = "241813268",
                             TrangThai = true
                         },
                         new
@@ -20441,7 +20784,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs269",
+                            TenDangNhap = "241814269",
                             TrangThai = true
                         },
                         new
@@ -20451,7 +20794,7 @@ namespace WebQLThiTracNghiem.Migrations
                             MatKhau = "123456",
                             NgayTao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SoLanDangNhapSai = 0,
-                            TenDangNhap = "hs270",
+                            TenDangNhap = "241815270",
                             TrangThai = true
                         });
                 });

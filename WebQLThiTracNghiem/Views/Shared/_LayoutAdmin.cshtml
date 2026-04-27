@@ -134,7 +134,7 @@
                     {
                         avatar = _context.HoSoCaNhan
                         .Where(x => x.MaNguoiDung == maNguoiDung)
-                        .Select(x => x.AnhDaiDien) // hoặc Avatar tùy DB
+                        .Select(x => x.AnhDaiDien) 
                         .FirstOrDefault();
                     }
 
@@ -158,7 +158,6 @@
                 </div>
             </div>
 
-            <!-- 🔥 MENU (PHẢI NẰM TRONG SIDEBAR) -->
             <a asp-controller="Admin" asp-action="BangDieuKhien" class="menu-item">
                 <i class="fas fa-chart-line"></i>
                 <span>Tổng quan</span>
@@ -172,15 +171,15 @@
                 </div>
 
                 <div class="submenu">
-                    <a asp-controller="Admin" asp-action="DanhSachGiaoVien">
+                    <a asp-controller="Admin" asp-action="DanhSachGiaoVien" class="menu-item">
                         <i class="fas fa-chalkboard-teacher"></i> Quản lý giáo viên
                     </a>
 
-                    <a asp-controller="Admin" asp-action="DanhSachHocSinh">
+                    <a asp-controller="Admin" asp-action="DanhSachHocSinh" class="menu-item">
                         <i class="fas fa-user-graduate"></i> Quản lý học sinh
                     </a>
 
-                    <a asp-controller="Admin" asp-action="NguoiDung">
+                    <a asp-controller="Admin" asp-action="NguoiDung" class="menu-item">
                         <i class="fas fa-user-cog"></i> Quản lý tài khoản
                     </a>
                 </div>
@@ -217,7 +216,7 @@
             </a>
 
 
-        </div> <!-- ✅ ĐÓNG SIDEBAR ĐÚNG CHỖ -->
+        </div> 
         <!-- CONTENT -->
         <div class="content">
             <div class="topbar d-flex justify-content-between align-items-center">
@@ -231,7 +230,8 @@
                     </a>
 
                     <a asp-controller="Auth" asp-action="DangXuat"
-                       class="btn btn-danger btn-sm">
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Bạn có chắc muốn đăng xuất không?')">
                         Đăng xuất
                     </a>
                 </div>
@@ -275,7 +275,6 @@
 <style>
 
 
-/* SIDEBAR PRO */
 .sidebar {
     width: 250px;
     transition: 0.3s;
@@ -303,7 +302,6 @@
     cursor: pointer;
 }
 
-/* MENU */
 .menu-item {
     display: flex !important;
     align-items: center;
@@ -317,12 +315,10 @@
     background: rgba(255,255,255,0.2);
 }
 
-/* ACTIVE */
 .menu-item.active {
     background: #3b82f6;
 }
 
-/* DROPDOWN */
 .submenu {
     display: none;
     padding-left: 15px;
@@ -336,7 +332,6 @@
     margin-left: auto;
 }
 
-/* CONTENT co giãn */
 .content {
     margin-left: 250px;
     transition: 0.3s;
@@ -345,6 +340,11 @@
 .sidebar.collapsed + .content {
     margin-left: 80px;
 }
+
+    .submenu a.active {
+        background: #3b82f6;
+        color: white;
+    }
 </style>
 <script>
     function toggleSidebar() {
@@ -355,20 +355,22 @@
         el.parentElement.classList.toggle("active");
     }
 
-    // active menu
     document.addEventListener("DOMContentLoaded", function () {
-        const links = document.querySelectorAll(".menu-item");
+
+        const links = document.querySelectorAll(".sidebar a");
         const url = window.location.pathname.toLowerCase();
 
         links.forEach(link => {
-    const href = link.getAttribute("href") || "";
-    if (href && url.includes(href.toLowerCase())) {
+            const href = link.getAttribute("href");
+
+            if (href && url.includes(href.toLowerCase())) {
                 link.classList.add("active");
 
                 const parent = link.closest(".menu-dropdown");
                 if (parent) parent.classList.add("active");
             }
         });
+
     });
 </script>
 

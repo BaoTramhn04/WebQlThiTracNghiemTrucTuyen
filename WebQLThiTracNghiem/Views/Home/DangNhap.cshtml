@@ -18,14 +18,13 @@
         🌙
     </button>
 
-    <!-- Toast thông báo -->
     @if (TempData["Success"] != null)
     {
         <div class="toast-new success toast-auto">
             <span class="toast-icon">✔️</span>
             <span>@TempData["Success"]</span>
 
-            <div class="toast-progress"></div> <!-- 🔥 THÊM DÒNG NÀY -->
+            <div class="toast-progress"></div> 
         </div>
     }
 
@@ -315,12 +314,10 @@
         animation: slideInRight 0.4s ease;
     }
 
-    /* ICON */
     .toast-icon {
         font-size: 20px;
     }
 
-    /* SUCCESS */
     .toast-new.success {
         border-left: 6px solid #22c55e;
     }
@@ -329,7 +326,6 @@
             color: #22c55e;
         }
 
-    /* ERROR */
     .toast-new.error {
         border-left: 6px solid #ef4444;
     }
@@ -338,7 +334,6 @@
             color: #ef4444;
         }
 
-    /* ANIMATION */
     @@keyframes slideInRight {
         from {
             transform: translateX(120%);
@@ -421,7 +416,6 @@
         animation: progressBar 3s linear forwards;
     }
 
-    /* màu theo loại */
     .toast-new.success .toast-progress {
         background: #22c55e;
         overflow: hidden;
@@ -437,7 +431,6 @@
         overflow: hidden;
     }
 
-    /* animation */
     @@keyframes progressBar {
         from {
             width: 100%;

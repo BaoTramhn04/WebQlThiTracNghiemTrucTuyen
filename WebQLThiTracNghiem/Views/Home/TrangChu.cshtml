@@ -30,29 +30,33 @@
                             <a href="#tinh-nang">Tính năng</a>
                             <a href="#huong-dan">Hướng dẫn</a>
                         </nav>
-                    </nav>  
+                    </nav>
                     <script>
-                        const sections = document.querySelectorAll("section");
-                        const navLinks = document.querySelectorAll(".exam-nav a");
+                        document.addEventListener("DOMContentLoaded", function () {
 
-                        window.addEventListener("scroll", () => {
-                            let current = "";
+                            const sections = document.querySelectorAll("section[id]");
+                            const navLinks = document.querySelectorAll(".exam-nav a");
 
-                            sections.forEach(section => {
-                                const sectionTop = section.offsetTop - 120;
-                                const sectionHeight = section.clientHeight;
+                            window.addEventListener("scroll", () => {
+                                let scrollY = window.pageYOffset;
 
-                                if (pageYOffset >= sectionTop) {
-                                    current = section.getAttribute("id");
-                                }
+                                sections.forEach(section => {
+                                    const sectionTop = section.offsetTop - 150;
+                                    const sectionHeight = section.offsetHeight;
+                                    const sectionId = section.getAttribute("id");
+
+                                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+
+                                        navLinks.forEach(link => link.classList.remove("active"));
+
+                                        const activeLink = document.querySelector(`.exam-nav a[href="#${sectionId}"]`);
+                                        if (activeLink) {
+                                            activeLink.classList.add("active");
+                                        }
+                                    }
+                                });
                             });
 
-                            navLinks.forEach(link => {
-                                link.classList.remove("active");
-                                if (link.getAttribute("href") === "#" + current) {
-                                    link.classList.add("active");
-                                }
-                            });
                         });
                     </script>
                     <div class="exam-login-group">
@@ -101,7 +105,6 @@
             <span></span>
             <span></span>
         </div>
-        <!-- GOM TẤT CẢ VÀO 1 KHỐI -->
         <div class="banner-wrapper">
 
             <h1 class="neon-text">SmartExam</h1>
@@ -110,7 +113,6 @@
                 nhanh chóng, chính xác và thuận tiện.
             </p>
 
-            <!-- STATS PHẢI NẰM TRONG ĐÂY -->
             <div class="banner-stats">
 
                 <div class="stat-box">
@@ -188,7 +190,6 @@
                 const track = document.querySelector(".slider-track");
                 let items = document.querySelectorAll(".subject-item");
 
-                // clone tất cả item
                 items.forEach(item => {
                     const clone = item.cloneNode(true);
                     track.appendChild(clone);
@@ -204,7 +205,6 @@
                     track.style.transition = "transform 0.6s ease";
                     track.style.transform = `translateX(-${index * itemWidth}px)`;
 
-                    // khi đi hết list gốc → reset về đầu (không giật)
                     if (index >= items.length) {
                         setTimeout(() => {
                             track.style.transition = "none";
@@ -216,7 +216,6 @@
 
                 let interval = setInterval(slide, 2000);
 
-                // hover dừng
                 track.addEventListener("mouseenter", () => clearInterval(interval));
                 track.addEventListener("mouseleave", () => {
                     interval = setInterval(slide, 2000);
@@ -229,7 +228,6 @@
 <section class="intro-modern" id="gioi-thieu">
     <div class="container">
 
-        <!-- TITLE -->
         <div class="section-title text-center">
             <h2 class="main-title">GIỚI THIỆU</h2>
             <div class="title-divider"></div>
@@ -336,7 +334,6 @@
         </div>
     </div>
 
-    <!-- DOT ĐẶT ĐÚNG TRONG SECTION -->
     <div class="dots">
         <span class="dot active" onclick="goToSlide(0)"></span>
         <span class="dot" onclick="goToSlide(1)"></span>
@@ -359,7 +356,7 @@
     }
 </script>
 
-<section class="guide-slider-section">
+<section class="guide-slider-section" id="huong-dan">
     <div class="container text-center">
 
         <h2 class="guide-title">Hướng dẫn học sinh làm bài</h2>
@@ -391,7 +388,7 @@
                 <div class="guide-card">
                     <div class="step">03</div>
 
-                    <img src="/GioiThieu/HocSinh.png" />
+                    <img src="/GioiThieu/HocSinh-ChonDotThi.png" />
                     <h4>Chọn đợt thi</h4>
                     <p>Chọn đợt thi hoặc bài kiểm tra được giáo viên giao.</p>
                 </div>
@@ -447,8 +444,6 @@
         const btnNext = document.querySelector(".next");
         const btnPrev = document.querySelector(".prev");
         const dots = document.querySelectorAll(".guide-dots .dot");
-
-        // clone đầu cuối
         const firstClone = originalCards[0].cloneNode(true);
         const lastClone = originalCards[originalCards.length - 1].cloneNode(true);
 
@@ -513,7 +508,6 @@
 </script>
 
 <script>
-        // BUTTON
   btnNext.addEventListener("click", () => {
     index = (index + 1) % cards.length;
     updateSlider();
@@ -525,8 +519,7 @@ btnPrev.addEventListener("click", () => {
 });
 
 </script>
-
-<section class="home-section guide-section" id="huong-dan">
+<section class="home-section guide-section" id="dang-nhap">
     <div class="container">
 
         <div class="guide-box">

@@ -19,7 +19,7 @@ namespace WebQLThiTracNghiem.Controllers
 
         public IActionResult BangDieuKhien()
         {
-            // 🔥 TỔNG QUAN
+            // TỔNG QUAN
             ViewBag.SoNguoiDung = _context.NguoiDung.Count();
             ViewBag.SoVaiTro = _context.VaiTro.Count();
             ViewBag.SoNhatKy = _context.NhatKyHeThongs.Count();
@@ -29,21 +29,21 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.SoLop = _context.Lop.Count();
             ViewBag.SoMon = _context.MonHoc.Count();
 
-            // 🔥 TRẠNG THÁI HOẠT ĐỘNG
+            // TRẠNG THÁI HOẠT ĐỘNG
             ViewBag.SoHocSinhDangHoatDong = _context.HocSinh.Count(h => h.TrangThai);
             ViewBag.SoHocSinhNgungHoatDong = _context.HocSinh.Count(h => !h.TrangThai);
 
             ViewBag.SoGiaoVienDangHoatDong = _context.GiaoVien.Count(g => g.TrangThai);
             ViewBag.SoGiaoVienNgungHoatDong = _context.GiaoVien.Count(g => !g.TrangThai);
 
-            // 🔥 LIÊN KẾT LOGIC HỆ THỐNG
+            // LIÊN KẾT LOGIC HỆ THỐNG
             ViewBag.SoChuyenDe = _context.ChuyenDe.Count();
             ViewBag.SoCauHoi = _context.CauHoi.Count();
             ViewBag.SoDotThi = (from dt in _context.DotThi
                                 join de in _context.DeThi on dt.MaDeThi equals de.MaDeThi
                                 where de.LoaiDe == "Chung"
                                 select dt.MaDotThi).Count();
-            // 🔥 CẢNH BÁO QUẢN TRỊ (RẤT QUAN TRỌNG)
+            // CẢNH BÁO QUẢN TRỊ (RẤT QUAN TRỌNG)
             ViewBag.LopChuaPhanCong = _context.Lop.Count(l =>
                 !_context.PhanCongGiangDays.Any(p => p.MaLop == l.MaLop));
 
@@ -52,13 +52,13 @@ namespace WebQLThiTracNghiem.Controllers
 
             ViewBag.GiaoVienChuaDuocPhanCong = _context.GiaoVien.Count(g =>
                 !_context.PhanCongGiangDays.Any(p => p.MaGiaoVien == g.MaGiaoVien));
-            // 🔥 THỜI GIAN
+            // THỜI GIAN
             var now = DateTime.Now;
             var last7Days = now.AddDays(-7);
             var prev7Days = now.AddDays(-14);
 
             // ========================
-            // 📊 HỌC SINH
+            // HỌC SINH
             // ========================
             var hs_now = _context.NguoiDung
                 .Count(x => x.MaVaiTro == 3 && x.NgayTao >= last7Days);
@@ -69,7 +69,7 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.HocSinhTang = hs_now - hs_prev;
 
             // ========================
-            // 👨‍🏫 GIÁO VIÊN
+            // GIÁO VIÊN
             // ========================
             var gv_now = _context.NguoiDung
                 .Count(x => x.MaVaiTro == 2 && x.NgayTao >= last7Days);
@@ -80,16 +80,13 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.GiaoVienTang = gv_now - gv_prev;
 
             // ========================
-            // 📚 CHUYÊN ĐỀ
+            // CHUYÊN ĐỀ
             // ========================
-
-
-            // 👉 nếu KHÔNG có NgayTao thì dùng tạm:
             var cd_now = _context.ChuyenDe.Count();
             ViewBag.ChuyenDeTang = cd_now;
 
             // ========================
-            // 📝 ĐỢT THI
+            // ĐỢT THI
             // ========================
             var dt_now = _context.DotThi
                 .Count(x => x.ThoiGianBatDau >= last7Days);
@@ -98,7 +95,7 @@ namespace WebQLThiTracNghiem.Controllers
                 .Count(x => x.ThoiGianBatDau >= prev7Days && x.ThoiGianBatDau < last7Days);
 
             ViewBag.DotThiTang = dt_now - dt_prev;
-            // 🔥 LOG GẦN NHẤT
+            // LOG GẦN NHẤT
             ViewBag.Logs = _context.NhatKyHeThongs
                 .OrderByDescending(x => x.ThoiGianThucHien)
                 .Take(5)
@@ -137,7 +134,6 @@ namespace WebQLThiTracNghiem.Controllers
         // ===============================
         // DANH SÁCH GIÁO VIÊN
         // ===============================
-
         public IActionResult DanhSachGiaoVien(string keyword, int page = 1)
         {
             int pageSize = 20;
@@ -183,7 +179,7 @@ namespace WebQLThiTracNghiem.Controllers
             }
 
             // =========================
-            // 🔥 THÊM MỚI
+            // THÊM MỚI
             // =========================
             if (id == null || id == 0)
             {
@@ -250,7 +246,7 @@ namespace WebQLThiTracNghiem.Controllers
             }
 
             // =========================
-            // 🔥 CẬP NHẬT
+            // CẬP NHẬT
             // =========================
             else
             {
@@ -273,11 +269,9 @@ namespace WebQLThiTracNghiem.Controllers
                     {
                         gv.NguoiDung.HoSoCaNhan.HoTen = hoten;
 
-                        // ❌ XÓA LOGIC RESET (QUAN TRỌNG NHẤT)
-                        // KHÔNG reset người khác nữa
-
-                        gv.LaDaiDien = laDaiDien ?? false; // ✅ FIX
-                                                           // 🔥 ĐỒNG BỘ SANG PHÂN CÔNG GIẢNG DẠY
+                      
+                       gv.LaDaiDien = laDaiDien ?? false;
+                                                      
                         var phanCongs = _context.PhanCongGiangDays
                             .Where(x => x.MaGiaoVien == gv.MaGiaoVien)
                             .ToList();
@@ -328,16 +322,16 @@ namespace WebQLThiTracNghiem.Controllers
 
             if (gv != null)
             {
-                // 🔥 xóa hồ sơ
+                // xóa hồ sơ
                 if (gv.NguoiDung.HoSoCaNhan != null)
                 {
                     _context.HoSoCaNhan.Remove(gv.NguoiDung.HoSoCaNhan);
                 }
 
-                // 🔥 xóa user
+                // xóa user
                 _context.NguoiDung.Remove(gv.NguoiDung);
 
-                // 🔥 xóa giáo viên
+                // xóa giáo viên
                 _context.GiaoVien.Remove(gv);
 
                 _context.SaveChanges();
@@ -363,7 +357,7 @@ namespace WebQLThiTracNghiem.Controllers
                 .Include(h => h.Lop)
                 .AsQueryable();
 
-            // 🔍 tìm kiếm
+            // tìm kiếm
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(x =>
@@ -371,7 +365,7 @@ namespace WebQLThiTracNghiem.Controllers
       x.NguoiDung.TenDangNhap.Contains(keyword));
             }
 
-            // 🔥 LỌC LỚP (CÁI BẠN ĐANG THIẾU)
+            // LỌC LỚP
             if (lop.HasValue)
             {
                 query = query.Where(x => x.MaLop == lop.Value);
@@ -410,18 +404,18 @@ namespace WebQLThiTracNghiem.Controllers
             }
 
             // =========================
-            // 🔥 THÊM MỚI
+            //THÊM MỚI
             // =========================
             if (id == null || id == 0)
             {
-                // 🔥 CHECK TRÙNG USERNAME
+                // CHECK TRÙNG USERNAME
                 if (_context.NguoiDung.Any(x => x.TenDangNhap == username))
                 {
                     TempData["error"] = "Tên đăng nhập đã tồn tại!";
                     return RedirectToAction("DanhSachHocSinh");
                 }
 
-                // 🔥 CHECK TRÙNG HỌC SINH TRONG LỚP
+                // CHECK TRÙNG HỌC SINH TRONG LỚP
                 bool isExist = _context.HocSinh
                     .Include(x => x.NguoiDung)
                     .ThenInclude(n => n.HoSoCaNhan)
@@ -448,7 +442,7 @@ namespace WebQLThiTracNghiem.Controllers
                 _context.SaveChanges();
 
                 // =========================
-                // 🔥 UP ẢNH
+                // UP ẢNH
                 // =========================
                 string fileName = null;
 
@@ -495,7 +489,7 @@ namespace WebQLThiTracNghiem.Controllers
                 TempData["success"] = "Thêm học sinh thành công. Mật khẩu: " + password;
             }
             // =========================
-            // 🔥 CẬP NHẬT
+            // CẬP NHẬT
             // =========================
             else
             {
@@ -506,7 +500,7 @@ namespace WebQLThiTracNghiem.Controllers
 
                 if (hs != null)
                 {
-                    // 🔥 CHECK TRÙNG USERNAME (trừ chính nó)
+                    // CHECK TRÙNG USERNAME
                     if (_context.NguoiDung.Any(x => x.TenDangNhap == username && x.MaNguoiDung != hs.MaNguoiDung))
                     {
                         TempData["error"] = "Tên đăng nhập đã tồn tại!";
@@ -519,7 +513,7 @@ namespace WebQLThiTracNghiem.Controllers
                     {
                         hs.NguoiDung.HoSoCaNhan.HoTen = hoten;
 
-                        // 🔥 UPDATE ẢNH
+                        // UPDATE ẢNH
                         if (avatar != null && avatar.Length > 0)
                         {
                             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Avatar");
@@ -561,16 +555,16 @@ namespace WebQLThiTracNghiem.Controllers
 
             if (hs != null)
             {
-                // 🔥 xóa hồ sơ
+                // xóa hồ sơ
                 if (hs.NguoiDung.HoSoCaNhan != null)
                 {
                     _context.HoSoCaNhan.Remove(hs.NguoiDung.HoSoCaNhan);
                 }
 
-                // 🔥 xóa user
+                // xóa user
                 _context.NguoiDung.Remove(hs.NguoiDung);
 
-                // 🔥 xóa học sinh
+                // xóa học sinh
                 _context.HocSinh.Remove(hs);
 
                 _context.SaveChanges();
@@ -641,6 +635,7 @@ namespace WebQLThiTracNghiem.Controllers
             TempData["success"] = "Thêm lớp thành công!";
             return RedirectToAction("Lop");
         }
+
         [HttpPost]
         public IActionResult SuaLop(Lop model)
         {
@@ -682,7 +677,7 @@ namespace WebQLThiTracNghiem.Controllers
         // ===============================
         public IActionResult MonHoc(string keyword, int page = 1)
         {
-            int pageSize = 20; // 🔥 số dòng mỗi trang
+            int pageSize = 20; 
 
             var query = _context.MonHoc
                 .Include(m => m.PhanCongGiangDays)
@@ -766,15 +761,12 @@ namespace WebQLThiTracNghiem.Controllers
 
             if (mon == null)
                 return RedirectToAction("MonHoc");
-
-            // ❌ check liên kết
+          
             if (_context.PhanCongGiangDays.Any(x => x.MaMon == id))
             {
                 TempData["error"] = "Môn đang được phân công, không thể xóa!";
                 return RedirectToAction("MonHoc");
             }
-
-            // 🔥 DELETE THẬT
             _context.MonHoc.Remove(mon);
             _context.SaveChanges();
 
@@ -809,19 +801,19 @@ namespace WebQLThiTracNghiem.Controllers
                 .Include(x => x.CauHois)
                 .AsQueryable();
 
-            // 🔍 TÌM KIẾM
+            // TÌM KIẾM
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(x => x.TenChuyenDe.Contains(keyword));
             }
 
-            // 🔍 LỌC MÔN
+            // LỌC MÔN
             if (mon.HasValue)
             {
                 query = query.Where(x => x.MaMonHoc == mon.Value);
             }
 
-            // 🔥 LỌC KHỐI
+            // LỌC KHỐI
             if (khoi.HasValue)
             {
                 query = query.Where(cd =>
@@ -834,7 +826,7 @@ namespace WebQLThiTracNghiem.Controllers
                 );
             }
 
-            // 🔥 TỔNG SAU FILTER (QUAN TRỌNG)
+            // TỔNG SAU FILTER (QUAN TRỌNG)
             int totalItems = query.Count();
 
             var data = query
@@ -843,14 +835,11 @@ namespace WebQLThiTracNghiem.Controllers
                 .Take(pageSize)
                 .ToList();
 
-            // 🔥 PHÂN TRANG
+            // PHÂN TRANG
             ViewBag.CurrentPage = page;
             ViewBag.TotalPage = (int)Math.Ceiling((double)totalItems / pageSize);
-
-            // 🔥 THÊM DÒNG NÀY (CÁI BẠN ĐANG THIẾU)
             ViewBag.TongChuyenDe = totalItems;
             ViewBag.SoMon = _context.MonHoc.Count();
-            // 🔥 FILTER UI
             ViewBag.MonHoc = _context.MonHoc.ToList();
             ViewBag.SelectedMon = mon;
             ViewBag.SelectedKhoi = khoi;
@@ -865,21 +854,19 @@ namespace WebQLThiTracNghiem.Controllers
         [HttpPost]
         public IActionResult ThemChuyenDe(string tenChuyenDe, int maMonHoc, int khoi)
         {
-            // 🔥 validate tên
+            // validate tên
             if (string.IsNullOrWhiteSpace(tenChuyenDe))
             {
                 TempData["error"] = "Không được để trống tên chuyên đề!";
                 return RedirectToAction("ChuyenDe");
             }
 
-            // 🔥 validate khối
+            // validate khối
             if (khoi != 10 && khoi != 11 && khoi != 12)
             {
                 TempData["error"] = "Vui lòng chọn khối hợp lệ!";
                 return RedirectToAction("ChuyenDe");
             }
-
-            // 🔥 check trùng (có cả khối)
             bool isExist = _context.ChuyenDe.Any(x =>
                 x.TenChuyenDe == tenChuyenDe &&
                 x.MaMonHoc == maMonHoc &&
@@ -892,7 +879,7 @@ namespace WebQLThiTracNghiem.Controllers
                 return RedirectToAction("ChuyenDe");
             }
 
-            // 🔥 thêm mới
+            // thêm mới
             var cd = new ChuyenDe
             {
                 TenChuyenDe = tenChuyenDe,
@@ -906,6 +893,8 @@ namespace WebQLThiTracNghiem.Controllers
             TempData["success"] = "Thêm chuyên đề thành công!";
             return RedirectToAction("ChuyenDe");
         }
+
+
         // SỬA CHUYÊN ĐỀ
         public IActionResult SuaChuyenDe(int id, string tenChuyenDe, int maMonHoc)
         {
@@ -916,7 +905,7 @@ namespace WebQLThiTracNghiem.Controllers
 
             tenChuyenDe = tenChuyenDe.Trim();
 
-            // 🔥 check trùng
+            // check trùng
             if (_context.ChuyenDe.Any(x =>
                 x.TenChuyenDe == tenChuyenDe &&
                 x.MaMonHoc == maMonHoc &&
@@ -967,7 +956,7 @@ namespace WebQLThiTracNghiem.Controllers
                 .Include(p => p.MonHoc)
                 .AsQueryable();
 
-            // 🔍 lọc
+            // lọc
             if (gv.HasValue)
                 query = query.Where(p => p.MaGiaoVien == gv);
 
@@ -1019,7 +1008,7 @@ namespace WebQLThiTracNghiem.Controllers
                 .Include(p => p.MonHoc)
                 .AsQueryable();
 
-            // 🔍 lọc
+            // lọc
             if (gv.HasValue)
                 query = query.Where(p => p.MaGiaoVien == gv.Value);
 
@@ -1029,7 +1018,7 @@ namespace WebQLThiTracNghiem.Controllers
             if (mon.HasValue)
                 query = query.Where(p => p.MaMon == mon.Value);
 
-            // 🔥 dropdown
+            // dropdown
             ViewBag.GiaoVien = _context.GiaoVien
                 .Include(g => g.NguoiDung)
                 .ToList();
@@ -1037,7 +1026,7 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.Lop = _context.Lop.ToList();
             ViewBag.MonHoc = _context.MonHoc.ToList();
 
-            // 🔥 giữ trạng thái filter
+            // giữ trạng thái filter
             ViewBag.SelectedGV = gv;
             ViewBag.SelectedLop = lop;
             ViewBag.SelectedMon = mon;
@@ -1047,7 +1036,7 @@ namespace WebQLThiTracNghiem.Controllers
         [HttpPost]
         public IActionResult TaoPhanCongGiangDay(int magv, int malop, int mamon)
         {
-            // 🔥 CHẶN TRÙNG CHUẨN
+            // CHẶN TRÙNG 
             bool daTonTai = _context.PhanCongGiangDays
             .Any(p => p.MaLop == malop && p.MaMon == mamon);
 
@@ -1143,23 +1132,21 @@ namespace WebQLThiTracNghiem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ChiTietNguoiDung(NguoiDung model, IFormFile avatar, string returnUrl)
         {
-            // ❌ thiếu ID
+
             if (model == null || model.MaNguoiDung == 0)
                 return BadRequest("Thiếu MaNguoiDung");
 
-            // 🔥 KHÔNG dùng Include để tránh lỗi LINQ
             var user = _context.NguoiDung
                 .FirstOrDefault(x => x.MaNguoiDung == model.MaNguoiDung);
 
             if (user == null)
                 return NotFound();
 
-            // 🔥 load hồ sơ riêng
             var hoSo = _context.HoSoCaNhan
                 .FirstOrDefault(x => x.MaNguoiDung == model.MaNguoiDung);
 
             // =========================
-            // 🔥 CHECK TRÙNG USERNAME
+            // CHECK TRÙNG USERNAME
             // =========================
             if (!string.IsNullOrEmpty(model.TenDangNhap) &&
                 _context.NguoiDung.Any(x =>
@@ -1171,12 +1158,12 @@ namespace WebQLThiTracNghiem.Controllers
             }
 
             // =========================
-            // 🔥 UPDATE USER
+            // UPDATE USER
             // =========================
             user.TenDangNhap = model.TenDangNhap;
 
             // =========================
-            // 🔥 UPDATE HỒ SƠ
+            // UPDATE HỒ SƠ
             // =========================
             if (hoSo != null && model.HoSoCaNhan != null)
             {
@@ -1187,7 +1174,7 @@ namespace WebQLThiTracNghiem.Controllers
                 hoSo.DiaChi = model.HoSoCaNhan.DiaChi;
 
                 // =========================
-                // 🔥 UP ẢNH
+                //UP ẢNH
                 // =========================
                 if (avatar != null && avatar.Length > 0)
                 {
@@ -1196,7 +1183,7 @@ namespace WebQLThiTracNghiem.Controllers
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
 
-                    // ❌ XÓA ẢNH CŨ
+                    // XÓA ẢNH CŨ
                     if (!string.IsNullOrEmpty(hoSo.AnhDaiDien))
                     {
                         var oldPath = Path.Combine(path, hoSo.AnhDaiDien);
@@ -1204,7 +1191,7 @@ namespace WebQLThiTracNghiem.Controllers
                             System.IO.File.Delete(oldPath);
                     }
 
-                    // ✅ LƯU ẢNH MỚI
+                    // LƯU ẢNH MỚI
                     var fileName = Guid.NewGuid() + Path.GetExtension(avatar.FileName);
                     var filePath = Path.Combine(path, fileName);
 
@@ -1219,12 +1206,12 @@ namespace WebQLThiTracNghiem.Controllers
 
             _context.SaveChanges();
 
-            // 🔥 LOG
+            // LOG
             GhiLog("Cập nhật hồ sơ", "Người dùng", model.MaNguoiDung.ToString());
 
             TempData["success"] = "Cập nhật thành công!";
 
-            // 🔥 quay lại
+            //quay lại
             if (!string.IsNullOrEmpty(returnUrl))
                 return Redirect(returnUrl);
 
@@ -1277,29 +1264,41 @@ namespace WebQLThiTracNghiem.Controllers
 
         private void GhiLog(string hanhDong, string? doiTuong = null, string? maBanGhi = null)
         {
-            // ✅ PHẢI ĐỂ Ở ĐÂY (ngoài object)
-            int maNguoiDung = 0;
-            var sessionValue = HttpContext.Session.GetString("MaNguoiDung");
-
-            if (!string.IsNullOrEmpty(sessionValue) && int.TryParse(sessionValue, out int result))
+            try
             {
-                maNguoiDung = result;
+                int? maNguoiDung = null;
+
+                var sessionValue = HttpContext?.Session?.GetString("MaNguoiDung");
+
+                if (!string.IsNullOrEmpty(sessionValue) && int.TryParse(sessionValue, out int result))
+                {
+                    // check tồn tại trong DB
+                    bool tonTai = _context.NguoiDung.Any(x => x.MaNguoiDung == result);
+
+                    if (tonTai)
+                    {
+                        maNguoiDung = result;
+                    }
+                }
+
+                var log = new NhatKyHeThong
+                {
+                    MaNguoiDung = maNguoiDung ?? 1,
+                    HanhDong = hanhDong,
+                    DoiTuongTacDong = doiTuong,
+                    MaBanGhiTacDong = maBanGhi,
+                    ThoiGianThucHien = DateTime.Now,
+                    DiaChiIP = HttpContext?.Connection?.RemoteIpAddress?.ToString()
+                };
+
+                _context.NhatKyHeThongs.Add(log);
+                _context.SaveChanges();
             }
-
-            var log = new NhatKyHeThong
+            catch (Exception ex)
             {
-                MaNguoiDung = maNguoiDung,
-                HanhDong = hanhDong,
-                DoiTuongTacDong = doiTuong,
-                MaBanGhiTacDong = maBanGhi,
-                ThoiGianThucHien = DateTime.Now,
-                DiaChiIP = HttpContext.Connection.RemoteIpAddress?.ToString()
-            };
-
-            _context.NhatKyHeThongs.Add(log);
-            _context.SaveChanges();
+                Console.WriteLine("Lỗi ghi log: " + ex.Message);
+            }
         }
-
 
         // XUẤT EXCEL GIAO  VIÊN 
         public IActionResult XuatGiaoVienExcel()
@@ -1407,7 +1406,7 @@ namespace WebQLThiTracNghiem.Controllers
         [HttpPost]
         public IActionResult TaoDotThi(TaoDotThiViewModel model)
         {
-            // 🔥 VALIDATE
+            // VALIDATE
             if (string.IsNullOrWhiteSpace(model.TenDotThi))
                 ModelState.AddModelError("", "Tên đợt thi không được để trống");
 
@@ -1434,7 +1433,7 @@ namespace WebQLThiTracNghiem.Controllers
                 return View(model);
             }
 
-            // 🔥 TẠO ĐỢT THI (THÊM KHỐI)
+            // TẠO ĐỢT THI (THÊM KHỐI)
             var dotThi = new DotThi
             {
                 TenDotThi = model.TenDotThi,
@@ -1443,7 +1442,7 @@ namespace WebQLThiTracNghiem.Controllers
                 ThoiGianKetThuc = model.ThoiGianKetThuc,
                 SoLanThiToiDa = model.SoLanThiToiDa,
                 TrangThai = true,
-                Khoi = model.Khoi ?? 0 // 🔥 QUAN TRỌNG
+                Khoi = model.Khoi ?? 0 
             };
 
             _context.DotThi.Add(dotThi);
@@ -1451,7 +1450,7 @@ namespace WebQLThiTracNghiem.Controllers
 
             GhiLog("Tạo đợt thi", "Đợt thi", dotThi.MaDotThi.ToString());
 
-            // 🔥 LỌC HỌC SINH THEO KHỐI
+            // LỌC HỌC SINH THEO KHỐI
             var hocSinhsQuery = _context.HocSinh
                 .Include(h => h.Lop)
                 .AsQueryable();
@@ -1470,14 +1469,14 @@ namespace WebQLThiTracNghiem.Controllers
                 .Select(x => x.MaHocSinh)
                 .ToList();
 
-            // 🔥 KHÔNG CÓ HỌC SINH → BÁO LỖI
+            // KHÔNG CÓ HỌC SINH → BÁO LỖI
             if (!hocSinhs.Any())
             {
                 TempData["error"] = "Không có học sinh thuộc khối này!";
                 return RedirectToAction("TaoDotThi");
             }
 
-            // 🔥 GÁN DANH SÁCH DỰ THI
+            // GÁN DANH SÁCH DỰ THI
             var danhSach = hocSinhs.Select(hs => new DanhSachDuThi
             {
                 MaDotThi = dotThi.MaDotThi,
@@ -1495,7 +1494,7 @@ namespace WebQLThiTracNghiem.Controllers
             var query = from dt in _context.DotThi
                         join de in _context.DeThi on dt.MaDeThi equals de.MaDeThi
                         join mh in _context.MonHoc on de.MaMonHoc equals mh.MaMonHoc
-                        where de.LoaiDe == "Chung" // 🔥 CHỈ LẤY ĐỢT THI CHUNG
+                        where de.LoaiDe == "Chung" 
                         select new
                         {
                             dt.MaDotThi,
@@ -1511,19 +1510,19 @@ namespace WebQLThiTracNghiem.Controllers
                                 "Đang mở"
                         };
 
-            // 🔍 SEARCH
+            // SEARCH
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 query = query.Where(x => x.TenDotThi.Contains(keyword));
             }
 
-            // 🔍 LỌC KHỐI
+            //  LỌC KHỐI
             if (khoi != null)
             {
                 query = query.Where(x => x.Khoi == khoi);
             }
 
-            // 🔍 LỌC TRẠNG THÁI
+            //  LỌC TRẠNG THÁI
             if (!string.IsNullOrEmpty(trangThai))
             {
                 if (trangThai == "sapdienra")
@@ -1562,8 +1561,6 @@ namespace WebQLThiTracNghiem.Controllers
             _context.SaveChanges();
 
             TempData["success"] = "Cập nhật thành công!";
-
-            // 🔥 QUAN TRỌNG: quay lại CHI TIẾT
             return RedirectToAction("ChiTietDotThi", new { id = model.MaDotThi });
         }
         public IActionResult ChiTietDotThi(int id, int? lop, string? trangThai)
@@ -1575,8 +1572,6 @@ namespace WebQLThiTracNghiem.Controllers
 
             if (dotThi == null || dotThi.DeThi == null || dotThi.DeThi.LoaiDe != "Chung")
                 return NotFound();
-
-            // 🔥 FIX CHUẨN THEO VIEW (QUAN TRỌNG NHẤT)
             ViewBag.DotThi = new
             {
                 dotThi.MaDotThi,
@@ -1621,7 +1616,7 @@ namespace WebQLThiTracNghiem.Controllers
                                 "Đã nộp"
                         };
 
-            // 🔥 FIX LỌC LỚP (TRƯỚC BỊ SAI)
+            // LỌC LỚP 
             if (lop.HasValue)
             {
                 var tenLop = _context.Lop
@@ -1635,7 +1630,7 @@ namespace WebQLThiTracNghiem.Controllers
                 }
             }
 
-            // 🔥 LỌC TRẠNG THÁI
+            // LỌC TRẠNG THÁI
             if (!string.IsNullOrEmpty(trangThai))
             {
                 if (trangThai == "dathi")
@@ -1660,25 +1655,25 @@ namespace WebQLThiTracNghiem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult XoaDotThi(int id)
         {
-            var dotThi = _context.DotThi
-                .Include(x => x.DeThi)
-                .FirstOrDefault(x => x.MaDotThi == id);
+            var dotThi = _context.DotThi.FirstOrDefault(x => x.MaDotThi == id);
 
-            if (dotThi == null || dotThi.DeThi.LoaiDe != "Chung")
+            if (dotThi == null)
                 return NotFound();
 
-            // 🔥 XÓA LIÊN QUAN
-            var ds = _context.DanhSachDuThi.Where(x => x.MaDotThi == id);
-            var lt = _context.LuotThi.Where(x => x.MaDotThi == id);
+            // XÓA LUOTTHI TRƯỚC
+            var luotThi = _context.LuotThi.Where(x => x.MaDotThi == id).ToList();
+            _context.LuotThi.RemoveRange(luotThi);
 
+            //XÓA DANHSACHDUTHI
+            var ds = _context.DanhSachDuThi.Where(x => x.MaDotThi == id).ToList();
             _context.DanhSachDuThi.RemoveRange(ds);
-            _context.LuotThi.RemoveRange(lt);
-
+            //XÓA ĐỢT THI
             _context.DotThi.Remove(dotThi);
+
             _context.SaveChanges();
 
             TempData["success"] = "Đã xóa đợt thi!";
-            return RedirectToAction("DotThi");
+            return RedirectToAction("DanhSachDotThi");
         }
         [HttpPost]
         public IActionResult ToggleDotThi(int id)
@@ -1706,7 +1701,7 @@ namespace WebQLThiTracNghiem.Controllers
            d.ThoiGianKetThuc,
            d.Khoi
        })
-       .ToList(); // ✅ đúng
+       .ToList(); 
 
             using (var package = new OfficeOpenXml.ExcelPackage())
             {
@@ -1719,7 +1714,7 @@ namespace WebQLThiTracNghiem.Controllers
                 ws.Cells[1, 4].Value = "Kết thúc";
                 ws.Cells[1, 5].Value = "Khối";
 
-                // 🔥 FORMAT NGÀY CHUẨN
+                // FORMAT NGÀY
                 ws.Column(3).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
                 ws.Column(4).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
 
@@ -1728,14 +1723,10 @@ namespace WebQLThiTracNghiem.Controllers
                 foreach (var item in data)
                 {
                     ws.Cells[row, 1].Value = item.TenDotThi;
-                    ws.Cells[row, 2].Value = item.TenDe;
-
-                    // 🔥 QUAN TRỌNG: KHÔNG ToString
+                    ws.Cells[row, 2].Value = item.TenDe;              
                     ws.Cells[row, 3].Value = item.ThoiGianBatDau;
                     ws.Cells[row, 4].Value = item.ThoiGianKetThuc;
-
                     ws.Cells[row, 5].Value = item.Khoi;
-
                     row++;
                 }
 
@@ -1768,7 +1759,7 @@ namespace WebQLThiTracNghiem.Controllers
 
             if (user != null)
             {
-                user.TrangThai = false; // 🔥 khóa
+                user.TrangThai = false; 
                 _context.SaveChanges();
 
                 GhiLog("Khóa tài khoản", "Người dùng", id.ToString());
@@ -1780,19 +1771,19 @@ namespace WebQLThiTracNghiem.Controllers
         {
             int pageSize = 10;
 
-            // 🔥 LOAD DỮ LIỆU TRƯỚC (QUAN TRỌNG)
+            // LOAD DỮ LIỆU 
             var query = _context.DotThi
       .Include(d => d.DeThi)
       .Where(d => d.DeThi != null && d.DeThi.LoaiDe == "Chung")
       .ToList();
 
-            // 🔍 LỌC TÊN
+            // LỌC TÊN
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(x => x.TenDotThi.Contains(keyword)).ToList();
             }
 
-            // 🔍 LỌC NGÀY
+            // LỌC NGÀY
             if (!string.IsNullOrEmpty(fromDate))
             {
                 DateTime from = DateTime.Parse(fromDate);
@@ -1806,7 +1797,7 @@ namespace WebQLThiTracNghiem.Controllers
             }
             var dsDuThi = _context.DanhSachDuThi.ToList();
             var hocSinh = _context.HocSinh.Include(h => h.Lop).ToList();
-            // 🔍 LỌC KHỐI
+            // LỌC KHỐI
             if (khoi.HasValue)
             {
                 query = query.Where(x =>
@@ -1860,7 +1851,7 @@ namespace WebQLThiTracNghiem.Controllers
 
             var model = new KetQuaThiViewModel();
 
-            // 🔥 HỌC SINH
+            // HỌC SINH
             var hocSinh = _context.HocSinh
                 .Include(h => h.NguoiDung)
                     .ThenInclude(n => n.HoSoCaNhan)
@@ -1869,12 +1860,12 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.HoTen = hocSinh?.NguoiDung?.HoSoCaNhan?.HoTen;
             ViewBag.MaHocSinh = hocSinh?.MaHocSinh;
 
-            // 🔥 THÊM DÒNG NÀY (QUAN TRỌNG)
+            // THÊM DÒNG NÀY 
             ViewBag.Avatar = hocSinh?.NguoiDung?.HoSoCaNhan?.AnhDaiDien;
 
             model.MaLuotThi = luotThi.MaLuotThi;
 
-            // 🔥 ĐỢT THI
+            // ĐỢT THI
             var dotThi = _context.DotThi
                 .Include(d => d.DeThi)
                     .ThenInclude(dt => dt.MonHoc)
@@ -1887,7 +1878,7 @@ namespace WebQLThiTracNghiem.Controllers
             model.ThoiDiemBatDau = luotThi.ThoiDiemBatDau;
             model.ThoiDiemNopBai = luotThi.ThoiDiemNopBai;
 
-            // 🔥 CHI TIẾT CÂU HỎI
+            // CHI TIẾT CÂU HỎI
             model.ChiTietCauHoi = (from ct in _context.ChiTietBaiLam
                                    join ch in _context.CauHoi on ct.MaCauHoi equals ch.MaCauHoi
                                    where ct.MaLuotThi == luotThi.MaLuotThi
@@ -1941,7 +1932,7 @@ namespace WebQLThiTracNghiem.Controllers
             ViewBag.SelectedDotThi = maDotThi;
             ViewBag.SelectedKhoi = khoi;
 
-            // 🔥 LẤY LỚP
+            // LẤY LỚP
             var lops = _context.Lop
                 .Where(l => !khoi.HasValue || l.KyHieuLop.StartsWith(khoi.ToString()))
                 .ToList();
@@ -1951,7 +1942,7 @@ namespace WebQLThiTracNghiem.Controllers
             foreach (var lop in lops)
             {
                 // =========================
-                // 🔥 HỌC SINH
+                // HỌC SINH
                 // =========================
                 var hocSinhIds = _context.HocSinh
                     .Where(h => h.MaLop == lop.MaLop)
@@ -1959,7 +1950,7 @@ namespace WebQLThiTracNghiem.Controllers
                     .ToList();
 
                 // =========================
-                // 🔥 LƯỢT THI
+                // LƯỢT THI
                 // =========================
                 var luotThis = _context.LuotThi
                     .Where(lt => hocSinhIds.Contains(lt.MaHocSinh) &&
@@ -1967,7 +1958,7 @@ namespace WebQLThiTracNghiem.Controllers
                     .ToList();
 
                 // =========================
-                // 🔥 SỐ ĐỢT THI (🔥 FIX CHUẨN)
+                // SỐ ĐỢT THI 
                 // =========================
                 var soDotThi = _context.DanhSachDuThi
                     .Where(ds => hocSinhIds.Contains(ds.MaHocSinh))
@@ -1976,7 +1967,7 @@ namespace WebQLThiTracNghiem.Controllers
                     .Count();
 
                 // =========================
-                // 🔥 THỐNG KÊ THEO MÔN
+                //THỐNG KÊ THEO MÔN
                 // =========================
                 var thongKeMon = (from lt in _context.LuotThi
                                   join dt in _context.DotThi on lt.MaDotThi equals dt.MaDotThi
@@ -1992,7 +1983,7 @@ namespace WebQLThiTracNghiem.Controllers
                                   }).ToList();
 
                 // =========================
-                // 🔥 CHẤT LƯỢNG
+                // CHẤT LƯỢNG
                 // =========================
                 int tongLuot = luotThis.Count;
 
@@ -2016,10 +2007,10 @@ namespace WebQLThiTracNghiem.Controllers
                     TenLop = lop.TenLop,
                     SoHocSinh = hocSinhIds.Count,
 
-                    // 🔥 QUAN TRỌNG
+                    // QUAN TRỌNG
                     SoDotThi = soDotThi,
 
-                    // 🔥 CHẤT LƯỢNG
+                    // CHẤT LƯỢNG
                     DiemTB = Math.Round(diemTB, 2),
                     TyLeDat = Math.Round(tyLeDat, 2),
 
@@ -2028,13 +2019,13 @@ namespace WebQLThiTracNghiem.Controllers
                     SoTB = tb,
                     SoYeu = yeu,
 
-                    // 🔥 THEO MÔN
+                    //THEO MÔN
                     ThongKeMon = thongKeMon
                 });
             }
 
             // =========================
-            // 🔥 XẾP HẠNG
+            // XẾP HẠNG
             // =========================
             var sorted = result.OrderByDescending(x => x.DiemTB).ToList();
 
@@ -2088,7 +2079,7 @@ namespace WebQLThiTracNghiem.Controllers
             {
                 var ws = package.Workbook.Worksheets.Add("ChiTietDotThi");
 
-                // 🔥 HEADER
+                // HEADER
                 ws.Cells[1, 1].Value = "Họ tên";
                 ws.Cells[1, 2].Value = "Lớp";
                 ws.Cells[1, 3].Value = "Thời gian vào";
@@ -2096,13 +2087,13 @@ namespace WebQLThiTracNghiem.Controllers
                 ws.Cells[1, 5].Value = "Điểm";
                 ws.Cells[1, 6].Value = "Trạng thái";
 
-                // 🔥 STYLE HEADER
+                // STYLE HEADER
                 using (var range = ws.Cells[1, 1, 1, 6])
                 {
                     range.Style.Font.Bold = true;
                 }
 
-                // 🔥 FORMAT DATE
+                //FORMAT DATE
                 ws.Column(3).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
                 ws.Column(4).Style.Numberformat.Format = "dd/MM/yyyy HH:mm";
 
@@ -2112,8 +2103,7 @@ namespace WebQLThiTracNghiem.Controllers
                 {
                     ws.Cells[row, 1].Value = item.Ten;
                     ws.Cells[row, 2].Value = item.Lop;
-
-                    // 🔥 FIX NULL + FORMAT CHUẨN
+             
                     if (item.ThoiGianVao.HasValue)
                         ws.Cells[row, 3].Value = item.ThoiGianVao.Value;
                     else
@@ -2127,7 +2117,6 @@ namespace WebQLThiTracNghiem.Controllers
                     ws.Cells[row, 5].Value = item.Diem ?? 0;
                     ws.Cells[row, 6].Value = item.TrangThai;
 
-                    // 🔥 MÀU TRẠNG THÁI (xịn hơn)
                     if (item.TrangThai == "Đã nộp")
                         ws.Cells[row, 6].Style.Font.Color.SetColor(System.Drawing.Color.Green);
                     else if (item.TrangThai == "Chưa nộp")

@@ -255,7 +255,6 @@
         <div class="d-flex justify-content-center mt-4">
             <ul class="pagination">
 
-                <!-- Prev -->
                 <li class="page-item @(ViewBag.Page == 1 ? "disabled" : "")">
                     <a class="page-link"
                        href="?page=@(ViewBag.Page - 1)&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">
@@ -271,7 +270,6 @@
                     int end = Math.Min(total, current + 2);
                 }
 
-                <!-- Trang đầu -->
                 @if (start > 1)
                 {
                     <li class="page-item">
@@ -289,7 +287,6 @@
                     }
                 }
 
-                <!-- Các trang giữa -->
                 @for (int i = start; i <= end; i++)
                 {
                     <li class="page-item @(i == current ? "active" : "")">
@@ -300,7 +297,6 @@
                     </li>
                 }
 
-                <!-- Trang cuối -->
                 @if (end < total)
                 {
                     if (end < total - 1)
@@ -318,7 +314,6 @@
                     </li>
                 }
 
-                <!-- Next -->
                 <li class="page-item @(ViewBag.Page == ViewBag.TotalPage ? "disabled" : "")">
                     <a class="page-link"
                        href="?page=@(ViewBag.Page + 1)&keyword=@ViewBag.Keyword&monId=@ViewBag.MonId&chuyenDeId=@ViewBag.ChuyenDeId&khoi=@ViewBag.Khoi&loai=@ViewBag.Loai">

@@ -26,7 +26,6 @@
 
 <div class="gv-card shadow-sm">
 
-    <!-- 🔥 BIỂU ĐỒ -->
     <div class="row mb-4">
         <div class="col-md-6">
             <div class="card p-3">
@@ -48,7 +47,6 @@
         <canvas id="chartNgay"></canvas>
     </div>
 
-    <!-- 🔍 FILTER -->
     <form method="get" class="row g-2 mb-4">
         <div class="col-md-3">
             <input type="text" name="keyword" value="@ViewBag.Keyword" class="form-control"
@@ -105,7 +103,6 @@
         </div>
     </form>
 
-    <!-- 📊 TABLE -->
     <div class="table-responsive">
         <table class="table table-bordered align-middle">
             <thead class="table-light">
@@ -172,11 +169,9 @@
     </div>
 </div>
 
-<!-- 🔥 CHART -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    // ===== PIE (ĐẸP HƠN - DOUGHNUT) =====
     new Chart(document.getElementById('chartTrangThai'), {
         type: 'doughnut',
         data: {
@@ -197,7 +192,6 @@
         }
     });
 
-    // ===== BAR (THEO LỚP) =====
     new Chart(document.getElementById('chartLop'), {
         type: 'bar',
         data: {
@@ -224,7 +218,6 @@
         }
     });
 
-    // ===== LINE (THEO THỜI GIAN - MƯỢT) =====
     new Chart(document.getElementById('chartNgay'), {
         type: 'line',
         data: {
@@ -255,7 +248,7 @@
         }
     });
 </script>
-<!-- 🏆 TOP HỌC SINH -->
+
 <div class="card p-3 mb-4">
     <h5 class="text-center text-danger">🏆 Top học sinh điểm cao</h5>
 

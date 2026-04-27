@@ -18,14 +18,12 @@
 
         <div class="row g-3">
 
-            <!-- TÊN -->
             <div class="col-md-8">
                 <label class="form-label">Tên đề thi</label>
                 <input asp-for="TenDeThi" class="form-control"
                        placeholder="Ví dụ: Đề ôn tập chương Hàm số" />
             </div>
 
-            <!-- MÔN -->
             <div class="col-md-4">
                 <label class="form-label">Môn học</label>
                 <select asp-for="MaMonHoc" class="form-select" id="monHoc" required>
@@ -49,7 +47,6 @@
                 </select>
             </div>
 
-            <!-- KHỐI -->
             <div class="col-md-4">
                 <label class="form-label">Khối</label>
                 <select asp-for="Khoi" class="form-select" required>
@@ -84,7 +81,6 @@
                 </select>
             </div>
 
-            <!-- LOẠI ĐỀ -->
             <div class="col-md-4">
                 <label class="form-label">Loại đề</label>
                 <select asp-for="LoaiDe" class="form-select" id="loaiDe">
@@ -92,7 +88,6 @@
                 </select>
             </div>
 
-            <!-- THỜI GIAN -->
             <div class="col-md-4">
                 <label class="form-label">Thời gian làm bài (phút)</label>
                 <input asp-for="ThoiGianLamBai"

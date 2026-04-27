@@ -7,12 +7,29 @@
 
 <div class="gv-card shadow-sm">
     <div class="d-flex justify-content-between align-items-center mb-3">
+
         <div>
             <h3 class="mb-1">Quản lý đề thi</h3>
-            <p class="text-muted mb-0">Xem danh sách đề thi và quản lý nội dung từng đề.</p>
+            <p class="text-muted mb-0">
+                Xem danh sách đề thi và quản lý nội dung từng đề.
+            </p>
         </div>
-        <a asp-action="TaoDeThi" class="btn btn-primary">+ Tạo đề thi</a>
+
+        <div class="d-flex gap-2">
+
+            <a asp-action="TaoDeThi" class="btn btn-primary">
+                ➕ Tạo đề thi
+            </a>
+
+            <a asp-action="TaoDeThiTuDong" class="btn btn-success">
+                ⚡ Tạo tự động
+            </a>
+
+        </div>
+
     </div>
+</div>
+  
 
     @if (TempData["success"] != null)
     {
@@ -80,12 +97,10 @@
                             <td>@item.TenMonHoc</td>
                             <td>@item.ThoiGianLamBai phút</td>
 
-                            <!-- 🔥 SỐ CÂU -->
                             <td>
                                 <strong>@item.SoCau</strong>
                             </td>
 
-                            <!-- 🔥 TRẠNG THÁI -->
                             <td>
                                 @if (item.TrangThai)
                                 {
@@ -100,14 +115,12 @@
                             <td>
                                 <div class="d-flex gap-2">
 
-                                    <!-- 🔥 NÚT CHÍNH -->
                                     <a asp-action="ThemCauHoiVaoDe"
                                        asp-route-id="@item.MaDeThi"
                                        class="btn btn-sm btn-primary">
                                         + Thêm câu
                                     </a>
 
-                                    <!-- 🔥 MENU -->
                                     <div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
                                                 data-bs-toggle="dropdown">
@@ -176,7 +189,6 @@
 
                                                 <li><hr class="dropdown-divider"></li>
 
-                                                <!-- 🔥 COPY ĐỀ -->
                                                 <li>
                                                     <a class="dropdown-item text-primary"
                                                        asp-action="CopyDeThi"
@@ -253,7 +265,6 @@
                 </li>
             }
 
-            <!-- Next -->
             <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
                 <a class="page-link"
                    href="@Url.Action("DeThi", new {
@@ -290,3 +301,19 @@
         opacity: 0.5;
     }
 </style>
+<script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("success")) {
+
+        const alertBox = document.createElement("div");
+        alertBox.className = "alert alert-success";
+        alertBox.innerText = "Tạo đề thành công!";
+
+        document.querySelector(".gv-card").after(alertBox);
+
+        setTimeout(() => {
+            alertBox.remove();
+        }, 3000);
+    }
+</script>

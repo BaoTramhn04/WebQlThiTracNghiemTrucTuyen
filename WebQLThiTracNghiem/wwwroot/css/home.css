@@ -44,10 +44,10 @@
 }
 
 .exam-logo-box {
-    width: 80px; /* bạn có thể tăng lên 70-80 nếu muốn */
+    width: 80px; 
     height: 60px;
     border-radius: 12px;
-    overflow: hidden; /* QUAN TRỌNG */
+    overflow: hidden; 
     background: #fff;
     display: flex;
     align-items: center;
@@ -58,7 +58,7 @@
     .exam-logo-box img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* fill full, không méo */
+        object-fit: cover;
     }
 
 .exam-brand-title {
@@ -69,7 +69,7 @@
 
 .exam-brand-sub {
     font-size: 13px;
-    font-weight: 400; /* bỏ đậm */
+    font-weight: 400;
     color: #64748b;
 }
 
@@ -150,7 +150,6 @@
     }
 
 /* BANNER */
-/* ===== BANNER CHUẨN XỊN ===== */
 .exam-banner {
     position: relative;
     padding: 60px 0 50px;
@@ -293,7 +292,7 @@
 .banner-title {
     font-size: 56px;
     font-weight: 800;
-    color: #ffffff; /* 🔥 chữ trắng */
+    color: #ffffff; 
     background: linear-gradient(90deg, #2563eb, #60a5fa, #2563eb);
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -310,7 +309,6 @@
         background-position: 200% center;
     }
 }
-/* ===== TEXT ĐÈ LÊN TRÊN ===== */
 .banner-center {
     position: relative;
     z-index: 2;
@@ -321,7 +319,7 @@
 }
 .stat-icon {
     font-size: 26px;
-    color: #0d6efd; /* xanh xịn */
+    color: #0d6efd; 
     margin-bottom: 12px;
 }
 
@@ -396,7 +394,6 @@
         width: 200%;
         height: 100%;
         fill: rgba(59,130,246,0.25);
-        /* nghiêng chéo */
         transform: rotate(-8deg) scale(1.2);
         animation: waveDiagonalMove 10s ease-in-out infinite;
     }
@@ -765,8 +762,6 @@
         margin: 0;
     }
 
-/* FOOTER */
-
 /* ===== FOOTER ===== */
 .exam-footer {
     background: linear-gradient(135deg, #1e3a8a, #2563eb);
@@ -1069,7 +1064,6 @@
         }
     }
 }
-/* FIX BANNER CENTER CHUẨN */
 .exam-banner {
     height: 60vh !important;
     display: flex;
@@ -1083,7 +1077,6 @@
     z-index: 2;
 }
 
-    /* TITLE giống gradeptit */
     .banner-wrapper h1 {
         font-size: 48px;
         font-weight: 800;
@@ -1212,7 +1205,7 @@
 .highlight-slide {
     min-width: 100%;
     display: grid;
-    flex-shrink: 0; /* 👈 thêm */
+    flex-shrink: 0;
     grid-template-columns: repeat(3, 1fr);
     gap: 26px;
 }
@@ -1230,12 +1223,9 @@
     scroll-snap-align: start;
 }
 
-/*Gạch chân dưới nội dung header*/
 .exam-nav a {
     position: relative;
 }
-
-    /* gạch dưới */
     .exam-nav a::after {
         content: "";
         position: absolute;
@@ -1299,7 +1289,6 @@
     transition: transform 0.6s ease;
 }
 
-/* item = logo dài */
 .subject-item {
     min-width: 240px;
     height: 80px;
@@ -1314,7 +1303,6 @@
     color: #1e3a8a;
 }
 
-/* ảnh kiểu logo */
 .subject-item img {
     width: 50px;
     height: 50px;
@@ -1327,7 +1315,7 @@
     position: absolute;
     bottom: -120px;
     display: block;
-    opacity: 0.3; /* 👈 NHẠT HƠN */
+    opacity: 0.3;
     filter: blur(4px);
     animation: floatBokeh linear infinite;
 }
@@ -1344,12 +1332,11 @@
     .bokeh span:nth-child(even) {
         width: 100px;
         height: 100px;
-        background: rgba(147,197,253,0.25); /* 👈 xanh NHẸ thôi */
+        background: rgba(147,197,253,0.25); 
         clip-path: polygon( 25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50% );
     }
     
 
-        /* ===== TRẢI ĐỀU 2 BÊN (KHÔNG VÀO GIỮA) ===== */
         .bokeh span:nth-child(1) {
             left: 5%;
             animation-duration: 18s;
@@ -1455,19 +1442,15 @@
     transform: translateX(-50%);
 }
 }
-
-
-/* TITLE */
 /* TITLE */
 .main-title {
     font-size: 42px;
     font-weight: 700;
-    color: #1f2937; /* cùng màu chữ */
+    color: #1f2937;
     margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
-/* GẠCH NGĂN CÁCH */
 .title-divider {
     width: 60px;
     height: 4px;
@@ -1495,7 +1478,6 @@
     transition: transform 0.5s ease;
 }
 
-/* Mỗi slide full width */
 .highlight-slide {
     min-width: 100%;
     display: flex;
@@ -1673,21 +1655,19 @@
     z-index: 1;
 }
 
-    /* BLOB CHUẨN */
+    /* BLOB */
     .intro-img::before {
         content: "";
         position: absolute;
         width: 420px;
         height: 320px;
-        background: #dbeafe; /* màu nhẹ hơn */
-
-        border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; /* 👈 méo organic */
-
+        background: #dbeafe;
+        border-radius: 55% 45% 60% 40% / 60% 40% 55% 45%; 
         top: 50%;
         left: -60px;
         transform: translateY(-50%);
         z-index: 0;
-        opacity: 0.6; /* 👈 quan trọng: làm nhạt */
+        opacity: 0.6; 
     }
 
     /* ẢNH */
@@ -1748,7 +1728,6 @@
     margin: 0 12px;
     padding: 22px;
     border-radius: 22px;
-    /* 🎯 glass effect */
     background: #ffffff;
     color: #1e293b;
     backdrop-filter: blur(14px);
@@ -1763,7 +1742,6 @@
         opacity: 1;
         transform: scale(1.1);
         filter: blur(0);
-        /* 🌟 glow xịn */
         box-shadow: 0 25px 60px rgba(37, 99, 235, 0.5), 0 0 25px rgba(59, 130, 246, 0.4);
         border: 1px solid #93c5fd;
     }
@@ -1781,7 +1759,6 @@
         object-fit: cover;
         border-radius: 14px;
         margin-bottom: 12px;
-        /* 👇 thêm */
         box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
@@ -1968,7 +1945,6 @@
     padding: 120px 0;
     text-align: center;
     overflow: hidden;
-    /* 🔥 đổi nền tại đây */
     background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
     color: white;
 }
@@ -1989,21 +1965,18 @@
         top: -100px;
         left: -100px;
     }
-/* ===== FIX ICON + TEXT BANNER ===== */
 
 /* ICON */
 .stat-icon {
-    color: #ffffff !important; /* đổi sang trắng */
+    color: #ffffff !important; 
     opacity: 0.95;
 }
 
-/* SỐ (10+, 50+, ...) */
 .banner-stat-box strong,
 .stat-box strong {
     color: #ffffff;
 }
 
-/* TEXT NHỎ (Lớp học, Đề thi...) */
 .banner-stat-box span,
 .stat-box span {
     color: #dbeafe;
@@ -2011,8 +1984,7 @@
 .neon-text {
     font-size: 56px;
     font-weight: 800;
-    color: #22d3ee; /* xanh cyan */
-    /* hiệu ứng glow */
+    color: #22d3ee;
     text-shadow: 0 0 5px #22d3ee, 0 0 10px #22d3ee, 0 0 20px #06b6d4, 0 0 40px #06b6d4, 0 0 80px #0284c7;
     letter-spacing: 2px;
 }
@@ -2041,7 +2013,6 @@
     position: relative;
     color: white;
     padding: 60px 0 30px;
-    /* 🌄 ẢNH NỀN SÂN TRƯỜNG */
     background: url('/images/santruong.jpg') center/cover no-repeat;
 }
 
@@ -2065,20 +2036,19 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 40px;
-    align-items: stretch; /* 🔥 cao bằng nhau */
+    align-items: stretch; 
 }
 
-    /* mỗi cột */
     .exam-footer-grid > div {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
     }
 
-/* ===== CỘT LOGO FIX LỆCH ===== */
+/* ===== CỘT LOGO ===== */
 .footer-brand {
     display: flex;
-    align-items: flex-start; /* 🔥 sửa lệch */
+    align-items: flex-start; 
     gap: 15px;
 }
 
@@ -2128,4 +2098,8 @@
 }
 .slider-track {
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.exam-nav a.active {
+    color: #2563eb;
+    font-weight: 600;
 }

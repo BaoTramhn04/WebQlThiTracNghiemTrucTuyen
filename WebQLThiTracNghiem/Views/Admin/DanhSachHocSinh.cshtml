@@ -143,7 +143,6 @@
                         </td>
                        <td class="d-flex gap-1 align-items-center">
 
-    <!-- 👤 HỒ SƠ -->
     <a asp-action="ChiTietNguoiDung"
        asp-route-id="@hs.NguoiDung.MaNguoiDung"
        class="btn btn-sm btn-info"
@@ -151,7 +150,6 @@
         <i class="bi bi-person"></i>
     </a>
 
-    <!-- ✏️ SỬA -->
     <button class="btn btn-sm btn-warning"
             title="Sửa"
             onclick="editHS(
@@ -162,7 +160,6 @@
         <i class="bi bi-pencil"></i>
     </button>
 
-    <!-- 🗑️ XÓA -->
     <a asp-action="XoaHocSinh"
        asp-route-id="@hs.MaHocSinh"
        class="btn btn-sm btn-danger"
@@ -183,7 +180,6 @@
 
     <ul class="pagination">
 
-        <!-- << -->
         <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
             <a class="page-link"
                href="@Url.Action("DanhSachHocSinh", new { page = ViewBag.CurrentPage - 1, keyword = ViewBag.Keyword })">
@@ -191,7 +187,6 @@
             </a>
         </li>
 
-        <!-- số -->
         @for (int i = 1; i <= ViewBag.TotalPages; i++)
         {
             <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
@@ -202,7 +197,6 @@
             </li>
         }
 
-        <!-- >> -->
         <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
             <a class="page-link"
                href="@Url.Action("DanhSachHocSinh", new { page = ViewBag.CurrentPage + 1, keyword = ViewBag.Keyword })">

@@ -13,7 +13,6 @@
 
             <h3 class="mb-4 fw-bold">📝 Tạo đợt thi chung</h3>
 
-            <!-- 🔥 THÔNG BÁO -->
             @if (TempData["error"] != null)
             {
                 <div class="alert alert-danger alert-dismissible fade show position-fixed"
@@ -32,28 +31,35 @@
                 </div>
             }
 
-            <!-- 🔥 VALIDATE -->
             <div class="text-danger mb-3" asp-validation-summary="All"></div>
 
             <form asp-action="TaoDotThi" method="post">
 
-                <!-- TÊN -->
                 <div class="mb-3">
                     <label class="form-label">Tên đợt thi</label>
                     <input asp-for="TenDotThi" class="form-control" placeholder="Nhập tên đợt thi..." />
                     <span asp-validation-for="TenDotThi" class="text-danger"></span>
                 </div>
 
-                <!-- ĐỀ THI -->
                 <div class="mb-3">
                     <label class="form-label">Chọn đề thi</label>
-                    <select asp-for="MaDeThi" asp-items="Model.DanhSachDeThi" class="form-select">
+                    <select asp-for="MaDeThi" id="maDeThi" class="form-select">
                         <option value="">-- Chọn đề thi --</option>
+
+                        @foreach (var de in ViewBag.DeThi)
+                        {
+                            <option value="@de.MaDeThi" data-time="@de.ThoiGianLamBai">
+                                @de.TenDeThi (@de.Khoi) - @de.ThoiGianLamBai phút
+                            </option>
+                        }
                     </select>
+                    <div class="mb-3">
+                        <label class="form-label">Thời gian làm bài</label>
+                        <input type="number" id="thoiGian" class="form-control" readonly />
+                    </div>
                     <span asp-validation-for="MaDeThi" class="text-danger"></span>
                 </div>
 
-                <!-- 🔥 KHỐI (FIX GỌN + CHUẨN) -->
                 <div class="mb-3">
                     <label class="form-label">Chọn khối</label>
 
@@ -71,7 +77,6 @@
                     <span asp-validation-for="Khoi" class="text-danger"></span>
                 </div>
 
-                <!-- TIME -->
                 <div class="row">
 
                     <div class="col-md-6 mb-3">
@@ -102,7 +107,6 @@
 
                 </div>
 
-                <!-- BUTTON -->
                 <div class="d-flex justify-content-between mt-3">
                     <a asp-action="DanhSachDotThi" class="btn btn-secondary">
                         ← Quay lại
@@ -123,7 +127,6 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 
-    <!-- 🔥 AUTO ẨN THÔNG BÁO -->
     <script>
         setTimeout(function () {
             var alert = document.querySelector(".alert");
@@ -131,5 +134,15 @@
                 alert.style.display = "none";
             }
         }, 3000);
+
+        const selectDe = document.getElementById("maDeThi");
+        const inputTime = document.getElementById("thoiGian");
+
+        selectDe.addEventListener("change", function () {
+            const selected = this.options[this.selectedIndex];
+            const time = selected.getAttribute("data-time");
+
+            inputTime.value = time || "";
+        });
     </script>
 }

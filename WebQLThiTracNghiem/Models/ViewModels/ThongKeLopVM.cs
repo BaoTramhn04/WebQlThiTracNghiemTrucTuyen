@@ -10,7 +10,6 @@
         public double DiemTB { get; set; }
         public double TyLeDat { get; set; }
 
-        // 🔥 THÊM 4 DÒNG NÀY (LỖI CỦA BẠN)
         public int SoGioi { get; set; }
         public int SoKha { get; set; }
         public int SoTB { get; set; }
@@ -18,7 +17,6 @@
 
         public int Rank { get; set; }
 
-        // 🔥 THÊM DÒNG NÀY
         public List<ThongKeMonVM> ThongKeMon { get; set; }
     }
     public class ThongKeMonVM

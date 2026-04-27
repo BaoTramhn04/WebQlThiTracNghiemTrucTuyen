@@ -44,7 +44,9 @@
                     {
                         <tr>
                             <td>@item.MaNguoiDung</td>
-                            <td>@item.HoSoCaNhan?.HoTen</td>
+                            <td class="hoten" title="@item.HoSoCaNhan?.HoTen">
+                                @item.HoSoCaNhan?.HoTen
+                            </td>
                             <td>@item.TenDangNhap</td>
 
                             <td>
@@ -120,7 +122,6 @@
 <nav>
     <ul class="pagination justify-content-center">
 
-        <!-- Prev -->
         @if (current > 1)
         {
             <li class="page-item">
@@ -131,7 +132,6 @@
             </li>
         }
 
-        <!-- Chỉ hiện 5 trang quanh trang hiện tại -->
         @for (int i = Math.Max(1, current - 2); i <= Math.Min(total, current + 2); i++)
         {
             <li class="page-item @(i == current ? "active" : "")">
@@ -142,7 +142,6 @@
             </li>
         }
 
-        <!-- Next -->
         @if (current < total)
         {
             <li class="page-item">
@@ -164,9 +163,21 @@
     width: 100%;
 }
 
-.table td, .table th {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+        .table td, .table th {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    .hoten {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+    }
     </style>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>

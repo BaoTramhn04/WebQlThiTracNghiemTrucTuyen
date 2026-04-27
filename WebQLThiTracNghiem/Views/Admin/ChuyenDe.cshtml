@@ -9,7 +9,6 @@
 
             <h2 class="mb-4">📗 Quản lý chuyên đề</h2>
 
-            <!-- 🔔 THÔNG BÁO -->
             @if (TempData["success"] != null)
             {
                 <div class="alert alert-success">@TempData["success"]</div>
@@ -19,15 +18,14 @@
                 <div class="alert alert-danger">@TempData["error"]</div>
             }
 
-            <!-- 🔥 THỐNG KÊ -->
             <div class="row mb-3">
 
                 <div class="col-md-6">
                     <div class="card text-center shadow-sm">
                         <div class="card-body">
                             <h6>Tổng chuyên đề</h6>
-<h3>@ViewBag.TongChuyenDe</h3>
-</div>
+                            <h3>@ViewBag.TongChuyenDe</h3>
+                        </div>
                     </div>
                 </div>
 
@@ -35,17 +33,17 @@
                     <div class="card text-center shadow-sm">
                         <div class="card-body">
                             <h6>Số môn học</h6>
-<h3>@ViewBag.SoMon</h3>
-</div>
+                        <h3>@ViewBag.SoMon</h3>
+                        </div>
                     </div>
                 </div>
 
             </div>
 
-            <!-- 🔍 SEARCH + FILTER -->
+            <!--SEARCH + FILTER -->
             <form method="get" class="row mb-3">
 
-            <!-- 🔍 SEARCH -->
+            <!--SEARCH -->
             <div class="col-md-6">
                 <input type="text" name="keyword"
                        value="@ViewBag.Keyword"
@@ -85,7 +83,6 @@
 
     </select>
 </div>  
-    <!-- 🔥 FILTER MÔN -->
             <div class="col-md-4">
                 <select name="mon" class="form-select">
             <option value="">-- Lọc theo môn --</option>
@@ -110,7 +107,6 @@
 
 </form>
 
-    <!-- ➕ THÊM -->
     <div class="card shadow-sm mb-4 border-0">
 
         <div class="card-header bg-white fw-bold border-bottom">
@@ -136,7 +132,6 @@
         </select>
     </div>
 
-    <!-- 🔥 CHỖ BẠN CẦN THÊM -->
     <div class="col-md-3">
         <select name="khoi" class="form-select" required>
             <option value="">-- Chọn khối --</option>
@@ -155,7 +150,6 @@
         </div>
     </div>
 
-    <!-- 📋 TABLE -->
     <div class="card shadow">
 
         <div class="card-header bg-dark text-white fw-bold">
@@ -195,7 +189,6 @@
     }
 </td>
 
-                            <!-- 🔥 CLICK LỌC MÔN -->
                             <td>
                                 <span class="badge bg-light border px-3 py-2">
                                    <a href="@Url.Action("ChuyenDe", new { 
@@ -208,7 +201,6 @@
                                 </span>
                             </td>
 
-                            <!-- 🔥 SỐ CÂU HỎI -->
                             <td>
                                 @(item.CauHois?.Count() ?? 0)
                             </td>
@@ -255,7 +247,6 @@
             </a>
         </li>
 
-        <!-- PAGE NUMBERS -->
         @for (int i = 1; i <= total; i++)
         {
             if (i == 1 || i == total || (i >= current - 1 && i <= current + 1))
@@ -279,7 +270,6 @@
             }
         }
 
-        <!-- NEXT -->
         <li class="page-item @(current == total ? "disabled" : "")">
             <a class="page-link"
                href="@Url.Action("ChuyenDe", new {
@@ -301,7 +291,7 @@
     </div>
 
 </div>
-<!-- 🔥 MODAL SỬA -->
+
 <div class="modal fade" id="editModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">

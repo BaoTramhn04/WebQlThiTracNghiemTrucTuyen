@@ -13,7 +13,6 @@
 
     <div class="card-body">
 
-        <!-- 🔥 ALERT -->
         @if (TempData["success"] != null)
         {
             <div class="alert alert-success alert-dismissible fade show">
@@ -175,7 +174,6 @@
                         <tr>
                             <td>@stt</td>
 
-                            <!-- 🔥 CLICK LÀ LỌC -->
                             <td>
                                 <a href="@Url.Action("PhanCongGiangDay", new { gv = pc.MaGiaoVien })"
                                    class="text-dark text-decoration-none fw-bold">
@@ -229,7 +227,6 @@
             int total = ViewBag.TotalPage;
         }
 
-        <!-- PREV -->
         <li class="page-item @(current == 1 ? "disabled" : "")">
             <a class="page-link"
                href="@Url.Action("PhanCongGiangDay", new {
@@ -242,7 +239,6 @@
             </a>
         </li>
 
-        <!-- PAGE -->
         @for (int i = 1; i <= total; i++)
         {
             if (i == 1 || i == total || (i >= current - 1 && i <= current + 1))
@@ -267,7 +263,6 @@
             }
         }
 
-        <!-- NEXT -->
         <li class="page-item @(current == total ? "disabled" : "")">
             <a class="page-link"
                href="@Url.Action("PhanCongGiangDay", new {

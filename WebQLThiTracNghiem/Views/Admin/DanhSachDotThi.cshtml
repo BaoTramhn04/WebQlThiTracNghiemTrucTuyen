@@ -16,7 +16,6 @@
         </a>
     </div>
 
-    <!-- 🔥 FILTER -->
     <form method="get" class="card p-3 mb-3 shadow-sm border-0">
         <div class="row g-2">
 
@@ -98,12 +97,10 @@
     <div class="card mb-3 shadow-sm border-0">
         <div class="card-body">
 
-            <!-- 📝 TÊN -->
             <div class="fw-bold mb-1">
                 @item.TenDotThi - @item.TenDe
             </div>
 
-            <!-- ⏱ THỜI GIAN -->
             <div class="text-muted small">
                 @item.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm")
             </div>
@@ -111,7 +108,6 @@
                 → @item.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")
             </div>
 
-            <!-- 📊 TIẾN ĐỘ -->
             <div class="small mb-1">
                 @item.SoThiSinhDaThi / @item.TongHocSinh học sinh
             </div>
@@ -122,10 +118,8 @@
                 </div>
             </div>
 
-            <!-- 🔥 FOOTER -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
 
-                <!-- TRẠNG THÁI -->
                 <div>
                     @if (sapDienRa)
                     {
@@ -146,7 +140,6 @@
                     }
                 </div>
 
-                <!-- ACTION -->
                 <div class="d-flex gap-2">
 
                     <a asp-action="ChiTietDotThi"
@@ -187,7 +180,6 @@
         </div>
     </div>
 }
-    <!-- 🔥 PHÂN TRANG -->
     <div class="d-flex justify-content-center mt-3">
         @for (int i = 1; i <= (int)(ViewBag.TotalPages ?? 1); i++)
         {
@@ -200,7 +192,6 @@
 
 </div>
 
-<!-- 🔥 ALERT -->
 @if (TempData["error"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show position-fixed"

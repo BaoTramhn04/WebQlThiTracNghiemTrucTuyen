@@ -9,22 +9,27 @@
 
     <!-- LỌC THEO LỚP -->
 
-    <div style="margin-bottom:15px;">
+ @{
+var counts = ViewBag.SoLuongTheoLop as Dictionary<int, int>;}
 
-        <a href="/GiaoVien/HocSinh"
-           class="btn btn-outline-secondary btn-sm">
-            Tất cả (@Model.Count)
-        </a>
+<div style="margin-bottom:15px;">
 
-        @{
-            int stt = 1;
-        }
+    <a href="/GiaoVien/HocSinh"
+       class="btn btn-outline-secondary btn-sm">
+        Tất cả (@ViewBag.TongHocSinh)
+    </a>
 
-        @if (danhSachLop != null)
+    @{
+        int stt = 1;
+    }
+
+    @if (danhSachLop != null)
+    {
+        foreach (var lop in danhSachLop)
         {
-            foreach (var lop in danhSachLop)
-            {
-                var soLuong = Model.Count(x => x.MaLop == lop.MaLop);
+          var soLuong = counts != null && counts.ContainsKey(lop.MaLop)
+    ? counts[lop.MaLop]
+    : 0;
 
                 <a href="/GiaoVien/HocSinh?lopId=@lop.MaLop"
                    class="btn btn-outline-primary btn-sm"
@@ -39,9 +44,6 @@
         }
 
     </div>
-
-
-    <!-- TOOLBAR -->
 
     <form method="get" class="gv-toolbar">
 
@@ -95,7 +97,6 @@
                     <th>Họ tên</th>
                     <th>Lớp</th>
                     <th>Số báo danh</th>
-                    <th>Thao tác</th>
                 </tr>
             </thead>
 
@@ -123,22 +124,7 @@
 
                             <td>@hs.SoBaoDanh</td>
 
-                            <td>
-
-
-
-                             <form asp-action="XoaHocSinh" method="post" style="display:inline;"
-      onsubmit="return confirm('Xóa học sinh khỏi lớp?');">
-
-    <input type="hidden" name="id" value="@hs.MaHocSinh" />
-
-    <button type="submit" class="btn btn-sm btn-outline-danger">
-        🗑 Xóa khỏi lớp
-    </button>
-
-</form>
-                            </td>
-
+                         
                         </tr>
                     }
                 }
@@ -157,7 +143,6 @@
 
 <div class="pagination">
 
-    <!-- PREV -->
     @if (current > 1)
     {
         <a href="@Url.Action("HocSinh", new {
@@ -167,14 +152,12 @@
         })" class="page-btn">‹</a>
     }
 
-    <!-- FIRST -->
     @if (start > 1)
     {
         <a href="@Url.Action("HocSinh", new { page = 1 })" class="page-btn">1</a>
         <span class="dots">...</span>
     }
 
-    <!-- MAIN -->
     @for (int i = start; i <= end; i++)
     {
         <a href="@Url.Action("HocSinh", new {
@@ -187,14 +170,12 @@
         </a>
     }
 
-    <!-- LAST -->
     @if (end < total)
     {
         <span class="dots">...</span>
         <a href="@Url.Action("HocSinh", new { page = total })" class="page-btn">@total</a>
     }
 
-    <!-- NEXT -->
     @if (current < total)
     {
         <a href="@Url.Action("HocSinh", new {

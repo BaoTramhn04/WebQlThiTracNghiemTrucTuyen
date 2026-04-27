@@ -12,7 +12,7 @@
         📘 Môn học: <span class="text-primary">@Model.TenMonHoc</span>
     </h2>
 
-    <!-- 🔥 CARD THỐNG KÊ -->
+    <!--CARD THỐNG KÊ -->
     <div class="row mb-4">
 
         <div class="col-md-4">
@@ -50,13 +50,13 @@
 
     </div>
 
-    <!-- 🔍 THANH TÌM KIẾM NHẸ -->
+    <!-- THANH TÌM KIẾM -->
     <div class="mb-3">
         <input type="text" id="searchTable" class="form-control"
                placeholder="🔍 Tìm giáo viên hoặc lớp..." onkeyup="filterTable()" />
     </div>
 
-    <!-- 📋 BẢNG PHÂN CÔNG -->
+    <!--BẢNG PHÂN CÔNG -->
     <div class="card shadow">
         <div class="card-header fw-bold bg-dark text-white">
             📋 Danh sách phân công giảng dạy
@@ -112,14 +112,13 @@
         </div>
     </div>
 
-    <!-- 🔙 -->
     <div class="mt-3">
         <a asp-action="MonHoc" class="btn btn-secondary">⬅ Quay lại</a>
     </div>
 
 </div>
 
-<!-- 🔥 SCRIPT TÌM KIẾM -->
+<!--SCRIPT TÌM KIẾM -->
 <script>
     function filterTable() {
         var input = document.getElementById("searchTable");

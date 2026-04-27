@@ -5,16 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Website thi trắc nghiệm</title>
-
-    <!-- ICON -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/giaovien.css" asp-append-version="true" />
 
     <style>
 
-        /* ===== SIDEBAR ===== */
         .gv-sidebar {
             position: fixed;
             top: 0;
@@ -27,19 +23,16 @@
             overflow-y: auto;
         }
 
-            /* collapse */
             .gv-sidebar.collapsed {
                 width: 80px;
             }
 
-        /* ===== USER BOX ===== */
         .gv-user-box {
             text-align: center;
             padding: 20px 10px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* avatar */
         .gv-avatar {
             width: 70px;
             height: 70px;
@@ -49,26 +42,22 @@
             margin-bottom: 10px;
         }
 
-        /* tên */
         .gv-user-name {
             font-weight: 600;
             font-size: 14px;
             color: #fff;
         }
 
-        /* bộ môn */
         .gv-user-role {
             font-size: 13px;
             color: #cbd5f5;
         }
 
-        /* collapse thì ẩn info */
         .gv-sidebar.collapsed .gv-user-name,
         .gv-sidebar.collapsed .gv-user-role {
             display: none;
         }
 
-        /* ===== MENU ===== */
         .menu-item {
             display: flex;
             align-items: center;
@@ -82,25 +71,21 @@
             transition: all 0.25s ease;
         }
 
-            /* hover */
             .menu-item:hover {
                 background: rgba(255,255,255,0.15);
                 transform: translateX(4px);
             }
 
-            /* active */
             .menu-item.active {
                 background: #3b82f6;
                 box-shadow: 0 0 10px rgba(59,130,246,0.5);
             }
 
-            /* icon */
             .menu-item i {
                 width: 20px;
                 height: 20px;
             }
 
-        /* collapse menu */
         .gv-sidebar.collapsed .menu-item span {
             display: none;
         }
@@ -109,13 +94,11 @@
             justify-content: center;
         }
 
-        /* ===== SUBMENU ===== */
         .submenu {
             padding-left: 10px;
             margin-top: 2px;
         }
 
-        /* item */
         .submenu-item {
             display: block;
             padding: 8px 12px;
@@ -126,20 +109,16 @@
             text-decoration: none;
             transition: all 0.2s ease;
         }
-
-            /* hover submenu */
             .submenu-item:hover {
                 background: rgba(255,255,255,0.15);
                 padding-left: 16px;
             }
 
-        /* active submenu */
         .active-sub {
             background: #2563eb;
             color: #fff !important;
         }
 
-        /* ===== MAIN ===== */
         .gv-main {
             margin-left: 250px;
             transition: 0.3s;
@@ -149,7 +128,6 @@
                 margin-left: 80px;
             }
 
-        /* ===== HEADER ===== */
         .gv-header {
             display: flex;
             justify-content: space-between;
@@ -159,14 +137,12 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* left */
         .gv-header-left {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        /* button toggle */
         .btn-toggle {
             border: none;
             background: #f3f4f6;
@@ -175,7 +151,6 @@
             cursor: pointer;
         }
 
-            /* hover button */
             .btn-toggle:hover {
                 background: #e5e7eb;
             }
@@ -187,10 +162,8 @@
     @{
         var maNguoiDung = Context.Session.GetInt32("MaNguoiDung");
 
-        // 🔥 lấy từ session trước (nhanh)
         var avatar = Context.Session.GetString("Avatar");
 
-        // 🔥 nếu chưa có thì mới query DB (chỉ 1 lần)
         if (string.IsNullOrEmpty(avatar) && maNguoiDung != null)
         {
             avatar = _context.HoSoCaNhan
@@ -278,7 +251,7 @@
                class="submenu-item @(action == "ImportCauHoi" ? "active-sub" : null)">
                 📥 Import câu hỏi
             </a>
-
+                   
         </div>
 
         <!-- ================= ĐỀ THI ================= -->
@@ -286,7 +259,8 @@
             var isDeThi = action == "DeThi"
                        || action == "TaoDeThi"
                        || action == "ImportDeThi"
-                       || action == "ChiTietDeThi";
+                       || action == "ChiTietDeThi"
+                    || action == "TaoDeThiTuDong";
         }
 
         <div class="menu-item @(isDeThi ? "active" : null)"
@@ -295,24 +269,29 @@
             <span>Quản lý đề thi</span>
         </div>
 
-        <div class="submenu" style="display:@(isDeThi ? "block" : "none")">
+                <div class="submenu" style="display:@(isDeThi ? "block" : "none")">
 
-            <a asp-controller="GiaoVien" asp-action="DeThi"
-               class="submenu-item @(action == "DeThi" ? "active-sub" : null)">
-                📄 Danh sách đề thi
-            </a>
+                    <a asp-controller="GiaoVien" asp-action="DeThi"
+                       class="submenu-item @(action == "DeThi" ? "active-sub" : null)">
+                        📄 Danh sách đề thi
+                    </a>
 
-            <a asp-controller="GiaoVien" asp-action="TaoDeThi"
-               class="submenu-item @(action == "TaoDeThi" ? "active-sub" : null)">
-                ➕ Tạo đề thi
-            </a>
+                    <a asp-controller="GiaoVien" asp-action="TaoDeThi"
+                       class="submenu-item @(action == "TaoDeThi" ? "active-sub" : null)">
+                        ➕ Tạo đề thi
+                    </a>
 
-            <a asp-controller="GiaoVien" asp-action="ImportDeThi"
-               class="submenu-item @(action == "ImportDeThi" ? "active-sub" : null)">
-                📥 Import đề thi
-            </a>
+                    <a asp-controller="GiaoVien" asp-action="TaoDeThiTuDong"
+                       class="submenu-item @(action == "TaoDeThiTuDong" ? "active-sub" : null)">
+                        ⚡ Tạo đề tự động
+                    </a>
 
-        </div>
+                    <a asp-controller="GiaoVien" asp-action="ImportDeThi"
+                       class="submenu-item @(action == "ImportDeThi" ? "active-sub" : null)">
+                        📥 Import đề thi
+                    </a>
+
+                </div>
 
         <!-- Đợt thi -->
         <a asp-action="DotThi"
@@ -379,9 +358,10 @@
             document.querySelector(".gv-main").classList.toggle("expand");
         }
 
-        // load icon
         lucide.createIcons();
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     @RenderSection("Scripts", required: false)
     <script>
         window.MathJax = {
@@ -391,13 +371,13 @@
             }
         };
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
     <script>
     function toggleSubMenu(el) {
         const next = el.nextElementSibling;
         next.style.display = next.style.display === "block" ? "none" : "block";
     }
 </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </body>
 </html>

@@ -18,14 +18,12 @@
 
     <form asp-action="ImportDeThi" method="post" enctype="multipart/form-data">
 
-        <!-- Tên đề -->
         <div class="mb-3">
             <label class="form-label">Tên đề thi</label>
             <input type="text" name="tenDeThi" class="form-control"
                    placeholder="Nhập tên đề..." required />
         </div>
 
-        <!-- KHỐI -->
         <div class="mb-3">
             <label class="form-label">Khối</label>
             <select name="khoi" class="form-select" required>
@@ -36,7 +34,6 @@
             </select>
         </div>
 
-        <!-- Môn học -->
         <div class="mb-3">
             <label class="form-label">Môn học</label>
             <select name="maMonHoc" class="form-select" required>
@@ -54,7 +51,6 @@
             </select>
         </div>
 
-        <!-- Loại đề -->
         <div class="mb-3">
             <label class="form-label">Loại đề</label>
 
@@ -74,7 +70,6 @@
             }
         </div>
 
-        <!-- Thời gian -->
         <div class="mb-3">
             <label class="form-label">Thời gian làm bài (phút)</label>
             <input type="number" name="thoiGianLamBai"
@@ -83,7 +78,6 @@
                    min="1" required />
         </div>
 
-        <!-- File -->
         <div class="mb-3">
             <label class="form-label">Chọn file Excel</label>
             <input type="file" name="file"
@@ -91,7 +85,6 @@
                    accept=".xlsx,.xls" required />
         </div>
 
-        <!-- Hướng dẫn -->
         <div class="mb-3 p-3 bg-light rounded border">
             <small class="text-muted">
                 <b>📊 Định dạng Excel:</b><br /><br />
@@ -104,7 +97,6 @@
             </small>
         </div>
 
-        <!-- Button -->
         <div class="d-flex gap-2">
             <button type="submit" class="btn btn-danger">
                 📥 Import đề thi

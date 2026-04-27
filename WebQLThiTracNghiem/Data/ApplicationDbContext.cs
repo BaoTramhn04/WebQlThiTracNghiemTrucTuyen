@@ -93,7 +93,6 @@ namespace WebQLThiTracNghiem.Data
             var lopList = new List<Lop>();
             int lopId = 1;
 
-            // 🔥 đổi tên biến tránh trùng
             var danhSachKhoi = new[] { "10", "11", "12" };
 
             foreach (var k in danhSachKhoi)
@@ -450,7 +449,7 @@ namespace WebQLThiTracNghiem.Data
 ("Kinh tế thị trường?", new[]{"tự do","ép buộc","cứng","ít"},1,24),
 ("Nhà nước điều tiết?", new[]{"kinh tế","học","chơi","ngủ"},1,24),
             };
-          foreach (var item in cauHoiThat)
+            foreach (var item in cauHoiThat)
             {
                 cauHoiList.Add(new CauHoi
                 {
@@ -544,11 +543,11 @@ namespace WebQLThiTracNghiem.Data
 
             for (int i = 0; i < 10; i++)
             {
-                // 🔥 chia đều khối + môn (KHÔNG random lỗi nữa)
+                //chia đều khối + môn
                 var khoiRandom = khois[i % khois.Count];
                 var monRandom = (i % 8) + 1; // 8 môn
 
-                // 🔥 lấy giáo viên đại diện theo môn
+                // lấy giáo viên đại diện theo môn
                 int gvDaiDien = ((monRandom - 1) * 2) + 1;
 
                 deList.Add(new DeThi
@@ -560,7 +559,7 @@ namespace WebQLThiTracNghiem.Data
                     TronCauHoi = true,
                     TronDapAn = true,
 
-                    NguoiTao = gvDaiDien, // ✅ FIX CHUẨN
+                    NguoiTao = gvDaiDien, 
 
                     Khoi = khoiRandom,
                     TrangThai = true,
@@ -568,17 +567,16 @@ namespace WebQLThiTracNghiem.Data
                 });
             }
 
-            // ❌ bỏ dấu chấm thừa
             modelBuilder.Entity<DeThi>().HasData(deList);
-        
 
 
-            // ===== CHI TIẾT ĐỀ (DUY NHẤT 1 BLOCK) =====
+
+            // ===== CHI TIẾT ĐỀ  =====
             var ctDe = new List<ChiTietDeThi>();
 
             int soCauMoiDe = 10;
 
-            // 🔥 map chuyên đề → (môn, khối)
+            // chuyên đề → (môn, khối)
             var chuyenDeInfo = new Dictionary<int, (int mon, int khoi)>();
 
             for (int m = 1; m <= 8; m++)
@@ -590,7 +588,7 @@ namespace WebQLThiTracNghiem.Data
                 }
             }
 
-            // 🔥 nhóm câu hỏi theo (môn, khối)
+            // nhóm câu hỏi theo (môn, khối)
             var cauHoiTheoMonKhoi = new Dictionary<(int, int), List<int>>();
 
             for (int m = 1; m <= 8; m++)
@@ -601,19 +599,19 @@ namespace WebQLThiTracNghiem.Data
                 }
             }
 
-            // 🔥 đổ câu hỏi vào nhóm
+            //đổ câu hỏi vào nhóm
             foreach (var ch in cauHoiList)
             {
                 var info = chuyenDeInfo[ch.MaChuyenDe];
                 cauHoiTheoMonKhoi[(info.mon, info.khoi)].Add(ch.MaCauHoi);
             }
 
-            // 🔥 tạo chi tiết đề (KHÔNG LẪN)
+            // tạo chi tiết đề
             foreach (var de in deList)
             {
                 int maMon = de.MaMonHoc;
 
-                // 🔥 đổi tên tránh trùng biến
+                // đổi tên tránh trùng biến
                 int khoiDe = 1;
 
                 if (de.TenDeThi.Contains("Lớp 11")) khoiDe = 2;
@@ -621,7 +619,7 @@ namespace WebQLThiTracNghiem.Data
 
                 var dsCauHoi = cauHoiTheoMonKhoi[(maMon, khoiDe)];
 
-                // 🔥 random
+                // random
                 Random rand = new Random(Guid.NewGuid().GetHashCode());
 
                 var selected = dsCauHoi
@@ -649,7 +647,6 @@ namespace WebQLThiTracNghiem.Data
     "Đoàn Văn Phúc","Tạ Thị Thu","Lương Văn Hải","Hà Thị Linh"
 };
 
-            // 🔥 đổi tên tránh trùng biến
             string[] dsMonCode = { "TOAN", "LY", "HOA", "SINH", "ANH", "SU", "DIA", "GDCD" };
 
             var gvUser = new List<NguoiDung>();
@@ -659,10 +656,8 @@ namespace WebQLThiTracNghiem.Data
             int userId = 100;
             int gvId = 1;
 
-            // 👉 16 giáo viên = 8 môn * 2
             for (int i = 0; i < 16; i++)
             {
-                // 🔥 tránh trùng tên biến
                 string maMon = dsMonCode[i / 2];
 
                 int stt = (i % 2) + 1;
@@ -696,7 +691,7 @@ namespace WebQLThiTracNghiem.Data
                     MaNguoiDung = userId,
                     TrangThai = true,
 
-                    // 🔥 mỗi môn 2 giáo viên → gv lẻ là đại diện
+                    // mỗi môn 2 giáo viên → gv lẻ là đại diện
                     LaDaiDien = (gvId % 2 == 1)
                 });
 
@@ -722,7 +717,7 @@ namespace WebQLThiTracNghiem.Data
 
             for (int lop = 1; lop <= 18; lop++)
             {
-                for (int monId = 1; monId <= 8; monId++) // 🔥 đổi tên tránh trùng
+                for (int monId = 1; monId <= 8; monId++) 
                 {
                     // mỗi môn có 2 giáo viên
                     int gv = ((monId - 1) * 2) + (lop % 2 == 0 ? 1 : 2);
@@ -784,34 +779,33 @@ namespace WebQLThiTracNghiem.Data
             int nd = 500;
             Random r = new Random(123);
 
-            // 👉 18 lớp
+            // 18 lớp
             for (int lop = 1; lop <= 18; lop++)
             {
-                // 👉 mỗi lớp 15 học sinh
                 for (int i = 1; i <= 15; i++)
                 {
                     string hoten = ho[r.Next(ho.Length)] + " " + ten[r.Next(ten.Length)];
 
-                    // 🔥 XÁC ĐỊNH NĂM NHẬP HỌC THEO KHỐI
                     int namNhapHoc;
+                    if (lop <= 6) namNhapHoc = 2026;
+                    else if (lop <= 12) namNhapHoc = 2025;
+                    else namNhapHoc = 2024;
 
-                    if (lop <= 6) namNhapHoc = 2026;       // khối 10
-                    else if (lop <= 12) namNhapHoc = 2025; // khối 11
-                    else namNhapHoc = 2024;                // khối 12
+                    // MÃ HỌC SINH (8 số)
+                    string maHS = $"{namNhapHoc % 100:D2}{lop:D2}{i:D2}{idHS:D2}";
 
-                    // 🔥 MÃ HỌC SINH DÀI
-                    string maHS = $"{namNhapHoc}{lop:D2}{idHS:D4}";
-
+                    // ===== USER =====
                     hsUser.Add(new NguoiDung
                     {
                         MaNguoiDung = nd,
-                        TenDangNhap = "hs" + idHS,
+                        TenDangNhap = maHS, 
                         MatKhau = "123456",
                         TrangThai = true,
                         NgayTao = new DateTime(2025, 1, 1),
                         MaVaiTro = 3
                     });
 
+                    // ===== HỒ SƠ =====
                     hsHoSo.Add(new HoSoCaNhan
                     {
                         MaNguoiDung = nd,
@@ -823,9 +817,10 @@ namespace WebQLThiTracNghiem.Data
                         AnhDaiDien = null
                     });
 
+                    // ===== HỌC SINH =====
                     hsList.Add(new HocSinh
                     {
-                        MaHocSinh = int.Parse(maHS), // 🔥 mã dài
+                        MaHocSinh = int.Parse(maHS),   
                         MaNguoiDung = nd,
                         MaLop = lop,
                         SoBaoDanh = $"{lop:D2}{i:D2}",
@@ -836,6 +831,7 @@ namespace WebQLThiTracNghiem.Data
                     nd++;
                 }
             }
+
             modelBuilder.Entity<NguoiDung>().HasData(hsUser);
             modelBuilder.Entity<HoSoCaNhan>().HasData(hsHoSo);
             modelBuilder.Entity<HocSinh>().HasData(hsList);

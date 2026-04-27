@@ -25,7 +25,6 @@ namespace WebQLThiTracNghiem.Models
         public DateTime NgayTao { get; set; }
         public int Khoi { get; set; }
 
-        // Navigation
         public List<DapAn>? DapAns { get; set; }
     }
 }

@@ -45,14 +45,11 @@
                 </div>
             </div>
 
-            <!-- 🔥 NỘI DUNG -->
             <div class="col-12">
                 <label class="form-label">Nội dung câu hỏi</label>
 
-                <!-- hidden -->
                 <input type="hidden" name="NoiDung" id="noiDungHidden" />
 
-                <!-- editor -->
                 <div id="editor" contenteditable="true"
                      class="form-control"
                      style="min-height:120px;"></div>
@@ -96,13 +93,11 @@
         const editor = document.getElementById("editor");
         const hidden = document.getElementById("noiDungHidden");
 
-        // 🔥 FIX QUAN TRỌNG
         document.querySelector("form").addEventListener("submit", function (e) {
 
             let html = editor.innerHTML.trim();
             let text = editor.innerText.trim();
 
-            // ❌ nếu rỗng thật
             if (!text) {
                 e.preventDefault();
                 alert("Vui lòng nhập nội dung câu hỏi!");
@@ -112,7 +107,6 @@
             hidden.value = html;
         });
 
-        // 👉 paste ảnh
         editor.addEventListener("paste", function (e) {
             e.preventDefault();
 

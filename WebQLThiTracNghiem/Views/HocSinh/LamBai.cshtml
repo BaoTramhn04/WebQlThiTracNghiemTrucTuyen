@@ -256,7 +256,6 @@ display:none;justify-content:center;align-items:center;z-index:999999;">
     </div>
 </div>
 <style>
-/* ===== GLOBAL ===== */
 body {
     background: #f8fafc;
     font-family: 'Segoe UI', sans-serif;
@@ -266,7 +265,6 @@ body {
     max-width: 1200px;
 }
 
-/* ===== HEADER (LÀM NHẸ LẠI) ===== */
 .exam-header-pro {
     background: #ffffff;
     color: #1e293b;
@@ -277,7 +275,6 @@ body {
     box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 }
 
-/* avatar */
 .avatar-big {
     width: 64px;
     height: 64px;
@@ -286,7 +283,6 @@ body {
     object-fit: cover;
 }
 
-/* info */
 .student-info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -295,7 +291,6 @@ body {
     color: #475569;
 }
 
-/* ===== CARD ===== */
 .student-page-card {
     border-radius: 16px;
     background: white;
@@ -316,14 +311,12 @@ body {
     padding: 18px;
 }
 
-/* ===== TITLE ===== */
 .student-page-title {
     font-size: 20px;
     font-weight: 700;
     color: #1e293b;
 }
 
-/* ===== QUESTION ===== */
     .question-card {
         animation: fadeIn 0.2s ease;
     }
@@ -341,13 +334,12 @@ body {
     }
 
 
-/* ===== ANSWER (BỎ VIỀN GẮT) ===== */
 .answer-option {
     display: flex;
     align-items: center;
     padding: 14px 16px;
     border-radius: 12px;
-    border: none; /* ❌ bỏ viền */
+    border: none; 
     margin-bottom: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -362,12 +354,10 @@ body {
     background: #dbeafe;
 }
 
-/* radio */
 .question-radio {
     transform: scale(1.1);
 }
 
-/* ===== BUTTON ===== */
 button {
     border-radius: 10px !important;
 }
@@ -382,7 +372,6 @@ button {
     border: none;
 }
 
-/* ===== RIGHT PANEL ===== */
 .countdown-panel {
     background: #f8fafc;
     border-radius: 14px;
@@ -405,7 +394,6 @@ button {
     margin-top: 5px;
 }
 
-/* ===== STATUS ===== */
 .status-box {
     width: 16px;
     height: 16px;
@@ -422,10 +410,9 @@ button {
     border-color: #22c55e !important;
 }
 
-/* ===== NAV QUESTION (SỬA CHỖ BẠN HỎI) ===== */
 .question-palette {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* rộng hơn để chứa "Câu 1" */
+    grid-template-columns: repeat(4, 1fr); 
     gap: 10px;
 }
 
@@ -443,7 +430,7 @@ button {
     background: #f8fafc;
     transition: all 0.2s ease;
 
-    text-decoration: none; /* ❌ bỏ gạch dưới */
+    text-decoration: none; 
     color: #1e293b;
 }
 
@@ -456,20 +443,17 @@ button {
     color: white;
 }
 
-/* ❌ đảm bảo KHÔNG có underline */
 .question-nav-btn,
 .question-nav-btn:link,
 .question-nav-btn:visited {
     text-decoration: none !important;
 }
 
-/* flag */
 .flag-icon {
     font-size: 11px;
     margin-left: 3px;
 }
 
-/* ===== OVERLAY ===== */
 .overlay {
     position: fixed;
     inset: 0;
@@ -523,7 +507,6 @@ button {
 
     }
 
-    /* ===== CHECKMARK ===== */
     .checkmark-circle {
         width: 80px;
         height: 80px;
@@ -571,7 +554,6 @@ button {
 
     }
 
-    /* TEXT */
     .success-box h3 {
         margin-top: 10px;
         font-size: 22px;
@@ -583,7 +565,6 @@ button {
         margin-top: 5px;
     }
 
-    /* BUTTON */
     .btn-ok {
         margin-top: 20px;
         padding: 10px 25px;
@@ -605,7 +586,6 @@ button {
 <div id="submitSuccessPopup" class="success-popup">
     <div class="success-box">
 
-        <!-- ICON SUCCESS -->
         <div class="checkmark-circle">
             <svg viewBox="0 0 52 52" class="checkmark">
                 <circle class="checkmark-circle-bg" cx="26" cy="26" r="25" fill="none" />
@@ -633,7 +613,6 @@ const MAX_VI_PHAM = 3;
         
         const STORAGE_KEY = "answers_" + maLuotThi;
 
-// ===== SAVE =====
 function saveAnswers() {
     const answers = {};
     document.querySelectorAll(".question-radio:checked").forEach(r => {
@@ -642,7 +621,6 @@ function saveAnswers() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(answers));
 }
 
-// ===== LOAD =====
 function loadAnswers() {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 
@@ -660,7 +638,6 @@ function loadAnswers() {
         }
     });
 }
-        // ===== START =====
         document.addEventListener("DOMContentLoaded", () => {
             loadAnswers();
              const daBatDau = localStorage.getItem("started_" + maLuotThi);
@@ -669,12 +646,10 @@ function loadAnswers() {
     document.getElementById("forceFullscreenOverlay").style.display = "none";
     dangTrongFullscreen = true;
 
-    // tự bật lại fullscreen
     setTimeout(() => {
         forceFullscreenLoop();
     }, 500);
             }
-            // 🔒 CHẶN BACK
             history.pushState(null, null, location.href);
            window.onpopstate = function () {
     history.pushState(null, null, location.href);
@@ -697,18 +672,16 @@ function loadAnswers() {
 
                     overlay.style.display = "none";
                     dangTrongFullscreen = true;
-                    // 🔥 LƯU trạng thái đã bắt đầu thi
         localStorage.setItem("started_" + maLuotThi, "true");
                 } catch {
                     showPopup("Không bật được fullscreen!");
                 }
             };
 
-            // RADIO
             document.querySelectorAll(".question-radio").forEach(radio=>{
              radio.addEventListener("change", function(){
 
-    saveAnswers(); // ✅ chỉ giữ cái này
+    saveAnswers(); 
 
     const parent = this.closest(".question-card");
 
@@ -729,14 +702,14 @@ function loadAnswers() {
     if (!daNop) {
         saveAnswers();
     }
-}, 3000); // mỗi 3s
+}, 3000); 
 
          window.addEventListener("beforeunload", function () {
     if (!daNop) {
         saveAnswers();
     }
 });
-            // FLAG
+           
             document.querySelectorAll(".review-checkbox").forEach(cb=>{
                 cb.addEventListener("change", function(){
 
@@ -754,7 +727,6 @@ function loadAnswers() {
             startCountdown();
         });
 
-        // ===== FORCE FULLSCREEN =====
         async function forceFullscreenLoop() {
 
             if (document.fullscreenElement) return;
@@ -767,37 +739,44 @@ function loadAnswers() {
             }
         }
 
-        // ===== SUBMIT =====
-        function submitFormSafe() {
-            if (daTuDongNop) return;
-            daTuDongNop = true;
-            document.getElementById("lamBaiForm")?.submit();
-        }
+           function submitFormSafe() {
+        return; 
+    }
 
-        // ===== COUNT =====
         function countUnanswered() {
             const total = document.querySelectorAll(".question-nav-btn").length;
             const answered = document.querySelectorAll(".question-radio:checked").length;
             return total - answered;
         }
 
-        // ===== NỘP BÀI =====
-        function confirmSubmitExam() {
+          function confirmSubmitExam() {
 
-            const conLai = countUnanswered();
+        const conLai = countUnanswered();
 
-            let msg = "Bạn có chắc muốn nộp bài?";
-            if (conLai > 0) {
-                msg += `\n⚠️ Còn ${conLai} câu chưa làm`;
-            }
-
-            showConfirmPopup(msg, () => {
-                daNop = true;
-                showSubmitSuccessPopup();
-            });
+        let msg = "Bạn có chắc muốn nộp bài?";
+        if (conLai > 0) {
+            msg += `\n⚠️ Còn ${conLai} câu chưa làm`;
         }
 
-        // ===== KEY =====
+        showConfirmPopup(msg, () => {
+            daNop = true;
+
+            const form = document.getElementById("lamBaiForm");
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: "POST",
+                body: formData
+            })
+            .then(() => {
+                showSubmitSuccessPopup(); 
+            })
+            .catch(() => {
+                alert("Lỗi khi nộp bài!");
+            });
+        });
+    }
+
         document.addEventListener("keydown", function (e) {
 
             if (daNop) return;
@@ -806,7 +785,6 @@ function loadAnswers() {
         e.preventDefault();
         canhBaoGianLan();
     }
-            // ❌ ESC
             if (e.key === "Escape") {
                 e.preventDefault();
                 canhBaoGianLan();
@@ -814,7 +792,6 @@ function loadAnswers() {
                 forceFullscreenLoop();
             }
 
-            // ❌ F5 / reload
             if (e.key === "F5" || (e.ctrlKey && e.key.toLowerCase() === "r")) {
                 e.preventDefault();
                 canhBaoGianLan();
@@ -822,7 +799,6 @@ function loadAnswers() {
                 forceFullscreenLoop();
             }
 
-            // ❌ BACKSPACE
             if (e.key === "Backspace") {
                 const tag = e.target.tagName.toLowerCase();
 
@@ -835,7 +811,6 @@ function loadAnswers() {
             }
         });
 
-        // ===== FULLSCREEN CHANGE =====
         document.addEventListener("fullscreenchange", function () {
 
             if (daNop) return;
@@ -847,7 +822,6 @@ function loadAnswers() {
             }
         });
 
-        // ===== BLUR =====
               window.addEventListener("blur", function () {
 
             if (daNop) return;
@@ -862,7 +836,6 @@ function loadAnswers() {
 
         });
 
-        // ===== OVERLAY =====
         function showForceFullscreenOverlay() {
 
             let overlay = document.getElementById("forceFullscreenBack");
@@ -907,7 +880,6 @@ function loadAnswers() {
             };
         }
 
-        // ===== TIMER =====
         function startCountdown() {
 
             const el = document.getElementById("countdownTimer");
@@ -916,16 +888,28 @@ function loadAnswers() {
 
                 const d = end - Date.now();
 
-                if (d <= 0) {
-                    el.innerHTML = "00:00:00";
+                  if (d <= 0) {
+        el.innerHTML = "00:00:00";
 
-                    if (!daNop) {
-                        daNop = true;
-                          submitFormSafe(); 
-                        showSubmitSuccessPopup();
-                    }
-                    return;
-                }
+        if (!daNop) {
+            daNop = true;
+
+            const form = document.getElementById("lamBaiForm");
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: "POST",
+                body: formData
+            })
+            .then(() => {
+                showSubmitSuccessPopup();
+            })
+            .catch(() => {
+                alert("Lỗi khi nộp bài!");
+            });
+        }
+        return;
+    }
 
                 const h = Math.floor(d / 3600000);
                 const m = Math.floor((d % 3600000) / 60000);
@@ -938,7 +922,6 @@ function loadAnswers() {
             tick();
             setInterval(tick, 1000);
         }
-        // ===== POPUP SUCCESS =====
            function showSubmitSuccessPopup() {
 
         const popup = document.getElementById("submitSuccessPopup");
@@ -947,7 +930,6 @@ function loadAnswers() {
         
     }
 
-        // ===== NAV =====
         let currentQuestion = 0;
 
         function showQuestion(index){
@@ -979,7 +961,6 @@ function loadAnswers() {
             }
         }
 
-        // ===== POPUP =====
       function showPopup(msg){
     document.getElementById("popupMsg").innerHTML = `
         <div style="color:#dc2626;font-weight:600;">
@@ -996,7 +977,6 @@ function loadAnswers() {
             document.getElementById("popup").style.display = "none";
         }
 
-        // ===== CONFIRM =====
         let confirmCallback = null;
 
         function showConfirmPopup(msg, callback){
@@ -1014,30 +994,42 @@ function loadAnswers() {
             document.getElementById("confirmPopup").style.display = "none";
         }
             function redirectHome() {
-        window.location.href = "/Home/DangNhap"; // hoặc trang bạn muốn
+        window.location.href = "/Home/DangNhap"; 
     }
         function submitAndRedirect() {
-        submitFormSafe(); // nộp bài
+        submitFormSafe(); 
 
         setTimeout(() => {
-            redirectHome(); // về trang chủ
+            redirectHome(); 
         }, 300);
     }
     function canhBaoGianLan() {
 
     soLanViPham++;
 
-// 🔥 LƯU lại
 localStorage.setItem("viPham_" + maLuotThi, soLanViPham);
 
-    if (soLanViPham >= MAX_VI_PHAM) {
+       if (soLanViPham >= MAX_VI_PHAM) {
 
         showPopup(`🚫 Bạn đã vi phạm ${soLanViPham} lần! Hệ thống sẽ tự động nộp bài.`);
 
         setTimeout(() => {
             if (!daNop) {
                 daNop = true;
-                showSubmitSuccessPopup();
+
+                const form = document.getElementById("lamBaiForm");
+                const formData = new FormData(form);
+
+                fetch(form.action, {
+                    method: "POST",
+                    body: formData
+                })
+                .then(() => {
+                    showSubmitSuccessPopup();
+                })
+                .catch(() => {
+                    alert("Lỗi khi nộp bài!");
+                });
             }
         }, 1500);
 
@@ -1046,7 +1038,6 @@ localStorage.setItem("viPham_" + maLuotThi, soLanViPham);
 
     showPopup(`⚠️ Bạn đã vi phạm ${soLanViPham} lần!\nCòn ${MAX_VI_PHAM - soLanViPham} lần trước khi bị nộp bài.`);
 }
-// Chặn copy
 document.addEventListener("copy", e => e.preventDefault());
 document.addEventListener("paste", e => e.preventDefault());
 
@@ -1065,30 +1056,13 @@ document.addEventListener("keydown", function (e) {
     document.addEventListener("contextmenu", function (e) {
         e.preventDefault();
         canhBaoGianLan();
-    });
-           function goToLogin() {
-
-        daNop = true;
-         
-
-
-        // Gửi form bằng fetch (AJAX) → KHÔNG bị redirect sang trang Kết quả
-        const form = document.getElementById("lamBaiForm");
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-            method: "POST",
-            body: formData
-        })
-        .then(() => {
-            // Sau khi nộp xong → về login
-               localStorage.removeItem(STORAGE_KEY); // 🔥 thêm dòng này
-            localStorage.removeItem("viPham_" + maLuotThi);
-            localStorage.removeItem("started_" + maLuotThi);
-            window.location.href = "/Home/DangNhap";
-        })
-        .catch(() => {
-            alert("Lỗi khi nộp bài!");
         });
+        function goToLogin() {
+
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem("viPham_" + maLuotThi);
+        localStorage.removeItem("started_" + maLuotThi);
+
+        window.location.href = "/Home/DangNhap";
     }
     </script>

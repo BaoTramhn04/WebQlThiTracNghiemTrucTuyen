@@ -13,7 +13,6 @@
         </p>
     </div>
 
-    <!-- 🔥 HIỂN THỊ LỖI -->
     @if (TempData["error"] != null)
     {
         <div class="alert alert-danger">@TempData["error"]</div>
@@ -22,14 +21,10 @@
     @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
 
     <form asp-action="TaoDotThi" method="post">
-        @Html.AntiForgeryToken()
-
-        <!-- 🔥 KHÔNG CẦN hidden khoi nữa -->
-        <!-- (đã lấy từ đề thi trong controller) -->
+        @Html.AntiForgeryToken()   
 
         <div class="row g-3">
 
-            <!-- 🔥 KHỐI -->
             <div class="col-md-4">
                 <label class="form-label">Khối</label>
                 <select class="form-select"
@@ -42,18 +37,16 @@
                 </select>
             </div>
 
-            <!-- TÊN -->
             <div class="col-md-8">
                 <label class="form-label">Tên đợt thi</label>
                 <input asp-for="TenDotThi" class="form-control"
                        placeholder="Ví dụ: Thi thử cuối kỳ lớp 12A" required />
             </div>
 
-            <!-- 🔥 FIX CHÍNH Ở ĐÂY -->
             <div class="col-md-6">
                 <label class="form-label">Đề thi</label>
 
-                <select name="MaDeThi" class="form-select" required>
+                <select name="MaDeThi" id="maDeThi" class="form-select" required>
                     <option value="">-- Chọn đề thi --</option>
 
                     @if (ViewBag.DeThi != null)
@@ -61,15 +54,19 @@
                         foreach (var de in ViewBag.DeThi)
                         {
                             <option value="@de.MaDeThi"
+                                    data-time="@de.ThoiGianLamBai"
                                     selected="@(Model?.MaDeThi == de.MaDeThi)">
-                                @de.TenDeThi (Khối @de.Khoi)
+                                @de.TenDeThi (Khối @de.Khoi) - @de.ThoiGianLamBai phút
                             </option>
                         }
                     }
                 </select>
+                <div class="col-md-6">
+                    <label class="form-label">Thời gian làm bài</label>
+                    <input type="number" id="thoiGian" class="form-control" readonly />
+                </div>
             </div>
 
-            <!-- TG BẮT ĐẦU -->
             <div class="col-md-6">
                 <label class="form-label">Thời gian bắt đầu</label>
                 <input asp-for="ThoiGianBatDau"
@@ -78,7 +75,6 @@
                        required />
             </div>
 
-            <!-- TG KẾT THÚC -->
             <div class="col-md-6">
                 <label class="form-label">Thời gian kết thúc</label>
                 <input asp-for="ThoiGianKetThuc"
@@ -100,3 +96,14 @@
         </div>
     </form>
 </div>
+<script>
+    const selectDe = document.getElementById("maDeThi");
+    const inputTime = document.getElementById("thoiGian");
+
+    selectDe.addEventListener("change", function () {
+        const selected = this.options[this.selectedIndex];
+        const time = selected.getAttribute("data-time");
+
+        inputTime.value = time || "";
+    });
+</script>

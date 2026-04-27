@@ -98,9 +98,7 @@
             border-radius: 24px;
             padding: 25px;
             text-align: center;
-            /* 🔥 VIỀN XỊN */
             border: 1.5px solid rgba(56,189,248,0.6);
-            /* 🔥 GLOW (QUAN TRỌNG NHẤT) */
             box-shadow: 0 20px 50px rgba(0,0,0,0.2), 0 0 25px rgba(56,189,248,0.4), 0 0 60px rgba(56,189,248,0.25);
             backdrop-filter: blur(6px);
             position: relative;
@@ -236,10 +234,9 @@
                 .dropdown-menu a:hover {
                     background: #eff6ff;
                 }
-        /* ===== SLIDE NHẸ NHÀNG ===== */
         .slide-in-left {
             opacity: 0;
-            transform: translateX(-40px); /* 🔥 chỉ lệch nhẹ thôi */
+            transform: translateX(-40px); 
             animation: slideSoft 0.6s ease-out forwards;
         }
 
@@ -268,30 +265,26 @@
             margin-right: auto;
         }
 
-        /* mỗi dòng */
         .row {
             display: flex;
             align-items: center;
-            padding: 8px 0; /* thay margin = padding cho đẹp */
-            border-bottom: 1px solid rgba(148, 163, 184, 0.2); /* 🔥 dòng kẻ */
+            padding: 8px 0; 
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2); 
         }
 
-            /* bỏ dòng cuối */
             .row:last-child {
                 border-bottom: none;
             }
 
-        /* label */
         .label {
-            width: 160px; /* 🔥 tăng để không lệch */
-            min-width: 160px; /* khóa cứng */
+            width: 160px; 
+            min-width: 160px; 
             font-weight: 600;
             color: #1e293b;
             text-align: left;
             font-size: 14px;
         }
 
-        /* value */
         .value {
             flex: 1;
             text-align: left;
@@ -329,7 +322,6 @@
                 background: #eff6ff;
             }
 
-            // Thông báo
         .alert {
             padding: 12px 16px;
             border-radius: 12px;
@@ -372,7 +364,6 @@
     <div class="bubble x2"></div>
     <div class="bubble x3"></div>
     <div class="bubble x4"></div>
-    <!-- MENU ☰ -->
     <div class="menu-wrapper">
         <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
@@ -383,7 +374,6 @@
         </div>
     </div>
     <div class="card" id="startCard">
-        <!-- Avatar -->
         <img src="@Url.Content(string.IsNullOrEmpty(Model.AvatarUrl)
                  ? "~/images/avatar-default.png"
                  : (Model.AvatarUrl.StartsWith("/Avatar")
@@ -422,7 +412,6 @@
             </div>
         </div>
       
-        <!-- 🔥 FORM POST -->
         <form method="post" action="/HocSinh/TaoLuotThi">
             <div class="select-box">
                 <label>Chọn đợt thi:</label>
@@ -487,8 +476,6 @@
             const menu = document.getElementById("dropdownMenu");
             const icon = document.querySelector(".menu-icon");
             const card = document.getElementById("startCard");
-
-            // ===== ENABLE BUTTON =====
            select.addEventListener("change", function () {
 
     const selectedOption = this.options[this.selectedIndex];
@@ -502,24 +489,20 @@
     }
 });
 
-            // ===== MENU TOGGLE =====
             window.toggleMenu = function () {
                 menu.classList.toggle("show");
             };
 
-            // 🔥 TỰ ĐỘNG MỞ MENU
             setTimeout(() => {
                 menu.classList.add("show");
             }, 300);
 
-            // CLICK NGOÀI → ĐÓNG MENU
             document.addEventListener("click", function (e) {
                 if (!icon.contains(e.target) && !menu.contains(e.target)) {
                     menu.classList.remove("show");
                 }
             });
 
-            // ===== CARD ANIMATION =====
             setTimeout(() => {
                 card.classList.add("slide-in-left");
             }, 100);

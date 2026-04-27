@@ -9,14 +9,12 @@
 
     <h2 class="mb-4">📚 Quản lý lớp</h2>
 
-    <!-- 🔥 NÚT EXPORT -->
     <div class="mb-3">
         <a asp-action="XuatHocSinhExcel" class="btn btn-success">
             📥 Xuất Excel học sinh
         </a>
     </div>
 
-    <!-- THÔNG BÁO -->
     @if (TempData["success"] != null)
     {
         <div class="alert alert-success">@TempData["success"]</div>
@@ -26,7 +24,6 @@
         <div class="alert alert-danger">@TempData["error"]</div>
     }
 
-    <!-- 🔍 SEARCH -->
     <form method="get" class="mb-3">
         <input type="text" name="keyword"
                value="@Context.Request.Query["keyword"]"
@@ -39,7 +36,6 @@
         <a asp-action="Lop" class="btn btn-secondary">Tất cả</a>
     </form>
 
-    <!-- ➕ THÊM LỚP -->
     <div class="card mb-4">
         <div class="card-header fw-bold">
             ➕ Thêm lớp mới
@@ -70,7 +66,6 @@
         </div>
     </div>
 
-    <!-- 📋 TABLE -->
     <div class="card">
         <div class="card-header fw-bold">
             📋 Danh sách lớp
@@ -119,12 +114,10 @@
                 </td>
 
                 <td>
-                    <!-- LƯU -->
                     <button type="submit" class="btn btn-success btn-sm">
                         💾 Lưu
                     </button>
 
-                    <!-- XÓA -->
                     <a asp-action="XoaLop"
                        asp-route-id="@item.MaLop"
                        class="btn btn-danger btn-sm"

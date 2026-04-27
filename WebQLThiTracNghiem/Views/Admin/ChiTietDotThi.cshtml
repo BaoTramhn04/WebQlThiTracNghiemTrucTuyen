@@ -9,7 +9,7 @@
 
 <div class="gv-card shadow-sm">
 
-    <!-- 🔥 HEADER -->
+    <!--HEADER -->
     <div class="d-flex justify-content-between align-items-start mb-3">
         <div>
             <h3 class="mb-1">Chi tiết đợt thi</h3>
@@ -38,7 +38,7 @@
         <div class="alert alert-success">@TempData["success"]</div>
     }
 
-    <!-- 🔥 THÔNG TIN -->
+    <!--THÔNG TIN -->
 <div id="viewMode">
     <div class="row g-3 mb-4">
         <div class="col-md-3">
@@ -111,7 +111,7 @@
         </div>
     </form>
 </div>
-    <!-- 🔥 FILTER -->
+    <!-- FILTER -->
     <form method="get" class="d-flex gap-2 mb-3">
         <input type="hidden" name="id" value="@dotThi.MaDotThi" />
 
@@ -124,7 +124,7 @@
                 </option>
             }
         </select>
-        <!-- 🔥 LỌC TRẠNG THÁI -->
+        <!-- LỌC TRẠNG THÁI -->
         <select name="trangThai" class="form-select w-auto">
             <option value="">-- Tất cả trạng thái --</option>
             <option value="dathi" selected="@(ViewBag.TrangThai == "dathi")">Đã nộp</option>
@@ -139,7 +139,6 @@
         </a>
     </form>
 
-    <!-- 🔥 TABLE -->
     <h5 class="mb-3">Danh sách học sinh</h5>
 
     <div class="table-responsive">
